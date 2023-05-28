@@ -3,8 +3,8 @@ import { useRoutes } from "react-router-dom";
 import { hookInstance } from "@utils/hookInstance";
 
 // routes
-import AuthenticationRoutes from "./data/authentication";
-import DashboardRoutes from "./data/dashboard";
+// import AuthenticationRoutes from "./data/authentication";
+// import DashboardRoutes from "./data/dashboard";
 import ClientAppRoutes from "./data/clientapp";
 // import AuthenticationRoutes from './AuthenticationRoutes';
 
@@ -16,7 +16,8 @@ export const BuildRoutes = () => {
 };
 
 export const RouteMaps = () => {
-  return [...AuthenticationRoutes, DashboardRoutes, ClientAppRoutes];
+  // return [...AuthenticationRoutes, DashboardRoutes, ClientAppRoutes];
+  return [ClientAppRoutes];
 };
 
 const buildTitle = () => {
@@ -25,7 +26,7 @@ const buildTitle = () => {
 
   React.useEffect(() => {
     let currentTitle = {
-      title: 'No title???'
+      title: "No title???",
     };
     const currentRoute = RouteMaps().find((item) => {
       const { children } = item;
