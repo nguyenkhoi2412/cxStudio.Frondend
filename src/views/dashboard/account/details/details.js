@@ -18,6 +18,7 @@ import Avatar from "@mui/material/Avatar";
 
 //#region components
 import SubCard from "@components/mui-ui/cards/subCard";
+import MainCard from "@components/mui-ui/cards";
 //#endregion
 
 //#region redux provider
@@ -89,8 +90,7 @@ const AccountInfo = (props) => {
                 variant: severity.error,
               });
             }
-          }
-          else {
+          } else {
             enqueueSnackbar(res.message, {
               variant: severity.error,
             });
@@ -167,70 +167,77 @@ const AccountInfo = (props) => {
 
   return (
     <React.Fragment>
-      <Grid container spacing={gridSpacing}>
-        <Grid item xs={12} md={4}>
-          <SubCard
-            title={t("user.profilepicture")}
-            contentClass={
-              helpersExtension.checkIsNotNull(
-                currentUser?.detailInfos?.avatarPath
-              )
-                ? "avatar-container"
-                : "avatar-container svg"
-            }
-          >
-            <Grid container spacing={gridSpacing} justifyContent={`center`}>
-              <Grid item>
-                <Stack spacing={2} alignItems={`center`}>
-                  <Avatar
-                    alt={
-                      currentUser?.detailInfos?.firstName +
-                      " " +
-                      currentUser?.detailInfos?.lastName
-                    }
-                    src={file}
-                    sx={{
-                      width: 100,
-                      height: 100,
-                    }}
-                  >
-                    {renderAvatarDefault()}
-                  </Avatar>
-                  <Typography variant="caption" display="block" gutterBottom>
-                    {t("user.uploadyourprofileimage")}
-                  </Typography>
-                  <AnimateButton>
-                    <Button
-                      disableElevation
-                      fullWidth
-                      size="large"
-                      disabled={submitting}
-                      variant="contained"
-                      component="label"
+      <MainCard
+        title={t("user.accountsettings")}
+        // secondary={
+        //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
+        // }
+      >
+        <Grid container spacing={gridSpacing}>
+          <Grid item xs={12} md={4}>
+            <SubCard
+              title={t("user.profilepicture")}
+              contentClass={
+                helpersExtension.checkIsNotNull(
+                  currentUser?.detailInfos?.avatarPath
+                )
+                  ? "avatar-container"
+                  : "avatar-container svg"
+              }
+            >
+              <Grid container spacing={gridSpacing} justifyContent={`center`}>
+                <Grid item>
+                  <Stack spacing={2} alignItems={`center`}>
+                    <Avatar
+                      alt={
+                        currentUser?.detailInfos?.firstName +
+                        " " +
+                        currentUser?.detailInfos?.lastName
+                      }
+                      src={file}
+                      sx={{
+                        width: 100,
+                        height: 100,
+                      }}
                     >
-                      <input
-                        hidden
-                        // multiple
-                        type="file"
-                        name="single"
-                        onChange={handleOnChangeUploadFile}
-                      />
-                      {t("user.uploadavatar")}
-                    </Button>
-                  </AnimateButton>
-                </Stack>
+                      {renderAvatarDefault()}
+                    </Avatar>
+                    <Typography variant="caption" display="block" gutterBottom>
+                      {t("user.uploadyourprofileimage")}
+                    </Typography>
+                    <AnimateButton>
+                      <Button
+                        disableElevation
+                        fullWidth
+                        size="large"
+                        disabled={submitting}
+                        variant="contained"
+                        component="label"
+                      >
+                        <input
+                          hidden
+                          // multiple
+                          type="file"
+                          name="single"
+                          onChange={handleOnChangeUploadFile}
+                        />
+                        {t("user.uploadavatar")}
+                      </Button>
+                    </AnimateButton>
+                  </Stack>
+                </Grid>
               </Grid>
-            </Grid>
-          </SubCard>
+            </SubCard>
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <SubCard title={t("user.accountdetails")}>
+              <Grid container spacing={gridSpacing}>
+                <FormAccountDetailInfo currentUser={currentUser} />
+              </Grid>
+            </SubCard>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={8}>
-          <SubCard title={t("user.accountdetails")}>
-            <Grid container spacing={gridSpacing}>
-              <FormAccountDetailInfo currentUser={currentUser} />
-            </Grid>
-          </SubCard>
-        </Grid>
-      </Grid>
+      </MainCard>
     </React.Fragment>
   );
 };
