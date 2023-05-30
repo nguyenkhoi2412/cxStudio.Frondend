@@ -38,27 +38,6 @@ export const configBaseTheme = (customization) => {
       },
     },
     typography: themeTypography(themeOption),
-    // palette: {
-    //   primary: {
-    //     main: themePalette.primary.main,
-    //   },
-    //   secondary: {
-    //     main: themePalette.secondary.main,
-    //   },
-    //   breakpoints: {
-    //     values: {
-    //       xs: palette.breakpointsXs, // 0,
-    //       sm: palette.breakpointsSm, // 600,
-    //       md: palette.breakpointsMd, // 900,
-    //       lg: palette.breakpointsLg, // 1200,
-    //       xl: palette.breakpointsXl, // 1536,
-    //       mobile: palette.breakpointsMobile, // 0,
-    //       tablet: palette.breakpointsTablet, // 640,
-    //       laptop: palette.breakpointsLaptop, // 1024,
-    //       desktop: palette.breakpointsDesktop, // 1200,
-    //     },
-    //   },
-    // },
   });
   themes.components = componentStyleOverrides(themeOption);
 
