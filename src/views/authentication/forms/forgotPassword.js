@@ -192,14 +192,14 @@ const FormForgotPassword = () => {
                 >
                   <Stack spacing={1}>
                     <Typography
-                      // color={theme.palette.primary.main}
+                      // color="primary"
                       gutterBottom
                     >
                       {messageContentAlert}
                     </Typography>
                     {statusMessage === severity.success ? (
                       <Typography
-                        // color={theme.palette.primary.main}
+                        // color="primary"
                         gutterBottom
                       >
                         {t("authentication.signinwithyournewpassword")}

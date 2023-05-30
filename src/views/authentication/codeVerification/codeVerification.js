@@ -91,7 +91,7 @@ const CodeVerification = (props) => {
                     spacing={1}
                   >
                     <Typography
-                      color={theme.palette.primary.main}
+                      color="primary"
                       gutterBottom
                       variant={matchDownSM ? "h3" : "h2"}
                     >
@@ -140,7 +140,7 @@ const CodeVerification = (props) => {
                   >
                     <Link
                       href="#"
-                      color={theme.palette.primary.main}
+                      color="primary"
                       underline="none"
                       onClick={resendCode}
                     >

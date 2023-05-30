@@ -55,7 +55,7 @@ const ChangePassword = (props) => {
                     spacing={1}
                   >
                     <Typography
-                      color={theme.palette.primary.main}
+                      color="primary"
                       gutterBottom
                       variant={matchDownSM ? "h3" : "h2"}
                     >

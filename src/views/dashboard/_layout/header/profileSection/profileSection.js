@@ -161,7 +161,7 @@ const ProfileSection = () => {
           <IconSettings
             stroke={1.5}
             size="1.5rem"
-            color={theme.palette.primary.main}
+            color="primary"
           />
         }
         variant="outlined"
