@@ -1,7 +1,6 @@
 // material-ui
 import { styled } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
-import MainLayoutProviders from "@dashboard/_layout/mainLayoutProviders"
 
 // ==============================|| AUTHENTICATION 1 WRAPPER ||============================== //
 
@@ -20,27 +19,25 @@ const AuthWrapperContainer = styled("div")(({ theme }) => ({
 }));
 
 const AuthWrapper = ({ children, ...other }) => (
-  <MainLayoutProviders>
-    <AuthWrapperContainer>
-      <Grid
-        container
-        direction="column"
-        justifyContent="flex-end"
-        sx={{ minHeight: "100vh" }}
-      >
-        <Grid item xs={12}>
-          <Grid
-            container
-            justifyContent="center"
-            alignItems="center"
-            sx={{ minHeight: "calc(100vh - 68px)" }}
-          >
-            {children}
-          </Grid>
+  <AuthWrapperContainer>
+    <Grid
+      container
+      direction="column"
+      justifyContent="flex-end"
+      sx={{ minHeight: "100vh" }}
+    >
+      <Grid item xs={12}>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          sx={{ minHeight: "calc(100vh - 68px)" }}
+        >
+          {children}
         </Grid>
       </Grid>
-    </AuthWrapperContainer>
-  </MainLayoutProviders>
+    </Grid>
+  </AuthWrapperContainer>
 );
 
 export default AuthWrapper;

@@ -12,44 +12,42 @@ import IncProgressBar from "@components/mui-ui/progressBar";
 //#endregion
 import { useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const MainLayoutProviders = ({ children, ...other }) => {
-  dynamicFavicons();
+  addFavicons();
   const customization = useSelector((state) => state.customization);
 
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={configBaseTheme(customization)}>
-        <CssBaseline />
+    // <StyledEngineProvider injectFirst>
+    //   <ThemeProvider theme={configBaseTheme(customization)}>
+    //     <CssBaseline />
 
-        <IncProgressBar />
-        <IncBackdrop />
-        <SnackbarProvider
-          maxSnack={3}
-          autoHideDuration={3000}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-        >
-          <Grid
+    //     <IncProgressBar />
+    //     <IncBackdrop />
+    //     <SnackbarProvider
+    //       maxSnack={3}
+    //       autoHideDuration={3000}
+    //       anchorOrigin={{
+    //         vertical: "bottom",
+    //         horizontal: "right",
+    //       }}
+    //     >
+    <Box sx={{ display: "flex" }}>
+      {/* <Grid
             container
             component="main"
             direction="column"
             sx={{ minHeight: "100vh", height: "100%", width: "100%" }}
-          >
-            {children}
-          </Grid>
-        </SnackbarProvider>
-        {/* </BrowserRouter> */}
-      </ThemeProvider>
-    </StyledEngineProvider>
+          > */}
+      {children}
+    </Box>
   );
 };
 
 export default MainLayoutProviders;
 
-const dynamicFavicons = () => {
+const addFavicons = () => {
   var link = document.querySelector("link[rel~='icon']");
   if (!link) {
     link = document.createElement("link");

@@ -12,7 +12,6 @@ import Customization from "./customization";
 import menuSidebar from "@dashboard/components/menuSidebar";
 import { drawerWidth } from "@constants";
 import { SET_MENU } from "@reduxproviders/berry/actions";
-import MainLayoutProviders from "@dashboard/_layout/mainLayoutProviders";
 
 // assets
 import { IconChevronRight } from "@tabler/icons-react";
@@ -67,7 +66,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 const LayoutDashboard = () => {
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
-
+  console.log(theme.typography);
   // Handle left drawer
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
   const dispatch = useDispatch();
@@ -76,52 +75,43 @@ const LayoutDashboard = () => {
   };
 
   return (
-    <MainLayoutProviders>
-      <Box sx={{ display: "flex" }}>
-        {/* header */}
-        <AppBar
-          enableColorOnDark
-          position="fixed"
-          color="inherit"
-          elevation={0}
-          sx={{
-            bgcolor: theme.palette.background.default,
-            transition: leftDrawerOpened
-              ? theme.transitions.create("width")
-              : "none",
-          }}
-        >
-          <Toolbar>
-            <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
-          </Toolbar>
-        </AppBar>
-        {/* drawer */}
-        <Sidebar
-          drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened}
-          drawerToggle={handleLeftDrawerToggle}
+    <Box sx={{ display: "flex" }}>
+      {/* header */}
+      <AppBar
+        enableColorOnDark
+        position="fixed"
+        color="inherit"
+        elevation={0}
+        sx={{
+          bgcolor: theme.palette.background.default,
+          transition: leftDrawerOpened
+            ? theme.transitions.create("width")
+            : "none",
+        }}
+      >
+        <Toolbar>
+          <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
+        </Toolbar>
+      </AppBar>
+      {/* drawer */}
+      <Sidebar
+        drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened}
+        drawerToggle={handleLeftDrawerToggle}
+      />
+      {/* main content */}
+      <Main className="wrapper-content" theme={theme} open={leftDrawerOpened}>
+        {/* breadcrumb */}
+        <Breadcrumbs
+          separator={IconChevronRight}
+          navigation={menuSidebar}
+          icon
+          title
+          rightAlign
         />
-        {/* main content */}
-        <Main
-          className="wrapper-content"
-          theme={theme}
-          open={leftDrawerOpened}
-          sx={{
-            height: "100%",
-          }}
-        >
-          {/* breadcrumb */}
-          <Breadcrumbs
-            separator={IconChevronRight}
-            navigation={menuSidebar}
-            icon
-            title
-            rightAlign
-          />
-          <Outlet />
-        </Main>
-        <Customization />
-      </Box>
-    </MainLayoutProviders>
+        <Outlet />
+      </Main>
+      <Customization />
+    </Box>
   );
 };
 
