@@ -1,27 +1,62 @@
+import { createContext, useState, useMemo } from "react";
+import { createTheme } from "@mui/material/styles";
 /**
  * Color intention that you want to used in your theme
  * @param {JsonObject} theme Theme customization object
  */
+export const getColorsPaletteTheme = (theme) => ({
+  ...(theme?.customization?.darkMode === "dark"
+    ? {
+        // palette for dark mode
+        primary: {
+          light: theme.colors?.darkPrimaryLight,
+          main: theme.colors?.darkPrimaryMain,
+          dark: theme.colors?.darkPrimaryDark,
+          200: theme.colors?.darkPrimary200,
+          800: theme.colors?.darkPrimary800,
+        },
+        secondary: {
+          light: theme.colors?.darkSecondaryLight,
+          main: theme.colors?.darkSecondaryMain,
+          dark: theme.colors?.darkSecondaryDark,
+          200: theme.colors?.darkSecondary200,
+          800: theme.colors?.darkSecondary800,
+        },
+        background: {
+          paper: theme.colors?.darkPaper,
+          default: theme.colors?.darkBackground,
+        },
+      }
+    : {
+        // palette for light mode
+        primary: {
+          light: theme.colors?.primaryLight,
+          main: theme.colors?.primaryMain,
+          dark: theme.colors?.primaryDark,
+          200: theme.colors?.primary200,
+          800: theme.colors?.primary800,
+        },
+        secondary: {
+          light: theme.colors?.secondaryLight,
+          main: theme.colors?.secondaryMain,
+          dark: theme.colors?.secondaryDark,
+          200: theme.colors?.secondary200,
+          800: theme.colors?.secondary800,
+        },
+        background: {
+          paper: theme.colors?.paper,
+          default: theme.colors?.backgroundDefault,
+        },
+      }),
+});
 
 export default function themePalette(theme) {
+  const colorsPaletteTheme = getColorsPaletteTheme(theme);
+
   return {
-    mode: theme?.customization?.navType,
+    ...colorsPaletteTheme,
     common: {
       black: theme.colors?.darkPaper,
-    },
-    primary: {
-      light: theme.colors?.primaryLight,
-      main: theme.colors?.primaryMain,
-      dark: theme.colors?.primaryDark,
-      200: theme.colors?.primary200,
-      800: theme.colors?.primary800,
-    },
-    secondary: {
-      light: theme.colors?.secondaryLight,
-      main: theme.colors?.secondaryMain,
-      dark: theme.colors?.secondaryDark,
-      200: theme.colors?.secondary200,
-      800: theme.colors?.secondary800,
     },
     error: {
       light: theme.colors?.errorLight,
@@ -65,9 +100,25 @@ export default function themePalette(theme) {
       dark: theme.textDark,
       hint: theme.colors?.grey100,
     },
-    background: {
-      paper: theme.paper,
-      default: theme.backgroundDefault,
-    },
   };
 }
+
+// context for color mode
+export const ModeThemeContext = createContext({
+  toggleColorMode: () => {},
+});
+
+export const useMode = () => {
+  const [mode, setMode] = useState("dark");
+
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () =>
+        setMode((prev) => (prev === "light" ? "dark" : "light")),
+    }),
+    []
+  );
+
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  return [theme, colorMode];
+};

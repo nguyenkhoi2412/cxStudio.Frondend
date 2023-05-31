@@ -10,6 +10,7 @@ const configSettings = {
   defaultPath: navigateLocation.DASHBOARD.DEFAULT,
   fontFamily: `'Roboto', sans-serif`,
   borderRadius: 12,
+  darkMode: 'dark' // light/dark
 };
 
 export default configSettings;
