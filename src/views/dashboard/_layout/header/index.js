@@ -17,7 +17,7 @@ import { IconMenu2 } from "@tabler/icons-react";
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
-
+console.log('theme', theme);
   return (
     <>
       {/* logo & toggler button */}
@@ -43,10 +43,10 @@ const Header = ({ handleLeftDrawerToggle }) => {
               ...theme.typography.commonAvatar,
               ...theme.typography.mediumAvatar,
               transition: "all .2s ease-in-out",
-              background: theme.palette.primary.light,
+              background: theme.palette.background.container,
               color: theme.palette.primary.dark,
               "&:hover": {
-                background: theme.palette.primary.dark,
+                background: theme.palette.background.hover,
                 color: theme.palette.primary.light,
               },
             }}

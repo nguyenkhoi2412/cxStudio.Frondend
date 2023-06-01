@@ -48,8 +48,10 @@ export default function themePalette(theme) {
   return {
     ...colorsPaletteTheme,
     background: {
+      container: theme.colors?.backgroundContainer,
       paper: theme.colors?.paper,
       default: theme.colors?.backgroundDefault,
+      hover: theme.colors?.backgroundContainerHover
     },
     common: {
       black: theme.colors?.paper,
