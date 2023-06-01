@@ -1,10 +1,16 @@
 ﻿/* Define all colours */
+// ==============================|| DEFAULT THEME VARIANTS ||============================== //
+$bgContainer: var(--bg-container);
+$paper: var(--bg-paper);
+$bgDefault: var(--bg-default);
+
+// ==============================|| LIGHT THEME VARIANTS ||============================== //
 // paper & background
-$paper: #ffffff;
+
 
 // primary
 $primaryLight: #eef2f6;
-$primaryMain: #3F51B5;
+$primaryMain: #3f51b5;
 $primaryDark: #2239ba;
 $primary200: #2196f3;
 $primary800: #1565c0;
@@ -50,8 +56,7 @@ $grey900: #121926;
 // ==============================|| DARK THEME VARIANTS ||============================== //
 
 // paper & background
-$darkBackground: #1a223f; // level 3
-$darkPaper: #111936; // level 4
+$darkBackground: #1d2226; // level 3
 
 // dark 800 & 900
 $darkLevel1: #29314f; // level 1
@@ -59,7 +64,7 @@ $darkLevel2: #212946; // level 2
 
 // primary dark
 $darkPrimaryLight: #eef2f6;
-$darkPrimaryMain: #3F51B5;
+$darkPrimaryMain: #3f51b5;
 $darkPrimaryDark: #2239ba;
 $darkPrimary200: #2196f3;
 $darkPrimary800: #1565c0;

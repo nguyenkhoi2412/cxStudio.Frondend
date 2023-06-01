@@ -1,7 +1,12 @@
 // Export the color palette to make it accessible to JS
 :export {
-  // paper & background
+  // ==============================|| DEFAULT THEME VARIANTS ||============================== //
+    // paper & background
+  backgroundContainer: $bgContainer;
   paper: $paper;
+  backgroundDefault: $bgDefault;
+  // ==============================|| LIGHT THEME VARIANTS ||============================== //
+  // paper & background
   fontSize: $font-size;
 
   // primary
@@ -52,7 +57,6 @@
   // ==============================|| DARK THEME VARIANTS ||============================== //
 
   // paper & background
-  darkPaper: $darkPaper;
   darkBackground: $darkBackground;
 
   // dark 800 & 900

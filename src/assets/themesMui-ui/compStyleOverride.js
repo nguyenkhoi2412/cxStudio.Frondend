@@ -1,4 +1,5 @@
 export default function componentStyleOverrides(theme) {
+  // console.log('theme.colors', theme.colors);
   const bgColor = theme.colors?.grey50;
   return {
     MuiTypography: {

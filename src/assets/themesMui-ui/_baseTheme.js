@@ -17,7 +17,7 @@ export const configBaseTheme = (customization) => {
     heading: color.grey900,
     paper: color.paper,
     backgroundDefault: color.paper,
-    background: color.primaryLight,
+    background: color.backgroundContainer,
     darkTextPrimary: color.grey700,
     darkTextSecondary: color.grey500,
     textDark: color.grey900,

@@ -22,10 +22,6 @@ export const getColorsPaletteTheme = (theme) => ({
           200: theme.colors?.darkSecondary200,
           800: theme.colors?.darkSecondary800,
         },
-        background: {
-          paper: theme.colors?.darkPaper,
-          default: theme.colors?.darkBackground,
-        },
       }
     : {
         // palette for light mode
@@ -43,10 +39,6 @@ export const getColorsPaletteTheme = (theme) => ({
           200: theme.colors?.secondary200,
           800: theme.colors?.secondary800,
         },
-        background: {
-          paper: theme.colors?.paper,
-          default: theme.colors?.backgroundDefault,
-        },
       }),
 });
 
@@ -55,8 +47,12 @@ export default function themePalette(theme) {
 
   return {
     ...colorsPaletteTheme,
+    background: {
+      paper: theme.colors?.paper,
+      default: theme.colors?.backgroundDefault,
+    },
     common: {
-      black: theme.colors?.darkPaper,
+      black: theme.colors?.paper,
     },
     error: {
       light: theme.colors?.errorLight,
@@ -92,7 +88,7 @@ export default function themePalette(theme) {
       main: theme.colors?.darkLevel1,
       dark: theme.colors?.darkLevel2,
       800: theme.colors?.darkBackground,
-      900: theme.colors?.darkPaper,
+      900: theme.colors?.paper,
     },
     text: {
       primary: theme.darkTextPrimary,
