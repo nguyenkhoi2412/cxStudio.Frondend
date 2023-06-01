@@ -44,10 +44,10 @@ console.log('theme', theme);
               ...theme.typography.mediumAvatar,
               transition: "all .2s ease-in-out",
               background: theme.palette.background.container,
-              color: theme.palette.primary.light,
+              color: theme.palette.text.fontIcon,
               "&:hover": {
-                background: theme.palette.background.hover,
-                color: theme.palette.primary.light,
+                background: theme.palette.background.light,
+                color: theme.palette.text.fontIconHover,
               },
             }}
             onClick={handleLeftDrawerToggle}

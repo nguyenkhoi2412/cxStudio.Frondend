@@ -1,6 +1,6 @@
 export default function componentStyleOverrides(theme) {
   console.log('theme.colors', theme);
-  const bgColor = theme.colors.backgroundContainer;
+  const bgColor = theme.colors.backgroundContainerMain;
   return {
     MuiTypography: {
       styleOverrides: {

@@ -19,6 +19,8 @@
   // text variants
   darkTextPrimary: $darkTextPrimary;
   darkTextSecondary: $darkTextSecondary;
+  fontTextPrimary: $fontTextPrimary;
+  fontTextPrimaryHover: $fontTextPrimaryHover;
 
   // ==============================|| DARK THEME VARIANTS ||============================== //
   // primary dark
@@ -37,7 +39,7 @@
 
   // ==============================|| VARIABLE MULTIPLE THEME VARIANTS ||============================== //
   // paper & background
-  backgroundContainer: $bgContainer;
+  backgroundContainerMain: $bgContainerMain;
   backgroundContainerLight: $bgContainerLight;
   paper: $paper;
   backgroundDefault: $bgDefault;

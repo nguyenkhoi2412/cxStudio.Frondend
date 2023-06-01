@@ -35,10 +35,15 @@ $darkSecondary800: #6200ea;
 
 // ==============================|| VARIABLE MULTIPLE THEME VARIANTS ||============================== //
 // paper & background
-$bgContainer: var(--bg-container);
+$bgContainerMain: var(--bg-container-main);
 $bgContainerLight: var(--bg-container-light);
 $paper: var(--bg-paper);
 $bgDefault: var(--bg-default);
+
+// text/font cions
+// $textPrimary:
+$fontTextPrimary: var(--text-main);
+$fontTextPrimaryHover: var(--text-main-hover);
 
 // ==============================|| GENERAL THEME VARIANTS ||============================== //
 // success Colors
