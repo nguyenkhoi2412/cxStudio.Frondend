@@ -1,13 +1,5 @@
 ﻿/* Define all colours */
-// ==============================|| DEFAULT THEME VARIANTS ||============================== //
-$bgContainer: var(--bg-container);
-$paper: var(--bg-paper);
-$bgDefault: var(--bg-default);
-
 // ==============================|| LIGHT THEME VARIANTS ||============================== //
-// paper & background
-
-
 // primary
 $primaryLight: #eef2f6;
 $primaryMain: #3f51b5;
@@ -22,6 +14,32 @@ $secondaryDark: #5e35b1;
 $secondary200: #b39ddb;
 $secondary800: #4527a0;
 
+// text variants
+$darkTextPrimary: #bdc8f0;
+$darkTextSecondary: #8492c4;
+
+// ==============================|| DARK THEME VARIANTS ||============================== //
+// primary dark
+$darkPrimaryLight: #eef2f6;
+$darkPrimaryMain: #3f51b5;
+$darkPrimaryDark: #2239ba;
+$darkPrimary200: #2196f3;
+$darkPrimary800: #1565c0;
+
+// secondary dark
+$darkSecondaryLight: #d1c4e9;
+$darkSecondaryMain: #7c4dff;
+$darkSecondaryDark: #651fff;
+$darkSecondary200: #b39ddb;
+$darkSecondary800: #6200ea;
+
+// ==============================|| VARIABLE MULTIPLE THEME VARIANTS ||============================== //
+// paper & background
+$bgContainer: var(--bg-container);
+$paper: var(--bg-paper);
+$bgDefault: var(--bg-default);
+
+// ==============================|| GENERAL THEME VARIANTS ||============================== //
 // success Colors
 $successLight: #b9f6ca;
 $success200: #69f0ae;
@@ -52,34 +70,6 @@ $grey500: #697586;
 $grey600: #4b5565;
 $grey700: #364152;
 $grey900: #121926;
-
-// ==============================|| DARK THEME VARIANTS ||============================== //
-
-// paper & background
-$darkBackground: #1d2226; // level 3
-
-// dark 800 & 900
-$darkLevel1: #29314f; // level 1
-$darkLevel2: #212946; // level 2
-
-// primary dark
-$darkPrimaryLight: #eef2f6;
-$darkPrimaryMain: #3f51b5;
-$darkPrimaryDark: #2239ba;
-$darkPrimary200: #2196f3;
-$darkPrimary800: #1565c0;
-
-// secondary dark
-$darkSecondaryLight: #d1c4e9;
-$darkSecondaryMain: #7c4dff;
-$darkSecondaryDark: #651fff;
-$darkSecondary200: #b39ddb;
-$darkSecondary800: #6200ea;
-
-// text variants
-$darkTextTitle: #d7dcec;
-$darkTextPrimary: #bdc8f0;
-$darkTextSecondary: #8492c4;
 
 // ==============================|| MY COLOR DEFINE ||============================== //
 $font-family: Roboto, Helvetica, Arial, sans-serif;

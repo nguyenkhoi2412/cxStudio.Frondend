@@ -1,14 +1,7 @@
 // Export the color palette to make it accessible to JS
 :export {
-  // ==============================|| DEFAULT THEME VARIANTS ||============================== //
-    // paper & background
-  backgroundContainer: $bgContainer;
-  paper: $paper;
-  backgroundDefault: $bgDefault;
+  /* Define all colours */
   // ==============================|| LIGHT THEME VARIANTS ||============================== //
-  // paper & background
-  fontSize: $font-size;
-
   // primary
   primaryLight: $primaryLight;
   primaryMain: $primaryMain;
@@ -23,6 +16,32 @@
   secondary200: $secondary200;
   secondary800: $secondary800;
 
+  // text variants
+  darkTextPrimary: $darkTextPrimary;
+  darkTextSecondary: $darkTextSecondary;
+
+  // ==============================|| DARK THEME VARIANTS ||============================== //
+  // primary dark
+  darkPrimaryLight: $darkPrimaryLight;
+  darkPrimaryMain: $darkPrimaryMain;
+  darkPrimaryDark: $darkPrimaryDark;
+  darkPrimary200: $darkPrimary200;
+  darkPrimary800: $darkPrimary800;
+
+  // secondary dark
+  darkSecondaryLight: $darkSecondaryLight;
+  darkSecondaryMain: $darkSecondaryMain;
+  darkSecondaryDark: $darkSecondaryDark;
+  darkSecondary200: $darkSecondary200;
+  darkSecondary800: $darkSecondary800;
+
+  // ==============================|| VARIABLE MULTIPLE THEME VARIANTS ||============================== //
+  // paper & background
+  backgroundContainer: $bgContainer;
+  paper: $paper;
+  backgroundDefault: $bgDefault;
+
+  // ==============================|| GENERAL THEME VARIANTS ||============================== //
   // success
   successLight: $successLight;
   success200: $success200;
@@ -53,43 +72,4 @@
   grey600: $grey600;
   grey700: $grey700;
   grey900: $grey900;
-
-  // ==============================|| DARK THEME VARIANTS ||============================== //
-
-  // paper & background
-  darkBackground: $darkBackground;
-
-  // dark 800 & 900
-  darkLevel1: $darkLevel1;
-  darkLevel2: $darkLevel2;
-
-  // text variants
-  darkTextTitle: $darkTextTitle;
-  darkTextPrimary: $darkTextPrimary;
-  darkTextSecondary: $darkTextSecondary;
-
-  // primary dark
-  darkPrimaryLight: $darkPrimaryLight;
-  darkPrimaryMain: $darkPrimaryMain;
-  darkPrimaryDark: $darkPrimaryDark;
-  darkPrimary200: $darkPrimary200;
-  darkPrimary800: $darkPrimary800;
-
-  // secondary dark
-  darkSecondaryLight: $darkSecondaryLight;
-  darkSecondaryMain: $darkSecondaryMain;
-  darkSecondaryDark: $darkSecondaryDark;
-  darkSecondary200: $darkSecondary200;
-  darkSecondary800: $darkSecondary800;
-
-  // ==============================|| MY COLOR DEFINE ||============================== //
-  breakpointsXs: $breakpoints-xs;
-  breakpointsSm: $breakpoints-sm;
-  breakpointsMd: $breakpoints-md;
-  breakpointsLg: $breakpoints-lg;
-  breakpointsXl: $breakpoints-xl;
-  breakpointsMobile: $breakpoints-mobile;
-  breakpointsTablet: $breakpoints-tablet;
-  breakpointsLaptop: $breakpoints-laptop;
-  breakpointsDesktop: $breakpoints-desktop;
 }
