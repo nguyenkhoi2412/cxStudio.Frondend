@@ -9,19 +9,19 @@ export const getColorsPaletteTheme = (theme) => ({
     ? {
         // palette for dark mode
         primary: {
-          light: theme.colors?.darkPrimaryLight,
-          main: theme.colors?.darkPrimaryMain,
-          dark: theme.colors?.darkPrimaryDark,
-          200: theme.colors?.darkPrimary200,
-          800: theme.colors?.darkPrimary800,
-        },
-        secondary: {
           light: theme.colors?.darkSecondaryLight,
           main: theme.colors?.darkSecondaryMain,
           dark: theme.colors?.darkSecondaryDark,
           200: theme.colors?.darkSecondary200,
           800: theme.colors?.darkSecondary800,
         },
+        // secondary: {
+        //   light: theme.colors?.darkSecondaryLight,
+        //   main: theme.colors?.darkSecondaryMain,
+        //   dark: theme.colors?.darkSecondaryDark,
+        //   200: theme.colors?.darkSecondary200,
+        //   800: theme.colors?.darkSecondary800,
+        // },
       }
     : {
         // palette for light mode
@@ -32,13 +32,13 @@ export const getColorsPaletteTheme = (theme) => ({
           200: theme.colors?.primary200,
           800: theme.colors?.primary800,
         },
-        secondary: {
-          light: theme.colors?.secondaryLight,
-          main: theme.colors?.secondaryMain,
-          dark: theme.colors?.secondaryDark,
-          200: theme.colors?.secondary200,
-          800: theme.colors?.secondary800,
-        },
+        // secondary: {
+        //   light: theme.colors?.secondaryLight,
+        //   main: theme.colors?.secondaryMain,
+        //   dark: theme.colors?.secondaryDark,
+        //   200: theme.colors?.secondary200,
+        //   800: theme.colors?.secondary800,
+        // },
       }),
 });
 
@@ -51,7 +51,7 @@ export default function themePalette(theme) {
       container: theme.colors?.backgroundContainer,
       paper: theme.colors?.paper,
       default: theme.colors?.backgroundDefault,
-      hover: theme.colors?.backgroundContainerHover
+      hover: theme.colors?.backgroundContainerLight,
     },
     common: {
       black: theme.colors?.paper,
