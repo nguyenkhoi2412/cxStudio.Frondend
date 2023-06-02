@@ -1,5 +1,3 @@
-import './style.css';
-import 'flowbite/dist/flowbite.js';
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "@assets/locales/i18n";
