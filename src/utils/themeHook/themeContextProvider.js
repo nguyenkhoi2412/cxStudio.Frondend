@@ -14,8 +14,8 @@ export const ThemeProvider = ({ children }) => {
     setDark((prevDark) => {
       localStorage.setItem(DARK_LOCAL_STORAGE_KEY, JSON.stringify(!prevDark));
 
-      document.body.classList.toggle("darkTheme", !prevDark);
-      document.body.classList.toggle("lightTheme", prevDark);
+      document.body.classList.toggle("dark", !prevDark);
+      document.body.classList.toggle("light", prevDark);
 
       return !prevDark;
     });
@@ -25,10 +25,10 @@ export const ThemeProvider = ({ children }) => {
     const localValue = JSON.parse(localStorage.getItem(DARK_LOCAL_STORAGE_KEY));
 
     if (localValue === null) {
-      document.body.classList.add("darkTheme");
+      document.body.classList.add("dark");
     } else {
       setDark(localValue);
-      document.body.classList.add(localValue ? "darkTheme" : "lightTheme");
+      document.body.classList.add(localValue ? "dark" : "light");
     }
   }, []);
 

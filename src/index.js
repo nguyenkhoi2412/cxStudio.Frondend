@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "@assets/locales/i18n";
 import storeProvider from "@reduxproviders/_storeProvider";
 import { Provider } from "react-redux";
+import Background from "./layout/background";
 import App from "@app";
 import * as serviceWorker from "./serviceWorkerRegistration";
 
@@ -13,7 +14,9 @@ const app = (
   <React.Fragment>
     {/* Redux store */}
     <Provider store={storeProvider}>
-      <App />
+      <Background>
+        <App />
+      </Background>
     </Provider>
   </React.Fragment>
 );

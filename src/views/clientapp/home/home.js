@@ -1,22 +1,53 @@
 import "./_home.scss";
-import { useNavigate } from "react-router-dom";
+import { hookInstance } from "@utils/hookInstance";
 
 const Home = () => {
-  const navigage = useNavigate();
+  const [darkMode, setDarkMode] = React.useState(
+    colorTheme === "light" ? true : false
+  );
+  const [colorTheme, setTheme] = hookInstance.useDarkSide();
 
-  const handleOnclick = () => {
-    navigage("/dashboard/signin");
+  const toggleDarkMode = (checked) => {
+    setTheme(colorTheme);
+    setDarkMode(checked);
   };
 
   return (
-    <div className="App">
-      <label className="relative inline-flex items-center cursor-pointer">
-        <input type="checkbox" value="" className="sr-only peer" />
-        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-        <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-          Toggle me
-        </span>
+    <div
+      className={`h-screen w-full flex items-center justify-center flex-col`}
+    >
+      <label className="toggleDarkBtn">
+        <input type="checkbox" onClick={() => toggleDarkMode(!darkMode)} />
+        <span className="slideBtnTg round"></span>
       </label>
+      <div className="max-w-sm rounded overflow-hidden bg-gray-100 p-5 rounded-lg mt-4 text-white dark:bg-gray-900">
+        <img
+          className="w-full"
+          src="https://v1.tailwindcss.com/img/card-top.jpg"
+          alt="Sunset in the mountains"
+        />
+        <div className="px-6 py-4">
+          <div className="text-gray-800 dark:text-gray-200 font-bold text-xl mb-2">
+            The Coldest Sunset
+          </div>
+          <p className="text-gray-800 dark:text-gray-200">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Voluptatibus quia, nulla! Maiores et perferendis eaque,
+            exercitationem praesentium nihil.
+          </p>
+        </div>
+        <div className="px-6 pt-4 pb-2">
+          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            #photography
+          </span>
+          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            #travel
+          </span>
+          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            #winter
+          </span>
+        </div>
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
     "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html",
   ],
   // make sure to safelist these classes when using purge
   safelist: [
