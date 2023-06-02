@@ -70,6 +70,9 @@ module.exports = (env, argv) => {
                 esModule: false,
               },
             },
+            {
+              loader: "postcss-loader",
+            },
             // {
             //   loader: "less-loader",
             //   options: {
