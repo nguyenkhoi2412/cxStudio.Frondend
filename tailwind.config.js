@@ -26,23 +26,28 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      // extend base Tailwind CSS utility classes
-      // colors: {
-      //   primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a" }
-      // },
-      // fontFamily: {
-      //   'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
-      //   'body': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
-      //   'mono': ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace']
-      // },
-      // transitionProperty: {
-      //   'width': 'width'
-      // },
-      // textDecoration: ['active'],
-      // minWidth: {
-      //   'kanban': '28rem'
-      // },
+      colors: {
+        "primary-light": "#F7F8FC",
+        "secondary-light": "#FFFFFF",
+        "ternary-light": "#f6f7f8",
+
+        "primary-dark": "#0D2438",
+        "secondary-dark": "#102D44",
+        "ternary-dark": "#1E3851",
+      },
+      container: {
+        padding: {
+          DEFAULT: "1rem",
+          sm: "2rem",
+          lg: "5rem",
+          xl: "6rem",
+          "2xl": "8rem",
+        },
+      },
     },
   },
-  plugins: [require("flowbite/plugin")],
+  variants: {
+    extend: { opacity: ["disabled"] },
+  },
+  plugins: [require("flowbite/plugin"), "@tailwindcss/forms"],
 };
