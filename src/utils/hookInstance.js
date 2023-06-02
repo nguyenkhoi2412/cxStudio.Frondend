@@ -25,8 +25,8 @@ export class hookInstance {
   /*
    * useDarkMode
    */
-  static useDarkSide = () => {
-    const [theme, setTheme] = React.useState(localStorage.theme);
+  static useDarkMode = () => {
+    const [theme, setTheme] = React.useState(localStorage.themeMode);
     const colorTheme = theme === "dark" ? "light" : "dark";
 
     React.useEffect(() => {
@@ -34,7 +34,7 @@ export class hookInstance {
       root.classList.remove(colorTheme);
       root.classList.add(theme);
 
-      localStorage.setItem("theme", theme);
+      localStorage.setItem("themeMode", theme);
     }, [theme, colorTheme]);
 
     return [colorTheme, setTheme];
