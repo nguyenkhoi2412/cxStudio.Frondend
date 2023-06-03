@@ -1,10 +1,10 @@
 import "./app.scss";
-import "flowbite/dist/flowbite.js";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { BuildRoutes } from "@routes";
 // import { hookInstance } from "@utils/hookInstance";
+import { ThemeProvider } from "@material-tailwind/react";
 import NavigationScroll from "@utils/_layout/navigationScroll";
 import { BrowserRouter } from "react-router-dom";
 //#endregion
@@ -44,14 +44,14 @@ const App = (props) => {
     });
 
   return (
-    <>
+    <ThemeProvider>
       <BrowserRouter>
         {/* <BuildPagesRoute dataSource={renderRoutes} /> */}
         <NavigationScroll>
           <BuildRoutes />
         </NavigationScroll>
       </BrowserRouter>
-    </>
+    </ThemeProvider>
   );
 };
 
