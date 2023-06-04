@@ -27,8 +27,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "primary-light": "#F7F8FC",
-        "secondary-light": "#FFFFFF",
+        "primary-light": "#673ab7",
+        "secondary-light": "#3f51b5",
         "ternary-light": "#f6f7f8",
 
         "primary-dark": "#0D2438",
