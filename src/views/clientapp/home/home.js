@@ -23,7 +23,7 @@ const Home = () => {
     <div
       className={`h-screen w-full flex items-center justify-center flex-col`}
     >
-      <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+      <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
         <ToggleThemeIcon
           className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
           onClick={() => toggleDarkMode(!darkMode)}

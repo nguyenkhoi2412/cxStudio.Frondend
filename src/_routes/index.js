@@ -4,7 +4,7 @@ import { hookInstance } from "@utils/hookInstance";
 
 // routes
 // import AuthenticationRoutes from "./data/authentication";
-// import DashboardRoutes from "./data/dashboard";
+import DashboardRoutes from "./data/dashboard";
 import ClientAppRoutes from "./data/clientapp";
 // import AuthenticationRoutes from './AuthenticationRoutes';
 
@@ -17,7 +17,7 @@ export const BuildRoutes = () => {
 
 export const RouteMaps = () => {
   // return [...AuthenticationRoutes, DashboardRoutes, ClientAppRoutes];
-  return [...ClientAppRoutes];
+  return [DashboardRoutes, ...ClientAppRoutes];
 };
 
 const buildTitle = () => {

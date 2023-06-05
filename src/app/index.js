@@ -1,6 +1,7 @@
 import "./app.scss";
 import "flowbite/dist/flowbite.js";
 import React from "react";
+import defaultFavicon from "@assets/favicons/default/favicon.png";
 import { useTranslation } from "react-i18next";
 
 import { BuildRoutes } from "@routes";
@@ -12,7 +13,7 @@ import { helpersExtension } from "@utils/helpersExtension";
 
 const App = (props) => {
   console.warn = () => {};
-
+  addFavicons();
   const { i18n } = useTranslation();
   // const currentLocation = hookInstance.useRouter();
   // console.log("currentLocation", currentLocation);
@@ -56,3 +57,13 @@ const App = (props) => {
 };
 
 export default App;
+
+const addFavicons = () => {
+  var link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "shortcut icon";
+    document.getElementsByTagName("head")[0].appendChild(link);
+  }
+  link.href = defaultFavicon;
+};
