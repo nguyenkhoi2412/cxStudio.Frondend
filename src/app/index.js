@@ -1,5 +1,4 @@
 import "./app.scss";
-import "flowbite/dist/flowbite.js";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
