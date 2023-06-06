@@ -89,7 +89,7 @@ export default function themePalette(theme) {
     },
     text: {
       primary: theme.colors?.textPrimary,
-      secondary: theme.colors?.darkTextSecondary,
+      secondary: theme.colors?.textSecondary,
       dark: theme.textDark,
       hint: theme.colors?.grey100,
       fontIcon: theme.colors.fontTextPrimary,

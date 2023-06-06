@@ -100,7 +100,7 @@ const componentStyleOverrides = (theme) => {
         input: {
           color: theme.textDark,
           "&::placeholder": {
-            color: theme.colors.darkTextSecondary,
+            color: theme.colors.textSecondary,
             fontSize: "0.875rem",
           },
         },
