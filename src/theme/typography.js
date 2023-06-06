@@ -8,32 +8,32 @@ const themeTypography = (theme) => {
     fontFamily: theme?.customization?.fontFamily,
     h6: {
       fontWeight: 500,
-      color: theme.colors.heading,
+      color: theme.colors?.heading,
       fontSize: "0.75rem",
     },
     h5: {
       fontSize: "0.875rem",
-      color: theme.colors.heading,
+      color: theme.colors?.heading,
       fontWeight: 500,
     },
     h4: {
       fontSize: "1rem",
-      color: theme.colors.heading,
+      color: theme.colors?.heading,
       fontWeight: 600,
     },
     h3: {
       fontSize: "1.25rem",
-      color: theme.colors.heading,
+      color: theme.colors?.heading,
       fontWeight: 600,
     },
     h2: {
       fontSize: "1.5rem",
-      color: theme.colors.heading,
+      color: theme.colors?.heading,
       fontWeight: 700,
     },
     h1: {
       fontSize: "2.125rem",
-      color: theme.colors.heading,
+      color: theme.colors?.heading,
       fontWeight: 700,
     },
     subtitle1: {
@@ -99,7 +99,7 @@ const themeTypography = (theme) => {
     menuCaption: {
       fontSize: "0.875rem",
       fontWeight: 500,
-      color: theme.colors.heading,
+      color: theme.colors?.heading,
       padding: "6px",
       textTransform: "capitalize",
       marginTop: "10px",
