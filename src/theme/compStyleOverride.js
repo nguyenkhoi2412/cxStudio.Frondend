@@ -57,7 +57,7 @@ const componentStyleOverrides = (theme) => {
     MuiListItemButton: {
       styleOverrides: {
         root: {
-          color: theme.colors?.textPrimary,
+          color: theme.colors?.textDefault,
           paddingTop: "10px",
           paddingBottom: "10px",
           "&.Mui-selected": {
@@ -83,7 +83,7 @@ const componentStyleOverrides = (theme) => {
     MuiListItemIcon: {
       styleOverrides: {
         root: {
-          color: theme.colors?.textPrimary,
+          color: theme.colors?.textDefault,
           minWidth: "36px",
         },
       },

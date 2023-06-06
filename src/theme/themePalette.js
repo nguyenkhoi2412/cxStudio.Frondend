@@ -88,6 +88,7 @@ export default function themePalette(theme) {
       900: theme.textDark,
     },
     text: {
+      default: theme.colors?.textDefault,
       primary: theme.colors?.textPrimary,
       secondary: theme.colors?.textSecondary,
       dark: theme.textDark,
