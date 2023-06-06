@@ -8,7 +8,7 @@ import { BuildRoutes } from "@routes";
 import { SnackbarProvider } from "notistack";
 import { ThemeProvider } from "@mui/system";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
-import { configBaseTheme } from "@assets/themesMui-ui/_baseTheme";
+import { configBaseTheme } from "@theme/_base";
 import NavigationScroll from "@utils/_layout/navigationScroll";
 import { BrowserRouter } from "react-router-dom";
 import IncBackdrop from "@components/mui-ui/backdropSpin";

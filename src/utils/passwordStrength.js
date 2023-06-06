@@ -1,7 +1,7 @@
 /**
  * Password validator for login pages
  */
-import palette from "@assets/themesMui-ui/palette.module.scss";
+import palette from "@theme/palette.module.scss";
 
 // has number
 const hasNumber = (number) => new RegExp(/[0-9]/).test(number);

@@ -3,7 +3,7 @@
  * @param {JsonObject} theme theme customization object
  */
 
-export default function themeTypography(theme) {
+const themeTypography = (theme) => {
   return {
     fontFamily: theme?.customization?.fontFamily,
     h6: {
@@ -130,4 +130,6 @@ export default function themeTypography(theme) {
       fontSize: "1.5rem",
     },
   };
-}
+};
+
+export default themeTypography;
