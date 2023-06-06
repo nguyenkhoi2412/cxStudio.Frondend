@@ -24,12 +24,12 @@ const App = (props) => {
 
   document.body.classList.toggle(
     "darkTheme",
-    customization.darkMode === "dark"
+    customization.themeMode === "dark"
   );
 
   document.body.classList.toggle(
     "defaultTheme",
-    customization.darkMode === "light"
+    customization.themeMode === "light"
   );
   const { i18n } = useTranslation();
   // const currentLocation = hookInstance.useRouter();

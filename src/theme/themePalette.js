@@ -5,7 +5,7 @@ import { createTheme } from "@mui/material/styles";
  * @param {JsonObject} theme Theme customization object
  */
 export const getColorsPaletteTheme = (theme) => ({
-  ...(theme?.customization?.darkMode === "dark"
+  ...(theme?.customization?.themeMode === "dark"
     ? {
         // palette for dark mode
         primary: {

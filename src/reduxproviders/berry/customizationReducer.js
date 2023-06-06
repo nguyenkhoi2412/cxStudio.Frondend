@@ -10,7 +10,7 @@ export const initialState = {
   fontFamily: configSettings.fontFamily,
   borderRadius: configSettings.borderRadius,
   opened: true,
-  darkMode: configSettings.darkMode,
+  themeMode: configSettings.themeMode,
 };
 
 // ==============================|| CUSTOMIZATION REDUCER ||============================== //

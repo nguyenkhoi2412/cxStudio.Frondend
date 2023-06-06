@@ -34,6 +34,7 @@ const DashboardRoutes = {
   children: [
     {
       path: navigateLocation.DASHBOARD.DEFAULT,
+      title: "Dashboard",
       element: (
         <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
           <DashboardDefault title="DashboardDefault" />
