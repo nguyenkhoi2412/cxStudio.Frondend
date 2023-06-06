@@ -8,53 +8,61 @@ const themeTypography = (theme) => {
     fontFamily: theme?.customization?.fontFamily,
     h6: {
       fontWeight: 500,
-      color: theme.colors?.heading,
+      color: theme.colors?.textHeading,
       fontSize: "0.75rem",
     },
     h5: {
       fontSize: "0.875rem",
-      color: theme.colors?.heading,
+      color: theme.colors?.textHeading,
       fontWeight: 500,
     },
     h4: {
       fontSize: "1rem",
-      color: theme.colors?.heading,
+      color: theme.colors?.textHeading,
       fontWeight: 600,
     },
     h3: {
       fontSize: "1.25rem",
-      color: theme.colors?.heading,
+      color: theme.colors?.textHeading,
       fontWeight: 600,
     },
     h2: {
       fontSize: "1.5rem",
-      color: theme.colors?.heading,
+      color: theme.colors?.textHeading,
       fontWeight: 700,
     },
     h1: {
       fontSize: "2.125rem",
-      color: theme.colors?.heading,
+      color: theme.colors?.textHeading,
       fontWeight: 700,
     },
     subtitle1: {
       fontSize: "0.875rem",
       fontWeight: 500,
-      color: theme.textDark,
+      color: theme.colors?.textSubTitle1,
     },
     subtitle2: {
       fontSize: "0.75rem",
       fontWeight: 400,
-      color: theme.colors?.textSecondary,
+      color: theme.colors?.textSubTitle2,
     },
     caption: {
       fontSize: "0.75rem",
-      color: theme.colors?.textSecondary,
+      color: theme.colors?.textSubTitle2,
       fontWeight: 400,
+    },
+    overline: {
+      color: theme.colors?.textSubTitle1,
+      fontWeight: 400,
+    },
+    button: {
+      color: theme.colors?.textSecondary,
     },
     body1: {
       fontSize: "0.875rem",
       fontWeight: 400,
       lineHeight: "1.334em",
+      color: theme.colors?.textDefault,
     },
     body2: {
       letterSpacing: "0em",
@@ -99,7 +107,7 @@ const themeTypography = (theme) => {
     menuCaption: {
       fontSize: "0.875rem",
       fontWeight: 500,
-      color: theme.colors?.heading,
+      color: theme.colors?.textHeading,
       padding: "6px",
       textTransform: "capitalize",
       marginTop: "10px",

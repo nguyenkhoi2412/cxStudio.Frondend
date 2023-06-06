@@ -16,11 +16,11 @@ $secondary800: #4527a0;
 
 // ==============================|| DARK THEME VARIANTS ||============================== //
 // primary dark
-$darkPrimaryLight: #eef2f6;
-$darkPrimaryMain: #3f51b5;
-$darkPrimaryDark: #2239ba;
-$darkPrimary200: #2196f3;
-$darkPrimary800: #1565c0;
+$darkPrimaryLight: #364152;
+$darkPrimaryMain: #4b5565;
+$darkPrimaryDark: #364152;
+$darkPrimary200: #cdd5df;
+$darkPrimary800: #121926;
 
 // secondary dark
 $darkSecondaryLight: #d1c4e9;
@@ -35,7 +35,9 @@ $bgContainerMain: var(--bg-container-main);
 $bgContainerLight: var(--bg-container-light);
 $paper: var(--bg-paper);
 $bgDefault: var(--bg-default);
+$colorDivider: var(--color-divider);
 
+// menuItemSelected
 $textMenuSelected: var(--text-menu-selected);
 $bgMenuSelected: var(--bg-menu-selected);
 
@@ -45,6 +47,9 @@ $textDefault: var(--text-default);
 $textSecondary: var(--text-secondary);
 $iconFontColor: var(--icon-font-color);
 $iconFontColorHover: var(--icon-font-color-hover);
+$textHeading: var(--text-heading);
+$textSubTitle1: var(--text-subtitle-1);
+$textSubTitle2: var(--text-subtitle-2);
 
 // ==============================|| GENERAL THEME VARIANTS ||============================== //
 // success Colors

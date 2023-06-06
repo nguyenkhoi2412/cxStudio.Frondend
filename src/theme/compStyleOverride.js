@@ -32,7 +32,7 @@ const componentStyleOverrides = (theme) => {
     MuiCardHeader: {
       styleOverrides: {
         root: {
-          color: theme.colors?.textDark,
+          color: theme.colors?.textSubTitle1,
           padding: "24px",
         },
         title: {
@@ -91,14 +91,14 @@ const componentStyleOverrides = (theme) => {
     MuiListItemText: {
       styleOverrides: {
         primary: {
-          color: theme.textDark,
+          color: theme.textSubTitle1,
         },
       },
     },
     MuiInputBase: {
       styleOverrides: {
         input: {
-          color: theme.textDark,
+          color: theme.textSubTitle1,
           "&::placeholder": {
             color: theme.colors.textSecondary,
             fontSize: "0.875rem",
@@ -160,7 +160,7 @@ const componentStyleOverrides = (theme) => {
     MuiDivider: {
       styleOverrides: {
         root: {
-          borderColor: theme.colors?.divider,
+          borderColor: theme.colors?.colorDivider,
           opacity: 1,
         },
       },

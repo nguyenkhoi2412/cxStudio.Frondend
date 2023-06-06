@@ -9,11 +9,11 @@ export const getColorsPaletteTheme = (theme) => ({
     ? {
         // palette for dark mode
         primary: {
-          light: theme.colors?.darkSecondaryLight,
-          main: theme.colors?.darkSecondaryMain,
-          dark: theme.colors?.darkSecondaryDark,
-          200: theme.colors?.darkSecondary200,
-          800: theme.colors?.darkSecondary800,
+          light: theme.colors?.darkPrimaryLight,
+          main: theme.colors?.darkPrimaryMain,
+          dark: theme.colors?.darkPrimaryDark,
+          200: theme.colors?.darkPrimary200,
+          800: theme.colors?.darkPrimary800,
         },
         // secondary: {
         //   light: theme.colors?.darkSecondaryLight,
@@ -85,21 +85,22 @@ export default function themePalette(theme) {
       500: theme.colors?.grey500,
       600: theme.colors?.grey600,
       700: theme.colors?.grey700,
-      900: theme.textDark,
+      900: theme.colors?.grey900,
     },
     text: {
       default: theme.colors?.textDefault,
       primary: theme.colors?.textPrimary,
       secondary: theme.colors?.textSecondary,
-      dark: theme.textDark,
+      textSubTitle1: theme.colors?.textSubTitle1,
+      textSubTitle2: theme.colors?.textSubTitle2,
       hint: theme.colors?.grey100,
+      heading: theme.colors?.textHeading,
     },
     font: {
       icon: theme.colors?.iconFontColor,
       icon__hover: theme.colors?.iconFontColorHover,
     },
-    heading: theme.colors?.grey900,
-    divider: theme.colors?.grey200,
+    divider: theme.colors?.colorDivider,
   };
 }
 

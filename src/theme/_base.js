@@ -14,7 +14,6 @@ export const configBaseTheme = (customization) => {
     // palette values for light mode
     mode: customization.themeMode,
     colors: color,
-    textDark: color.grey900,
     customization,
   };
 
