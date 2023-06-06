@@ -60,7 +60,7 @@ const themeTypography = (theme) => {
       letterSpacing: "0em",
       fontWeight: 400,
       lineHeight: "1.5em",
-      color: theme.darkTextPrimary,
+      color: theme.colors?.textPrimary,
     },
     button: {
       textTransform: "capitalize",

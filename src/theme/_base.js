@@ -14,12 +14,8 @@ export const configBaseTheme = (customization) => {
     // palette values for light mode
     mode: customization.themeMode,
     colors: color,
-    fontTextPrimary: color.fontTextPrimary,
-    darkTextPrimary: color.grey700,
     darkTextSecondary: color.grey500,
     textDark: color.grey900,
-    // menuSelected: color.bgMenuSelected,
-    // menuSelectedBack: color.primaryLight,
     customization,
   };
 
