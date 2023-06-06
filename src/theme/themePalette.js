@@ -82,14 +82,14 @@ export default function themePalette(theme) {
     grey: {
       50: theme.colors?.grey50,
       100: theme.colors?.grey100,
-      500: theme.darkTextSecondary,
-      600: theme.colors?.heading,
+      500: theme.colors?.grey500,
+      600: theme.colors?.grey600,
       700: theme.colors?.grey700,
       900: theme.textDark,
     },
     text: {
-      primary: theme.colors.textPrimary,
-      secondary: theme.darkTextSecondary,
+      primary: theme.colors?.textPrimary,
+      secondary: theme.colors?.darkTextSecondary,
       dark: theme.textDark,
       hint: theme.colors?.grey100,
       fontIcon: theme.colors.fontTextPrimary,

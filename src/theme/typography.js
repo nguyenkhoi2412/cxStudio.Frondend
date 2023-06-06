@@ -44,11 +44,11 @@ const themeTypography = (theme) => {
     subtitle2: {
       fontSize: "0.75rem",
       fontWeight: 400,
-      color: theme.darkTextSecondary,
+      color: theme.colors?.darkTextSecondary,
     },
     caption: {
       fontSize: "0.75rem",
-      color: theme.darkTextSecondary,
+      color: theme.colors?.darkTextSecondary,
       fontWeight: 400,
     },
     body1: {
@@ -107,7 +107,7 @@ const themeTypography = (theme) => {
     subMenuCaption: {
       fontSize: "0.6875rem",
       fontWeight: 500,
-      color: theme.darkTextSecondary,
+      color: theme.colors?.darkTextSecondary,
       textTransform: "capitalize",
     },
     commonAvatar: {
