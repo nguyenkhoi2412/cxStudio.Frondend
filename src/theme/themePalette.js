@@ -55,6 +55,8 @@ export default function themePalette(theme) {
     },
     common: {
       black: theme.colors?.paper,
+      textMenuSelected: theme.colors?.textMenuSelected,
+      bgMenuSelected: theme.colors?.bgMenuSelected,
     },
     error: {
       light: theme.colors?.errorLight,

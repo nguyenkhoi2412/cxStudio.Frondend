@@ -61,20 +61,20 @@ const componentStyleOverrides = (theme) => {
           paddingTop: "10px",
           paddingBottom: "10px",
           "&.Mui-selected": {
-            color: theme.menuSelected,
-            backgroundColor: theme.menuSelectedBack,
+            color: theme.colors?.textMenuSelected,
+            backgroundColor: theme.colors?.bgMenuSelected,
             "&:hover": {
-              backgroundColor: theme.menuSelectedBack,
+              backgroundColor: theme.colors?.bgMenuSelected,
             },
             "& .MuiListItemIcon-root": {
-              color: theme.menuSelected,
+              color: theme.colors?.textMenuSelected,
             },
           },
           "&:hover": {
-            backgroundColor: theme.menuSelectedBack,
-            color: theme.menuSelected,
+            backgroundColor: theme.colors?.bgMenuSelected,
+            color: theme.color?.textMenuSelected,
             "& .MuiListItemIcon-root": {
-              color: theme.menuSelected,
+              color: theme.color?.textMenuSelected,
             },
           },
         },
