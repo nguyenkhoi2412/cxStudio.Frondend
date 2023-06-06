@@ -81,8 +81,8 @@ export default function themePalette(theme) {
       50: theme.colors?.grey50,
       100: theme.colors?.grey100,
       500: theme.darkTextSecondary,
-      600: theme.heading,
-      700: theme.darkTextPrimary,
+      600: theme.colors?.heading,
+      700: theme.colors?.grey700,
       900: theme.textDark,
     },
     text: {
@@ -93,6 +93,12 @@ export default function themePalette(theme) {
       fontIcon: theme.colors.fontTextPrimary,
       fontIconHover: theme.colors.fontTextPrimaryHover,
     },
+    font: {
+      icon: theme.colors?.primaryText,
+      icon__hover: theme.colors?.fontTextPrimaryHover,
+    },
+    heading: theme.colors?.grey900,
+    divider: theme.colors?.grey200,
   };
 }
 

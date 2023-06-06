@@ -1,5 +1,5 @@
 const componentStyleOverrides = (theme) => {
-  const bgColor = theme.colors.backgroundContainerMain;
+  const bgColor = theme.colors?.backgroundContainerMain;
   return {
     MuiTypography: {
       styleOverrides: {
@@ -149,7 +149,7 @@ const componentStyleOverrides = (theme) => {
           },
         },
         mark: {
-          backgroundColor: theme.paper,
+          backgroundColor: theme.colors?.paper,
           width: "4px",
         },
         valueLabel: {
@@ -160,7 +160,7 @@ const componentStyleOverrides = (theme) => {
     MuiDivider: {
       styleOverrides: {
         root: {
-          borderColor: theme.divider,
+          borderColor: theme.colors?.divider,
           opacity: 1,
         },
       },
@@ -185,7 +185,7 @@ const componentStyleOverrides = (theme) => {
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          color: theme.paper,
+          color: theme.colors?.paper,
           background: theme.colors?.grey700,
         },
       },
