@@ -1,3 +1,4 @@
+import "./_customization.scss";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -50,14 +51,14 @@ const Customization = () => {
   };
 
   // state - border radius
-  const [borderRadius, setBorderRadius] = useState(customization.borderRadius);
-  const handleBorderRadius = (event, newValue) => {
-    setBorderRadius(newValue);
-  };
+  // const [borderRadius, setBorderRadius] = useState(customization.borderRadius);
+  // const handleBorderRadius = (event, newValue) => {
+  //   setBorderRadius(newValue);
+  // };
 
-  useEffect(() => {
-    dispatch({ type: SET_BORDER_RADIUS, borderRadius });
-  }, [dispatch, borderRadius]);
+  // useEffect(() => {
+  //   dispatch({ type: SET_BORDER_RADIUS, borderRadius });
+  // }, [dispatch, borderRadius]);
 
   let initialFont;
   switch (customization.fontFamily) {
@@ -107,17 +108,7 @@ const Customization = () => {
           onClick={handleToggle}
           size="medium"
           variant="circular"
-          sx={{
-            borderRadius: 0,
-            borderTopLeftRadius: "50%",
-            borderBottomLeftRadius: "50%",
-            borderTopRightRadius: "50%",
-            borderBottomRightRadius: "4px",
-            top: "25%",
-            position: "fixed",
-            right: 10,
-            zIndex: theme.zIndex.speedDial,
-          }}
+          className="customize-settings"
         >
           <AnimateButton type="rotate">
             <IconButton color="primary" size="large" disableRipple>
@@ -222,8 +213,8 @@ const Customization = () => {
                 </FormControl>
               </SubCard>
             </Grid>
-            <Grid item xs={12}>
-              {/* border radius */}
+            {/* <Grid item xs={12}>
+              border radius
               <SubCard title="Border Radius">
                 <Grid
                   item
@@ -260,7 +251,7 @@ const Customization = () => {
                   </Grid>
                 </Grid>
               </SubCard>
-            </Grid>
+            </Grid> */}
           </Grid>
         </PerfectScrollbar>
       </Drawer>

@@ -1,0 +1,8 @@
+.customize-settings {
+  @include _rounded-corners(50% 50% 4px 50%);
+  top: 25%;
+  position: fixed;
+  right: 10px;
+  z-index: 1000;
+  background-color: $bgContainerMain;
+}

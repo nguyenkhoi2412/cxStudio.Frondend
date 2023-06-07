@@ -1,7 +1,7 @@
 import "./app.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import defaultFavicon from "@assets/favicons/default/favicon.png";
+import defaultFavicon from "@assets/favicons/default/favicon.svg";
 
 import { BuildRoutes } from "@routes";
 // import { hookInstance } from "@utils/hookInstance";
