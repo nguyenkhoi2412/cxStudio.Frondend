@@ -23,6 +23,27 @@ export class hookInstance {
   };
 
   /*
+   * useDarkMode
+   */
+  static useDarkMode = () => {
+    const [theme, setTheme] = React.useState(localStorage.themeMode);
+    const colorTheme = theme === "dark" ? "light" : "dark";
+
+    React.useEffect(() => {
+      const root = window.document.documentElement;
+      root.classList.remove(colorTheme);
+      document.body.classList.remove(colorTheme);
+
+      root.classList.add(theme);
+      document.body.classList.add(theme);
+
+      localStorage.setItem("themeMode", theme);
+    }, [theme, colorTheme]);
+
+    return [colorTheme, setTheme];
+  };
+
+  /*
    * useWindowSize
    * Call hook when window resize
    * const [width, height] = useWindowSize();

@@ -26,6 +26,7 @@ import SubCard from "@components/mui-ui/cards/subCard";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 import {
   SET_BORDER_RADIUS,
+  SET_MODE,
   SET_FONT_FAMILY,
 } from "@reduxproviders/berry/actions";
 import { gridSpacing } from "@constants";
@@ -91,6 +92,12 @@ const Customization = () => {
     dispatch({ type: SET_FONT_FAMILY, fontFamily: newFont });
   }, [dispatch, fontFamily]);
 
+  // state - mode
+  const [mode, setMode] = useState(customization.mode);
+  useEffect(() => {
+    dispatch({ type: SET_MODE, mode: mode });
+  }, [dispatch, mode]);
+
   return (
     <>
       {/* toggle button */}
@@ -132,6 +139,42 @@ const Customization = () => {
       >
         <PerfectScrollbar component="div">
           <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
+            <Grid item xs={12}>
+              <SubCard title="Mode">
+                <FormControl>
+                  <RadioGroup
+                    aria-label="mode"
+                    row
+                    value={mode}
+                    onChange={(e) => setMode(e.target.value)}
+                    name="row-radio-buttons-group"
+                  >
+                    <FormControlLabel
+                      value="light"
+                      control={<Radio />}
+                      label="Light"
+                      sx={{
+                        "& .MuiSvgIcon-root": { fontSize: 28 },
+                        "& .MuiFormControlLabel-label": {
+                          color: theme.palette.grey[900],
+                        },
+                      }}
+                    />
+                    <FormControlLabel
+                      value="dark"
+                      control={<Radio />}
+                      label="Dark"
+                      sx={{
+                        "& .MuiSvgIcon-root": { fontSize: 28 },
+                        "& .MuiFormControlLabel-label": {
+                          color: theme.palette.grey[900],
+                        },
+                      }}
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </SubCard>
+            </Grid>
             <Grid item xs={12}>
               {/* font family */}
               <SubCard title="Font Family">
@@ -191,9 +234,7 @@ const Customization = () => {
                   sx={{ mt: 2.5 }}
                 >
                   <Grid item>
-                    <Typography variant="h6">
-                      4px
-                    </Typography>
+                    <Typography variant="h6">4px</Typography>
                   </Grid>
                   <Grid item xs>
                     <Slider
@@ -215,9 +256,7 @@ const Customization = () => {
                     />
                   </Grid>
                   <Grid item>
-                    <Typography variant="h6">
-                      24px
-                    </Typography>
+                    <Typography variant="h6">24px</Typography>
                   </Grid>
                 </Grid>
               </SubCard>

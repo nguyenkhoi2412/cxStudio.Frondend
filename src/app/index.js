@@ -22,14 +22,10 @@ const App = (props) => {
   addFavicons();
   const customization = useSelector((state) => state.customization);
 
-  document.body.classList.toggle(
-    "darkTheme",
-    customization.themeMode === "dark"
-  );
-
+  document.body.classList.toggle("darkTheme", customization.mode === "dark");
   document.body.classList.toggle(
     "defaultTheme",
-    customization.themeMode === "light"
+    customization.mode === "light"
   );
   const { i18n } = useTranslation();
   // const currentLocation = hookInstance.useRouter();

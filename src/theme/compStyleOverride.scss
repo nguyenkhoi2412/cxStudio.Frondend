@@ -44,6 +44,13 @@
   }
 }
 
+.MuiButton {
+  &-root {
+    font-weight: 50;
+    @include _rounded-corners(4px);
+  }
+}
+
 .MuiOutlinedInput {
   &-root {
     background: $bgContainerMain;
@@ -86,6 +93,63 @@
   }
 }
 
+// ==============================|| MuiListItem ||============================== //
+.MuiListItemButton {
+  &-root {
+    color: $textDefault;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &.Mui-selected {
+      color: $textMenuSelected;
+      background-color: $bgMenuSelected;
+
+      &:hover {
+        background-color: $bgMenuSelected;
+      }
+
+      > .MuiListItemIcon-root {
+        color: $textMenuSelected;
+      }
+
+      > .MuiListItemText-root {
+        > .MuiTypography-root {
+          color: $textMenuSelected;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $bgMenuSelected;
+      color: $textMenuSelected;
+
+      > .MuiListItemIcon-root {
+        color: $textMenuSelected;
+      }
+
+      > .MuiListItemText-root {
+        > .MuiTypography-root {
+          color: $textMenuSelected;
+        }
+      }
+    }
+  }
+}
+
+.MuiListItemIcon {
+  &-root {
+    color: $textDefault;
+    min-width: 36px;
+  }
+}
+
+.MuiListItemText {
+  &-primary {
+    color: $textSubTitle1;
+  }
+}
+
+// ==============================|| Utilities ||============================== //
 .MuiTypography {
   &-root {
     word-break: break-all;
@@ -155,6 +219,10 @@
     font-weight: 400;
     line-height: 1.334em;
     color: $textDefault;
+
+    &.MuiFormControlLabel-label {
+      color: var(--text-subtitle-1);
+    }
   }
 
   &-body2 {
@@ -228,68 +296,6 @@
     width: 44px;
     height: 44px;
     font-size: 1.5rem;
-  }
-}
-
-.MuiListItemButton {
-  &-root {
-    color: $textDefault;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    &.Mui-selected {
-      color: $textMenuSelected;
-      background-color: $bgMenuSelected;
-
-      &:hover {
-        background-color: $bgMenuSelected;
-      }
-
-      > .MuiListItemIcon-root {
-        color: $textMenuSelected;
-      }
-
-      > .MuiListItemText-root {
-        > .MuiTypography-root {
-          color: $textMenuSelected;
-        }
-      }
-    }
-
-    &:hover {
-      background-color: $bgMenuSelected;
-      color: $textMenuSelected;
-
-      > .MuiListItemIcon-root {
-        color: $textMenuSelected;
-      }
-
-      > .MuiListItemText-root {
-        > .MuiTypography-root {
-          color: $textMenuSelected;
-        }
-      }
-    }
-  }
-}
-
-.MuiListItemIcon {
-  &-root {
-    color: $textDefault;
-    min-width: 36px;
-  }
-}
-
-.MuiListItemText {
-  &-primary {
-    color: $textSubTitle1;
-  }
-}
-
-.MuiButton {
-  &-root {
-    font-weight: 50;
-    @include _rounded-corners(4px);
   }
 }
 

@@ -10,7 +10,7 @@ const configSettings = {
   defaultPath: navigateLocation.DASHBOARD.DEFAULT,
   fontFamily: `'Roboto', sans-serif`,
   borderRadius: 12,
-  themeMode: 'light' // light/dark
+  mode: localStorage.getItem("themeMode") === "dark" ? "dark" : "light", // light/dark
 };
 
 export default configSettings;

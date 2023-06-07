@@ -10,7 +10,7 @@ export const initialState = {
   fontFamily: configSettings.fontFamily,
   borderRadius: configSettings.borderRadius,
   opened: true,
-  themeMode: configSettings.themeMode,
+  mode: configSettings.mode,
 };
 
 // ==============================|| CUSTOMIZATION REDUCER ||============================== //
@@ -28,6 +28,12 @@ const customizationReducer = (state = initialState, action) => {
       return {
         ...state,
         opened: action.opened,
+      };
+    case actionTypes.SET_MODE:
+      localStorage.setItem("themeMode", action.mode);
+      return {
+        ...state,
+        mode: action.mode,
       };
     case actionTypes.SET_FONT_FAMILY:
       return {

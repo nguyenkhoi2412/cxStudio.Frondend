@@ -12,7 +12,7 @@ import themeTypography from "./typography";
 export const configBaseTheme = (customization) => {
   const themeOption = {
     // palette values for light mode
-    mode: customization.themeMode,
+    mode: customization.mode,
     colors: color,
     customization,
   };
