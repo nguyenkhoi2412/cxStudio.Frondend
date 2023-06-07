@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 // project imports
+import Container from "@mui/material/Container";
 import Breadcrumbs from "@components/mui-ui/extended/breadcrumbs";
 import Header from "./header";
 import Sidebar from "./sidebar";
@@ -100,15 +101,17 @@ const LayoutDashboard = () => {
       />
       {/* main content */}
       <Main className="wrapper-content" theme={theme} open={leftDrawerOpened}>
-        {/* breadcrumb */}
-        <Breadcrumbs
-          separator={IconChevronRight}
-          navigation={menuSidebar}
-          icon
-          title
-          rightAlign
-        />
-        <Outlet />
+        <Container>
+          {/* breadcrumb */}
+          <Breadcrumbs
+            separator={IconChevronRight}
+            navigation={menuSidebar}
+            icon
+            title
+            rightAlign
+          />
+          <Outlet />
+        </Container>
       </Main>
       <Customization />
     </Box>

@@ -129,11 +129,14 @@ const ProfileSection = () => {
           backgroundColor: theme.palette.background.container,
           '&[aria-controls="menu-list-grow"], &:hover': {
             borderColor: theme.palette.primary.main,
-            background: `${theme.palette.background.light}!important`,
+            background: `${theme.palette.background.light} !important`,
             color: theme.palette.font.icon__hover,
             "& svg": {
               stroke: theme.palette.font.icon__hover,
             },
+          },
+          ".MuiAvatar-root": {
+            background: "transparent",
           },
           "& .MuiChip-label": {
             lineHeight: 0,

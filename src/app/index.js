@@ -15,12 +15,17 @@ import IncBackdrop from "@components/mui-ui/backdropSpin";
 import IncProgressBar from "@components/mui-ui/progressBar";
 //#endregion
 import { helpersExtension } from "@utils/helpersExtension";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  SHOW_SPIN,
+  HIDE_SPIN,
+} from "@components/mui-ui/backdropSpin/backdropSpin.reducer";
 
 const App = (props) => {
   console.warn = () => {};
   addFavicons();
   const customization = useSelector((state) => state.customization);
+  const dispatch = useDispatch();
 
   document.body.classList.toggle("darkTheme", customization.mode === "dark");
   document.body.classList.toggle(
@@ -28,11 +33,7 @@ const App = (props) => {
     customization.mode === "light"
   );
   const { i18n } = useTranslation();
-  // const currentLocation = hookInstance.useRouter();
-  // console.log("currentLocation", currentLocation);
-  // const site = useSelector(siteState);
-  // const locale = useSelector(localeState);
-  // const [renderRoutes, setRenderRoutes] = React.useState(routes.buildRoutes());
+  const [load, upadateLoad] = React.useState(true);
   const [deviceInfos, setDeviceInfos] = React.useState({
     mobile: false,
     responsive: false,
@@ -47,6 +48,15 @@ const App = (props) => {
   React.useEffect(() => {
     i18n.changeLanguage("en-US");
     handleResize();
+
+    dispatch(SHOW_SPIN());
+    // preload
+    const timer = setTimeout(() => {
+      upadateLoad(false);
+      dispatch(HIDE_SPIN());
+    }, 600);
+
+    return () => clearTimeout(timer);
   }, []);
   //#endregion
 
@@ -74,7 +84,7 @@ const App = (props) => {
         >
           <BrowserRouter>
             <NavigationScroll>
-              <BuildRoutes />
+              {load ? <></> : <BuildRoutes />}
             </NavigationScroll>
           </BrowserRouter>
         </SnackbarProvider>
