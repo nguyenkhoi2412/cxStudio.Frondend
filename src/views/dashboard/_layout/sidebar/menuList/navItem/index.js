@@ -28,6 +28,7 @@ const NavItem = ({ item, level }) => {
   const dispatch = useDispatch();
   const customization = useSelector((state) => state.customization);
   const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
+  const [itemActive, setItemActive] = React.useState(false);
 
   const Icon = item.icon;
   const itemIcon = item?.icon ? (
@@ -65,7 +66,10 @@ const NavItem = ({ item, level }) => {
 
   // active menu item on page load
   useEffect(() => {
-    const currentIndex = document.location.pathname
+    const currentPath = document.location.pathname;
+    setItemActive(currentPath === item.url);
+
+    const currentIndex = currentPath
       .toString()
       .split("/")
       .findIndex((id) => id === item.id);
@@ -79,6 +83,7 @@ const NavItem = ({ item, level }) => {
     <ListItemButton
       {...listItemProps}
       disabled={item.disabled}
+      className={itemActive ? "Mui-selected" : ""}
       sx={{
         borderRadius: `${customization.borderRadius}px`,
         mb: 0.5,

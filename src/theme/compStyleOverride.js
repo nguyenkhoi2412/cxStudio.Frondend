@@ -72,9 +72,9 @@ const componentStyleOverrides = (theme) => {
           },
           "&:hover": {
             backgroundColor: theme.colors?.bgMenuSelected,
-            color: theme.color?.textMenuSelected,
+            color: theme.colors?.textMenuSelected,
             "& .MuiListItemIcon-root": {
-              color: theme.color?.textMenuSelected,
+              color: theme.colors?.textMenuSelected,
             },
           },
         },
@@ -100,7 +100,7 @@ const componentStyleOverrides = (theme) => {
         input: {
           color: theme.textSubTitle1,
           "&::placeholder": {
-            color: theme.colors.textSecondary,
+            color: theme.colors?.textSecondary,
             fontSize: "0.875rem",
           },
         },
