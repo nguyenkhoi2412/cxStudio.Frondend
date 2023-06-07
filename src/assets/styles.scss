@@ -3,11 +3,11 @@
 @import "./base/_normalize";
 @import "./base/_forms.scss";
 @import "./common/_common.scss";
-@import "./common/customize_mui.scss";
 
 // third-party
 @import "~react-perfect-scrollbar/dist/css/styles.css";
 @import "./modeTheme.scss";
+@import "../theme/compStyleOverride.scss";
 
 // ==============================|| LIGHT BOX ||============================== //
 .fullscreen .react-images__blanket {

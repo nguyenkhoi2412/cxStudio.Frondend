@@ -82,6 +82,7 @@ export default function themePalette(theme) {
     grey: {
       50: theme.colors?.grey50,
       100: theme.colors?.grey100,
+      300: theme.colors?.grey300,
       500: theme.colors?.grey500,
       600: theme.colors?.grey600,
       700: theme.colors?.grey700,

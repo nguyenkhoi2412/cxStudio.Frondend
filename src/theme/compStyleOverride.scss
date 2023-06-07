@@ -1,0 +1,344 @@
+.MuiPaper {
+  &-root {
+    background-image: none;
+  }
+
+  &-rounded {
+    @include _rounded-corners();
+  }
+}
+
+// ==============================|| MuiCard ||============================== //
+.MuiCardHeader {
+  &-root {
+    color: $textSubTitle1;
+    padding: 24px;
+  }
+
+  &-title {
+    font-size: 1.125rem;
+  }
+}
+
+.MuiCardContent {
+  &-root {
+    padding: 24px;
+  }
+}
+
+.MuiCardActions {
+  &-root {
+    padding: 24px;
+  }
+}
+
+// ==============================|| FORMS ||============================== //
+.MuiInputBase {
+  &-input {
+    color: $textSubTitle1;
+
+    &::placeholder {
+      color: $textSecondary;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.MuiOutlinedInput {
+  &-root {
+    background: $bgContainerMain;
+    @include _rounded-corners();
+
+    &.Mui-focused {
+      .MuiOutlinedInput-notchedOutline {
+        border: $border;
+      }
+    }
+  }
+
+  // &-notchedOutline {
+  //   border-color: $grey300;
+  // }
+
+  &-input {
+    font-weight: 500;
+    padding: 15.5px 14px;
+
+    &.MuiInputBase-inputSizeSmall {
+      padding: 10px 14px;
+      &.MuiInputBase-inputAdornedStart {
+        padding-left: 0;
+      }
+    }
+  }
+
+  &-inputAdornedStart {
+    padding-left: 4;
+  }
+}
+
+.MuiFormHelperText {
+  &-root {
+    &.Mui-error {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}
+
+.MuiTypography {
+  &-root {
+    word-break: break-all;
+  }
+
+  &-h1 {
+    font-size: 2.125rem;
+    color: $textHeading;
+    font-weight: 700;
+  }
+
+  &-h2 {
+    font-size: 1.5rem;
+    color: $textHeading;
+    font-weight: 700;
+  }
+
+  &-h3 {
+    font-size: 1.25rem;
+    color: $textHeading;
+    font-weight: 600;
+  }
+
+  &-h4 {
+    font-size: 1rem;
+    color: $textHeading;
+    font-weight: 600;
+  }
+
+  &-h5 {
+    font-size: 0.875rem;
+    color: $textHeading;
+    font-weight: 500;
+  }
+
+  &-h6 {
+    font-size: 0.75rem;
+    color: $textHeading;
+    font-weight: 500;
+  }
+
+  &-subtitle1 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $textSubTitle1;
+  }
+
+  &-subtitle2 {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: $textSubTitle2;
+  }
+
+  &-caption {
+    font-size: 0.75rem;
+    color: $textSubTitle2;
+    font-weight: 400;
+  }
+
+  &-overline {
+    color: $textSubTitle1;
+    font-weight: 400;
+  }
+
+  &-body1 {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.334em;
+    color: $textDefault;
+  }
+
+  &-body2 {
+    letter-spacing: 0em;
+    font-weight: 400;
+    line-height: 1.5em;
+    color: $textDefault;
+  }
+
+  &-button {
+    color: $textSecondary;
+    text-transform: capitalize;
+  }
+
+  &-customInput {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    > label {
+      top: 23px;
+      left: 0px;
+      color: $grey500;
+      &[data-shrink="false"] {
+        top: 5px;
+      }
+    }
+    > div > input {
+      padding: 30.5px 14px 11.5px !important;
+    }
+    legend {
+      display: none;
+    }
+    fieldset {
+      top: 0;
+    }
+  }
+
+  &-mainContent {
+    background-color: $bgContainerMain;
+    width: 100%;
+    min-height: calc(100vh - 88px);
+    flex-grow: 1;
+    padding: 20px;
+    margin-top: 88px;
+    margin-right: 20px;
+    @include _rounded-corners();
+  }
+
+  &-menuCaption {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $textHeading;
+    padding: 6px;
+    text-transform: capitalize;
+    margin-top: 10px;
+  }
+
+  &-subMenuCaption {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: $textSecondary;
+    text-transform: capitalize;
+  }
+
+  &-commonAvatar {
+    cursor: pointer;
+    @include _rounded-corners(8px);
+  }
+
+  &-smallAvatar {
+    width: 22px;
+    height: 22px;
+    font-size: 1rem;
+  }
+
+  &-mediumAvatar {
+    width: 34px;
+    height: 34px;
+    font-size: 1.2rem;
+  }
+
+  &-largeAvatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+}
+
+.MuiListItemButton {
+  &-root {
+    color: $textDefault;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &.Mui-selected {
+      color: $textMenuSelected;
+      background-color: $bgMenuSelected;
+
+      &:hover {
+        background-color: $bgMenuSelected;
+      }
+
+      > .MuiListItemIcon-root {
+        color: $textMenuSelected;
+      }
+
+      > .MuiListItemText-root {
+        > .MuiTypography-root {
+          color: $textMenuSelected;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $bgMenuSelected;
+      color: $textMenuSelected;
+
+      > .MuiListItemIcon-root {
+        color: $textMenuSelected;
+      }
+
+      > .MuiListItemText-root {
+        > .MuiTypography-root {
+          color: $textMenuSelected;
+        }
+      }
+    }
+  }
+}
+
+.MuiListItemIcon {
+  &-root {
+    color: $textDefault;
+    min-width: 36px;
+  }
+}
+
+.MuiListItemText {
+  &-primary {
+    color: $textSubTitle1;
+  }
+}
+
+.MuiButton {
+  &-root {
+    font-weight: 50;
+    @include _rounded-corners(4px);
+  }
+}
+
+.MuiSlider {
+  &-root {
+    &.Mui-disabled {
+      color: $grey300;
+    }
+  }
+
+  &-mark {
+    background-color: $paper;
+    width: 4px;
+  }
+
+  &-valueLabel {
+    color: $primaryLight;
+  }
+}
+
+.MuiDivider {
+  &-root {
+    border-color: $colorDivider;
+    opacity: 1;
+  }
+}
+
+.MuiTooltip {
+  &-tooltip {
+    color: $paper;
+    background: $textDefault;
+  }
+}
+
+.MuiAvatar {
+  &-root {
+    color: var(--icon-font-color);
+    background: var(--bg-container-main);
+    @include _rounded-corners();
+  }
+}

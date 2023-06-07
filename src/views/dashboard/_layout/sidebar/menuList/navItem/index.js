@@ -65,8 +65,8 @@ const NavItem = ({ item, level }) => {
   };
 
   // active menu item on page load
+  const currentPath = document.location.pathname;
   useEffect(() => {
-    const currentPath = document.location.pathname;
     setItemActive(currentPath === item.url);
 
     const currentIndex = currentPath
@@ -77,7 +77,7 @@ const NavItem = ({ item, level }) => {
       dispatch({ type: MENU_OPEN, id: item.id });
     }
     // eslint-disable-next-line
-  }, []);
+  }, [currentPath]);
 
   return (
     <ListItemButton

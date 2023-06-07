@@ -79,7 +79,7 @@
 // }
 
 /* ======================================================================================== */
-@mixin _rounded-corners($radius: 13px) {
+@mixin _rounded-corners($radius: 12px) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   -ms-border-radius: $radius;
