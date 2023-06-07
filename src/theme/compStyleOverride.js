@@ -168,8 +168,8 @@ const componentStyleOverrides = (theme) => {
     MuiAvatar: {
       styleOverrides: {
         root: {
-          color: theme.colors?.primaryDark,
-          background: theme.colors?.primary200,
+          // color: theme.colors?.primaryDark,
+          // background: theme.colors?.primary200,
         },
       },
     },
