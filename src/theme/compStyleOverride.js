@@ -186,7 +186,7 @@ const componentStyleOverrides = (theme) => {
       styleOverrides: {
         tooltip: {
           color: theme.colors?.paper,
-          background: theme.colors?.grey700,
+          background: theme.colors?.textDefault,
         },
       },
     },

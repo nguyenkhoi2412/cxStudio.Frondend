@@ -126,13 +126,13 @@ const ProfileSection = () => {
           borderRadius: "27px",
           transition: "all .2s ease-in-out",
           borderColor: theme.palette.primary.light,
-          backgroundColor: theme.palette.primary.light,
+          backgroundColor: theme.palette.background.container,
           '&[aria-controls="menu-list-grow"], &:hover': {
             borderColor: theme.palette.primary.main,
-            background: `${theme.palette.primary.main}!important`,
-            color: theme.palette.primary.light,
+            background: `${theme.palette.background.light}!important`,
+            color: theme.palette.font.icon__hover,
             "& svg": {
-              stroke: theme.palette.primary.light,
+              stroke: theme.palette.font.icon__hover,
             },
           },
           "& .MuiChip-label": {
@@ -161,7 +161,7 @@ const ProfileSection = () => {
           <IconSettings
             stroke={1.5}
             size="1.5rem"
-            color={theme.palette.primary.main}
+            color={theme.palette.font.icon}
           />
         }
         variant="outlined"
