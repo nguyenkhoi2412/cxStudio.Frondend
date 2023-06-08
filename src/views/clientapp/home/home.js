@@ -6,7 +6,7 @@ const Home = () => {
   const navigage = useNavigate();
 
   const handleOnclick = () => {
-    navigage("/dashboard/signin");
+    navigage("/dashboard");
   };
 
   return (

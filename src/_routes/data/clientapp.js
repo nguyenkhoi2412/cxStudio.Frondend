@@ -4,10 +4,10 @@ import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
 // import Layout from "@clientapp/_layout";
-// import SocialProfile from "@clientapp/socialProfile";
+import Home from "@clientapp/home";
 // ==============================|| MAIN ROUTING ||============================== //
 
-const ClientAppRoutes = {
+const ClientAppRoutes = [
   // path: navigateLocation.CLIENT_APP.ASSET_PATH,
   // element: <Layout />,
   // children: [
@@ -17,6 +17,11 @@ const ClientAppRoutes = {
   //     element: <SocialProfile />,
   //   },
   // ],
-};
+  {
+    path: navigateLocation.CLIENT_APP.ASSET_PATH,
+    title: "Social profile",
+    element: <Home />,
+  },
+];
 
 export default ClientAppRoutes;
