@@ -93,12 +93,6 @@ const Customization = () => {
     dispatch({ type: SET_FONT_FAMILY, fontFamily: newFont });
   }, [dispatch, fontFamily]);
 
-  // state - mode
-  const [mode, setMode] = useState(customization.mode);
-  useEffect(() => {
-    dispatch({ type: SET_MODE, mode: mode });
-  }, [dispatch, mode]);
-
   return (
     <>
       {/* toggle button */}
@@ -130,42 +124,6 @@ const Customization = () => {
       >
         <PerfectScrollbar component="div">
           <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
-            <Grid item xs={12}>
-              <SubCard title="Mode">
-                <FormControl>
-                  <RadioGroup
-                    aria-label="mode"
-                    row
-                    value={mode}
-                    onChange={(e) => setMode(e.target.value)}
-                    name="row-radio-buttons-group"
-                  >
-                    <FormControlLabel
-                      value="light"
-                      control={<Radio />}
-                      label="Light"
-                      sx={{
-                        "& .MuiSvgIcon-root": { fontSize: 28 },
-                        "& .MuiFormControlLabel-label": {
-                          color: theme.palette.grey[900],
-                        },
-                      }}
-                    />
-                    <FormControlLabel
-                      value="dark"
-                      control={<Radio />}
-                      label="Dark"
-                      sx={{
-                        "& .MuiSvgIcon-root": { fontSize: 28 },
-                        "& .MuiFormControlLabel-label": {
-                          color: theme.palette.grey[900],
-                        },
-                      }}
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </SubCard>
-            </Grid>
             <Grid item xs={12}>
               {/* font family */}
               <SubCard title="Font Family">

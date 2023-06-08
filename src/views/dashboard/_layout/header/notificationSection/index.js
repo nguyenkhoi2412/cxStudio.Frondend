@@ -93,7 +93,7 @@ const NotificationSection = () => {
       <Box
         sx={{
           ml: 2,
-          mr: 3,
+          mr: 2,
           [theme.breakpoints.down("md")]: {
             mr: 2,
           },
@@ -102,17 +102,7 @@ const NotificationSection = () => {
         <ButtonBase sx={{ borderRadius: "12px" }}>
           <Avatar
             variant="rounded"
-            sx={{
-              ...theme.typography.commonAvatar,
-              ...theme.typography.mediumAvatar,
-              transition: "all .2s ease-in-out",
-              background: theme.palette.background.container,
-              color: theme.palette.font.icon,
-              '&[aria-controls="menu-list-grow"],&:hover': {
-                background: theme.palette.background.light,
-                color: theme.palette.font.icon__hover,
-              },
-            }}
+            className="navButtons"
             ref={anchorRef}
             aria-controls={open ? "menu-list-grow" : undefined}
             aria-haspopup="true"

@@ -1,3 +1,4 @@
+import "./_header.scss";
 import PropTypes from "prop-types";
 
 // material-ui
@@ -8,6 +9,7 @@ import { Avatar, Box, ButtonBase } from "@mui/material";
 import LogoSection from "../logoSection";
 import SearchSection from "./searchSection";
 import ProfileSection from "./profileSection";
+import ToggleThemeSection from "./toggleThemeSection";
 import NotificationSection from "./notificationSection";
 
 // assets
@@ -61,6 +63,9 @@ const Header = ({ handleLeftDrawerToggle }) => {
       <SearchSection />
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
+
+      {/* toggleThemeSection */}
+      <ToggleThemeSection />
 
       {/* notification & profile */}
       <NotificationSection />

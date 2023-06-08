@@ -1,0 +1,22 @@
+.MuiButtonBase-root {
+  .navButtons {
+    @include _transition(); // .2s, ease-in-out, all
+    background: var(--bg-container-main);
+    color: var(--icon-font-color);
+  }
+
+  &[aria-controls="menu-list-grow"],
+  &:hover {
+    .navButtons {
+      background: var(--bg-container-light);
+
+      svg {
+        color: var(--icon-font-color-hover);
+      }
+    }
+  }
+}
+
+.toggleTheme {
+  color: var(--text-theme-primary);
+}
