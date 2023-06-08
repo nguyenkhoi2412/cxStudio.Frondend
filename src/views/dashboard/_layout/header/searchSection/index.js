@@ -1,3 +1,4 @@
+import "./_searchSection.scss";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
@@ -104,16 +105,7 @@ const MobileSearch = ({ value, setValue, popupState }) => {
             <ButtonBase sx={{ borderRadius: "12px" }}>
               <Avatar
                 variant="rounded"
-                sx={{
-                  ...theme.typography.commonAvatar,
-                  ...theme.typography.mediumAvatar,
-                  background: theme.palette.orange.light,
-                  color: theme.palette.orange.dark,
-                  "&:hover": {
-                    background: theme.palette.orange.dark,
-                    color: theme.palette.orange.light,
-                  },
-                }}
+                className="navButtons"
                 {...bindToggle(popupState)}
               >
                 <IconX stroke={1.5} size="1.3rem" />
@@ -143,7 +135,7 @@ const SearchSection = () => {
   return (
     <>
       <Box sx={{ display: { xs: "block", md: "none" } }}>
-        <PopupState variant="popper" popupId="demo-popup-popper">
+        <PopupState variant="popper" popupId="popup-popper-search">
           {(popupState) => (
             <>
               <Box sx={{ ml: 2 }}>
@@ -156,7 +148,11 @@ const SearchSection = () => {
                   </HeaderAvatarStyle>
                 </ButtonBase>
               </Box>
-              <PopperStyle {...bindPopper(popupState)} transition>
+              <PopperStyle
+                className="popper-search-section"
+                {...bindPopper(popupState)}
+                transition
+              >
                 {({ TransitionProps }) => (
                   <>
                     <Transitions
@@ -165,15 +161,19 @@ const SearchSection = () => {
                       sx={{ transformOrigin: "center left" }}
                     >
                       <Card
+                        className="search-card"
                         sx={{
-                          background: "#fff",
                           [theme.breakpoints.down("sm")]: {
                             border: 0,
                             boxShadow: "none",
                           },
                         }}
                       >
-                        <Box sx={{ p: 2 }}>
+                        <Box
+                          sx={{
+                            padding: "16px 16px 12px 8px",
+                          }}
+                        >
                           <Grid
                             container
                             alignItems="center"
