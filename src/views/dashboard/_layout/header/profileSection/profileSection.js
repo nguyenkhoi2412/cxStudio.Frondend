@@ -121,6 +121,11 @@ const ProfileSection = () => {
     <>
       <Chip
         sx={{
+          ml: 2,
+          mr: 0,
+          [theme.breakpoints.down("md")]: {
+            mr: 0,
+          },
           height: "48px",
           alignItems: "center",
           borderRadius: "27px",

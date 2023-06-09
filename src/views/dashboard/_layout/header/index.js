@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { Avatar, Box, ButtonBase } from "@mui/material";
+import { Avatar, Box, ButtonBase, useMediaQuery } from "@mui/material";
 
 // project imports
 import LogoSection from "../logoSection";
@@ -20,6 +20,7 @@ import { IconMenu2 } from "@tabler/icons-react";
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
+  const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <>
       {/* logo & toggler button */}
@@ -69,7 +70,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
       <ToggleThemeSection />
 
       {/* notification & profile */}
-      <NotificationSection />
+      {matchesXs ? <></> : <NotificationSection />}
       <ProfileSection />
       <MoreIconOnMobile />
     </>

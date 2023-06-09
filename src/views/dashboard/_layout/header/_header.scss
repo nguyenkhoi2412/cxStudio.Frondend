@@ -20,3 +20,17 @@
 .toggleTheme {
   color: var(--text-theme-primary);
 }
+
+.popup-showmore-nav {
+  width: 100vw;
+
+  .MuiPaper-root {
+    @include _rounded-corners(0);
+
+    .MuiStack-root {
+      .MuiBox-root {
+        margin: 0 8px;
+      }
+    }
+  }
+}

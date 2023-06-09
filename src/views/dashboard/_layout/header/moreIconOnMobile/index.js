@@ -42,7 +42,6 @@ import { SET_MODE } from "@reduxproviders/berry/actions";
 import { useDispatch, useSelector } from "react-redux";
 import NotificationSection from "../notificationSection";
 
-
 const MoreIconOnMobile = () => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
@@ -71,9 +70,9 @@ const MoreIconOnMobile = () => {
         sx={{
           display: { xs: "flex", md: "none" },
           ml: 0,
-          mr: 4,
+          mr: 0,
           [theme.breakpoints.down("md")]: {
-            mr: 4,
+            mr: 0,
           },
         }}
       >
@@ -129,32 +128,12 @@ const MoreIconOnMobile = () => {
                         container
                         alignItems="center"
                         justifyContent="space-between"
-                        sx={{ pt: 2, px: 2 }}
+                        sx={{ pt: 2, px: 2, pr: 1, pl: 1 }}
                       >
                         <Grid item>
-                          <NotificationSection />
-                          {/* <Stack direction="row" spacing={2}>
-                            <Typography variant="subtitle1">
-                              All Notification
-                            </Typography>
-                            <Chip
-                              size="small"
-                              label="01"
-                              sx={{
-                                color: theme.palette.background.default,
-                                bgcolor: theme.palette.warning.dark,
-                              }}
-                            />
-                          </Stack> */}
-                        </Grid>
-                        <Grid item xs={12}>
-                          <Typography
-                            component={Link}
-                            to="#"
-                            variant="subtitle2"
-                          >
-                            Mark as all read
-                          </Typography>
+                          <Stack direction="row">
+                            <NotificationSection />
+                          </Stack>
                         </Grid>
                       </Grid>
                     </Grid>
