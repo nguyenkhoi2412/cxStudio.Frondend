@@ -26,6 +26,7 @@
 
   .MuiPaper-root {
     @include _rounded-corners(0);
+    margin-top: -8px;
 
     .MuiStack-root {
       .MuiBox-root {

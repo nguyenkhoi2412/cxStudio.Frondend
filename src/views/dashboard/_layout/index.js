@@ -1,3 +1,5 @@
+import React from "react";
+
 // material-ui
 import { styled, useTheme } from "@mui/material/styles";
 import { AppBar, Box, Toolbar, useMediaQuery } from "@mui/material";
@@ -75,6 +77,17 @@ const LayoutDashboard = () => {
     dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
 
+  const [navColour, updateNavbar] = React.useState(false);
+  const scrollHandler = () => {
+    if (window.scrollY >= 20) {
+      updateNavbar(true);
+    } else {
+      updateNavbar(false);
+    }
+  };
+
+  window.addEventListener("scroll", scrollHandler);
+
   return (
     <Box sx={{ display: "flex" }}>
       {/* header */}
@@ -83,6 +96,7 @@ const LayoutDashboard = () => {
         position="fixed"
         color="inherit"
         elevation={0}
+        className={navColour ? "sticky" : ""}
         sx={{
           bgcolor: theme.palette.background.default,
           transition: leftDrawerOpened
