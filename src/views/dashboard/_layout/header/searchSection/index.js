@@ -200,6 +200,7 @@ const SearchSection = () => {
       <Box sx={{ display: { xs: "none", md: "block" } }}>
         <OutlineInputStyle
           id="input-search-header"
+          className="bg-transparent"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="Search"
