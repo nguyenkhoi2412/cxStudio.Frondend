@@ -18,6 +18,10 @@
   &.sticky {
     background: transparent;
     backdrop-filter: blur(15px);
+
+    .bg-transparent {
+      background: transparent;
+    }
   }
 }
 
