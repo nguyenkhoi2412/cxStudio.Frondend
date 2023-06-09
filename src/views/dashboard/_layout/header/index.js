@@ -11,6 +11,7 @@ import SearchSection from "./searchSection";
 import ProfileSection from "./profileSection";
 import ToggleThemeSection from "./toggleThemeSection";
 import NotificationSection from "./notificationSection";
+import MoreIconOnMobile from "./moreIconOnMobile";
 
 // assets
 import { IconMenu2 } from "@tabler/icons-react";
@@ -70,6 +71,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
       {/* notification & profile */}
       <NotificationSection />
       <ProfileSection />
+      <MoreIconOnMobile />
     </>
   );
 };
