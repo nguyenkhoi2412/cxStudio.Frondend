@@ -155,5 +155,11 @@
   "type": {
     "createnewtype": "Create a new type",
     "infos": "Product information"
+  },
+  "survey": {
+    "surveys": "Surveys",
+    "questions": "Questions",
+    "answers": "Answers",
+    "organize_courses": "Organize courses"
   }
 }

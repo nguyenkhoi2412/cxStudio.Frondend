@@ -5,6 +5,7 @@ const ASSET_PATH = vars.ASSET_PATH;
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
 const AUTH = DASHBOARD + "/auth";
 const ACCOUNT = DASHBOARD + "/account";
+const SURVEY = DASHBOARD + "/survey";
 const SITE = DASHBOARD + "/site";
 const UTILITIES = DASHBOARD + "/utilities";
 
@@ -25,6 +26,11 @@ export const navigateLocation = {
     CHANGE_PASSOWRD: ACCOUNT + "/changepassword",
     CREATE_NEW: ACCOUNT + "/createnew",
     USER_LIST: ACCOUNT + "/userlist",
+  },
+  SURVEY: {
+    QUESTION: SURVEY + "/questions",
+    ANSWER: SURVEY + "/answers",
+    ORGANIZE_COURSE: SURVEY + "/organize_course",
   },
   SITE: {
     LIST: SITE + "/list",
