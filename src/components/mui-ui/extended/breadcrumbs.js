@@ -12,7 +12,6 @@ import MuiBreadcrumbs from "@mui/material/Breadcrumbs";
 import { gridSpacing } from "constants";
 
 // assets
-import { IconTallymark1 } from "@tabler/icons-react";
 import AccountTreeTwoToneIcon from "@mui/icons-material/AccountTreeTwoTone";
 import HomeIcon from "@mui/icons-material/Home";
 import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
@@ -84,7 +83,8 @@ const Breadcrumbs = ({
   const separatorIcon = separator ? (
     <SeparatorIcon stroke={1.5} size="1rem" />
   ) : (
-    <IconTallymark1 stroke={1.5} size="1rem" />
+    // <IconTallymark1 stroke={1.5} size="1rem" />
+    <>ABC</>
   );
 
   let mainContent;

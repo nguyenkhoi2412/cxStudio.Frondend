@@ -1,8 +1,8 @@
-import settings from "./settings";
-import dashboard from "./dashboard";
+// import settings from "./settings";
+// import dashboard from "./dashboard";
 import utilities from "./utilities";
 import surveyin from "./surveyin";
-import other from "./other";
+// import other from "./other";
 
 // ==============================|| MENU ITEMS ||============================== //
 

@@ -1,5 +1,4 @@
 // assets
-import { IconBrandChrome, IconHelp } from "@tabler/icons-react";
 
 // constant
 const icons = { IconBrandChrome, IconHelp };
@@ -15,7 +14,7 @@ const other = {
       title: "Sample Page",
       type: "item",
       url: "/sample-page",
-      icon: icons.IconBrandChrome,
+      // icon: icons.IconBrandChrome,
       breadcrumbs: false,
     },
     {
@@ -23,7 +22,7 @@ const other = {
       title: "Documentation",
       type: "item",
       url: "https://codedthemes.gitbook.io/berry/",
-      icon: icons.IconHelp,
+      // icon: icons.IconHelp,
       external: true,
       target: true,
     },

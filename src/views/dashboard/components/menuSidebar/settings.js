@@ -2,7 +2,6 @@
 import { Trans } from "react-i18next";
 import { navigateLocation } from "@routes/navigateLocation";
 import WebOutlinedIcon from "@mui/icons-material/WebOutlined";
-import { IconKey } from "@tabler/icons-react";
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const settings = {
@@ -15,7 +14,7 @@ const settings = {
     {
       id: "account",
       title: <Trans i18nKey={"user.account"} />,
-      icon: IconKey,
+      // icon: IconKey,
       type: "collapse",
       children: [
         // {

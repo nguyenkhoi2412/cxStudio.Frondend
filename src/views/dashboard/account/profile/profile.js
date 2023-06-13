@@ -24,7 +24,6 @@ import ImportContactsOutlinedIcon from "@mui/icons-material/ImportContactsOutlin
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import WorkspacePremiumOutlinedIcon from "@mui/icons-material/WorkspacePremiumOutlined";
 import WorkHistoryOutlinedIcon from "@mui/icons-material/WorkHistoryOutlined";
-import { IconActivity } from "@tabler/icons-react";
 import Typography from "@mui/material/Typography";
 
 //#region components
@@ -237,7 +236,7 @@ const AccountProfile = (props) => {
                   <TimelineSeparator>
                     <TimelineConnector />
                     <TimelineDot color="primary">
-                      <IconActivity />
+                      {/* <IconActivity /> */}
                     </TimelineDot>
                     <TimelineConnector />
                   </TimelineSeparator>

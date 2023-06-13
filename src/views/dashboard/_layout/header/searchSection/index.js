@@ -22,11 +22,9 @@ import PopupState, { bindPopper, bindToggle } from "material-ui-popup-state";
 import Transitions from "@components/mui-ui/extended/transitions";
 
 // assets
-import {
-  IconAdjustmentsHorizontal,
-  IconX,
-} from "@tabler/icons-react";
 import { TbSettings, TbLogout, TbSearch } from "react-icons/tb";
+// import { MdFilterList } from "react-icons/bs";
+import { MdClose, MdFilterList } from "react-icons/md";
 import { shouldForwardProp } from "@mui/system";
 
 // styles
@@ -97,7 +95,7 @@ const MobileSearch = ({ value, setValue, popupState }) => {
         <InputAdornment position="end">
           <ButtonBase sx={{ borderRadius: "12px" }}>
             <HeaderAvatarStyle variant="rounded">
-              <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+              <MdFilterList stroke={theme.palette.font.icon} size="1.3rem" />
             </HeaderAvatarStyle>
           </ButtonBase>
           <Box sx={{ ml: 2 }}>
@@ -107,7 +105,7 @@ const MobileSearch = ({ value, setValue, popupState }) => {
                 className="navButtons"
                 {...bindToggle(popupState)}
               >
-                <IconX stroke={1.5} size="1.3rem" />
+                <MdClose stroke={1.5} size="1.3rem" />
               </Avatar>
             </ButtonBase>
           </Box>
@@ -215,7 +213,7 @@ const SearchSection = () => {
             <InputAdornment position="end">
               <ButtonBase sx={{ borderRadius: "12px" }}>
                 <HeaderAvatarStyle variant="rounded">
-                  <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+                  <MdFilterList stroke={theme.palette.font.icon} size="1.3rem" />
                 </HeaderAvatarStyle>
               </ButtonBase>
             </InputAdornment>

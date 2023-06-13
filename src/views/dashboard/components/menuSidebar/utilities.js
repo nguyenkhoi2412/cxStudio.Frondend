@@ -1,21 +1,21 @@
 // assets
-import {
-  IconRadioactive,
-  IconTypography,
-  IconPalette,
-  IconShadow,
-  IconWindmill,
-} from "@tabler/icons-react";
+// import {
+//   IconRadioactive,
+//   IconTypography,
+//   IconPalette,
+//   IconShadow,
+//   IconWindmill,
+// } from "";
 import { navigateLocation } from "@routes/navigateLocation";
 
 // constant
-const icons = {
-  IconRadioactive,
-  IconTypography,
-  IconPalette,
-  IconShadow,
-  IconWindmill,
-};
+// const icons = {
+//   IconRadioactive,
+//   IconTypography,
+//   IconPalette,
+//   IconShadow,
+//   IconWindmill,
+// };
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
 
@@ -29,7 +29,7 @@ const utilities = {
       title: "Generate key",
       type: "item",
       url: navigateLocation.UTILITIES.GENERATE_KEY,
-      icon: icons.IconRadioactive,
+      // icon: icons.IconRadioactive,
       target: false,
       breadcrumbs: false,
     },
@@ -38,7 +38,7 @@ const utilities = {
       title: "Typography",
       type: "item",
       url: navigateLocation.UTILITIES.TYPOGRAPHY,
-      icon: icons.IconTypography,
+      // icon: icons.IconTypography,
       target: false,
       breadcrumbs: false,
     },
@@ -47,7 +47,7 @@ const utilities = {
       title: "Color",
       type: "item",
       url: navigateLocation.UTILITIES.COLOR,
-      icon: icons.IconPalette,
+      // icon: icons.IconPalette,
       target: false,
       breadcrumbs: false,
     },
@@ -56,7 +56,7 @@ const utilities = {
       title: "Shadow",
       type: "item",
       url: navigateLocation.UTILITIES.SHADOW,
-      icon: icons.IconShadow,
+      // icon: icons.IconShadow,
       target: false,
       breadcrumbs: false,
     },
@@ -64,7 +64,7 @@ const utilities = {
       id: "icons",
       title: "Icons",
       type: "collapse",
-      icon: icons.IconWindmill,
+      // icon: icons.IconWindmill,
       children: [
         {
           id: "tabler-icons",
