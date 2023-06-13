@@ -1,7 +1,7 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
 import { hookInstance } from "@utils/hookInstance";
-
+import { useTranslation } from "react-i18next";
 // routes
 import AuthenticationRoutes from "./data/authentication";
 import DashboardRoutes from "./data/dashboard";
@@ -21,6 +21,7 @@ export const RouteMaps = () => {
 
 const buildTitle = () => {
   const currentLocation = hookInstance.useRouter();
+  const { t } = useTranslation();
   const { pathname } = currentLocation;
 
   React.useEffect(() => {
@@ -38,7 +39,7 @@ const buildTitle = () => {
 
     currentTitle = currentRoute?.title || currentTitle?.title;
     if (currentTitle) {
-      document.title = currentTitle;
+      document.title = t(currentTitle);
     }
   }, [currentLocation]);
 };

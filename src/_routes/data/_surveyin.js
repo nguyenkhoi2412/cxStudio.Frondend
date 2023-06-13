@@ -19,7 +19,7 @@ import DashboardDefault from "@dashboard/default";
 const SurveyInRoutes = [
   {
     path: navigateLocation.SURVEY.QUESTION,
-    title: <Trans i18nKey={"survey.questions"}></Trans>,
+    title: "survey.questions",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <DashboardDefault title="DashboardDefault" />
@@ -28,7 +28,7 @@ const SurveyInRoutes = [
   },
   {
     path: navigateLocation.SURVEY.ANSWER,
-    title: <Trans i18nKey={"survey.answers"}></Trans>,
+    title: "survey.answers",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <DashboardDefault title="DashboardDefault" />
@@ -37,7 +37,7 @@ const SurveyInRoutes = [
   },
   {
     path: navigateLocation.SURVEY.ORGANIZE_COURSE,
-    title: <Trans i18nKey={"survey.organize_courses"}></Trans>,
+    title: "survey.organize_courses",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <DashboardDefault title="DashboardDefault" />
