@@ -36,7 +36,7 @@ const buildTitle = () => {
       }
     });
 
-    currentTitle = currentRoute?.title || currentTitle.title;
+    currentTitle = currentRoute?.title || currentTitle?.title;
     if (currentTitle) {
       document.title = currentTitle;
     }

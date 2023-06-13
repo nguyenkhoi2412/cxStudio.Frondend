@@ -38,15 +38,16 @@ import Transitions from "@components/mui-ui/extended/transitions";
 import UpgradePlanCard from "./upgradePlanCard";
 
 // assets
-import {
-  IconLogout,
-  IconSearch,
-  IconSettings,
-  IconLockSquareRounded,
-  IconAward,
-  IconUserPlus,
-  IconUser,
-} from "@tabler/icons-react";
+import { TbSettings, TbLogout, TbSearch } from "react-icons/tb";
+// import {
+//   IconLogout,
+//   IconSearch,
+//   IconSettings,
+//   IconLockSquareRounded,
+//   IconAward,
+//   IconUserPlus,
+//   IconUser,
+// } from "@tabler/icons-react";
 import { SIGN_OUT } from "@reduxproviders/auth.reducer";
 import { currentUserState } from "@reduxproviders/auth.reducer";
 import { ConnectWithoutContact } from "@mui/icons-material";
@@ -132,6 +133,9 @@ const ProfileSection = () => {
           transition: "all .2s ease-in-out",
           borderColor: theme.palette.primary.light,
           backgroundColor: theme.palette.background.container,
+          "& svg": {
+            stroke: theme.palette.font.icon,
+          },
           '&[aria-controls="menu-list-grow"], &:hover': {
             borderColor: theme.palette.primary.main,
             background: `${theme.palette.background.light} !important`,
@@ -166,7 +170,7 @@ const ProfileSection = () => {
           />
         }
         label={
-          <IconSettings
+          <TbSettings
             stroke={1.5}
             size="1.5rem"
             color={theme.palette.font.icon}
@@ -231,10 +235,9 @@ const ProfileSection = () => {
                       placeholder="Search profile options"
                       startAdornment={
                         <InputAdornment position="start">
-                          <IconSearch
-                            stroke={1.5}
+                          <TbSearch
+                            stroke={theme.palette.grey[500]}
                             size="1rem"
-                            color={theme.palette.grey[500]}
                           />
                         </InputAdornment>
                       }
@@ -329,7 +332,7 @@ const ProfileSection = () => {
                           },
                         }}
                       >
-                        <ListItemButton
+                        {/* <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
@@ -409,7 +412,7 @@ const ProfileSection = () => {
                           }
                         >
                           <ListItemIcon>
-                            <IconSettings stroke={1.5} size="1.3rem" />
+                            <TbSettings stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
                           <ListItemText
                             primary={
@@ -442,7 +445,7 @@ const ProfileSection = () => {
                               </Typography>
                             }
                           />
-                        </ListItemButton>
+                        </ListItemButton> */}
                         <Divider />
                         <ListItemButton
                           sx={{
@@ -452,7 +455,7 @@ const ProfileSection = () => {
                           onClick={handleLogout}
                         >
                           <ListItemIcon>
-                            <IconLogout stroke={1.5} size="1.3rem" />
+                            <TbLogout stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
                           <ListItemText
                             primary={

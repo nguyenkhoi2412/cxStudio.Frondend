@@ -30,7 +30,7 @@ import Transitions from "@components/mui-ui/extended/transitions";
 import NotificationList from "./notificationList";
 
 // assets
-import { IconBell } from "@tabler/icons-react";
+import { BiBell } from "react-icons/bi";
 
 // notification status options
 const status = [
@@ -109,7 +109,7 @@ const NotificationSection = () => {
             onClick={handleToggle}
             color="inherit"
           >
-            <IconBell stroke={1.5} size="1.3rem" />
+            <BiBell stroke={1.5} size="1.3rem" />
           </Avatar>
         </ButtonBase>
       </Box>

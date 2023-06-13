@@ -17,7 +17,7 @@ import { drawerWidth } from "@constants";
 import { SET_MENU } from "@reduxproviders/berry/actions";
 
 // assets
-import { IconChevronRight } from "@tabler/icons-react";
+import { BsChevronRight } from "react-icons/bs";
 
 //#region STYLE
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -118,7 +118,7 @@ const LayoutDashboard = () => {
         <Container>
           {/* breadcrumb */}
           <Breadcrumbs
-            separator={IconChevronRight}
+            separator={BsChevronRight}
             navigation={menuSidebar}
             icon
             title

@@ -24,9 +24,9 @@ import Transitions from "@components/mui-ui/extended/transitions";
 // assets
 import {
   IconAdjustmentsHorizontal,
-  IconSearch,
   IconX,
 } from "@tabler/icons-react";
+import { TbSettings, TbLogout, TbSearch } from "react-icons/tb";
 import { shouldForwardProp } from "@mui/system";
 
 // styles
@@ -87,10 +87,9 @@ const MobileSearch = ({ value, setValue, popupState }) => {
       placeholder="Search"
       startAdornment={
         <InputAdornment position="start">
-          <IconSearch
-            stroke={1.5}
+          <TbSearch
+            stroke={theme.palette.grey[500]}
             size="1rem"
-            color={theme.palette.grey[500]}
           />
         </InputAdornment>
       }
@@ -144,7 +143,7 @@ const SearchSection = () => {
                     variant="rounded"
                     {...bindToggle(popupState)}
                   >
-                    <IconSearch stroke={1.5} size="1.2rem" />
+                    <TbSearch stroke={theme.palette.grey[500]} size="1.2rem" />
                   </HeaderAvatarStyle>
                 </ButtonBase>
               </Box>
@@ -206,10 +205,9 @@ const SearchSection = () => {
           placeholder="Search"
           startAdornment={
             <InputAdornment position="start">
-              <IconSearch
-                stroke={1.5}
+              <TbSearch
+                stroke={theme.palette.grey[500]}
                 size="1rem"
-                color={theme.palette.grey[500]}
               />
             </InputAdornment>
           }

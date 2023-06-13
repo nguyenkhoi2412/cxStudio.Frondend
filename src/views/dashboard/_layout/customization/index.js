@@ -17,7 +17,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { IconSettings } from "@tabler/icons-react";
+import { TbSettings } from "react-icons/tb";
 
 // third-party
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -106,7 +106,7 @@ const Customization = () => {
         >
           <AnimateButton type="rotate">
             <IconButton color="primary" size="large" disableRipple>
-              <IconSettings />
+              <TbSettings />
             </IconButton>
           </AnimateButton>
         </Fab>
