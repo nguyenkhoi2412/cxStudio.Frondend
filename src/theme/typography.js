@@ -94,6 +94,7 @@ const themeTypography = (theme) => {
     // },
     mainContent: {
       backgroundColor: theme.colors?.backgroundContainerMain,
+      color: theme.colors?.textDefault,
       width: "100%",
       minHeight: "calc(100vh - 88px)",
       flexGrow: 1,

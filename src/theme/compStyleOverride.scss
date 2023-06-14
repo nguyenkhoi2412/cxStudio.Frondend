@@ -240,7 +240,7 @@
     color: $textDefault;
 
     &.MuiFormControlLabel-label {
-      color: var(--text-subtitle-1);
+      color: $textSubTitle1;
     }
   }
 
@@ -351,14 +351,14 @@
 
 .MuiAvatar {
   &-root {
-    color: var(--icon-font-color);
-    background: var(--bg-container-main);
+    color: $iconFontColor;
+    background: $bgContainerMain;
     @include _rounded-corners();
     @include _transition(".2s", "ease-in-out", "all");
 
     &:hover {
-      background: var(--bg-container-light);
-      color: var(--icon-font-color-hover);
+      background: $bgContainerLight;
+      color: $iconFontColorHover;
     }
   }
 }
