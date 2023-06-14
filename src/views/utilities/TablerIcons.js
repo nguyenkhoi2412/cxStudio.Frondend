@@ -2,6 +2,7 @@ import { styled } from "@mui/material/styles";
 import { Card } from "@mui/material";
 
 // project imports
+import DashboardMainContentCardWrapper from "@dashboard/_layout/mainContentCardWrapper";
 import MainCard from "@components/mui-ui/cards";
 import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
 
@@ -18,15 +19,12 @@ const IFrameWrapper = styled("iframe")(({ theme }) => ({
 // =============================|| TABLER ICONS ||============================= //
 
 const TablerIcons = () => (
-  <MainCard
-    title="Tabler Icons"
-    secondary={
-      <SecondaryAction
-        icon={<LinkIcon fontSize="small" />}
-        link="https://tabler-icons.io"
-      />
-    }
-  >
+  <DashboardMainContentCardWrapper
+      title={`@tabler/icons-react`}
+      secondary={
+        <SecondaryAction link="https://mui.com/material-ui/material-icons/" />
+      }
+    >
     <Card sx={{ overflow: "hidden" }}>
       <IFrameWrapper
         title="Tabler Icons"
@@ -34,7 +32,7 @@ const TablerIcons = () => (
         src="https://tabler-icons.io"
       />
     </Card>
-  </MainCard>
+  </DashboardMainContentCardWrapper>
 );
 
 export default TablerIcons;
