@@ -1,6 +1,5 @@
 import { navigateLocation } from "@routes/navigateLocation";
 // assets
-import { AiOutlineDashboard } from "react-icons/ai";
 
 // constant
 const icons = { IconDashboard };
@@ -17,7 +16,7 @@ const dashboard = {
       title: "Reports",
       type: "item",
       url: navigateLocation.DASHBOARD.DEFAULT,
-      icon: AiOutlineDashboard,
+      // icon: AiOutlineDashboard,
       breadcrumbs: false,
     },
   ],

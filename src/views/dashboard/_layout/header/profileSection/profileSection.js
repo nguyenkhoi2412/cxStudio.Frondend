@@ -38,16 +38,15 @@ import Transitions from "@components/mui-ui/extended/transitions";
 import UpgradePlanCard from "./upgradePlanCard";
 
 // assets
-import { TbSettings, TbLogout, TbSearch } from "react-icons/tb";
-// import {
-//   IconLogout,
-//   IconSearch,
-//   IconSettings,
-//   IconLockSquareRounded,
-//   IconAward,
-//   IconUserPlus,
-//   IconUser,
-// } from ";
+import {
+  IconLogout,
+  IconSearch,
+  IconSettings,
+  IconLockSquareRounded,
+  IconAward,
+  IconUserPlus,
+  IconUser,
+} from "@tabler/icons-react";
 import { SIGN_OUT } from "@reduxproviders/auth.reducer";
 import { currentUserState } from "@reduxproviders/auth.reducer";
 import { ConnectWithoutContact } from "@mui/icons-material";
@@ -170,7 +169,7 @@ const ProfileSection = () => {
           />
         }
         label={
-          <TbSettings
+          <IconSettings
             stroke={1.5}
             size="1.5rem"
             color={theme.palette.font.icon}
@@ -235,7 +234,7 @@ const ProfileSection = () => {
                       placeholder="Search profile options"
                       startAdornment={
                         <InputAdornment position="start">
-                          <TbSearch
+                          <IconSearch
                             stroke={theme.palette.grey[500]}
                             size="1rem"
                           />
@@ -412,7 +411,7 @@ const ProfileSection = () => {
                           }
                         >
                           <ListItemIcon>
-                            <TbSettings stroke={1.5} size="1.3rem" />
+                            <IconSettings stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
                           <ListItemText
                             primary={
@@ -455,7 +454,7 @@ const ProfileSection = () => {
                           onClick={handleLogout}
                         >
                           <ListItemIcon>
-                            <TbLogout stroke={1.5} size="1.3rem" />
+                            <IconLogout stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
                           <ListItemText
                             primary={

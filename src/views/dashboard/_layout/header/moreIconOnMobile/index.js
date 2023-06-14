@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { IconMoonFilled, IconSunFilled} from "@tabler/icons-react";
 import {
   Avatar,
   Box,

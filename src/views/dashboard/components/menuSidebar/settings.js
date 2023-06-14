@@ -1,7 +1,8 @@
 // assets
 import { Trans } from "react-i18next";
 import { navigateLocation } from "@routes/navigateLocation";
-import { BsDiagram3 } from "react-icons/bs";
+import { IconHexagons } from "@tabler/icons-react";
+
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const settings = {
@@ -40,7 +41,7 @@ const settings = {
       id: "sitesettings",
       title: <Trans i18nKey={"site.settings"} />,
       type: "item",
-      icon: BsDiagram3,
+      icon: IconHexagons,
       url: navigateLocation.SITE.LIST,
       target: false,
       breadcrumbs: false,

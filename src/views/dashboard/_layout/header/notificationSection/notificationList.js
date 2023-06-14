@@ -18,8 +18,7 @@ import {
 } from "@mui/material";
 
 // assets
-import { BiMailSend, BiPhotoAlbum } from "react-icons/bi";
-import { SiTelegram, SiEventstore } from "react-icons/si";
+import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons-react';
 import User1 from "@assets/images/users/user-round.svg";
 
 // styles
@@ -130,7 +129,7 @@ const NotificationList = () => {
                 borderColor: theme.palette.success.main,
               }}
             >
-              <SiEventstore stroke={1.5} size="1.3rem" />
+              <IconBuildingStore stroke={1.5} size="1.3rem" />
             </Avatar>
           </ListItemAvatar>
           <ListItemText
@@ -177,7 +176,7 @@ const NotificationList = () => {
                 borderColor: theme.palette.primary.main,
               }}
             >
-              <BiMailSend stroke={1.5} size="1.3rem" />
+              <IconMailbox stroke={1.5} size="1.3rem" />
             </Avatar>
           </ListItemAvatar>
           <ListItemText
@@ -208,7 +207,7 @@ const NotificationList = () => {
                 <Button
                   variant="contained"
                   disableElevation
-                  endIcon={<SiTelegram stroke={1.5} size="1.3rem" />}
+                  endIcon={<IconBrandTelegram stroke={1.5} size="1.3rem" />}
                 >
                   Mail
                 </Button>
@@ -257,7 +256,7 @@ const NotificationList = () => {
                     <Grid container direction="column">
                       <Grid item xs={12}>
                         <Stack direction="row" spacing={2}>
-                          <BiPhotoAlbum stroke={1.5} size="1.3rem" />
+                          <IconPhoto stroke={1.5} size="1.3rem" />
                           <Typography variant="subtitle1">demo.jpg</Typography>
                         </Stack>
                       </Grid>

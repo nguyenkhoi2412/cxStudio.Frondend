@@ -19,7 +19,7 @@ import NavItem from "../navItem";
 
 // assets
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import { HiChevronUp, HiChevronDown } from "react-icons/hi";
+import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 
 // ==============================|| SIDEBAR MENU LIST COLLAPSE ITEMS ||============================== //
 
@@ -138,13 +138,13 @@ const NavCollapse = ({ menu, level }) => {
           }
         />
         {open ? (
-          <HiChevronUp
+          <IconChevronDown
             stroke={1.5}
             size="1rem"
             style={{ marginTop: "auto", marginBottom: "auto" }}
           />
         ) : (
-          <HiChevronDown
+          <IconChevronUp
             stroke={1.5}
             size="1rem"
             style={{ marginTop: "auto", marginBottom: "auto" }}

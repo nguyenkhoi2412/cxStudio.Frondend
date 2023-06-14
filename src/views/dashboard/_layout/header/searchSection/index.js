@@ -22,9 +22,11 @@ import PopupState, { bindPopper, bindToggle } from "material-ui-popup-state";
 import Transitions from "@components/mui-ui/extended/transitions";
 
 // assets
-import { TbSettings, TbLogout, TbSearch } from "react-icons/tb";
-import { BsSliders2 } from "react-icons/bs";
-import { MdClose } from "react-icons/md";
+import {
+  IconAdjustmentsHorizontal,
+  IconSearch,
+  IconX,
+} from "@tabler/icons-react";
 import { shouldForwardProp } from "@mui/system";
 
 // styles
@@ -85,8 +87,9 @@ const MobileSearch = ({ value, setValue, popupState }) => {
       placeholder="Search"
       startAdornment={
         <InputAdornment position="start">
-          <TbSearch
-            stroke={theme.palette.grey[500]}
+          <IconSearch
+            stroke={1.5}
+            color={theme.palette.grey[500]}
             size="1rem"
           />
         </InputAdornment>
@@ -95,7 +98,10 @@ const MobileSearch = ({ value, setValue, popupState }) => {
         <InputAdornment position="end">
           <ButtonBase sx={{ borderRadius: "12px" }}>
             <HeaderAvatarStyle variant="rounded">
-              <BsSliders2 stroke={theme.palette.font.icon} size="1.3rem" />
+              <IconAdjustmentsHorizontal
+                stroke={theme.palette.font.icon}
+                size="1.3rem"
+              />
             </HeaderAvatarStyle>
           </ButtonBase>
           <Box sx={{ ml: 2 }}>
@@ -105,7 +111,7 @@ const MobileSearch = ({ value, setValue, popupState }) => {
                 className="navButtons"
                 {...bindToggle(popupState)}
               >
-                <MdClose stroke={1.5} size="1.3rem" />
+                <IconX stroke={1.5} size="1.3rem" />
               </Avatar>
             </ButtonBase>
           </Box>
@@ -141,7 +147,11 @@ const SearchSection = () => {
                     variant="rounded"
                     {...bindToggle(popupState)}
                   >
-                    <TbSearch stroke={theme.palette.grey[500]} size="1.2rem" />
+                    <IconSearch
+                      stroke={1.5}
+                      color={theme.palette.grey[500]}
+                      size="1.2rem"
+                    />
                   </HeaderAvatarStyle>
                 </ButtonBase>
               </Box>
@@ -203,8 +213,9 @@ const SearchSection = () => {
           placeholder="Search"
           startAdornment={
             <InputAdornment position="start">
-              <TbSearch
-                stroke={theme.palette.grey[500]}
+              <IconSearch
+                stroke={1.5}
+                color={theme.palette.grey[500]}
                 size="1rem"
               />
             </InputAdornment>
@@ -213,7 +224,10 @@ const SearchSection = () => {
             <InputAdornment position="end">
               <ButtonBase sx={{ borderRadius: "12px" }}>
                 <HeaderAvatarStyle variant="rounded">
-                  <BsSliders2 stroke={theme.palette.font.icon} size="1.3rem" />
+                  <IconAdjustmentsHorizontal
+                    stroke={theme.palette.font.icon}
+                    size="1.3rem"
+                  />
                 </HeaderAvatarStyle>
               </ButtonBase>
             </InputAdornment>

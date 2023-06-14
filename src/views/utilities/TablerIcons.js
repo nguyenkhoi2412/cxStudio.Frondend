@@ -23,7 +23,7 @@ const TablerIcons = () => (
     secondary={
       <SecondaryAction
         icon={<LinkIcon fontSize="small" />}
-        link="https://tablericons.com/"
+        link="https://tabler-icons.io"
       />
     }
   >
@@ -31,7 +31,7 @@ const TablerIcons = () => (
       <IFrameWrapper
         title="Tabler Icons"
         width="100%"
-        src="https://tablericons.com/"
+        src="https://tabler-icons.io"
       />
     </Card>
   </MainCard>

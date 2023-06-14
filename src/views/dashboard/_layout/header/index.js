@@ -15,7 +15,7 @@ import NotificationSection from "./notificationSection";
 import MoreIconOnMobile from "./moreIconOnMobile";
 
 // assets
-import { AiOutlineMenu } from "react-icons/ai";
+import { IconMenu2 } from '@tabler/icons-react';
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
 const Header = ({ handleLeftDrawerToggle }) => {
@@ -46,7 +46,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
             onClick={handleLeftDrawerToggle}
             color="inherit"
           >
-            <AiOutlineMenu stroke={1.5} size="1.3rem" />
+            <IconMenu2 stroke={1.5} size="1.3rem" />
           </Avatar>
         </ButtonBase>
       </Box>

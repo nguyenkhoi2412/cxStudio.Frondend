@@ -1,9 +1,7 @@
 // assets
 import { Trans } from "react-i18next";
 import { navigateLocation } from "@routes/navigateLocation";
-import { BsUiChecksGrid } from "react-icons/bs";
-import { ImSpellCheck } from "react-icons/im";
-import { SiTablecheck } from "react-icons/si";
+import { IconAB2, IconApps, IconBook } from "@tabler/icons-react";
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const surveyin = {
@@ -17,7 +15,7 @@ const surveyin = {
       id: "questions",
       title: <Trans i18nKey={"survey.questions"}></Trans>,
       type: "item",
-      icon: ImSpellCheck,
+      icon: IconAB2,
       url: navigateLocation.SURVEY.QUESTION,
       target: false,
       breadcrumbs: false,
@@ -27,7 +25,7 @@ const surveyin = {
       id: "answers",
       title: <Trans i18nKey={"survey.answers"}></Trans>,
       type: "item",
-      icon: BsUiChecksGrid,
+      icon: IconApps,
       url: navigateLocation.SURVEY.ANSWER,
       target: false,
       breadcrumbs: false,
@@ -37,7 +35,7 @@ const surveyin = {
       id: "course",
       title: <Trans i18nKey={"survey.organize_courses"}></Trans>,
       type: "item",
-      icon: SiTablecheck,
+      icon: IconBook,
       url: navigateLocation.SURVEY.ORGANIZE_COURSE,
       target: false,
       breadcrumbs: false,
