@@ -5,4 +5,14 @@
   right: 10px;
   z-index: 1000;
   background-color: $bgContainerMain;
+  svg {
+    color: $iconFontColor;
+  }
+
+  &:hover {
+    background-color: $bgContainerLight;
+    svg {
+      color: $iconFontColorHover;
+    }
+  }
 }
