@@ -32,7 +32,7 @@ const componentStyleOverrides = (theme) => {
     // MuiCardHeader: {
     //   styleOverrides: {
     //     root: {
-    //       color: theme.colors?.textSubTitle1,
+    //       color: theme.colors?.heading,
     //       padding: "24px",
     //     },
     //     title: {
@@ -61,20 +61,20 @@ const componentStyleOverrides = (theme) => {
     //       paddingTop: "10px",
     //       paddingBottom: "10px",
     //       "&.Mui-selected": {
-    //         color: theme.colors?.textMenuSelected,
-    //         backgroundColor: theme.colors?.bgMenuSelected,
+    //         color: theme.colors?.textSelected,
+    //         backgroundColor: theme.colors?.bgSelected,
     //         "&:hover": {
-    //           backgroundColor: theme.colors?.bgMenuSelected,
+    //           backgroundColor: theme.colors?.bgSelected,
     //         },
     //         "& .MuiListItemIcon-root": {
-    //           color: theme.colors?.textMenuSelected,
+    //           color: theme.colors?.textSelected,
     //         },
     //       },
     //       "&:hover": {
-    //         backgroundColor: theme.colors?.bgMenuSelected,
-    //         color: theme.colors?.textMenuSelected,
+    //         backgroundColor: theme.colors?.bgSelected,
+    //         color: theme.colors?.textSelected,
     //         "& .MuiListItemIcon-root": {
-    //           color: theme.colors?.textMenuSelected,
+    //           color: theme.colors?.textSelected,
     //         },
     //       },
     //     },
@@ -91,14 +91,14 @@ const componentStyleOverrides = (theme) => {
     // MuiListItemText: {
     //   styleOverrides: {
     //     primary: {
-    //       color: theme.textSubTitle1,
+    //       color: theme.heading,
     //     },
     //   },
     // },
     // MuiInputBase: {
     //   styleOverrides: {
     //     input: {
-    //       color: theme.textSubTitle1,
+    //       color: theme.heading,
     //       "&::placeholder": {
     //         color: theme.colors?.textSecondary,
     //         fontSize: "0.875rem",

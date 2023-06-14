@@ -29,7 +29,7 @@
 // ==============================|| MuiCard ||============================== //
 .MuiCardHeader {
   &-root {
-    color: $textSubTitle1;
+    color: $textHeading;
     padding: 24px;
   }
 
@@ -53,7 +53,7 @@
 // ==============================|| FORMS ||============================== //
 .MuiInputBase {
   &-input {
-    color: $textSubTitle1;
+    color: $textHeading;
 
     &::placeholder {
       color: $textSecondary;
@@ -128,35 +128,35 @@
     padding-bottom: 10px;
 
     &.Mui-selected {
-      color: $textMenuSelected;
-      background-color: $bgMenuSelected;
+      color: $textSelected;
+      background-color: $bgSelected;
 
       &:hover {
-        background-color: $bgMenuSelected;
+        background-color: $bgSelected;
       }
 
       > .MuiListItemIcon-root {
-        color: $textMenuSelected;
+        color: $textSelected;
       }
 
       > .MuiListItemText-root {
         > .MuiTypography-root {
-          color: $textMenuSelected;
+          color: $textSelected;
         }
       }
     }
 
     &:hover {
-      background-color: $bgMenuSelected;
-      color: $textMenuSelected;
+      background-color: $bgSelected;
+      color: $textSelected;
 
       > .MuiListItemIcon-root {
-        color: $textMenuSelected;
+        color: $textSelected;
       }
 
       > .MuiListItemText-root {
         > .MuiTypography-root {
-          color: $textMenuSelected;
+          color: $textSelected;
         }
       }
     }
@@ -172,7 +172,7 @@
 
 .MuiListItemText {
   &-primary {
-    color: $textSubTitle1;
+    color: $textHeading;
   }
 }
 
@@ -221,23 +221,23 @@
   &-subtitle1 {
     font-size: 0.875rem;
     font-weight: 500;
-    color: $textSubTitle1;
+    color: $textHeading;
   }
 
   &-subtitle2 {
     font-size: 0.75rem;
     font-weight: 400;
-    color: $textSubTitle2;
+    color: $textSubTitle;
   }
 
   &-caption {
     font-size: 0.75rem;
-    color: $textSubTitle2;
+    color: $textSubTitle;
     font-weight: 400;
   }
 
   &-overline {
-    color: $textSubTitle1;
+    color: $textHeading;
     font-weight: 400;
   }
 
@@ -248,7 +248,7 @@
     color: $textDefault;
 
     &.MuiFormControlLabel-label {
-      color: $textSubTitle1;
+      color: $textHeading;
     }
   }
 

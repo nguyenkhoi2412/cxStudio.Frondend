@@ -26,7 +26,7 @@ const ListItemWrapper = styled("div")(({ theme }) => ({
   cursor: "pointer",
   padding: 16,
   "&:hover": {
-    background: theme.palette.primary.light,
+    background: theme.palette.common.bgSelected,
   },
   "& .MuiListItem-root": {
     padding: 0,

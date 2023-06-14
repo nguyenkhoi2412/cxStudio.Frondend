@@ -44,8 +44,8 @@ $bgDefault: var(--bg-default);
 $colorDivider: var(--color-divider);
 
 // menuItemSelected
-$textMenuSelected: var(--text-menu-selected);
-$bgMenuSelected: var(--bg-menu-selected);
+$textSelected: var(--text-selected);
+$bgSelected: var(--bg-selected);
 
 // text/font cions
 $textPrimary: #364152;
@@ -54,8 +54,7 @@ $textSecondary: var(--text-secondary);
 $iconFontColor: var(--icon-font-color);
 $iconFontColorHover: var(--icon-font-color-hover);
 $textHeading: var(--text-heading);
-$textSubTitle1: var(--text-subtitle-1);
-$textSubTitle2: var(--text-subtitle-2);
+$textSubTitle: var(--text-subtitle);
 
 // ==============================|| GENERAL THEME VARIANTS ||============================== //
 // success Colors

@@ -39,20 +39,20 @@ const themeTypography = (theme) => {
     // subtitle1: {
     //   fontSize: "0.875rem",
     //   fontWeight: 500,
-    //   color: theme.colors?.textSubTitle1,
+    //   color: theme.colors?.heading,
     // },
     // subtitle2: {
     //   fontSize: "0.75rem",
     //   fontWeight: 400,
-    //   color: theme.colors?.textSubTitle2,
+    //   color: theme.colors?.textSubTitle,
     // },
     // caption: {
     //   fontSize: "0.75rem",
-    //   color: theme.colors?.textSubTitle2,
+    //   color: theme.colors?.textSubTitle,
     //   fontWeight: 400,
     // },
     // overline: {
-    //   color: theme.colors?.textSubTitle1,
+    //   color: theme.colors?.heading,
     //   fontWeight: 400,
     // },
     // body1: {

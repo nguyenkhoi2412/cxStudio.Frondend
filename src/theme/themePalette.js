@@ -54,9 +54,8 @@ export default function themePalette(theme) {
       light: theme.colors?.backgroundContainerLight,
     },
     common: {
-      black: theme.colors?.paper,
-      textMenuSelected: theme.colors?.textMenuSelected,
-      bgMenuSelected: theme.colors?.bgMenuSelected,
+      textSelected: theme.colors?.textSelected,
+      bgSelected: theme.colors?.bgSelected,
     },
     error: {
       light: theme.colors?.errorLight,
@@ -92,8 +91,7 @@ export default function themePalette(theme) {
       default: theme.colors?.textDefault,
       primary: theme.colors?.textPrimary,
       secondary: theme.colors?.textSecondary,
-      textSubTitle1: theme.colors?.textSubTitle1,
-      textSubTitle2: theme.colors?.textSubTitle2,
+      textSubTitle: theme.colors?.textSubTitle,
       hint: theme.colors?.grey100,
       heading: theme.colors?.textHeading,
     },
