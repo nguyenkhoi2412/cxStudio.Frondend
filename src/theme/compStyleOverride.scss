@@ -376,6 +376,7 @@
 
     &:hover {
       background: $bgContainerLight;
+      border-color: $bgContainerLight;
       color: $iconFontColorHover;
 
       svg {
