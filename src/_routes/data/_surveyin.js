@@ -22,7 +22,7 @@ const SurveyInRoutes = [
     title: "survey.questions",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <DashboardDefault title="DashboardDefault" />
+        <DashboardDefault />
       </RequireAuth>
     ),
   },
@@ -31,7 +31,7 @@ const SurveyInRoutes = [
     title: "survey.answers",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <DashboardDefault title="DashboardDefault" />
+        <DashboardDefault />
       </RequireAuth>
     ),
   },
@@ -40,7 +40,7 @@ const SurveyInRoutes = [
     title: "survey.organize_courses",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <DashboardDefault title="DashboardDefault" />
+        <DashboardDefault />
       </RequireAuth>
     ),
   },

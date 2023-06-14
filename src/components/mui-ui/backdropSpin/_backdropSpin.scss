@@ -1,7 +1,7 @@
 .MuiBackdrop-root {
   z-index: 999;
   &.white {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--bg-default);
   }
 
   .MuiCircularProgress-root {

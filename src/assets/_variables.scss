@@ -94,7 +94,7 @@ $font-family: Roboto, Helvetica, Arial, sans-serif;
 $font-size: 16px;
 $disabled-background: #f5f5f5;
 $spin-color: #999;
-$border: 1px solid $grey700;
+$border: 1px solid var(--input-border-color);
 
 // breakpoint in mui-ui
 $breakpoints-xs: "0";

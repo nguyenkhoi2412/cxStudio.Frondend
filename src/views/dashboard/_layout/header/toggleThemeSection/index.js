@@ -53,7 +53,7 @@ const ToggleThemeSection = () => {
   }, [dispatch, mode]);
 
   const ToggleThemeIcon = useMemo(
-    () => (mode === modeTheme.DARK ? MdLightMode : MdDarkMode),
+    () => (mode === modeTheme.DARK ? MdDarkMode : MdLightMode),
     [mode]
   );
 

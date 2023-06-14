@@ -150,7 +150,8 @@
   "site": {
     "site": "Site",
     "list": "List",
-    "sitelist": "Site list"
+    "sitelist": "Site list",
+    "settings": "Site settings"
   },
   "type": {
     "createnewtype": "Create a new type",

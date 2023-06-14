@@ -41,17 +41,6 @@ const Header = ({ handleLeftDrawerToggle }) => {
         <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
           <Avatar
             variant="rounded"
-            sx={{
-              ...theme.typography.commonAvatar,
-              ...theme.typography.mediumAvatar,
-              transition: "all .2s ease-in-out",
-              background: theme.palette.background.container,
-              color: theme.palette.font.icon,
-              "&:hover": {
-                background: theme.palette.background.light,
-                color: theme.palette.font.icon__hover,
-              },
-            }}
             onClick={handleLeftDrawerToggle}
             color="inherit"
           >

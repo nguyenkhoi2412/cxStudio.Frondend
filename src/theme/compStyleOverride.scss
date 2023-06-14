@@ -19,7 +19,8 @@
     background: transparent;
     backdrop-filter: blur(15px);
 
-    .bg-transparent, .MuiAvatar-root {
+    .bg-transparent,
+    .MuiAvatar-root {
       background: transparent;
     }
   }
@@ -73,6 +74,7 @@
     background: $bgContainerMain;
     @include _rounded-corners();
 
+    &:hover,
     &.Mui-focused {
       .MuiOutlinedInput-notchedOutline {
         border: $border;
@@ -352,5 +354,11 @@
     color: var(--icon-font-color);
     background: var(--bg-container-main);
     @include _rounded-corners();
+    @include _transition(".2s", "ease-in-out", "all");
+
+    &:hover {
+      background: var(--bg-container-light);
+      color: var(--icon-font-color-hover);
+    }
   }
 }

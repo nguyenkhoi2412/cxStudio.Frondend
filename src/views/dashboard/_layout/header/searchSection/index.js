@@ -23,7 +23,7 @@ import Transitions from "@components/mui-ui/extended/transitions";
 
 // assets
 import { TbSettings, TbLogout, TbSearch } from "react-icons/tb";
-// import { MdFilterList } from "react-icons/bs";
+import { BsSliders2 } from "react-icons/bs";
 import { MdClose, MdFilterList } from "react-icons/md";
 import { shouldForwardProp } from "@mui/system";
 
@@ -95,7 +95,7 @@ const MobileSearch = ({ value, setValue, popupState }) => {
         <InputAdornment position="end">
           <ButtonBase sx={{ borderRadius: "12px" }}>
             <HeaderAvatarStyle variant="rounded">
-              <MdFilterList stroke={theme.palette.font.icon} size="1.3rem" />
+              <BsSliders2 stroke={theme.palette.font.icon} size="1.3rem" />
             </HeaderAvatarStyle>
           </ButtonBase>
           <Box sx={{ ml: 2 }}>
@@ -213,7 +213,7 @@ const SearchSection = () => {
             <InputAdornment position="end">
               <ButtonBase sx={{ borderRadius: "12px" }}>
                 <HeaderAvatarStyle variant="rounded">
-                  <MdFilterList stroke={theme.palette.font.icon} size="1.3rem" />
+                  <BsSliders2 stroke={theme.palette.font.icon} size="1.3rem" />
                 </HeaderAvatarStyle>
               </ButtonBase>
             </InputAdornment>

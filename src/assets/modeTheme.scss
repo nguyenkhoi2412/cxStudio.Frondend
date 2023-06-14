@@ -16,16 +16,20 @@
   --text-subtitle-2: #697586;
   --text-theme-primary: #5e35b1;
 
+  //MENU SELECTED
   --text-menu-selected: #5e35b1;
   --bg-menu-selected: #eef2f6;
+
+  //BORDER COLOR
+  --input-border-color: #364152;
 }
 .darkTheme {
   --preloader: #1d2226;
-  --bg-container-main: #2b3239;
-  --bg-container-light: #364152;
-  --bg-paper: #1d2226;
-  --bg-default: #1d2226;
-  --color-divider: #364152;
+  --bg-container-main: #00111A;
+  --bg-container-light: #082636;
+  --bg-paper: #001A26;
+  --bg-default: #001A26;
+  --color-divider: #082636;
 
   --text-default: #cdd5df;
   --text-primary: #4b5565;
@@ -37,6 +41,10 @@
   --text-subtitle-2: #cdd5df;
   --text-theme-primary: #cdd5df;
 
+  //MENU SELECTED
   --text-menu-selected: #eef2f6;
-  --bg-menu-selected: #2b3239;
+  --bg-menu-selected: #00111A;
+
+  //BORDER COLOR
+  --input-border-color: #33393c;
 }

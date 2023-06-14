@@ -42,9 +42,9 @@ const DashboardRoutes = {
         </RequireAuth>
       ),
     },
+    ...SiteRoutes,
     ...SurveyInRoutes,
     // ...AccountRoutes,
-    // ...SiteRoutes,
     ...UtilitiesRoutes,
     // {
     //   path: "utils",
