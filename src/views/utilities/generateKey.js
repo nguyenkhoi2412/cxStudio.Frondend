@@ -1,5 +1,5 @@
 import encryptHelper from "@utils/encrypt.helper";
-import DashboardMainContentCardWrapper from "@dashboard/_layout/mainContentCardWrapper";
+import MainContentCardWrapper from "@dashboard/_layout/mainContentCardWrapper";
 import SubCard from "@components/mui-ui/cards/subCard";
 // material-ui
 import { Grid, Typography } from "@mui/material";
@@ -14,7 +14,7 @@ const GenerateKey = () => {
   };
 
   return (
-    <DashboardMainContentCardWrapper
+    <MainContentCardWrapper
       title={`Generate key`}
       // secondary={
       //   <SecondaryAction link="https://next.material-ui.com/system/shadows/" />
@@ -60,7 +60,7 @@ const GenerateKey = () => {
           <ol>RSA Private key: {secretkey.rsa.privateKey}</ol>
         </ul>
       </Grid> */}
-    </DashboardMainContentCardWrapper>
+    </MainContentCardWrapper>
   );
 };
 

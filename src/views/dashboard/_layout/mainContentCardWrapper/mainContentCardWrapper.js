@@ -9,7 +9,7 @@ import { gridSpacing } from "@constants";
 
 // ==============================|| DASHBOARD MAIN CONTENT CARD WRAPPER ||============================== //
 
-const DashboardMainContentCardWrapper = ({ children, ...other }) => (
+const MainContentCardWrapper = ({ children, ...other }) => (
   <MainCard
     className="dashboard wrapper-container"
     {...other}
@@ -26,4 +26,4 @@ const DashboardMainContentCardWrapper = ({ children, ...other }) => (
   </MainCard>
 );
 
-export default DashboardMainContentCardWrapper;
+export default MainContentCardWrapper;

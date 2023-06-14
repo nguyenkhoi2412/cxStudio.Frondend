@@ -69,6 +69,14 @@
   }
 }
 
+.MuiButtonBase {
+  &-root {
+    .MuiAvatar-root {
+      background-color: transparent;
+    }
+  }
+}
+
 .MuiOutlinedInput {
   &-root {
     background: $bgContainerMain;
@@ -356,16 +364,28 @@
     @include _rounded-corners();
     @include _transition(".2s", "ease-in-out", "all");
 
+    svg {
+      color: $iconFontColor;
+
+      > g {
+        path {
+          fill: $iconFontColor;
+        }
+      }
+    }
+
     &:hover {
       background: $bgContainerLight;
       color: $iconFontColorHover;
-    }
 
-    &.MuiLink-root {
-      background-color: transparent;
-
-      &:hover {
+      svg {
         color: $iconFontColorHover;
+
+        > g {
+          path {
+            fill: $iconFontColorHover;
+          }
+        }
       }
     }
   }
