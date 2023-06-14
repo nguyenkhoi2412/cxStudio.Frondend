@@ -360,5 +360,13 @@
       background: $bgContainerLight;
       color: $iconFontColorHover;
     }
+
+    &.MuiLink-root {
+      background-color: transparent;
+
+      &:hover {
+        color: $iconFontColorHover;
+      }
+    }
   }
 }
