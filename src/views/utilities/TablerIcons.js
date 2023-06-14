@@ -25,7 +25,7 @@ const TablerIcons = () => (
         <SecondaryAction link="https://mui.com/material-ui/material-icons/" />
       }
     >
-    <Card sx={{ overflow: "hidden" }}>
+    <Card sx={{ overflow: "hidden", width: "100%" }}>
       <IFrameWrapper
         title="Tabler Icons"
         width="100%"
