@@ -24,7 +24,7 @@ import Transitions from "@components/mui-ui/extended/transitions";
 // assets
 import { TbSettings, TbLogout, TbSearch } from "react-icons/tb";
 import { BsSliders2 } from "react-icons/bs";
-import { MdClose, MdFilterList } from "react-icons/md";
+import { MdClose } from "react-icons/md";
 import { shouldForwardProp } from "@mui/system";
 
 // styles
