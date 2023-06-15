@@ -92,6 +92,7 @@ const MenuCard = () => {
                         <ListItemAvatar sx={{ mt: 0 }}>
                             <Avatar
                                 variant="rounded"
+                                className="MuiTypography-largeAvatar MuiTypography-commonAvatar"
                                 sx={{
                                     ...theme.typography.commonAvatar,
                                     ...theme.typography.largeAvatar,

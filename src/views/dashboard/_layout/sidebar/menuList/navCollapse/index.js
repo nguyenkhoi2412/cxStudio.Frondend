@@ -128,7 +128,7 @@ const NavCollapse = ({ menu, level }) => {
             menu.caption && (
               <Typography
                 variant="caption"
-                sx={{ ...theme.typography.subMenuCaption }}
+                className="MuiTypography-subMenuCaption"
                 display="block"
                 gutterBottom
               >

@@ -157,11 +157,7 @@ const ProfileSection = () => {
               "/" +
               currentUser?.detailInfos?.avatarPath
             }
-            sx={{
-              ...theme.typography.mediumAvatar,
-              margin: "8px 0 8px 8px !important",
-              cursor: "pointer",
-            }}
+            className="MuiTypography-mediumAvatar"
             ref={anchorRef}
             aria-controls={open ? "menu-list-grow" : undefined}
             aria-haspopup="true"

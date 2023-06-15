@@ -115,7 +115,7 @@ const NavItem = ({ item, level }) => {
           item.caption && (
             <Typography
               variant="caption"
-              sx={{ ...theme.typography.subMenuCaption }}
+              className="MuiTypography-subMenuCaption"
               display="block"
               gutterBottom
             >

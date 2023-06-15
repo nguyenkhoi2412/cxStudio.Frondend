@@ -97,7 +97,10 @@ const MobileSearch = ({ value, setValue, popupState }) => {
       endAdornment={
         <InputAdornment position="end">
           <ButtonBase sx={{ borderRadius: "12px" }}>
-            <HeaderAvatarStyle variant="rounded">
+            <HeaderAvatarStyle
+              variant="rounded"
+              className="MuiTypography-mediumAvatar MuiTypography-commonAvatar"
+            >
               <IconAdjustmentsHorizontal
                 stroke={theme.palette.font.icon}
                 size="1.3rem"
@@ -145,6 +148,7 @@ const SearchSection = () => {
                 <ButtonBase sx={{ borderRadius: "12px" }}>
                   <HeaderAvatarStyle
                     variant="rounded"
+                    className="MuiTypography-mediumAvatar MuiTypography-commonAvatar"
                     {...bindToggle(popupState)}
                   >
                     <IconSearch
@@ -223,7 +227,10 @@ const SearchSection = () => {
           endAdornment={
             <InputAdornment position="end">
               <ButtonBase sx={{ borderRadius: "12px" }}>
-                <HeaderAvatarStyle variant="rounded">
+                <HeaderAvatarStyle
+                  variant="rounded"
+                  className="MuiTypography-mediumAvatar MuiTypography-commonAvatar"
+                >
                   <IconAdjustmentsHorizontal
                     stroke={theme.palette.font.icon}
                     size="1.3rem"
