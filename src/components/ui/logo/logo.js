@@ -31,7 +31,12 @@ const Logo = () => {
      * <img src={logo} alt="Berry" width="100" />
      *
      */
-    <img src={customization.mode === "dark" ? LogoSurveyInDark : LogoSurveyInLight} alt="Surveyin" width="auto" height="56" />
+    <img
+      src={customization.mode === "dark" ? LogoSurveyInDark : LogoSurveyInLight}
+      alt="Surveyin"
+      width="auto"
+      height="56"
+    />
     // <svg
     //   width="92"
     //   height="32"
