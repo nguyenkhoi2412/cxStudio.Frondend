@@ -18,6 +18,13 @@ const IncBackdrop = () => {
     // setOpen(false);
   };
 
+  const renderSpinProgress =
+    dataSource?.type === "pre" ? (
+      <div id={dataSource?.open ? "preloader" : "preloader-none"}></div>
+    ) : (
+      <CircularProgress color="inherit" />
+    );
+
   return (
     <>
       {dataSource?.open ? (
@@ -26,7 +33,7 @@ const IncBackdrop = () => {
           onClick={handleClose}
           className="white"
         >
-          {dataSource.spin ? <CircularProgress color="inherit" /> : <></>}
+          {dataSource.spin ? renderSpinProgress : <></>}
         </Backdrop>
       ) : (
         <></>

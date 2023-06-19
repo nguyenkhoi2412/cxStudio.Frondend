@@ -14,6 +14,7 @@ export const muiBackdropSpin = createSlice({
       const payload = action.payload;
       return {
         ...current(state),
+        type: payload?.type ?? "default",
         open: payload?.open !== undefined ? payload.open : true,
         spin: payload?.spin !== undefined ? payload.spin : true,
       };
@@ -28,8 +29,7 @@ export const muiBackdropSpin = createSlice({
 });
 
 // export actions to use
-export const { SHOW_SPIN, HIDE_SPIN } =
-  muiBackdropSpin.actions;
+export const { SHOW_SPIN, HIDE_SPIN } = muiBackdropSpin.actions;
 
 //#region The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

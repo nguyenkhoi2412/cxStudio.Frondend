@@ -49,7 +49,9 @@ const App = (props) => {
     i18n.changeLanguage("en-US");
     handleResize();
 
-    dispatch(SHOW_SPIN());
+    dispatch(SHOW_SPIN({
+      type: "pre"
+    }));
     // preload
     const timer = setTimeout(() => {
       upadateLoad(false);
