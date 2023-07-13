@@ -5,6 +5,8 @@ import CodeVerification from "@authentication/codeVerification";
 import { navigateLocation } from "../navigateLocation";
 import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
+import Component from "@routes/enumComponents";
+
 const AuthenticationRoutes = [
   // {
   //   path: navigateLocation.CLIENT_APP.ASSET_PATH,

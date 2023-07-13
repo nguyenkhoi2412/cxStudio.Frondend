@@ -10,7 +10,7 @@ import SiteRoutes from "./_site";
 import UtilitiesRoutes from "./_utilities";
 
 // dashboard routing
-import DashboardDefault from "@dashboard/default";
+import Component from "@routes/enumComponents";
 
 // // utilities routing
 // const UtilsTypography = Loadable(
@@ -38,7 +38,7 @@ const DashboardRoutes = {
       title: "Dashboard",
       element: (
         <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-          <DashboardDefault title="DashboardDefault" />
+          <Component.DASHBOARD.DEFAULT title="DashboardDefault" />
         </RequireAuth>
       ),
     },

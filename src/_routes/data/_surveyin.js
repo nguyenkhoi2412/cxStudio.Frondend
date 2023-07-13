@@ -10,7 +10,7 @@ import SiteRoutes from "./_site";
 import UtilitiesRoutes from "./_utilities";
 
 // dashboard routing
-import DashboardDefault from "@dashboard/default";
+import Component from "@routes/enumComponents";
 
 // // sample page routing
 // const SamplePage = Loadable(lazy(() => import("views/sample-page")));
@@ -22,7 +22,7 @@ const SurveyInRoutes = [
     title: "survey.questions",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <DashboardDefault />
+        <Component.DASHBOARD.DEFAULT title="DashboardDefault" />
       </RequireAuth>
     ),
   },
@@ -31,7 +31,7 @@ const SurveyInRoutes = [
     title: "survey.answers",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <DashboardDefault />
+        <Component.DASHBOARD.DEFAULT title="DashboardDefault" />
       </RequireAuth>
     ),
   },
@@ -40,7 +40,7 @@ const SurveyInRoutes = [
     title: "survey.organize_courses",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <DashboardDefault />
+        <Component.DASHBOARD.DEFAULT title="DashboardDefault" />
       </RequireAuth>
     ),
   },

@@ -2,7 +2,7 @@ import { navigateLocation } from "../navigateLocation";
 import { RequireAuth } from "@utils/requireAuth";
 
 // account routing
-import DashboardDefault from "@dashboard/default";
+import Component from "@routes/enumComponents";
 
 const SiteRoutes = [
   {
@@ -10,7 +10,7 @@ const SiteRoutes = [
     title: "Site settings",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <DashboardDefault />
+        <Component.DASHBOARD.DEFAULT title="DashboardDefault" />
       </RequireAuth>
     ),
   },
