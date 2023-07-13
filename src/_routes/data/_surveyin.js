@@ -10,7 +10,7 @@ import SiteRoutes from "./_site";
 import UtilitiesRoutes from "./_utilities";
 
 // dashboard routing
-import Component from "@routes/enumComponents";
+import { DASHBOARD } from "@routes/enumComponents";
 
 // // sample page routing
 // const SamplePage = Loadable(lazy(() => import("views/sample-page")));
@@ -21,27 +21,33 @@ const SurveyInRoutes = [
     path: navigateLocation.SURVEY.QUESTION,
     title: "survey.questions",
     element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <Component.DASHBOARD.DEFAULT title="DashboardDefault" />
-      </RequireAuth>
+      <DASHBOARD.DEFAULT
+        requireAuth={true}
+        redirectTo={navigateLocation.AUTH.SIGNIN}
+        title="DashboardDefault"
+      />
     ),
   },
   {
     path: navigateLocation.SURVEY.ANSWER,
     title: "survey.answers",
     element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <Component.DASHBOARD.DEFAULT title="DashboardDefault" />
-      </RequireAuth>
+      <DASHBOARD.DEFAULT
+        requireAuth={true}
+        redirectTo={navigateLocation.AUTH.SIGNIN}
+        title="DashboardDefault"
+      />
     ),
   },
   {
     path: navigateLocation.SURVEY.ORGANIZE_COURSE,
     title: "survey.organize_courses",
     element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <Component.DASHBOARD.DEFAULT title="DashboardDefault" />
-      </RequireAuth>
+      <DASHBOARD.DEFAULT
+        requireAuth={true}
+        redirectTo={navigateLocation.AUTH.SIGNIN}
+        title="DashboardDefault"
+      />
     ),
   },
 ];

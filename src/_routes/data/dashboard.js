@@ -1,6 +1,5 @@
 import { Navigate } from "react-router-dom";
 import { navigateLocation } from "../navigateLocation";
-import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
 import SurveyInRoutes from "./_surveyin";
@@ -9,7 +8,7 @@ import SiteRoutes from "./_site";
 import UtilitiesRoutes from "./_utilities";
 
 // dashboard routing
-import Component from "@routes/enumComponents";
+import { DASHBOARD } from "@routes/enumComponents";
 
 // // utilities routing
 // const UtilsTypography = Loadable(
@@ -30,15 +29,17 @@ import Component from "@routes/enumComponents";
 
 const DashboardRoutes = {
   path: "/dashboard",
-  element: <Component.DASHBOARD.LAYOUT />,
+  element: <DASHBOARD.LAYOUT />,
   children: [
     {
       path: navigateLocation.DASHBOARD.DEFAULT,
       title: "Dashboard",
       element: (
-        <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-          <Component.DASHBOARD.DEFAULT title="DashboardDefault" />
-        </RequireAuth>
+        <DASHBOARD.DEFAULT
+          requireAuth={true}
+          redirectTo={navigateLocation.AUTH.SIGNIN}
+          title="DashboardDefault"
+        />
       ),
     },
     ...SiteRoutes,
