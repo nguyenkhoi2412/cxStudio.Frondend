@@ -3,13 +3,12 @@ import { navigateLocation } from "../navigateLocation";
 import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
-// import Layout from "@clientapp/_layout";
-import Home from "@clientapp/home";
+import Component from "@routes/enumComponents";
 // ==============================|| MAIN ROUTING ||============================== //
 
 const ClientAppRoutes = [
   // path: navigateLocation.CLIENT_APP.ASSET_PATH,
-  // element: <Layout />,
+  // element: <Component.CLIENT_APP.LAYOUT />,
   // children: [
   //   {
   //     path: navigateLocation.CLIENT_APP.ASSET_PATH,
@@ -20,7 +19,7 @@ const ClientAppRoutes = [
   {
     path: navigateLocation.CLIENT_APP.ASSET_PATH,
     title: "Social profile",
-    element: <Home />,
+    element: <Component.CLIENT_APP.HOME />,
   },
 ];
 
