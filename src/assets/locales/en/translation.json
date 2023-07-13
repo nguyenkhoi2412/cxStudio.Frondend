@@ -137,6 +137,11 @@
     "previous": "Previous",
     "settings": "Settings"
   },
+  "configsettings": {
+    "live_customize": "Live customize",
+    "font_family": "Font family",
+    "setting": "Settings"
+  },
   "time": {
     "goodmorning": "Good morning",
     "goodafternoon": "Good afternoon",

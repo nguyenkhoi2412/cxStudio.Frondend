@@ -1,6 +1,7 @@
 import "./_customization.scss";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -17,7 +18,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { IconSettings } from '@tabler/icons-react';
+import { IconSettings } from "@tabler/icons-react";
 
 // third-party
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -43,6 +44,7 @@ const Customization = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const customization = useSelector((state) => state.customization);
+  const { t } = useTranslation();
 
   // drawer on/off
   const [open, setOpen] = useState(false);
@@ -96,7 +98,7 @@ const Customization = () => {
   return (
     <>
       {/* toggle button */}
-      <Tooltip title="Live Customize">
+      <Tooltip title={t("configsettings.live_customize")}>
         <Fab
           component="div"
           onClick={handleToggle}
@@ -126,7 +128,7 @@ const Customization = () => {
           <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
             <Grid item xs={12}>
               {/* font family */}
-              <SubCard title="Font Family">
+              <SubCard title={t("site.settings")}>
                 <FormControl>
                   <RadioGroup
                     aria-label="font-family"

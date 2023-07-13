@@ -2,8 +2,8 @@
 import { useTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 import { useSelector } from "react-redux";
-import LogoSurveyInDark from "@assets/images/logo-surveyin_dark.svg";
-import LogoSurveyInLight from "@assets/images/logo-surveyin_light.svg";
+import LogoCMSInDark from "@assets/images/logo-cms_dark.svg";
+import LogoCMSInLight from "@assets/images/logo-cms_light.svg";
 
 /**
  * if you want to use image instead of <svg> uncomment following.
@@ -32,8 +32,8 @@ const Logo = () => {
      *
      */
     <img
-      src={customization.mode === "dark" ? LogoSurveyInDark : LogoSurveyInLight}
-      alt="Surveyin"
+      src={customization.mode === "dark" ? LogoCMSInDark : LogoCMSInLight}
+      alt="cms"
       width="auto"
       height="56"
     />
