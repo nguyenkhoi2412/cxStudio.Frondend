@@ -1,4 +1,4 @@
-import "./_pre.scss";
+import "./_loading.scss";
 import React from "react";
 
 function Pre(props) {

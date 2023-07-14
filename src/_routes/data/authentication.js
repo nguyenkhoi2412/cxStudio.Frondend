@@ -5,7 +5,7 @@ import CodeVerification from "@authentication/codeVerification";
 import { navigateLocation } from "../navigateLocation";
 import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
-import Component from "@routes/enumComponents";
+import Component from "@routes/componentLoadable";
 
 const AuthenticationRoutes = [
   // {

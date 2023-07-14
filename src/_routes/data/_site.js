@@ -1,7 +1,7 @@
 import { navigateLocation } from "../navigateLocation";
 
 // account routing
-import { DASHBOARD } from "@routes/enumComponents";
+import { DASHBOARD } from "@routes/componentLoadable";
 
 const SiteRoutes = [
   {

@@ -3,7 +3,7 @@ import { navigateLocation } from "../navigateLocation";
 import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
-import { CLIENT_APP } from "@routes/enumComponents";
+import { CLIENT_APP } from "@routes/componentLoadable";
 // ==============================|| MAIN ROUTING ||============================== //
 
 const ClientAppRoutes = [

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 // project imports
 import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
-import Loader from "../pre";
+import Loader from "../loading";
 
 // ==============================|| LOADABLE - LAZY LOADING ||============================== //
 

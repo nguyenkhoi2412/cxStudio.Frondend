@@ -5,7 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
 import { backdropSpinState } from "./backdropSpin.reducer";
 
-const IncBackdrop = () => {
+const IncBackdrop = (props) => {
   //   const [open, setOpen] = React.useState(true);
   const dataState = useSelector(backdropSpinState);
   const [dataSource, setDataSource] = React.useState();
@@ -19,7 +19,7 @@ const IncBackdrop = () => {
   };
 
   const renderSpinProgress =
-    dataSource?.type === "pre" ? (
+    dataSource?.type === "pre" || props.open ? (
       <div id={dataSource?.open ? "preloader" : "preloader-none"}></div>
     ) : (
       <CircularProgress color="inherit" />
@@ -27,13 +27,13 @@ const IncBackdrop = () => {
 
   return (
     <>
-      {dataSource?.open ? (
+      {dataSource?.open || props.open ? (
         <Backdrop
-          open={dataSource.open}
+          open={dataSource?.open || props.open}
           onClick={handleClose}
           className="white"
         >
-          {dataSource.spin ? renderSpinProgress : <></>}
+          {dataSource?.spin || props.open ? renderSpinProgress : <></>}
         </Backdrop>
       ) : (
         <></>

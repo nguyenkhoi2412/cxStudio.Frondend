@@ -10,7 +10,7 @@ import SiteRoutes from "./_site";
 import UtilitiesRoutes from "./_utilities";
 
 // dashboard routing
-import { DASHBOARD } from "@routes/enumComponents";
+import { DASHBOARD } from "@routes/componentLoadable";
 
 // // sample page routing
 // const SamplePage = Loadable(lazy(() => import("views/sample-page")));
