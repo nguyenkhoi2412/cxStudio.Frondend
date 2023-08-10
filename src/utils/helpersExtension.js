@@ -434,6 +434,27 @@ export class objectExtension {
     return true;
   };
 
+  // Check if the input is a json object (whether startsWidth '{' and endsWidth '}') or not
+  static isJsonObject = (text) => {
+    let str = String(text).trim();
+
+    if (!str.startsWith("{") || !str.endsWith("}")) return false;
+
+    try {
+      JSON.parse(str);
+    } catch (e) {
+      return false;
+    }
+
+    return true;
+  };
+
+  // Check if the input is a json array (whether startsWidth '[' and endsWidth ']') or not
+  static isJsonArray = (text) => {
+    let str = String(text).trim();
+    return str.startsWith("[") && str.endsWith("]");
+  };
+
   static compareArrays = (a, b) =>
     a.length === b.length &&
     a.every(
@@ -567,6 +588,10 @@ export class stringExtension {
     );
   };
 
+  static parseValueToBool = (value) => {
+    return value === true || value === "true" || value === "True";
+  };
+
   //#region convert currency
   static numberWithSympol(value, dot = ",", decimal_point = 0) {
     let valueCheck = isNaN(value) ? 0 : parseFloat(value);
@@ -619,7 +644,6 @@ export class stringExtension {
 
     return `${value}th`;
   }
-  //#endregion
 }
 
 //#region datetime

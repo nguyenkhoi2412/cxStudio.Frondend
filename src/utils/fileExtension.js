@@ -13,6 +13,16 @@ export class fileExtension {
   //   };
   // };
 
+  static downloadBlobFile = (blob, fileName) => {
+    var a = document.createElement("a");
+    a.href = blob;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.style = "display: none";
+    a.click();
+    a.remove();
+  };
+
   static getExtension = (filename) => {
     return filename.substring(filename.lastIndexOf(".") + 1);
   };
