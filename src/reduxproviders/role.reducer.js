@@ -1,20 +1,19 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import commonServices from "@services/common.api";
+import baseServices from "@services/base.api";
 import { storedExtension } from "@utils/helpersExtension";
 import storageHandler from "@constants//storageHandler";
+import _initialState from "@reduxproviders/_initialState";
 
 export const ROLE_GET_ALL = createAsyncThunk(
   "role/getAll",
   async (params, thunkAPI) => {
-    return await commonServices.getbyfilter("role/getAll/", params);
+    return await baseServices.getbyfilter("role/getAll/", params);
   }
 );
 
 // init state role
 const initialState = {
-  isFetching: false,
-  ok: true,
-  message: "",
+  ..._initialState,
   d: [],
 };
 
