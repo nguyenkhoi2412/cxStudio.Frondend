@@ -68,7 +68,7 @@ const FormSignIn = () => {
             if (response.ok) {
               if (response.rs.verified_token) {
                 // navigate(navigateLocation.DASHBOARD.DEFAULT);
-                navigate(navigateLocation.ACCOUNT.PROFILE);
+                navigate(navigateLocation.DASHBOARD.DEFAULT);
               } else {
                 //* send code verify to email
                 dispatch(

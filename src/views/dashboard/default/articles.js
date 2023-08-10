@@ -1,7 +1,6 @@
 import * as React from "react";
 
 const ListArticles = ({ articles }) => {
-  console.log("articles", articles);
   const [lsArticles, setLsArticles] = React.useState([]);
 
   React.useEffect(() => {

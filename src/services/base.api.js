@@ -39,6 +39,7 @@ export default {
     if (!params.hasOwnProperty("query")) {
       params.query = {};
     }
+
     return new Promise((resolve, reject) => {
       axios
         .get(objectExtension.parseToQueryString(url, params))

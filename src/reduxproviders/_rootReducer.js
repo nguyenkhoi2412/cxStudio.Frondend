@@ -10,7 +10,7 @@ import fileReducer from "./file.reducer";
 import authReducer from "./auth.reducer";
 import roleReducer from "./role.reducer";
 // import secure_2faReducer from "./secure_2fa.reducer";
-// import siteReducer from "./site.reducer";
+import siteReducer from "./site.reducer";
 // import typeReducer from "./type.reducer";
 // import supplierReducer from "./supplier.reducer";
 // import categoryReducer from "./category.reducer";
@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   role: roleReducer,
   //   secure_2fa: secure_2faReducer,
-  //   site: siteReducer,
+  site: siteReducer,
   //   type: typeReducer,
   //   supplier: supplierReducer,
   //   category: categoryReducer,

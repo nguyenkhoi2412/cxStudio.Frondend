@@ -1,5 +1,6 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import fileServices from "@services/file";
+import initialData from "./_initialState";
 
 export const CHANGE_PROFILE_IMAGE = createAsyncThunk(
   "fileUpload",
@@ -10,10 +11,7 @@ export const CHANGE_PROFILE_IMAGE = createAsyncThunk(
 
 // init state role
 const initialState = {
-  isFetching: false,
-  ok: true,
-  message: "",
-  d: [],
+  ...initialData,
 };
 
 export const file = createSlice({

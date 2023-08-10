@@ -1,6 +1,6 @@
 import { ROLE } from "@constants/enumRoles";
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import commonServices from "@services/common.api";
+import baseServices from "@services/base.api";
 import authServices from "@services/auth";
 import { storedExtension } from "@utils/helpersExtension";
 import storageHandler from "@constants/storageHandler";
@@ -59,7 +59,7 @@ export const SECURE_2FA_GENERATE_TOKEN = createAsyncThunk(
 export const USER_UPDATE_INFO = createAsyncThunk(
   "user/updateinfo",
   async (params, thunkAPI) => {
-    return await commonServices.update("user/update", params);
+    return await baseServices.update("user/update", params);
   }
 );
 //#endregion

@@ -1,5 +1,6 @@
 export default {
   ASSET_PATH: process.env.ASSET_PATH || "/",
+  SITE_ID: process.env.SITE_ID || "",
   //* use for dashboard page
   stripedHtml: /(<([^>]+)>)/gi,
   specialCharacters: /[!@#$%^&*(),.?":{}|<>]/gi,
