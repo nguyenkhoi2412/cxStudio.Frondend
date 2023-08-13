@@ -2,12 +2,14 @@ import { MODULES } from "./_modules";
 import vars from "@constants/variables";
 
 const ASSET_PATH = vars.ASSET_PATH;
+const APP = ASSET_PATH + "app/";
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
 const AUTH = DASHBOARD + "/auth";
 const ACCOUNT = DASHBOARD + "/account";
 const SURVEY = DASHBOARD + "/survey";
 const SITE = DASHBOARD + "/site";
 const UTILITIES = DASHBOARD + "/utilities";
+const COMMUNITY = APP + MODULES.COMMUNITY;
 
 export const navigateLocation = {
   DASHBOARD: {
@@ -45,5 +47,8 @@ export const navigateLocation = {
   CLIENT_APP: {
     ASSET_PATH: ASSET_PATH,
     HOME: ASSET_PATH + "/home",
+    COMMUNITY: {
+      DEFAULT: COMMUNITY,
+    },
   },
 };

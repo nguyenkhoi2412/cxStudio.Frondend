@@ -21,6 +21,11 @@ const ClientAppRoutes = [
     title: "Social profile",
     element: <CLIENT_APP.HOME />,
   },
+  {
+    path: navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT,
+    title: "Chatting - Community",
+    element: <CLIENT_APP.COMMUNITY.DEFAULT />,
+  },
 ];
 
 export default ClientAppRoutes;

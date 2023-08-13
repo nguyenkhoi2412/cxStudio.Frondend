@@ -1,5 +1,6 @@
 export const MODULES = {
   DASHBOARD: "dashboard",
+  COMMUNITY: "community"
 };
 
 export const CURRENT_MODULES = () => {
