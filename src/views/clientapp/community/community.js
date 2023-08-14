@@ -11,10 +11,7 @@ const Community = () => {
 
   return (
     <div className="App">
-      Home us!!!
-      <Button className="btn" variant="contained" onClick={handleOnclick}>
-        Go to Dashboard
-      </Button>
+      Community
     </div>
   );
 };

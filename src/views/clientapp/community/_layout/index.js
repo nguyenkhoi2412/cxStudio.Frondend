@@ -1,8 +1,7 @@
-import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-const Layout = () => {
+const LayoutCommunity = () => {
   return (
     <>
       <Outlet />
@@ -10,4 +9,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default LayoutCommunity;

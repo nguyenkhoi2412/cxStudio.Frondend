@@ -46,7 +46,8 @@ export const navigateLocation = {
   },
   CLIENT_APP: {
     ASSET_PATH: ASSET_PATH,
-    HOME: ASSET_PATH + "/home",
+    HOME: ASSET_PATH + "home",
+    APP: ASSET_PATH + "app",
     COMMUNITY: {
       DEFAULT: COMMUNITY,
     },

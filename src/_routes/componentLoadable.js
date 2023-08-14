@@ -13,6 +13,7 @@ export const CLIENT_APP = {
   DEFAULT: Loadable(lazy(() => import("@clientapp/home"))),
   HOME: Loadable(lazy(() => import("@clientapp/home"))),
   COMMUNITY: {
+    LAYOUT: Loadable(lazy(() => import("@clientapp/community/_layout"))),
     DEFAULT: Loadable(lazy(() => import("@clientapp/community"))),
   },
 };
