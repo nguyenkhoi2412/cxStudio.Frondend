@@ -5,15 +5,13 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigage = useNavigate();
 
-  const handleOnclick = () => {
-    navigage("/dashboard");
-  };
-
   return (
     <div className="App">
-      Home us!!!
-      <Button className="btn" variant="contained" onClick={handleOnclick}>
+      <Button className="btn" variant="contained" onClick={() => navigage("/dashboard")}>
         Go to Dashboard
+      </Button>
+      <Button className="btn" variant="contained" onClick={() => navigage("/app/community")}>
+        Go to Community
       </Button>
     </div>
   );
