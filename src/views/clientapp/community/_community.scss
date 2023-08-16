@@ -1,0 +1,17 @@
+.wrapper {
+  &.community {
+    header {
+    }
+
+    .wrapper-content {
+      background-color: $bgContainerMain;
+      color: $textDefault;
+      width: 100%;
+      min-height: calc(100vh - 88px);
+      flex-grow: 1;
+      padding: 20px;
+      margin-top: 88px;
+      @include _rounded-corners();
+    }
+  }
+}
