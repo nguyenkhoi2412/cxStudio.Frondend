@@ -2,8 +2,6 @@
 import { useTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 import { useSelector } from "react-redux";
-import LogoInDark from "@assets/images/logo-culture-comminity-dark.svg";
-import LogoInLight from "@assets/images/logo-culture-comminity-light.svg";
 
 /**
  * if you want to use image instead of <svg> uncomment following.
@@ -20,7 +18,7 @@ const TextLogo = styled("text")(({ theme }) => ({
 
 // ==============================|| LOGO SVG ||============================== //
 
-const Logo = () => {
+const Logo = (props) => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
 
@@ -32,7 +30,7 @@ const Logo = () => {
      *
      */
     <img
-      src={customization.mode === "dark" ? LogoInDark : LogoInLight}
+      src={props.src}
       alt="cms"
       width="auto"
       height="40"

@@ -7,12 +7,15 @@ import { ButtonBase } from "@mui/material";
 // project imports
 import config from "configSettings";
 import Logo from "@components/ui/logo";
+import LogoInDark from "@assets/images/logo-culture-comminity-dark.svg";
+import LogoInLight from "@assets/images/logo-culture-comminity-light.svg";
 import { MENU_OPEN } from "@reduxproviders/berry/actions";
 
 // ==============================|| MAIN LOGO ||============================== //
 
 const LogoSection = () => {
   const defaultId = useSelector((state) => state.customization.defaultId);
+  const customization = useSelector((state) => state.customization);
   const dispatch = useDispatch();
   return (
     <ButtonBase
@@ -21,7 +24,7 @@ const LogoSection = () => {
       component={Link}
       to={config.defaultPath}
     >
-      <Logo />
+      <Logo src={customization.mode === "dark" ? LogoInDark : LogoInLight} />
     </ButtonBase>
   );
 };

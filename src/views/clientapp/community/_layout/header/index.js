@@ -7,7 +7,7 @@ import { useTheme } from "@mui/material/styles";
 import { Avatar, Box, ButtonBase, useMediaQuery } from "@mui/material";
 
 // project imports
-import LogoSection from "./logoSection";
+import LogoSection from "../logoSection";
 import SearchSection from "./searchSection";
 import ProfileSection from "./profileSection";
 import ToggleThemeSection from "./toggleThemeSection";
