@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Avatar, Box, ButtonBase, useMediaQuery } from "@mui/material";
 
 // project imports
@@ -21,7 +21,8 @@ import { IconMenu2 } from "@tabler/icons-react";
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
-  // const leftDrawerOpened = useSelector((state) => state.customization.opened);
+  const leftDrawerOpened = useSelector((state) => state.customization.opened);
+
   return (
     <>
       {/* logo & toggler button */}
@@ -40,6 +41,15 @@ const Header = ({ handleLeftDrawerToggle }) => {
         >
           <LogoSection />
         </Box>
+        <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
+          <Avatar
+            variant="rounded"
+            onClick={handleLeftDrawerToggle}
+            color="inherit"
+          >
+            <IconMenu2 stroke={1.5} size="1.3rem" />
+          </Avatar>
+        </ButtonBase>
       </Box>
 
       {/* header search */}
