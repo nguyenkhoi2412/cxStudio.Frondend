@@ -77,7 +77,7 @@ const FormSignIn = () => {
                   })
                 );
                 //* verify 2FA
-                navigate(navigateLocation.AUTH.CODE_VERIFICATION);
+                navigate(navigateLocation.DASHBOARD.AUTH.CODE_VERIFICATION);
               }
             } else {
               //* show message
@@ -291,7 +291,7 @@ const FormSignIn = () => {
                 label="Remember me"
               />
               <Link
-                href={navigateLocation.AUTH.FORGOT_PASSWORD}
+                href={navigateLocation.DASHBOARD.AUTH.FORGOT_PASSWORD}
                 variant="body2"
                 underline="none"
               >

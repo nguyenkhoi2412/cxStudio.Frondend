@@ -14,7 +14,7 @@ const AccountRoutes = [
     path: navigateLocation.ACCOUNT.SOCIAL,
     title: "Social",
     element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
         <AccountSocial />
       </RequireAuth>
     ),
@@ -23,7 +23,7 @@ const AccountRoutes = [
     path: navigateLocation.ACCOUNT.PROFILE,
     title: "My profiles",
     element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
         <AccountProfile />
       </RequireAuth>
     ),
@@ -32,7 +32,7 @@ const AccountRoutes = [
     path: navigateLocation.ACCOUNT.SETTING,
     title: "Account setting",
     element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
         <AccountDetails />
       </RequireAuth>
     ),
@@ -41,7 +41,7 @@ const AccountRoutes = [
     path: navigateLocation.ACCOUNT.CHANGE_PASSOWRD,
     title: "Change password",
     element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
         <ChangePassword />
       </RequireAuth>
     ),
@@ -50,7 +50,7 @@ const AccountRoutes = [
     path: navigateLocation.ACCOUNT.CREATE_NEW,
     title: "Create new",
     element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
         <CreateNew />
       </RequireAuth>
     ),
@@ -59,7 +59,7 @@ const AccountRoutes = [
     path: navigateLocation.ACCOUNT.USER_LIST,
     title: "Userlist",
     element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
         <UserList />
       </RequireAuth>
     ),

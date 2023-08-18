@@ -4,7 +4,7 @@ import vars from "@constants/variables";
 const ASSET_PATH = vars.ASSET_PATH;
 const APP = ASSET_PATH + "app/";
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
-const AUTH = DASHBOARD + "/auth";
+const DASHBOARD_AUTH = DASHBOARD + "/auth";
 const ACCOUNT = DASHBOARD + "/account";
 const SURVEY = DASHBOARD + "/survey";
 const SITE = DASHBOARD + "/site";
@@ -14,12 +14,12 @@ const COMMUNITY = APP + MODULES.COMMUNITY;
 export const navigateLocation = {
   DASHBOARD: {
     DEFAULT: DASHBOARD,
-  },
-  AUTH: {
-    SIGNIN: AUTH + "/signin",
-    SIGNUP: AUTH + "/signup",
-    FORGOT_PASSWORD: AUTH + "/forgotpassword",
-    CODE_VERIFICATION: AUTH + "/codeverification",
+    AUTH: {
+      SIGNIN: DASHBOARD_AUTH + "/signin",
+      SIGNUP: DASHBOARD_AUTH + "/signup",
+      FORGOT_PASSWORD: DASHBOARD_AUTH + "/forgotpassword",
+      CODE_VERIFICATION: DASHBOARD_AUTH + "/codeverification",
+    },
   },
   ACCOUNT: {
     SOCIAL: ACCOUNT + "/social",

@@ -10,7 +10,7 @@ const SiteRoutes = [
     element: (
       <DASHBOARD.DEFAULT
         requireAuth={true}
-        redirectTo={navigateLocation.AUTH.SIGNIN}
+        redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}
         title="DashboardDefault"
       />
     ),

@@ -3,9 +3,9 @@ import { useRoutes } from "react-router-dom";
 import { hookInstance } from "@utils/hookInstance";
 import { useTranslation } from "react-i18next";
 // routes
-import AuthenticationRoutes from "./data/authentication";
-import DashboardRoutes from "./data/dashboard";
-import ClientAppRoutes from "./data/clientapp";
+// import AuthenticationRoutes from "./data/authentication";
+import DashboardRoutes from "./dashboard";
+import ClientAppRoutes from "./clientapp";
 // import AuthenticationRoutes from './AuthenticationRoutes';
 
 // ==============================|| ROUTING RENDER ||============================== //
@@ -16,7 +16,7 @@ export const BuildRoutes = () => {
 };
 
 export const RouteMaps = () => {
-  return [...AuthenticationRoutes, DashboardRoutes, ...ClientAppRoutes];
+  return [...DashboardRoutes, ...ClientAppRoutes];
 };
 
 const buildTitle = () => {

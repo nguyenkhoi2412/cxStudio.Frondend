@@ -95,7 +95,7 @@ const SignUp = (props) => {
                     xs={12}
                   >
                     <Link
-                      href={navigateLocation.AUTH.SIGNIN}
+                      href={navigateLocation.DASHBOARD.AUTH.SIGNIN}
                       underline="none"
                       variant="subtitle1"
                       color={theme.palette.grey[900]}

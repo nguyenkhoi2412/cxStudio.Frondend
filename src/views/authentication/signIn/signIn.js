@@ -83,7 +83,7 @@ const SignIn = (props) => {
                 xs={12}
               >
                 <Link
-                  href={navigateLocation.AUTH.SIGNUP}
+                  href={navigateLocation.DASHBOARD.AUTH.SIGNUP}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}

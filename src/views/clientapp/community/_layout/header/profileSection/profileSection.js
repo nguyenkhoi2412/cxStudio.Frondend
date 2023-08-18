@@ -86,7 +86,7 @@ const ProfileSection = () => {
   const handleLogout = async () => {
     dispatch(SIGN_OUT());
 
-    navigate(navigateLocation.AUTH.SIGNIN);
+    navigate(navigateLocation.DASHBOARD.AUTH.SIGNIN);
   };
 
   const handleClose = (event) => {
