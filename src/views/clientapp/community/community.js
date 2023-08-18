@@ -3,17 +3,13 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 const Community = () => {
-  const navigage = useNavigate();
+  const navigate = useNavigate();
 
   const handleOnclick = () => {
-    navigage("/dashboard");
+    navigate("/dashboard");
   };
 
-  return (
-    <div className="App">
-      Community
-    </div>
-  );
+  return <div className="App">Community</div>;
 };
 
 export default Community;

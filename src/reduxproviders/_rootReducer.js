@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 // //* shared
 // import gSharedReducer from "./utils/shared.reducer";
+import navigationReducer from "./utils/navigation.reducer";
 import { componentReducer } from "@components/_reducer";
 import customizationReducer from "./berry/customizationReducer";
 import countryReducer from "./country.reducer";
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   //? shared
   ...componentReducer,
   customization: customizationReducer,
+  navigation: navigationReducer,
   //   gShared: gSharedReducer,
   country: countryReducer,
   file: fileReducer,

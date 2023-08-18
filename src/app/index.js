@@ -20,6 +20,7 @@ import {
   SHOW_SPIN,
   HIDE_SPIN,
 } from "@components/mui-ui/backdropSpin/backdropSpin.reducer";
+import { DETECT_BROWSER_NAVIGATION } from "@reduxproviders/utils/navigation.reducer";
 
 //#region call api
 import { SITE_GET_BY_ID, siteState } from "@reduxproviders/site.reducer";
@@ -46,9 +47,7 @@ const App = (props) => {
 
   //#region get datas
   const getSiteInfosById = () => {
-    dispatch(
-      SITE_GET_BY_ID(vars.SITE_ID)
-    );
+    dispatch(SITE_GET_BY_ID(vars.SITE_ID));
   };
   //#endregion
 
@@ -56,10 +55,13 @@ const App = (props) => {
   React.useEffect(() => {
     i18n.changeLanguage("en-US");
     handleResize();
+    // Detect page REFRESH or not
+    dispatch(DETECT_BROWSER_NAVIGATION());
 
     //* GET SITE INFO
     getSiteInfosById();
 
+    //* SHOW SPIN
     dispatch(
       SHOW_SPIN({
         type: "pre",
