@@ -2,7 +2,7 @@ import SignIn from "@authentication/signIn";
 import SignUp from "@authentication/signUp";
 import ForgotPassword from "@authentication/forgotPassword";
 import CodeVerification from "@authentication/codeVerification";
-import { navigateLocation } from "../navigateLocation";
+import { navigateLocation } from "@routes/navigateLocation";
 import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 import Component from "@routes/componentLoadable";

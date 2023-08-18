@@ -4,7 +4,7 @@ import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
 import { CLIENT_APP } from "@routes/componentLoadable";
-import CommunityRoutes from "./_community";
+import CommunityRoutes from "./community";
 // ==============================|| MAIN ROUTING ||============================== //
 
 const ClientAppRoutes = [
@@ -18,7 +18,7 @@ const ClientAppRoutes = [
       },
     ],
   },
-  CommunityRoutes,
+  ...CommunityRoutes,
 ];
 // path: navigateLocation.CLIENT_APP.ASSET_PATH,
 // element: <CLIENT_APP.LAYOUT />,

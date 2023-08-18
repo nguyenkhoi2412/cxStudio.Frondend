@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { navigateLocation } from "../navigateLocation";
+import { navigateLocation } from "@routes/navigateLocation";
 
 // project imports
 import AuthenticationRoutes from "./_authentication";
