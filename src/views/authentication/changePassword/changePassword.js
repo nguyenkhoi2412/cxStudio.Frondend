@@ -12,7 +12,7 @@ import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import AuthWrapper from "../authWrapper";
 import AuthCardWrapper from "../authCardWrapper";
 import FormChangePassword from "../forms/changePassword";
-import Logo from "@components/ui/logo";
+import Logo from "@components/ui/imagesvg";
 // import AuthFooter from "../authFooter";
 //#endregion
 //#region reduxprovider

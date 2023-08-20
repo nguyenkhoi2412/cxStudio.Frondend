@@ -1,6 +1,11 @@
 import { lazy } from "react";
 import Loadable from "@components/ui/loadable";
 
+// //
+export const AUTHENTICATION = {
+  LAYOUT: Loadable(lazy(() => import("@authentication/_layout"))),
+};
+
 // ==============================|| DASHBOARD ||============================== //
 export const DASHBOARD = {
   LAYOUT: Loadable(lazy(() => import("@dashboard/_layout"))),

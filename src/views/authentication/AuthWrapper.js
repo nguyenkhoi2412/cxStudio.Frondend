@@ -25,6 +25,7 @@ const AuthWrapper = ({ children, ...other }) => (
       direction="column"
       justifyContent="flex-end"
       sx={{ minHeight: "100vh" }}
+      className="wrapper auth"
     >
       <Grid item xs={12}>
         <Grid

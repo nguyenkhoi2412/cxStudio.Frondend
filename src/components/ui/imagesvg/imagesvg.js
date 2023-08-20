@@ -18,7 +18,7 @@ const TextLogo = styled("text")(({ theme }) => ({
 
 // ==============================|| LOGO SVG ||============================== //
 
-const Logo = (props) => {
+const ImageSvg = (props) => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
 
@@ -31,6 +31,7 @@ const Logo = (props) => {
      */
     <img
       src={props.src}
+      className={props.className}
       alt="cms"
       width="auto"
       height="40"
@@ -89,4 +90,4 @@ const Logo = (props) => {
   );
 };
 
-export default Logo;
+export default ImageSvg;

@@ -10,7 +10,15 @@ const Loadable = (Component) => (props) =>
   (
     <Suspense fallback={<Loader load={true} />}>
       {props.requireAuth ? (
-        <RequireAuth redirectTo={props.redirectTo}>
+        <RequireAuth
+          redirectTo={props.redirectTo}
+          isAuthentication={
+            props.isAuthentication !== null &&
+            props.isAuthentication !== undefined
+              ? props.isAuthentication
+              : false
+          }
+        >
           <Component {...props} />
         </RequireAuth>
       ) : (

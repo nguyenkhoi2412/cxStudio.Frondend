@@ -14,7 +14,7 @@ import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import AuthWrapper from "../authWrapper";
 import AuthCardWrapper from "../authCardWrapper";
 import FormSignUp from "../forms/signUp";
-import Logo from "@components/ui/logo";
+import Logo from "@components/ui/imagesvg";
 import { navigateLocation } from "@routes/navigateLocation";
 // import AuthFooter from "../authFooter";
 //#endregion
