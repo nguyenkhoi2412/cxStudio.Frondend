@@ -1,6 +1,7 @@
 // material-ui
 import { styled } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import bgAuth from "@assets/images/auth/bg-auth-behind.svg";
 
 // ==============================|| AUTHENTICATION 1 WRAPPER ||============================== //
 
@@ -9,13 +10,14 @@ const AuthWrapperContainer = styled("div")(({ theme }) => ({
   minHeight: "100vh",
   width: "100%",
   // backgroundImage: "url(https://source.unsplash.com/random)",
-  // backgroundRepeat: "no-repeat",
+  backgroundImage: "url(" + bgAuth + ")",
+  backgroundRepeat: "no-repeat",
   // backgroundColor: (t) =>
   //   theme.palette.mode === "light"
   //     ? theme.palette.grey[50]
   //     : theme.palette.grey[900],
-  // backgroundSize: "cover",
-  // backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
 }));
 
 const AuthWrapper = ({ children, ...other }) => (
