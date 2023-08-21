@@ -8,43 +8,38 @@ import { AUTHENTICATION } from "@routes/componentLoadable";
 
 const AuthCommunityRoutes = [
   {
-    element: <AUTHENTICATION.LAYOUT />,
-    children: [
-      {
-        path: navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN,
-        title: "SignIn",
-        element: (
-          <RequireAuth
-            redirectTo={navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT}
-            isAuthentication={true}
-          >
-            <SignIn />,
-          </RequireAuth>
-        ),
-      },
-      {
-        path: navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNUP,
-        title: "SignUp",
-        element: <SignUp />,
-      },
-      {
-        path: navigateLocation.CLIENT_APP.COMMUNITY.AUTH.FORGOT_PASSWORD,
-        title: "Forgot Password",
-        element: <ForgotPassword />,
-      },
-      {
-        path: navigateLocation.CLIENT_APP.COMMUNITY.AUTH.CODE_VERIFICATION,
-        title: "Code verification",
-        element: (
-          <RequireLoggedIn
-            redirectTo={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
-            navigateTo={navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT}
-          >
-            <CodeVerification />,
-          </RequireLoggedIn>
-        ),
-      },
-    ],
+    path: navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN,
+    title: "SignIn | Community",
+    element: (
+      <RequireAuth
+        redirectTo={navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT}
+        isAuthentication={true}
+      >
+        <SignIn />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNUP,
+    title: "SignUp | Community",
+    element: <SignUp />,
+  },
+  {
+    path: navigateLocation.CLIENT_APP.COMMUNITY.AUTH.FORGOT_PASSWORD,
+    title: "Forgot Password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: navigateLocation.CLIENT_APP.COMMUNITY.AUTH.CODE_VERIFICATION,
+    title: "Code verification",
+    element: (
+      <RequireLoggedIn
+        redirectTo={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
+        navigateTo={navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT}
+      >
+        <CodeVerification />,
+      </RequireLoggedIn>
+    ),
   },
 ];
 
