@@ -32,9 +32,13 @@ const ImageSvg = (props) => {
     <img
       src={props.src}
       className={props.className}
-      alt="cms"
-      width="auto"
-      height="40"
+      alt="image"
+      width={
+        props.width !== null && props.width !== undefined ? props.width : 'auto'
+      }
+      height={
+        props.height !== null && props.height !== undefined ? props.height : 40
+      }
     />
     // <svg
     //   width="92"

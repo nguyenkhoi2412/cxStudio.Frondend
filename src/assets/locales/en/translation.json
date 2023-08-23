@@ -9,6 +9,12 @@
     "email": "Email is not valid",
     "mustbebefore_startdate": "End date can't be before Start date"
   },
+  "error": {
+    "page_not_found": "Page not found",
+    "something_wrong_here": "Something wrong here..",
+    "sorry_technical_issues": "Sorry, we're having some technical issues (as you can see)",
+    "try_to_refresh_thepage": "try to refresh the page, some thing works ;)"
+  },
   "authentication": {
     "authentication": "Authentication",
     "hiwelcomeback": "Hi, Welcome Back",
@@ -135,7 +141,8 @@
     "filter": "Filter",
     "clickhere": "Click here",
     "previous": "Previous",
-    "settings": "Settings"
+    "settings": "Settings",
+    "go_back_home": "Go back home"
   },
   "configsettings": {
     "live_customize": "Live customize",

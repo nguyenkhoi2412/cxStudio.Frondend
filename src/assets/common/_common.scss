@@ -115,7 +115,7 @@ center {
 }
 
 .pos-center {
-  @include _pos-center();
+  @include _pos_center();
 }
 
 .fixed-bottom {

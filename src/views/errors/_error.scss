@@ -1,0 +1,18 @@
+.wrapper.error-pages {
+  background-image: url("../../assets/images/errorPages/page_notfound.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto auto;
+
+  .code {
+    font-size: 8em;
+  }
+
+  .title-name {
+    font-size: 2em;
+  }
+
+  .MuiTypography-caption {
+    font-size: 0.9em;
+  }
+}

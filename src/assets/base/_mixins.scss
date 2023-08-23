@@ -79,7 +79,7 @@
 // }
 
 /* ======================================================================================== */
-@mixin _rounded-corners($radius: 12px) {
+@mixin _rounded_corners($radius: 12px) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   -ms-border-radius: $radius;
@@ -194,20 +194,20 @@
   @include _translate();
 }
 
-@mixin _pos-center() {
+@mixin _pos_center() {
   position: absolute;
   left: 50%;
   top: 50%;
   @include _translate();
 }
 
-@mixin _pos_hoz-center() {
+@mixin _pos_hoz_center() {
   position: absolute;
   left: 50%;
   @include _translate(-50%, 0);
 }
 
-@mixin _pos_ver-center() {
+@mixin _pos_ver_center() {
   position: absolute;
   top: 50%;
   @include _translate(0, -50%);
@@ -231,7 +231,7 @@
   box-shadow: $value; /* Opera 10.5, IE9+, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
-@mixin _text-shadow($value: 1px 1px 0px #ccc) {
+@mixin _text_shadow($value: 1px 1px 0px #ccc) {
   text-shadow: $value;
 }
 
@@ -338,7 +338,7 @@
 // .circle4parts(@width: 80px; @height: 80px; @color1: blue; @color2: yellow; @color3: red; @color4: green) {
 //     width: @width;
 //     height: @height;
-//     ._rounded-corners(50%);
+//     ._rounded_corners(50%);
 //     background: linear-gradient(45deg, @color1, @color1 100%), linear-gradient(225deg, @color2, @color2), linear-gradient(225deg, @color3, @color3), linear-gradient(135deg, @color4, @color4);
 //     background-size: 50% 50%;
 //     background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
@@ -410,7 +410,7 @@
 //     width: (8.33333333% * @number) + 4.16666665%;
 // }
 
-@mixin _h-100() {
+@mixin _h_100() {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flexbox;

@@ -1,4 +1,4 @@
-import "./_auth.scss";
+import "./_error.scss";
 
 // material-ui
 import { styled } from "@mui/material/styles";
@@ -7,7 +7,7 @@ import bgAuth from "@assets/images/auth/bg-auth-behind.svg";
 
 // ==============================|| AUTHENTICATION 1 WRAPPER ||============================== //
 
-const AuthWrapperContainer = styled("div")(({ theme }) => ({
+const ErrorWrapperContainer = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.primary.light,
   minHeight: "100vh",
   width: "100%",
@@ -22,14 +22,14 @@ const AuthWrapperContainer = styled("div")(({ theme }) => ({
   backgroundPosition: "center",
 }));
 
-const AuthWrapper = ({ children, ...other }) => (
-  <AuthWrapperContainer>
+const ErrorWrapper = ({ children, ...other }) => (
+  <ErrorWrapperContainer>
     <Grid
       container
       direction="column"
       justifyContent="flex-end"
       sx={{ minHeight: "100vh" }}
-      className="wrapper auth"
+      className="wrapper error-pages"
     >
       <Grid item xs={12}>
         <Grid
@@ -37,12 +37,13 @@ const AuthWrapper = ({ children, ...other }) => (
           justifyContent="center"
           alignItems="center"
           sx={{ minHeight: "calc(100vh - 68px)" }}
+          className="page-not-found"
         >
           {children}
         </Grid>
       </Grid>
     </Grid>
-  </AuthWrapperContainer>
+  </ErrorWrapperContainer>
 );
 
-export default AuthWrapper;
+export default ErrorWrapper;

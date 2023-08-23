@@ -2,8 +2,10 @@ import { Navigate } from "react-router-dom";
 import { navigateLocation } from "@routes/navigateLocation";
 import { CLIENT_APP } from "@routes/componentLoadable";
 import AuthenticationRoutes from "./_auth";
+import ErrorRoutes from "./_error";
 
 const CommunityRoutes = [
+  ...ErrorRoutes,
   ...AuthenticationRoutes,
   {
     element: <CLIENT_APP.COMMUNITY.LAYOUT />,
