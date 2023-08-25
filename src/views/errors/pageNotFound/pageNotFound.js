@@ -1,6 +1,7 @@
 import "@authentication/_auth.scss";
 import "./../_error.scss";
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { hookInstance } from "@utils/hookInstance";
@@ -8,7 +9,14 @@ import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { useTheme } from "@mui/material/styles";
-import { Divider, Grid, Stack, Typography, Button, useMediaQuery } from "@mui/material";
+import {
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
 //#endregion
 //#region components
 import ErrorWrapper from "@views/errors/errorWrapper";
@@ -24,9 +32,14 @@ import AnimateButton from "@components/mui-ui/extended/animateButton";
 
 const Error404 = (props) => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const customization = useSelector((state) => state.customization);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
+
+  const handleBtnGoBackHome = () => {
+    navigate(navigateLocation.CLIENT_APP.ASSET_PATH);
+  };
 
   return (
     <ErrorWrapper>
@@ -82,6 +95,7 @@ const Error404 = (props) => {
                   size="large"
                   type="submit"
                   variant="contained"
+                  onClick={handleBtnGoBackHome}
                 >
                   {t("common.go_back_home")}
                 </Button>
