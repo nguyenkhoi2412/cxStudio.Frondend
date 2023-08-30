@@ -18,6 +18,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
 import { Button } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 //#endregion
 //#region redux providers
 import {

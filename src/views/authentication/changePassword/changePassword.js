@@ -13,6 +13,8 @@ import AuthWrapper from "../authWrapper";
 import AuthCardWrapper from "../authCardWrapper";
 import FormChangePassword from "../forms/changePassword";
 import Logo from "@components/ui/imagesvg";
+import LogoInDark from "@assets/images/logo-culture-comminity-dark.svg";
+import LogoInLight from "@assets/images/logo-culture-comminity-light.svg";
 // import AuthFooter from "../authFooter";
 //#endregion
 //#region reduxprovider
@@ -22,6 +24,7 @@ import { currentUserState } from "@reduxproviders/auth.reducer";
 
 const ChangePassword = (props) => {
   const theme = useTheme();
+  const customization = useSelector((state) => state.customization);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
   const currentUser = useSelector(currentUserState);
@@ -38,7 +41,9 @@ const ChangePassword = (props) => {
           >
             <Grid item sx={{ mb: 3 }}>
               <Link to="#">
-                <Logo />
+                <Logo
+                  src={customization.mode === "dark" ? LogoInDark : LogoInLight}
+                />
               </Link>
             </Grid>
             <Grid item xs={12}>

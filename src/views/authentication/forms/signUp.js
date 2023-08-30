@@ -48,7 +48,7 @@ const FormSignUp = () => {
     severity.error
   );
   const [lsRoles, setLsRoles] = React.useState([]);
-  const [checked, setChecked] = React.useState(true);
+  const [termsChecked, setTermsChecked] = React.useState(false);
   const [strength, setStrength] = React.useState(0);
   const [level, setLevel] = React.useState();
 
@@ -113,14 +113,14 @@ const FormSignUp = () => {
 
   // #region useEffect
   React.useEffect(() => {
-    getRoles();
+    // getRoles();
   }, []);
   //#endregion
 
   //#region useFormik
   const initialValues = _schema.initialValues();
   const validationSchema = _schema.validation();
-  const dataForm = _schema.dataForm(lsRoles);
+  const dataForm = _schema.dataForm();
   const [enableValidation, setEnableValidation] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const formik = useFormik({
@@ -325,8 +325,8 @@ const FormSignUp = () => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={checked}
-                    onChange={(event) => setChecked(event.target.checked)}
+                    checked={termsChecked}
+                    onChange={(event) => setTermsChecked(event.target.checked)}
                     name="checked"
                   />
                 }
@@ -374,7 +374,7 @@ const FormSignUp = () => {
                 <AnimateButton>
                   <Button
                     disableElevation
-                    disabled={submitting}
+                    disabled={submitting || !termsChecked}
                     fullWidth
                     size="large"
                     type="submit"

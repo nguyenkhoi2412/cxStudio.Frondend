@@ -2,6 +2,7 @@ import "../_auth.scss";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import _schema from "./_schema";
+import { useSelector } from "react-redux";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { hookInstance } from "@utils/hookInstance";
@@ -14,11 +15,14 @@ import AuthWrapper from "../authWrapper";
 import AuthCardWrapper from "../authCardWrapper";
 import FormForgotPassword from "../forms/forgotPassword";
 import Logo from "@components/ui/imagesvg";
+import LogoInDark from "@assets/images/logo-culture-comminity-dark.svg";
+import LogoInLight from "@assets/images/logo-culture-comminity-light.svg";
 // import AuthFooter from "../authFooter";
 //#endregion
 
 const ForgotPassword = (props) => {
   const theme = useTheme();
+  const customization = useSelector((state) => state.customization);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 
@@ -34,7 +38,9 @@ const ForgotPassword = (props) => {
           >
             <Grid item sx={{ mb: 3 }}>
               <Link to="#">
-                <Logo />
+                <Logo
+                  src={customization.mode === "dark" ? LogoInDark : LogoInLight}
+                />
               </Link>
             </Grid>
             <Grid item xs={12}>

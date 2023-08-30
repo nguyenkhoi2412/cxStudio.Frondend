@@ -33,9 +33,17 @@ export default {
         .string()
         .required(t("authentication.enterpassword"))
         .min(8, t("authentication.passwordmusgreater8")),
+      // different error messages for different requirements
+      // .matches(/[0-9]/, getCharacterValidationError("digit"))
+      // .matches(/[a-z]/, getCharacterValidationError("lowercase"))
+      // .matches(/[A-Z]/, getCharacterValidationError("uppercase")),
+      // confirmPassword: yup
+      //   .string()
+      //   .required(t("authentication.retypeyourpasswrod"))
+      //   .oneOf([yup.ref("password"), null], t("authentication.passworddoesnotmatch")),
     });
   },
-  dataForm: (lsRoles) => {
+  dataForm: () => {
     const { t } = useTranslation();
     const isVisitor = useSelector(isVisitorState);
     const isUser = useSelector(isUserState);
@@ -67,22 +75,22 @@ export default {
     };
 
     // render role
-    const role = {
-      tabIndex: 2,
-      id: "role",
-      field: "role",
-      type: "select",
-      label: t("authentication.rolename"),
-      listItems: lsRoles.map((x) => {
-        return {
-          _id: x.lowercase,
-          name: x.name,
-        };
-      }),
-      preventXSS: true,
-      disabled: isVisitor || isUser,
-      helperText: t("authentication.selectrole"),
-    };
+    // const role = {
+    //   tabIndex: 2,
+    //   id: "role",
+    //   field: "role",
+    //   type: "select",
+    //   label: t("authentication.rolename"),
+    //   listItems: lsRoles.map((x) => {
+    //     return {
+    //       _id: x.lowercase,
+    //       name: x.name,
+    //     };
+    //   }),
+    //   preventXSS: true,
+    //   disabled: isVisitor || isUser,
+    //   helperText: t("authentication.selectrole"),
+    // };
 
     // render username
     const username = {
@@ -108,7 +116,7 @@ export default {
     let inputForms = [];
     inputForms.push(firstname);
     inputForms.push(lastname);
-    inputForms.push(role);
+    // inputForms.push(role);
     inputForms.push(username);
     inputForms.push(password);
 

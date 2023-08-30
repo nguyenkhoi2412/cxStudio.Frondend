@@ -17,6 +17,8 @@ import AuthWrapper from "../authWrapper";
 import AuthCardWrapper from "../authCardWrapper";
 import FormCodeVerification from "../forms/codeVerification";
 import Logo from "@components/ui/imagesvg";
+import LogoInDark from "@assets/images/logo-culture-comminity-dark.svg";
+import LogoInLight from "@assets/images/logo-culture-comminity-light.svg";
 import severity from "@constants/severity";
 //#endregion
 //#region reduxprovider
@@ -29,6 +31,7 @@ import {
 
 const CodeVerification = (props) => {
   const theme = useTheme();
+  const customization = useSelector((state) => state.customization);
   const { enqueueSnackbar } = useSnackbar();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
@@ -74,7 +77,9 @@ const CodeVerification = (props) => {
           >
             <Grid item sx={{ mb: 3 }}>
               <Link to="#">
-                <Logo />
+                <Logo
+                  src={customization.mode === "dark" ? LogoInDark : LogoInLight}
+                />
               </Link>
             </Grid>
             <Grid item xs={12}>
