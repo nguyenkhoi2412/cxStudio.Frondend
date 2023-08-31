@@ -11,10 +11,8 @@ import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#region components
 import AuthWrapper from "../authWrapper";
 import AuthCardWrapper from "../authCardWrapper";
+import AuthMainContainer from "../authMainContainer";
 import FormChangePassword from "../forms/changePassword";
-import Logo from "@components/ui/imagesvg";
-import LogoInDark from "@assets/images/logo-culture-comminity-dark.svg";
-import LogoInLight from "@assets/images/logo-culture-comminity-light.svg";
 // import AuthFooter from "../authFooter";
 //#endregion
 //#region reduxprovider
@@ -31,58 +29,41 @@ const ChangePassword = (props) => {
 
   return (
     <AuthWrapper>
-      <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-        <AuthCardWrapper className="auth change-password">
-          <Grid
-            container
-            spacing={2}
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Grid item sx={{ mb: 3 }}>
-              <Link to="#">
-                <Logo
-                  src={customization.mode === "dark" ? LogoInDark : LogoInLight}
-                />
-              </Link>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid
-                container
-                direction={matchDownSM ? "column-reverse" : "row"}
-                alignItems="center"
-                justifyContent="center"
-              >
-                <Grid item>
-                  <Stack
-                    alignItems="center"
-                    justifyContent="center"
-                    spacing={1}
+      <AuthCardWrapper className="auth change-password">
+        <AuthMainContainer>
+          <Grid item xs={12}>
+            <Grid
+              container
+              direction={matchDownSM ? "column-reverse" : "row"}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Grid item>
+                <Stack alignItems="center" justifyContent="center" spacing={1}>
+                  <Typography
+                    color="primary"
+                    gutterBottom
+                    variant={matchDownSM ? "h3" : "h2"}
                   >
-                    <Typography
-                      color="primary"
-                      gutterBottom
-                      variant={matchDownSM ? "h3" : "h2"}
-                    >
-                      {t("user.changepassword")}
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      fontSize="16px"
-                      textAlign={matchDownSM ? "center" : "inherit"}
-                    >
-                      {currentUser.isAdmin
-                        ? t("user.createnewpasswordforanyuser")
-                        : t("user.createnewpassword")}
-                    </Typography>
-                  </Stack>
-                </Grid>
+                    {t("user.changepassword")}
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    fontSize="16px"
+                    textAlign={matchDownSM ? "center" : "inherit"}
+                  >
+                    {currentUser.isAdmin
+                      ? t("user.createnewpasswordforanyuser")
+                      : t("user.createnewpassword")}
+                  </Typography>
+                </Stack>
               </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <FormChangePassword />
-            </Grid>
-            {/* <Grid item xs={12}>
+          </Grid>
+          <Grid item xs={12}>
+            <FormChangePassword />
+          </Grid>
+          {/* <Grid item xs={12}>
               <Divider />
             </Grid>
 
@@ -118,9 +99,8 @@ const ChangePassword = (props) => {
                 </Stack>
               </Grid>
             </Grid> */}
-          </Grid>
-        </AuthCardWrapper>
-      </Grid>
+        </AuthMainContainer>
+      </AuthCardWrapper>
     </AuthWrapper>
   );
 };
