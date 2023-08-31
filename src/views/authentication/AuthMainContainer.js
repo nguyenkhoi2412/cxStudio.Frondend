@@ -23,7 +23,7 @@ const AuthMainContainer = ({ children, ...other }) => {
           />
         </Link>
       </Grid>
-      <Grid container>{children}</Grid>
+      {children}
     </Grid>
   );
 };
