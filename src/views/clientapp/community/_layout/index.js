@@ -12,6 +12,7 @@ import { Container, AppBar, Box, Toolbar, useMediaQuery } from "@mui/material";
 //#region Procjects import
 import Header from "./header";
 import Sidebar from "./sidebar";
+import Customization from "./customization";
 //#endregion
 
 //#region STYLE
@@ -112,6 +113,7 @@ const LayoutCommunity = () => {
           <Outlet />
         </Container>
       </Main>
+      <Customization />
     </Box>
   );
 };
