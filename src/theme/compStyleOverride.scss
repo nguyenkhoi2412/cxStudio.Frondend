@@ -59,6 +59,12 @@
       color: $textSecondary;
       font-size: 0.875rem;
     }
+
+    + .MuiInputAdornment-root {
+      > .MuiButtonBase-root {
+        color: $textHeading;
+      }
+    }
   }
 }
 
@@ -66,6 +72,12 @@
   &-root {
     font-weight: 50;
     @include _rounded_corners(4px);
+    background-color: var(--bg-button);
+
+    &.Mui-disabled {
+      background-color: var(--bg-button-disabled);
+      color: var(--text-primary)
+    }
   }
 }
 

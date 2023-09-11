@@ -141,25 +141,15 @@ const FormSignIn = () => {
         <Grid item xs={12}>
           <AnimateButton>
             <Button
+              className="btn-google"
               disableElevation
               fullWidth
               onClick={() => console.log("googleHandler")}
               size="large"
               variant="outlined"
-              sx={{
-                color: "grey.700",
-                backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100],
-              }}
             >
               <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img
-                  src={Google}
-                  alt="google"
-                  width={16}
-                  height={16}
-                  style={{ marginRight: matchDownSM ? 8 : 16 }}
-                />
+                <img src={Google} alt="google" width={16} height={16} />
               </Box>
               {t("authentication.signinwithgoogle")}
             </Button>
@@ -175,19 +165,26 @@ const FormSignIn = () => {
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
             <Button
               variant="outlined"
+              className="btn-or"
               sx={{
                 cursor: "unset",
                 m: 2,
                 py: 0.5,
                 px: 7,
-                borderColor: `${theme.palette.grey[100]} !important`,
+                borderColor: `${theme.palette.divider} !important`,
                 color: `${theme.palette.grey[900]}!important`,
                 fontWeight: 500,
               }}
               disableRipple
               disabled
             >
-              {t("authentication.or")}
+              <Typography
+                variant="caption"
+                fontSize="14px"
+                textAlign={matchDownSM ? "center" : "inherit"}
+              >
+                {t("authentication.or")}
+              </Typography>
             </Button>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
           </Box>

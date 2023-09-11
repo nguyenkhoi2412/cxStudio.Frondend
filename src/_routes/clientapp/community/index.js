@@ -12,7 +12,7 @@ const CommunityRoutes = [
     children: [
       {
         path: navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT,
-        title: "Chattbox | Community",
+        title: "💬 Chattbox | Community",
         element: (
           <CLIENT_APP.COMMUNITY.DEFAULT
             requireAuth={true}

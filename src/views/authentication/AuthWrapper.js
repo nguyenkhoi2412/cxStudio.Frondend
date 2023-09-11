@@ -8,16 +8,14 @@ import bgAuth from "@assets/images/auth/bg-auth-behind.svg";
 // ==============================|| AUTHENTICATION 1 WRAPPER ||============================== //
 
 const AuthWrapperContainer = styled("div")(({ theme }) => ({
-  backgroundColor: theme.palette.primary.light,
   minHeight: "100vh",
   width: "100%",
   // backgroundImage: "url(https://source.unsplash.com/random)",
-  backgroundImage: "url(" + bgAuth + ")",
+  backgroundImage: (t) =>
+    theme.palette.mode === "light" ? "url(" + bgAuth + ")" : "none",
   backgroundRepeat: "no-repeat",
-  // backgroundColor: (t) =>
-  //   theme.palette.mode === "light"
-  //     ? theme.palette.grey[50]
-  //     : theme.palette.grey[900],
+  backgroundColor: (t) =>
+    theme.palette.mode === "light" ? theme.palette.primary.light : "transparent",
   backgroundSize: "cover",
   backgroundPosition: "center",
 }));
