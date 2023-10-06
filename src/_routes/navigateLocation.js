@@ -12,6 +12,7 @@ const SITE = DASHBOARD + "/site";
 const UTILITIES = DASHBOARD + "/utilities";
 const COMMUNITY = APP + MODULES.COMMUNITY + "/";
 const COMMUNITY_AUTH = COMMUNITY + "auth/";
+const COMMUNITY_ACCOUNT = COMMUNITY + "account/";
 
 export const navigateLocation = {
   DASHBOARD: {
@@ -60,6 +61,9 @@ export const navigateLocation = {
         SIGNUP: COMMUNITY_AUTH + "signup",
         FORGOT_PASSWORD: COMMUNITY_AUTH + "forgotpassword",
         CODE_VERIFICATION: COMMUNITY_AUTH + "codeverification",
+      },
+      ACCOUNT: {
+        SETTING: COMMUNITY_ACCOUNT + "setting",
       },
     },
   },

@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { navigateLocation } from "@routes/navigateLocation";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -9,12 +10,23 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import { BrowserView, MobileView } from "react-device-detect";
 
 // project imports
-// import MenuList from "./menuList";
+import MenuList from "./menuList";
 import LogoSection from "../logoSection";
-// import MenuCard from "./menuCard";
+import MenuCard from "./menuCard";
 import { drawerWidth } from "@constants";
 
+import menuSidebarSettings from "@clientapp/community/components/menuSidebar/settings";
+
 // ==============================|| SIDEBAR DRAWER ||============================== //
+
+const buildMenuItems = () => {
+  const locationPathname = window.location.pathname;
+  const menuItems = {};
+
+  menuItems[navigateLocation.CLIENT_APP.COMMUNITY.ACCOUNT.SETTING] = menuSidebarSettings;
+
+  return menuItems[locationPathname];
+};
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
   const theme = useTheme();
@@ -36,16 +48,14 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             paddingRight: "16px",
           }}
         >
-          <p>Menu Left</p>
-          {/* <MenuList /> */}
-          {/* <MenuCard /> */}
+          <MenuList navItems={buildMenuItems()} />
+          <MenuCard />
         </PerfectScrollbar>
       </BrowserView>
       <MobileView>
         <Box sx={{ px: 2 }}>
-        <p>Menu Left</p>
-          {/* <MenuList /> */}
-          {/* <MenuCard /> */}
+          <MenuList navItems={buildMenuItems()} />
+          <MenuCard />
         </Box>
       </MobileView>
     </>

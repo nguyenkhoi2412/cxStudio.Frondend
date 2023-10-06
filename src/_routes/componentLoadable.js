@@ -20,5 +20,8 @@ export const CLIENT_APP = {
   COMMUNITY: {
     LAYOUT: Loadable(lazy(() => import("@clientapp/community/_layout"))),
     DEFAULT: Loadable(lazy(() => import("@clientapp/community"))),
+    CHATBOX: {
+      DEFAULT: Loadable(lazy(() => import("@clientapp/community"))),
+    },
   },
 };

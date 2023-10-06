@@ -177,5 +177,8 @@
     "questions": "Questions",
     "answers": "Answers",
     "organize_courses": "Organize courses"
+  },
+  "community": {
+    "community": "Community"
   }
 }

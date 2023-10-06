@@ -220,7 +220,9 @@ const ProfileSection = () => {
                             currentUser.detailInfos.lastName}
                         </Typography>
                       </Stack>
-                      <Typography variant="subtitle2">Project Admin</Typography>
+                      <Typography variant="subtitle2">
+                        {t("community.community")}
+                      </Typography>
                     </Stack>
                     <OutlinedInput
                       sx={{ width: "100%", pr: 1, pl: 2, my: 2 }}
@@ -416,7 +418,8 @@ const ProfileSection = () => {
                               </Typography>
                             }
                           />
-                        </ListItemButton>
+                        </ListItemButton>*/}
+                        <Divider />
                         <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
@@ -426,21 +429,21 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               3,
-                              navigateLocation.ACCOUNT.CHANGE_PASSOWRD
+                              navigateLocation.CLIENT_APP.COMMUNITY.ACCOUNT.SETTING
                             )
                           }
                         >
                           <ListItemIcon>
-                            <IconLockSquareRounded stroke={1.5} size="1.3rem" />
+                            <IconSettings stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
                           <ListItemText
                             primary={
                               <Typography variant="body2">
-                                {t("user.changepassword")}
+                                {t("common.settings")}
                               </Typography>
                             }
                           />
-                        </ListItemButton> */}
+                        </ListItemButton>
                         <Divider />
                         <ListItemButton
                           sx={{
@@ -454,7 +457,9 @@ const ProfileSection = () => {
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              <Typography variant="body2">Logout</Typography>
+                              <Typography variant="body2">
+                                {t("authentication.signout")}
+                              </Typography>
                             }
                           />
                         </ListItemButton>
