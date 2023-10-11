@@ -4,8 +4,8 @@ import * as yup from "yup";
 export default {
   initialValues: () => {
     return {
-      username: process.env.DASHBOARD_USER_LOGIN || "nguyenkhoi2412@gmail.com",
-      password: process.env.DASHBOARD_USER_PASSWORD || "7654321aA@",
+      username: process.env.DASHBOARD_USER_LOGIN || "",
+      password: process.env.DASHBOARD_USER_PASSWORD || "",
     };
   },
   validation: () => {
