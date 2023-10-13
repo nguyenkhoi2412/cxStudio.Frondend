@@ -23,7 +23,8 @@ const buildMenuItems = () => {
   const locationPathname = window.location.pathname;
   const menuItems = {};
 
-  menuItems[navigateLocation.CLIENT_APP.COMMUNITY.ACCOUNT.SETTING] = menuSidebarSettings;
+  menuItems[navigateLocation.CLIENT_APP.COMMUNITY.ACCOUNT.SETTING] =
+    menuSidebarSettings;
 
   return menuItems[locationPathname];
 };
@@ -49,13 +50,13 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
           }}
         >
           <MenuList navItems={buildMenuItems()} />
-          <MenuCard />
+          {/* <MenuCard /> */}
         </PerfectScrollbar>
       </BrowserView>
       <MobileView>
         <Box sx={{ px: 2 }}>
           <MenuList navItems={buildMenuItems()} />
-          <MenuCard />
+          {/* <MenuCard /> */}
         </Box>
       </MobileView>
     </>

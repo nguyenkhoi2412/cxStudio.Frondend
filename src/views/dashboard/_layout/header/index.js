@@ -15,7 +15,7 @@ import NotificationSection from "./notificationSection";
 import MoreIconOnMobile from "./moreIconOnMobile";
 
 // assets
-import { IconMenu2 } from '@tabler/icons-react';
+import { IconMenu2 } from "@tabler/icons-react";
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
 const Header = ({ handleLeftDrawerToggle }) => {

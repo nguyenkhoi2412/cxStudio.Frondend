@@ -1,0 +1,40 @@
+.todo-app-container {
+  background: transparent;
+
+  .columns-task {
+    > .tasks {
+      height: 100vh;
+
+      .item {
+        cursor: grab;
+
+        .MuiCardHeader-root {
+          .MuiCardHeader-content {
+            .MuiCardHeader-title {
+              @include _textOverFlow(2);
+            }
+          }
+          .MuiCardHeader-action {
+            > button {
+              > .MuiAvatar-circular {
+                svg {
+                  transform: scale(0.8);
+                }
+              }
+            }
+          }
+        }
+
+        .MuiCardContent-root {
+          .item-desc {
+            @include _textOverFlow(2);
+          }
+
+          .item-act {
+            
+          }
+        }
+      }
+    }
+  }
+}

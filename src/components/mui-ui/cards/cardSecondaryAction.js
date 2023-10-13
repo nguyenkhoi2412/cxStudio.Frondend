@@ -7,12 +7,21 @@ import Avatar from "../extended/avatar";
 
 // ==============================|| CARD SECONDARY ACTION ||============================== //
 
-const CardSecondaryAction = ({ title, link, icon }) => {
+const CardSecondaryAction = ({ title, link, icon, cb = null }) => {
   const theme = useTheme();
+
+  const handleOnClick = (e) => {
+    e.preventDefault();
+
+    // check onClick is function
+    if (typeof cb === "function") {
+      cb();
+    }
+  };
 
   return (
     <Tooltip title={title || "Reference"} placement="left">
-      <ButtonBase disableRipple>
+      <ButtonBase disableRipple onClick={handleOnClick}>
         {!icon && (
           <Avatar
             component={Link}

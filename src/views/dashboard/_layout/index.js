@@ -17,7 +17,7 @@ import { drawerWidth } from "@constants";
 import { SET_MENU } from "@reduxproviders/berry/actions";
 
 // assets
-import { IconChevronRight }  from "@tabler/icons-react";
+import { IconChevronRight } from "@tabler/icons-react";
 
 //#region STYLE
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -115,7 +115,7 @@ const LayoutDashboard = () => {
       />
       {/* main content */}
       <Main className="wrapper-content" theme={theme} open={leftDrawerOpened}>
-        <Container>
+        <Container maxWidth={false} disableGutters>
           {/* breadcrumb */}
           <Breadcrumbs
             separator={IconChevronRight}
