@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 // material-ui
 import { Grid, Link } from "@mui/material";
@@ -15,16 +16,18 @@ const AuthMainContainer = ({ children, ...other }) => {
   const customization = useSelector((state) => state.customization);
 
   return (
-    <Grid container spacing={2} alignItems="center" justifyContent="center">
-      <Grid item sx={{ mb: 3 }}>
-        <Link to="#">
-          <Logo
-            src={customization.mode === "dark" ? LogoInDark : LogoInLight}
-          />
-        </Link>
+    <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+        <Grid item sx={{ mb: 3 }}>
+          <Link to="#">
+            <Logo
+              src={customization.mode === "dark" ? LogoInDark : LogoInLight}
+            />
+          </Link>
+        </Grid>
+        {children}
       </Grid>
-      {children}
-    </Grid>
+    </GoogleOAuthProvider>
   );
 };
 

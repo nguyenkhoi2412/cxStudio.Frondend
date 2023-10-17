@@ -1,5 +1,5 @@
 export default {
-  DASHBOARD: {
+  AUTH: {
     UID: "_db_uid",
     CURRENT_USER: "_db_currentuser",
     ACCESS_TOKEN: "_db_accesstoken",

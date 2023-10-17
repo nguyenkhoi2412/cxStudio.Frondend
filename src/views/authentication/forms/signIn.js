@@ -2,7 +2,11 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import {
+  helpersExtension,
+  objectExtension,
+} from "@utils/helpersExtension";
+import storageHandler from "@constants/storageHandler";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import { HTTP_STATUS } from "@constants/httpStatus";
@@ -24,6 +28,10 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
 import {
+  useGoogleLogin,
+  GoogleLogin,
+} from "@react-oauth/google";
+import {
   Divider,
   Typography,
   Button,
@@ -40,6 +48,7 @@ import { useDispatch } from "react-redux";
 import {
   VALIDATE_USER,
   SECURE_2FA_GENERATE_TOKEN,
+  SIGNIN_SOCIAL_GOOGLE,
 } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
@@ -64,31 +73,7 @@ const FormSignIn = () => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
 
-          if (response.code === HTTP_STATUS.OK) {
-            if (response.ok) {
-              if (response.rs.verified_token) {
-                // navigate(navigateLocation.DASHBOARD.DEFAULT);
-                navigate(navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT);
-              } else {
-                //* send code verify to email
-                dispatch(
-                  SECURE_2FA_GENERATE_TOKEN({
-                    id: response.rs.currentUser._id,
-                  })
-                );
-                //* verify 2FA
-                navigate(navigateLocation.DASHBOARD.AUTH.CODE_VERIFICATION);
-              }
-            } else {
-              //* show message
-              setShowMessageAlert(true);
-              setMessageContentAlert(t("authentication.wrong_credential"));
-            }
-          } else {
-            enqueueSnackbar(result.message, {
-              variant: severity.error,
-            });
-          }
+          responseValidate(response);
 
           formik.resetForm();
         })
@@ -102,6 +87,61 @@ const FormSignIn = () => {
           formik.resetForm();
         });
     });
+  };
+
+  const signInGoogle = useGoogleLogin({
+    onSuccess: async (results) => {
+      dispatch(SHOW_PROGRESSBAR());
+      await dispatch(
+        SIGNIN_SOCIAL_GOOGLE({ access_token: results.access_token })
+      )
+        .unwrap()
+        .then((response) => {
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+
+          responseValidate(response);
+          formik.resetForm();
+        })
+        .catch((error) => {
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+          // variant could be success, error, warning, info, or default
+          enqueueSnackbar(error, {
+            variant: severity.error,
+          });
+          formik.resetForm();
+        });
+    },
+    // flow: "auth-code",
+  });
+
+  const responseValidate = (response) => {
+    if (response.code === HTTP_STATUS.OK) {
+      if (response.ok) {
+        if (response.rs.verified_token) {
+          // navigate(navigateLocation.DASHBOARD.DEFAULT);
+          navigate(navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT);
+        } else {
+          //* send code verify to email
+          dispatch(
+            SECURE_2FA_GENERATE_TOKEN({
+              id: response.rs.currentUser._id,
+            })
+          );
+          //* verify 2FA
+          navigate(navigateLocation.DASHBOARD.AUTH.CODE_VERIFICATION);
+        }
+      } else {
+        //* show message
+        setShowMessageAlert(true);
+        setMessageContentAlert(t("authentication.wrong_credential"));
+      }
+    } else {
+      enqueueSnackbar(response.message, {
+        variant: severity.error,
+      });
+    }
   };
 
   //#region useFormik
@@ -144,7 +184,7 @@ const FormSignIn = () => {
               className="btn-google"
               disableElevation
               fullWidth
-              onClick={() => console.log("googleHandler")}
+              onClick={signInGoogle}
               size="large"
               variant="outlined"
             >

@@ -18,13 +18,13 @@ export const RequireAuth = ({
 };
 
 export const isLoggedIn = () => {
-  return true;
+  // return true;
   return (
     helpersExtension.checkIsNotNull(
-      localStorage.getItem(storageHandler.DASHBOARD.CURRENT_USER)
+      localStorage.getItem(storageHandler.AUTH.CURRENT_USER)
     ) &&
     helpersExtension.checkIsNotNull(
-      storedExtension.getCookie(storageHandler.DASHBOARD.ACCESS_TOKEN)
+      storedExtension.getCookie(storageHandler.AUTH.ACCESS_TOKEN)
     )
   );
 };
@@ -34,11 +34,11 @@ export const isAuth = () => {
 };
 
 const _isVerified_2fa = () => {
-  return true;
+  // return true;
   return helpersExtension.checkIsNotNull(
-    storedExtension.getCookie(storageHandler.DASHBOARD.VERIFIED_2FA)
+    storedExtension.getCookie(storageHandler.AUTH.VERIFIED_2FA)
   )
-    ? storedExtension.getCookie(storageHandler.DASHBOARD.VERIFIED_2FA) ===
+    ? storedExtension.getCookie(storageHandler.AUTH.VERIFIED_2FA) ===
         "true"
     : false;
 };

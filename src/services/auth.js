@@ -1,25 +1,60 @@
 import axios from "@utils/axio.instance";
 import encryptHelper from "@utils/encrypt.helper";
-import { objectExtension } from "@utils/helpersExtension";
+import storageHandler from "@constants/storageHandler";
+import { ROLE } from "@constants/enumRoles";
+import {
+  helpersExtension,
+  objectExtension,
+  storedExtension,
+} from "@utils/helpersExtension";
 
 export default {
   findByUser: (params) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       params.username = encryptHelper.rsa.encrypt(params.username);
 
-      axios
+      await axios
         .post(`auth/findbyuser/`, params)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
   },
   validateUser: (params) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       params.username = encryptHelper.rsa.encrypt(params.username);
       params.password = encryptHelper.rsa.encrypt(params.password);
 
-      axios
+      await axios
         .get(objectExtension.parseToQueryString("auth/validate/", params))
+        .then((response) => resolve(response))
+        .catch((error) => reject(error));
+    });
+  },
+  signInGoogle: (params) => {
+    return new Promise(async (resolve, reject) => {
+      // get userinfos from google account
+      const infoGoogle = await new Promise((resolve, reject) => {
+        axios
+          .get(`https://www.googleapis.com/oauth2/v3/userinfo/`, {
+            withCredentials: false,
+            headers: { Authorization: `Bearer ${params.access_token}` },
+          })
+          .then((response) => resolve(response))
+          .catch((error) => reject(error));
+      });
+
+      const userInfo = {
+        username: encryptHelper.rsa.encrypt(infoGoogle.email),
+        role: ROLE.USER.name,
+        detailInfos: {
+          firstName: infoGoogle.family_name ?? "",
+          lastName: infoGoogle.given_name ?? "",
+          avatarPath: infoGoogle.picture ?? "",
+        },
+      };
+      //
+      axios
+        .post("auth/google/", userInfo)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });

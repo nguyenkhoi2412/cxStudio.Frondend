@@ -34,7 +34,7 @@ axiosInstance.interceptors.request.use(
     // Do something before request is sent
     const accessToken = getLocalAccessToken();
 
-    if (accessToken !== null) {
+    if (accessToken !== null && accessToken !== undefined) {
       request.headers["Authorization"] = "Bearer " + accessToken;
       // request.headers["X-Access-Token"] = "Bearer " + accessToken;
     }
@@ -57,11 +57,11 @@ axiosInstance.interceptors.response.use(
   (responseError) => {
     console.log("responseError", responseError);
     // 405: Method Not Allowed
-    if (responseError.response.status !== 405) {
+    if (responseError.response?.status !== 405) {
       removeLocalToken();
 
       // Return any error which is not due to authentication back to the calling service
-      if (responseError.response.status !== 401) {
+      if (responseError.response?.status !== 401) {
         return Promise.reject(responseError);
       }
       /*
@@ -93,18 +93,18 @@ axiosInstance.interceptors.response.use(
 
 //#region functions support for axios callback
 const getLocalRefreshToken = () => {
-  return storedExtension.getCookie(stored.DASHBOARD.REFRESH_TOKEN);
+  return storedExtension.getCookie(stored.AUTH.REFRESH_TOKEN);
 };
 
 const getLocalAccessToken = () => {
-  return storedExtension.getCookie(stored.DASHBOARD.ACCESS_TOKEN);
+  return storedExtension.getCookie(stored.AUTH.ACCESS_TOKEN);
 };
 
 const removeLocalToken = () => {
   // const module = CURRENT_MODULES();
-  // localStorage.removeItem(stored.DASHBOARD.CURRENT_USER);
-  // storedExtension.removeCookie(stored.DASHBOARD.ACCESS_TOKEN);
-  // storedExtension.removeCookie(stored.DASHBOARD.REFRESH_TOKEN);
+  // localStorage.removeItem(stored.AUTH.CURRENT_USER);
+  // storedExtension.removeCookie(stored.AUTH.ACCESS_TOKEN);
+  // storedExtension.removeCookie(stored.AUTH.REFRESH_TOKEN);
   // window.location.href = "/" + module + "/login";
 };
 

@@ -62,12 +62,19 @@ export const USER_UPDATE_INFO = createAsyncThunk(
     return await baseServices.update("user/update", params);
   }
 );
+
+export const SIGNIN_SOCIAL_GOOGLE = createAsyncThunk(
+  "auth/social/google",
+  async (params, thunkAPI) => {
+    return await authServices.signInGoogle(params);
+  }
+);
 //#endregion
 
 const currentUser = () => {
-  if (localStorage.getItem(storageHandler.DASHBOARD.CURRENT_USER)) {
+  if (localStorage.getItem(storageHandler.AUTH.CURRENT_USER)) {
     return JSON.parse(
-      localStorage.getItem(storageHandler.DASHBOARD.CURRENT_USER)
+      localStorage.getItem(storageHandler.AUTH.CURRENT_USER)
     );
   }
 
@@ -95,10 +102,10 @@ export const auth = createSlice({
   initialState: initialState,
   reducers: {
     SIGN_OUT: (state) => {
-      localStorage.removeItem(storageHandler.DASHBOARD.CURRENT_USER);
-      storedExtension.removeCookie(storageHandler.DASHBOARD.ACCESS_TOKEN);
-      storedExtension.removeCookie(storageHandler.DASHBOARD.REFRESH_TOKEN);
-      storedExtension.removeCookie(storageHandler.DASHBOARD.VERIFIED_2FA);
+      localStorage.removeItem(storageHandler.AUTH.CURRENT_USER);
+      storedExtension.removeCookie(storageHandler.AUTH.ACCESS_TOKEN);
+      storedExtension.removeCookie(storageHandler.AUTH.REFRESH_TOKEN);
+      storedExtension.removeCookie(storageHandler.AUTH.VERIFIED_2FA);
 
       return { ...state, ...initialState };
     },
@@ -138,23 +145,23 @@ export const auth = createSlice({
       if (response.ok) {
         // save localStore USER INFOS
         localStorage.setItem(
-          storageHandler.DASHBOARD.CURRENT_USER,
+          storageHandler.AUTH.CURRENT_USER,
           JSON.stringify(newState.currentUser)
         );
 
         // save token to cookie
         storedExtension.setCookie(
-          storageHandler.DASHBOARD.VERIFIED_2FA,
+          storageHandler.AUTH.VERIFIED_2FA,
           results.verified_token + ""
         );
 
         storedExtension.setCookie(
-          storageHandler.DASHBOARD.ACCESS_TOKEN,
+          storageHandler.AUTH.ACCESS_TOKEN,
           results.access_token
         );
 
         // storedExtension.setCookie(
-        //   storageHandler.DASHBOARD.REFRESH_TOKEN,
+        //   storageHandler.AUTH.REFRESH_TOKEN,
         //   results.refresh_token
         // );
       }
@@ -195,10 +202,10 @@ export const auth = createSlice({
         };
 
         if (response.ok) {
-          localStorage.removeItem(storageHandler.DASHBOARD.CURRENT_USER);
+          localStorage.removeItem(storageHandler.AUTH.CURRENT_USER);
           // save localStore USER INFOS
           localStorage.setItem(
-            storageHandler.DASHBOARD.CURRENT_USER,
+            storageHandler.AUTH.CURRENT_USER,
             JSON.stringify(newState.currentUser)
           );
         }
@@ -231,12 +238,12 @@ export const auth = createSlice({
       if (response.ok) {
         // save token to cookie
         storedExtension.setCookie(
-          storageHandler.DASHBOARD.VERIFIED_2FA,
+          storageHandler.AUTH.VERIFIED_2FA,
           results.verified_token + ""
         );
 
         storedExtension.setCookie(
-          storageHandler.DASHBOARD.ACCESS_TOKEN,
+          storageHandler.AUTH.ACCESS_TOKEN,
           results.access_token
         );
       }
@@ -245,6 +252,64 @@ export const auth = createSlice({
         ...state,
         isFetching: false,
       };
+    },
+    //#endregion
+    //#region SIGNIN_SOCIAL_GOOGLE
+    [SIGNIN_SOCIAL_GOOGLE.pending]: (state) => {
+      return {
+        ...state,
+        isFetching: true,
+      };
+    },
+    [SIGNIN_SOCIAL_GOOGLE.rejected]: (state) => {
+      return {
+        ...state,
+        isFetching: false,
+      };
+    },
+    [SIGNIN_SOCIAL_GOOGLE.fulfilled]: (state, action) => {
+      const response = action.payload;
+      const results = response.rs;
+
+      const newState = {
+        ...state,
+        isFetching: false,
+        ok: response.ok,
+        message: response.message,
+        currentUser: {
+          ...results.currentUser,
+          isAdmin: results?.currentUser?.role === ROLE.ADMIN.name,
+          isSupervisor: results?.currentUser?.role === ROLE.SUPERVISOR.name,
+          isUser: results?.currentUser?.role === ROLE.USER.name,
+          isVisitor: results?.currentUser?.role === ROLE.VISITOR.name,
+        },
+      };
+
+      if (response.ok) {
+        // save localStore USER INFOS
+        localStorage.setItem(
+          storageHandler.AUTH.CURRENT_USER,
+          JSON.stringify(newState.currentUser)
+        );
+
+        // save token to cookie
+        storedExtension.setCookie(
+          storageHandler.AUTH.VERIFIED_2FA,
+          results.verified_token + ""
+        );
+
+        storedExtension.setCookie(
+          storageHandler.AUTH.ACCESS_TOKEN,
+          results.access_token
+        );
+
+        // storedExtension.setCookie(
+        //   storageHandler.AUTH.REFRESH_TOKEN,
+        //   results.refresh_token
+        // );
+      }
+
+      return newState;
     },
     //#endregion
   },

@@ -17,7 +17,7 @@ module.exports = {
     },
   },
   devServer: {
-    host: "cxstudio.vn",
+    // host: "cxstudio.vn",
     port: 2001,
   },
   plugins: [
