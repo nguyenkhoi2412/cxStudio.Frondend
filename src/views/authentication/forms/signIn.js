@@ -2,10 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import {
-  helpersExtension,
-  objectExtension,
-} from "@utils/helpersExtension";
+import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import storageHandler from "@constants/storageHandler";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
@@ -27,10 +24,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
-import {
-  useGoogleLogin,
-  GoogleLogin,
-} from "@react-oauth/google";
+import { useGoogleLogin, GoogleLogin } from "@react-oauth/google";
 import {
   Divider,
   Typography,
@@ -72,7 +66,6 @@ const FormSignIn = () => {
         .then((response) => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
-
           responseValidate(response);
 
           formik.resetForm();

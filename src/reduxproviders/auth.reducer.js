@@ -73,9 +73,7 @@ export const SIGNIN_SOCIAL_GOOGLE = createAsyncThunk(
 
 const currentUser = () => {
   if (localStorage.getItem(storageHandler.AUTH.CURRENT_USER)) {
-    return JSON.parse(
-      localStorage.getItem(storageHandler.AUTH.CURRENT_USER)
-    );
+    return JSON.parse(localStorage.getItem(storageHandler.AUTH.CURRENT_USER));
   }
 
   return {
