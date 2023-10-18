@@ -123,7 +123,7 @@ const FormSignIn = () => {
             })
           );
           //* verify 2FA
-          navigate(navigateLocation.DASHBOARD.AUTH.CODE_VERIFICATION);
+          navigate(navigateLocation.CLIENT_APP.COMMUNITY.AUTH.CODE_VERIFICATION);
         }
       } else {
         //* show message
