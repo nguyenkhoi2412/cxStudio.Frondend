@@ -9,7 +9,7 @@ export const initialState = {
   defaultId: "default",
   fontFamily: configSettings.fontFamily,
   borderRadius: configSettings.borderRadius,
-  opened: true,
+  opened: false,
   mode: configSettings.mode,
 };
 

@@ -29,17 +29,16 @@ import { DASHBOARD } from "@routes/componentLoadable";
 // ==============================|| MAIN ROUTING ||============================== //
 
 const DashboardRoutes = [
-  ...AuthenticationRoutes,
   {
-    path: "/dashboard",
+    path: "/",
     element: <DASHBOARD.LAYOUT />,
     children: [
       {
-        path: navigateLocation.DASHBOARD.DEFAULT,
-        title: "Dashboard",
+        path: "/",
+        title: "",
         element: (
           <DASHBOARD.DEFAULT
-            requireAuth={true}
+            requireAuth={false}
             redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}
             title="DashboardDefault"
           />

@@ -11,17 +11,3 @@ export const DASHBOARD = {
 export const ERROR = {
   PAGE_NOTFOUND: Loadable(lazy(() => import("@views/errors/pageNotFound"))),
 };
-
-// ==============================|| CLIENT_APP ||============================== //
-export const CLIENT_APP = {
-  LAYOUT: Loadable(lazy(() => import("@clientapp/_layout"))),
-  DEFAULT: Loadable(lazy(() => import("@clientapp/home"))),
-  HOME: Loadable(lazy(() => import("@clientapp/home"))),
-  COMMUNITY: {
-    LAYOUT: Loadable(lazy(() => import("@clientapp/community/_layout"))),
-    DEFAULT: Loadable(lazy(() => import("@clientapp/community"))),
-    CHATBOX: {
-      DEFAULT: Loadable(lazy(() => import("@clientapp/community"))),
-    },
-  },
-};

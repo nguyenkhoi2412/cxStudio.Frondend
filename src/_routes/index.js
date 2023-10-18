@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 // routes
 // import AuthenticationRoutes from "./data/authentication";
 import DashboardRoutes from "./dashboard";
-import ClientAppRoutes from "./clientapp";
 // import AuthenticationRoutes from './AuthenticationRoutes';
 
 // ==============================|| ROUTING RENDER ||============================== //
@@ -16,7 +15,7 @@ export const BuildRoutes = () => {
 };
 
 export const RouteMaps = () => {
-  return [...DashboardRoutes, ...ClientAppRoutes];
+  return [...DashboardRoutes];
 };
 
 const buildTitle = () => {
