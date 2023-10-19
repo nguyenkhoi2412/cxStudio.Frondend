@@ -24,10 +24,9 @@ import {
   SHOW_PROGRESSBAR,
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   CHANGE_PASSWORD,
-  currentUserState,
 } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
@@ -35,7 +34,6 @@ import AnimateButton from "@components/mui-ui/extended/animateButton";
 const FormChangePassword = () => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
-  const currentUser = useSelector(currentUserState);
   const dispatch = useDispatch();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();

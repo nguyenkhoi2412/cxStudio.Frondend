@@ -2,11 +2,8 @@ import "../_auth.scss";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 //#region mui-ui
-import Link from "@mui/material/Link";
-import { hookInstance } from "@utils/hookInstance";
-import { navigateLocation } from "@routes/navigateLocation";
 import { useTheme } from "@mui/material/styles";
-import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
 //#region components
 import AuthWrapper from "../authWrapper";
@@ -22,7 +19,6 @@ import { currentUserState } from "@reduxproviders/auth.reducer";
 
 const ChangePassword = (props) => {
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
   const currentUser = useSelector(currentUserState);

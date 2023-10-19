@@ -20,7 +20,6 @@ import FormForgotPassword from "../forms/forgotPassword";
 
 const ForgotPassword = (props) => {
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 
