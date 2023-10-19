@@ -6,9 +6,6 @@ import AccountCommunityRoutes from "./_account";
 import ErrorRoutes from "./_error";
 
 const CommunityRoutes = [
-  ...ErrorRoutes,
-  ...AuthenticationRoutes,
-  ...AccountCommunityRoutes,
   {
     element: <CLIENT_APP.COMMUNITY.LAYOUT />,
     children: [
@@ -24,6 +21,9 @@ const CommunityRoutes = [
       },
     ],
   },
+  ...ErrorRoutes,
+  ...AuthenticationRoutes,
+  ...AccountCommunityRoutes,
 ];
 
 export default CommunityRoutes;

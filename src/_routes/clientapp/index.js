@@ -9,12 +9,19 @@ import CommunityRoutes from "./community";
 
 const ClientAppRoutes = [
   {
-    element: <CLIENT_APP.LAYOUT />,
+    // element: <CLIENT_APP.LAYOUT />,
+    element: <CLIENT_APP.COMMUNITY.LAYOUT />,
     children: [
       {
         path: navigateLocation.CLIENT_APP.ASSET_PATH,
-        title: "Social profile",
-        element: <CLIENT_APP.HOME />,
+        title: "💬 Chatbox | Community",
+        // element: <CLIENT_APP.HOME />,
+        element: (
+          <CLIENT_APP.COMMUNITY.DEFAULT
+            requireAuth={true}
+            redirectTo={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
+          />
+        ),
       },
     ],
   },
