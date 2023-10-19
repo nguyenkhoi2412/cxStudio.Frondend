@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
-import storageHandler from "@constants/storageHandler";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import { HTTP_STATUS } from "@constants/httpStatus";
@@ -24,7 +23,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
-import { useGoogleLogin, GoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import {
   Divider,
   Typography,
@@ -92,7 +91,6 @@ const FormSignIn = () => {
         .then((response) => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
-
           responseValidate(response);
           formik.resetForm();
         })
@@ -113,17 +111,12 @@ const FormSignIn = () => {
     if (response.code === HTTP_STATUS.OK) {
       if (response.ok) {
         if (response.rs.verified_token) {
-          // navigate(navigateLocation.DASHBOARD.DEFAULT);
           navigate(navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT);
         } else {
-          //* send code verify to email
-          dispatch(
-            SECURE_2FA_GENERATE_TOKEN({
-              id: response.rs.currentUser._id,
-            })
-          );
           //* verify 2FA
-          navigate(navigateLocation.CLIENT_APP.COMMUNITY.AUTH.CODE_VERIFICATION);
+          navigate(
+            navigateLocation.CLIENT_APP.COMMUNITY.AUTH.CODE_VERIFICATION
+          );
         }
       } else {
         //* show message

@@ -1,8 +1,6 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
 import _schema from "./_schema";
-import { hookInstance } from "@utils/hookInstance";
 import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
 import Link from "@mui/material/Link";
@@ -19,7 +17,6 @@ import FormSignIn from "../forms/signIn";
 
 const SignIn = (props) => {
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

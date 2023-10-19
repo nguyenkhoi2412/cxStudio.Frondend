@@ -1,6 +1,5 @@
 import "../_auth.scss";
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
 import { navigateLocation } from "@routes/navigateLocation";
 import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
@@ -8,7 +7,6 @@ import _schema from "./_schema";
 import Link from "@mui/material/Link";
 import { useSnackbar } from "notistack";
 import { stringExtension } from "@utils/helpersExtension";
-import { hookInstance } from "@utils/hookInstance";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
@@ -29,7 +27,6 @@ import {
 
 const CodeVerification = (props) => {
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
   const { enqueueSnackbar } = useSnackbar();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
@@ -88,7 +85,7 @@ const CodeVerification = (props) => {
                     fontSize="16px"
                     textAlign={matchDownSM ? "center" : "inherit"}
                   >
-                    {t("authentication.wesendyouonemail")}
+                    {t("authentication.enter_code_from_authenticator_app")}
                   </Typography>
                   <Typography
                     variant="caption"
@@ -108,7 +105,7 @@ const CodeVerification = (props) => {
             <Divider />
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={2} className="resend-code">
+            {/* <Grid container spacing={2} className="resend-code">
               <Grid item xs={8}>
                 <Typography
                   variant="caption"
@@ -134,7 +131,7 @@ const CodeVerification = (props) => {
                   </Link>
                 </Typography>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Grid item xs={12}>
             <Divider
@@ -144,15 +141,15 @@ const CodeVerification = (props) => {
             <Grid item container direction="column" alignItems="center" xs={12}>
               <Stack alignItems="center" justifyContent="center" spacing={1}>
                 <Link
-                  href={navigateLocation.DASHBOARD.AUTH.SIGNIN}
+                  href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}
                 >
-                  {t("authentication.alreadyhaveanaccount")}
+                  {t("authentication.goback_signin")}
                 </Link>
                 <Link
-                  href={navigateLocation.DASHBOARD.AUTH.SIGNUP}
+                  href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNUP}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}

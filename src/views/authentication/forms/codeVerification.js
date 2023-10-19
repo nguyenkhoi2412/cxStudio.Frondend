@@ -59,7 +59,7 @@ const FormCodeVerification = () => {
 
           if (result.code === HTTP_STATUS.OK) {
             if (result.ok) {
-              navigate(navigateLocation.DASHBOARD.DEFAULT);
+              navigate(navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT);
             } else {
               setShowMessageAlert(true);
               setMessageContentAlert(result.message);
@@ -73,6 +73,7 @@ const FormCodeVerification = () => {
           formik.resetForm();
         })
         .catch((error) => {
+          setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
           enqueueSnackbar(error, {
@@ -98,7 +99,6 @@ const FormCodeVerification = () => {
     onSubmit: (values) => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
-
       validateSecure2FA(values);
     },
   });

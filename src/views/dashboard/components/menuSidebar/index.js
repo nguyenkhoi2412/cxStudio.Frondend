@@ -1,5 +1,4 @@
 import settings from "./settings";
-import surveyin from "./surveyin";
 // import dashboard from "./dashboard";
 import utilities from "./utilities";
 // import other from "./other";
@@ -7,7 +6,7 @@ import utilities from "./utilities";
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-  items: [settings, surveyin, utilities],
+  items: [settings, utilities],
 };
 
 export default menuItems;

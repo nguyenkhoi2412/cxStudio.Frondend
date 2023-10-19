@@ -1,4 +1,4 @@
-import { MODULES } from "./_modules";
+import { MODULES } from "@routes/_modules";
 import vars from "@constants/variables";
 
 const ASSET_PATH = vars.ASSET_PATH;
