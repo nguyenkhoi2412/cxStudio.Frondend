@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
+import { socialSignIn } from "@constants";
 import { HTTP_STATUS } from "@constants/httpStatus";
 import InputField from "@components/forms/inputField";
 import _schema from "./../signIn/_schema";
@@ -43,7 +44,7 @@ import {
 } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
-import SocialExternal from "./socialExternal";
+import SocialButton from "./socialButtons";
 
 const FormSignIn = () => {
   const theme = useTheme();
@@ -163,7 +164,7 @@ const FormSignIn = () => {
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
-        <SocialExternal socialType={["GOOGLE"]} />
+        <SocialButton socialSignIn={socialSignIn} />
         <Grid item xs={12}>
           <Box
             sx={{

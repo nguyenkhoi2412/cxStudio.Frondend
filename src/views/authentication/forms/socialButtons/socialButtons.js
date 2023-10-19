@@ -22,18 +22,19 @@ import { SIGNIN_SOCIAL_GOOGLE } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
-const SocialExternal = (props) => {
+const SocialButton = (props) => {
   const navigate = useNavigate();
 
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-  const [socialType, setSocialType] = React.useState(["GOOGLE"]);
+  const [socialSignIn, setSocialSignIn] = React.useState(["GOOGLE"]);
 
   //#region useHook
   React.useEffect(() => {
-    setSocialType(props.socialType);
-  }, [props.socialType]);
+    if (props.socialSignIn !== undefined && props.socialSignIn !== null)
+      setSocialSignIn(props.socialSignIn);
+  }, [props.socialSignIn]);
   //#endregion
 
   //#region handle events
@@ -112,11 +113,11 @@ const SocialExternal = (props) => {
 
   return (
     <>
-      {socialType?.map((s) => {
+      {socialSignIn?.map((s) => {
         return renderSocialExternal[s]();
       })}
     </>
   );
 };
 
-export default SocialExternal;
+export default SocialButton;
