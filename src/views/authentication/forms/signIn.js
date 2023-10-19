@@ -8,7 +8,6 @@ import { useSnackbar } from "notistack";
 import { HTTP_STATUS } from "@constants/httpStatus";
 import InputField from "@components/forms/inputField";
 import _schema from "./../signIn/_schema";
-import Google from "@assets/images/icons/social-google.svg";
 import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
@@ -40,11 +39,11 @@ import {
 import { useDispatch } from "react-redux";
 import {
   VALIDATE_USER,
-  SECURE_2FA_GENERATE_TOKEN,
   SIGNIN_SOCIAL_GOOGLE,
 } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
+import SocialExternal from "./socialExternal";
 
 const FormSignIn = () => {
   const theme = useTheme();
@@ -164,23 +163,7 @@ const FormSignIn = () => {
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid item xs={12}>
-          <AnimateButton>
-            <Button
-              className="btn-google"
-              disableElevation
-              fullWidth
-              onClick={signInGoogle}
-              size="large"
-              variant="outlined"
-            >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img src={Google} alt="google" width={16} height={16} />
-              </Box>
-              {t("authentication.signinwithgoogle")}
-            </Button>
-          </AnimateButton>
-        </Grid>
+        <SocialExternal socialType={["GOOGLE"]} />
         <Grid item xs={12}>
           <Box
             sx={{
