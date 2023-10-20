@@ -22,7 +22,7 @@ import { SIGNIN_SOCIAL_GOOGLE } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
-const SocialButton = (props) => {
+const SocialButtons = (props) => {
   const navigate = useNavigate();
 
   const { t } = useTranslation();
@@ -120,4 +120,4 @@ const SocialButton = (props) => {
   );
 };
 
-export default SocialButton;
+export default SocialButtons;

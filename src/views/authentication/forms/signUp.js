@@ -7,7 +7,7 @@ import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import SelectField from "@components/forms/selectField";
 import _schema from "./../signUp/_schema";
-import Google from "@assets/images/icons/social-google.svg";
+import { socialSignIn } from "@constants";
 import { useTheme } from "@mui/material/styles";
 import { HTTP_STATUS } from "@constants/httpStatus.js";
 //#region mui-ui
@@ -29,11 +29,12 @@ import {
   SHOW_PROGRESSBAR,
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
-import { useDispatch, useSelector } from "react-redux";
-import { REGISTER_USER, authState } from "@reduxproviders/auth.reducer";
-import { ROLE_GET_ALL, roleState } from "@reduxproviders/role.reducer";
+import { useDispatch } from "react-redux";
+import { REGISTER_USER } from "@reduxproviders/auth.reducer";
+import { ROLE_GET_ALL } from "@reduxproviders/role.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
+import SocialButtons from "./socialButtons";
 
 const FormSignUp = () => {
   const theme = useTheme();
@@ -160,22 +161,7 @@ const FormSignUp = () => {
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid item xs={12}>
-          <AnimateButton>
-            <Button
-              variant="outlined"
-              fullWidth
-              onClick={() => console.log("googleHandler")}
-              size="large"
-              className="btn-google"
-            >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img src={Google} alt="google" width={16} height={16} />
-              </Box>
-              {t("authentication.signupwithgoogle")}
-            </Button>
-          </AnimateButton>
-        </Grid>
+        <SocialButtons socialSignIn={socialSignIn} />
         <Grid item xs={12}>
           <Box sx={{ alignItems: "center", display: "flex" }}>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />

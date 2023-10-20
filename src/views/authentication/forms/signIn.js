@@ -44,7 +44,7 @@ import {
 } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
-import SocialButton from "./socialButtons";
+import SocialButtons from "./socialButtons";
 
 const FormSignIn = () => {
   const theme = useTheme();
@@ -164,7 +164,7 @@ const FormSignIn = () => {
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
-        <SocialButton socialSignIn={socialSignIn} />
+        <SocialButtons socialSignIn={socialSignIn} />
         <Grid item xs={12}>
           <Box
             sx={{
