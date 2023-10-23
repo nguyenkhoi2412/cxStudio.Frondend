@@ -64,7 +64,7 @@ const SocialButtons = (props) => {
     if (response.code === HTTP_STATUS.OK) {
       if (response.ok) {
         if (response.rs.verified_token) {
-          navigate(navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT);
+          navigate(navigateLocation.CLIENT_APP.ASSET_PATH);
         } else {
           //* verify 2FA
           navigate(
@@ -89,7 +89,7 @@ const SocialButtons = (props) => {
   const renderSocialExternal = {
     GOOGLE: () => {
       return (
-        <Grid item xs={12}>
+        <Grid key={"key_btn_google"} item xs={12}>
           <AnimateButton>
             <Button
               className="btn-google"

@@ -111,7 +111,7 @@ const FormSignIn = () => {
     if (response.code === HTTP_STATUS.OK) {
       if (response.ok) {
         if (response.rs.verified_token) {
-          navigate(navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT);
+          navigate(navigateLocation.CLIENT_APP.ASSET_PATH);
         } else {
           //* verify 2FA
           navigate(

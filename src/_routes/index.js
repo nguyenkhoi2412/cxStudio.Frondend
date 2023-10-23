@@ -25,21 +25,22 @@ const buildTitle = () => {
   const { pathname } = currentLocation;
 
   React.useEffect(() => {
-    let currentTitle = {
-      title: "No title???",
-    };
+    let currentTitle = null;
     const currentRoute = RouteMaps().find((item) => {
       const { children } = item;
       if (!children) {
         return item.path === pathname;
       } else {
-        currentTitle = children.find((child) => child.path === pathname);
+        return children.find((child) => {
+          if (child.path === pathname) {
+            currentTitle = child?.title;
+            return child;
+          }
+        });
       }
     });
 
-    currentTitle = currentRoute?.title || currentTitle?.title;
-    if (currentTitle) {
-      document.title = t(currentTitle);
-    }
+    if (currentTitle === null) currentTitle = currentRoute?.title || "";
+    document.title = t(currentTitle);
   }, [currentLocation]);
 };
