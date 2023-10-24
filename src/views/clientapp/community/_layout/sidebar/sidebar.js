@@ -11,7 +11,7 @@ import { BrowserView, MobileView } from "react-device-detect";
 
 // project imports
 import MenuList from "./menuList";
-import LogoSection from "../logoSection";
+import LogoSection from "@clientapp/community/_layout/logoSection";
 import MenuCard from "./menuCard";
 import { drawerWidth } from "@constants";
 

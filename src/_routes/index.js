@@ -16,7 +16,7 @@ export const BuildRoutes = () => {
 };
 
 export const RouteMaps = () => {
-  return [...DashboardRoutes, ...ClientAppRoutes];
+  return [ ...ClientAppRoutes];
 };
 
 const buildTitle = () => {

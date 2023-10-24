@@ -52,6 +52,7 @@ export const navigateLocation = {
     PAGE_NOTFOUND: ERROR + "/pagenotfound",
   },
   CLIENT_APP: {
+    INDEX: "",
     ASSET_PATH: ASSET_PATH,
     HOME: ASSET_PATH + "home",
     APP: ASSET_PATH + "app",

@@ -1,6 +1,5 @@
-import { Navigate } from "react-router-dom";
 import { navigateLocation } from "../navigateLocation";
-import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
+import AppCommunity from "@constants/app";
 
 // project imports
 import { CLIENT_APP } from "@routes/componentLoadable";
@@ -10,7 +9,9 @@ import CommunityRoutes from "./community";
 const ClientAppRoutes = [
   {
     // element: <CLIENT_APP.LAYOUT />,
-    element: <CLIENT_APP.COMMUNITY.CHATBOX.LAYOUT />,
+    element: (
+      <CLIENT_APP.COMMUNITY.LAYOUT appName={AppCommunity.COMMUNITY.CHATBOX} />
+    ),
     children: [
       {
         path: navigateLocation.CLIENT_APP.ASSET_PATH,

@@ -12,7 +12,7 @@ import { Container, AppBar, Box, Toolbar, useMediaQuery } from "@mui/material";
 //#region Procjects import
 import Header from "./header";
 import Sidebar from "./sidebar";
-import SidebarChatbox from "@clientapp/community/chatbox/_layout/sidebar";
+import Chatbar from "@clientapp/community/chatbox/components/chatbar";
 import Customization from "./customization";
 import React from "react";
 //#endregion
@@ -93,7 +93,7 @@ const LayoutCommunity = ({ appName }) => {
     const sidebar = {
       [APP.COMMUNITY.CHATBOX]: () => {
         return (
-          <SidebarChatbox
+          <Chatbar
             drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened}
             drawerToggle={handleLeftDrawerToggle}
           />

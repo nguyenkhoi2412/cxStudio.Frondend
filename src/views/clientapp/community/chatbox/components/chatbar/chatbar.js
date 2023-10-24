@@ -29,7 +29,7 @@ const buildMenuItems = () => {
   return menuItems[locationPathname];
 };
 
-const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
+const Chatbar = ({ drawerOpen, drawerToggle, window }) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -98,10 +98,10 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
   );
 };
 
-Sidebar.propTypes = {
+Chatbar.propTypes = {
   drawerOpen: PropTypes.bool,
   drawerToggle: PropTypes.func,
   window: PropTypes.object,
 };
 
-export default Sidebar;
+export default Chatbar;

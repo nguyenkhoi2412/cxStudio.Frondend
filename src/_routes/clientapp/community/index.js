@@ -2,7 +2,6 @@ import { Navigate } from "react-router-dom";
 import { navigateLocation } from "@routes/navigateLocation";
 import { CLIENT_APP } from "@routes/componentLoadable";
 import AuthenticationRoutes from "./_auth";
-import AccountCommunityRoutes from "./_account";
 import ChatBoxCommunityRoutes from "./_chatbox";
 import ErrorRoutes from "./_error";
 
@@ -24,7 +23,6 @@ const CommunityRoutes = [
   },
   ...ErrorRoutes,
   ...AuthenticationRoutes,
-  ...AccountCommunityRoutes,
   ...ChatBoxCommunityRoutes,
 ];
 
