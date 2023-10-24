@@ -20,8 +20,10 @@ export const CLIENT_APP = {
   COMMUNITY: {
     LAYOUT: Loadable(lazy(() => import("@clientapp/community/_layout"))),
     DEFAULT: Loadable(lazy(() => import("@clientapp/community"))),
+    //#region CHATBOX
     CHATBOX: {
-      DEFAULT: Loadable(lazy(() => import("@clientapp/community"))),
+      DEFAULT: Loadable(lazy(() => import("@clientapp/community/chatbox"))),
     },
+    //#endregion
   },
 };

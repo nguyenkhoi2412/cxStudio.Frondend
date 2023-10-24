@@ -13,6 +13,7 @@ const UTILITIES = DASHBOARD + "/utilities";
 const COMMUNITY = APP + MODULES.COMMUNITY;
 const COMMUNITY_AUTH = COMMUNITY + "/auth";
 const COMMUNITY_ACCOUNT = COMMUNITY + "/account";
+const COMMUNITY_CHATBOX = COMMUNITY + "/chatbox";
 
 export const navigateLocation = {
   DASHBOARD: {
@@ -54,8 +55,9 @@ export const navigateLocation = {
     ASSET_PATH: ASSET_PATH,
     HOME: ASSET_PATH + "home",
     APP: ASSET_PATH + "app",
+    //#region COMMUNITY
     COMMUNITY: {
-      DEFAULT: COMMUNITY,
+      INDEX: COMMUNITY,
       AUTH: {
         SIGNIN: COMMUNITY_AUTH + "/signin",
         SIGNUP: COMMUNITY_AUTH + "/signup",
@@ -65,6 +67,10 @@ export const navigateLocation = {
       ACCOUNT: {
         SETTING: COMMUNITY_ACCOUNT + "/setting",
       },
+      CHATBOX: {
+        INDEX: COMMUNITY_CHATBOX,
+      },
     },
+    //#endregion
   },
 };

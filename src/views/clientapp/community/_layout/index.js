@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_MENU } from "@reduxproviders/berry/actions";
 import { drawerWidth } from "@constants";
+import APP from "@constants/app";
 
 //#region MUI-UI
 import { styled, useTheme } from "@mui/material/styles";
@@ -11,7 +12,9 @@ import { Container, AppBar, Box, Toolbar, useMediaQuery } from "@mui/material";
 //#region Procjects import
 import Header from "./header";
 import Sidebar from "./sidebar";
+import SidebarChatbox from "@clientapp/community/chatbox/_layout/sidebar";
 import Customization from "./customization";
+import React from "react";
 //#endregion
 
 //#region STYLE
@@ -61,9 +64,13 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 );
 //#endregion
 
-const LayoutCommunity = () => {
+const LayoutCommunity = ({ appName }) => {
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  //#region useHooks
+  React.useEffect(() => {}, [appName]);
+  //#endregion
 
   // Handle left drawer
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
@@ -80,6 +87,31 @@ const LayoutCommunity = () => {
   const handleLeftDrawerToggle = () => {
     dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
+
+  //#region render content
+  const renderSideBar = () => {
+    const sidebar = {
+      [APP.COMMUNITY.CHATBOX]: () => {
+        return (
+          <SidebarChatbox
+            drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened}
+            drawerToggle={handleLeftDrawerToggle}
+          />
+        );
+      },
+      ["default"]: () => {
+        return (
+          <Sidebar
+            drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened}
+            drawerToggle={handleLeftDrawerToggle}
+          />
+        );
+      },
+    };
+    console.log("appName", appName);
+    return (sidebar[appName] || sidebar["default"])();
+  };
+  //#endregion
 
   return (
     <Box className="wrapper community" sx={{ display: "flex" }}>
@@ -102,10 +134,7 @@ const LayoutCommunity = () => {
         </Toolbar>
       </AppBar>
       {/* drawer */}
-      <Sidebar
-        drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened}
-        drawerToggle={handleLeftDrawerToggle}
-      />
+      {renderSideBar()}
       {/* main content */}
       <Main className="wrapper-content" theme={theme} open={leftDrawerOpened}>
         <Container maxWidth={false} disableGutters>
