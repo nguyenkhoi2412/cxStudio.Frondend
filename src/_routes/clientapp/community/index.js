@@ -10,7 +10,7 @@ const CommunityRoutes = [
     element: <CLIENT_APP.COMMUNITY.LAYOUT />,
     children: [
       {
-        path: navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT,
+        path: navigateLocation.CLIENT_APP.COMMUNITY.INDEX,
         title: "💬 Chatbox | Community",
         element: (
           <CLIENT_APP.COMMUNITY.DEFAULT

@@ -59,7 +59,7 @@ const FormCodeVerification = () => {
 
           if (result.code === HTTP_STATUS.OK) {
             if (result.ok) {
-              navigate(navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT);
+              navigate(navigateLocation.CLIENT_APP.COMMUNITY.INDEX);
             } else {
               setShowMessageAlert(true);
               setMessageContentAlert(result.message);

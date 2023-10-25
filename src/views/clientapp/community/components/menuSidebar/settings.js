@@ -37,13 +37,12 @@ const menuItems = {
         //     },
         //   ],
         // },
-        // SITE
         {
           id: "sitesettings",
           title: <Trans i18nKey={"user.account"} />,
           type: "item",
           icon: IconHexagons,
-          url: navigateLocation.SITE.LIST,
+          url: "navigateLocation.SITE.LIST",
           target: false,
           breadcrumbs: false,
         },

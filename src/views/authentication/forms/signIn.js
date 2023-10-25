@@ -81,37 +81,12 @@ const FormSignIn = () => {
     });
   };
 
-  const signInGoogle = useGoogleLogin({
-    onSuccess: async (results) => {
-      dispatch(SHOW_PROGRESSBAR());
-      await dispatch(
-        SIGNIN_SOCIAL_GOOGLE({ access_token: results.access_token })
-      )
-        .unwrap()
-        .then((response) => {
-          setSubmitting(false);
-          dispatch(HIDE_PROGRESSBAR());
-          responseValidate(response);
-          formik.resetForm();
-        })
-        .catch((error) => {
-          setSubmitting(false);
-          dispatch(HIDE_PROGRESSBAR());
-          // variant could be success, error, warning, info, or default
-          enqueueSnackbar(error, {
-            variant: severity.error,
-          });
-          formik.resetForm();
-        });
-    },
-    // flow: "auth-code",
-  });
-
   const responseValidate = (response) => {
+    console.log('response', response);
     if (response.code === HTTP_STATUS.OK) {
       if (response.ok) {
         if (response.rs.verified_token) {
-          navigate(navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT);
+          navigate(navigateLocation.CLIENT_APP.ASSET_PATH);
         } else {
           //* verify 2FA
           navigate(

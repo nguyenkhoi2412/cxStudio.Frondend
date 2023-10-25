@@ -45,6 +45,20 @@ const NavItem = ({ item, level }) => {
     />
   );
 
+  const itemAvatar = item?.avatar ? (
+    <Avatar
+      alt={item.title}
+      src={
+        item.avatar.indexOf("http") > -1 || item.avatar.indexOf("https") > -1
+          ? item.avatar
+          : process.env.API_HOSTNAME + "/" + avatarPath
+      }
+      sx={{ width: 24, height: 24 }}
+    />
+  ) : (
+    <></>
+  );
+
   let itemTarget = "_self";
   if (item.target) {
     itemTarget = "_blank";
@@ -60,8 +74,8 @@ const NavItem = ({ item, level }) => {
   }
 
   const itemHandler = (id) => {
-    dispatch({ type: MENU_OPEN, id });
-    if (matchesSM) dispatch({ type: SET_MENU, opened: false });
+    // dispatch({ type: MENU_OPEN, id });
+    // if (matchesSM) dispatch({ type: SET_MENU, opened: false });
   };
 
   // active menu item on page load
@@ -96,7 +110,7 @@ const NavItem = ({ item, level }) => {
       onClick={() => itemHandler(item.id)}
     >
       <ListItemIcon sx={{ my: "auto", minWidth: !item?.icon ? 18 : 36 }}>
-        {itemIcon}
+        {itemAvatar}
       </ListItemIcon>
       <ListItemText
         primary={

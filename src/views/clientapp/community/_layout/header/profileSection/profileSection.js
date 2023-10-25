@@ -86,8 +86,8 @@ const ProfileSection = () => {
   const anchorRef = useRef(null);
   const handleLogout = async () => {
     dispatch(SIGN_OUT());
-
     navigate(navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN);
+    window.location.reload();
   };
 
   const handleClose = (event) => {

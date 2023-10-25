@@ -12,7 +12,7 @@ const AuthCommunityRoutes = [
     title: "SignIn | Community",
     element: (
       <RequireAuth
-        redirectTo={navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT}
+        redirectTo={navigateLocation.CLIENT_APP.COMMUNITY.INDEX}
         isAuthentication={true}
       >
         <SignIn />
@@ -35,7 +35,7 @@ const AuthCommunityRoutes = [
     element: (
       <RequireLoggedIn
         redirectTo={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
-        navigateTo={navigateLocation.CLIENT_APP.COMMUNITY.DEFAULT}
+        navigateTo={navigateLocation.CLIENT_APP.COMMUNITY.INDEX}
       >
         <CodeVerification />,
       </RequireLoggedIn>

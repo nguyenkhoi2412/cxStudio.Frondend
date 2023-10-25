@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import { navigateLocation } from "@routes/navigateLocation";
 
+//#region reducer
+import { useSelector } from "react-redux";
+//#endregion
 // material-ui
 import { useTheme } from "@mui/material/styles";
 import { Box, Drawer, useMediaQuery } from "@mui/material";
@@ -14,24 +17,45 @@ import MenuList from "./menuList";
 import LogoSection from "@clientapp/community/_layout/logoSection";
 import MenuCard from "./menuCard";
 import { drawerWidth } from "@constants";
-
-import menuSidebarSettings from "@clientapp/community/components/menuSidebar/settings";
-
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
-const buildMenuItems = () => {
-  const locationPathname = window.location.pathname;
-  const menuItems = {};
+const getUserList = (users) => {
+  let childs = users?.map((u) => {
+    return {
+      id: u.socketId,
+      title: u.currentUser.detailInfos.aliasName,
+      avatar: u.currentUser.detailInfos.avatarPath,
+      type: "item",
+    };
+  });
 
-  menuItems[navigateLocation.CLIENT_APP.COMMUNITY.ACCOUNT.SETTING] =
-    menuSidebarSettings;
-
-  return menuItems[locationPathname];
+  let userlist = {
+    items: [
+      {
+        id: "livechat",
+        title: "Live chat",
+        caption: "Active users",
+        type: "group",
+        children: childs,
+      },
+    ],
+  };
+  return userlist;
 };
 
 const Chatbar = ({ drawerOpen, drawerToggle, window }) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
+  const [users, setUsers] = React.useState([]);
+  const configSettings = useSelector(
+    (state) => state.customization.configSettings
+  );
+
+  //#region useHooks
+  React.useEffect(() => {
+    configSettings.socket.on("newUserResponse", (data) => setUsers(data));
+  }, [configSettings.socket, users]);
+  //#endregion
 
   const drawer = (
     <>
@@ -49,14 +73,14 @@ const Chatbar = ({ drawerOpen, drawerToggle, window }) => {
             paddingRight: "16px",
           }}
         >
-          {/* <MenuList navItems={buildMenuItems()} /> */}
-          chatbox
+          <MenuList navItems={getUserList(users)} />
+          {/* chatbox */}
           {/* <MenuCard /> */}
         </PerfectScrollbar>
       </BrowserView>
       <MobileView>
         <Box sx={{ px: 2 }}>
-          <MenuList navItems={buildMenuItems()} />
+          <MenuList navItems={getUserList(users)} />
           {/* <MenuCard /> */}
         </Box>
       </MobileView>
