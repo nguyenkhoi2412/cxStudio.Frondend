@@ -12,12 +12,13 @@ import ChatType from "@chatbox/components/chattyping";
 
 const ChatBox = (props) => {
   // variables
-  const configSettings = useSelector(
-    (state) => state.customization.configSettings
+  const socket = useSelector(
+    (state) => state.customization.configSettings.socket
   );
   const currentUser = useSelector((state) => state.auth.currentUser);
-  configSettings.socket.emit("newUser", {
-    socketId: configSettings.socket.id,
+
+  socket.emit("liveChat__join", {
+    socketId: socket.id,
     currentUser,
   });
   // configSettings.socket.emit("message", "ádf");

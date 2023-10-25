@@ -47,14 +47,14 @@ const Chatbar = ({ drawerOpen, drawerToggle, window }) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
   const [users, setUsers] = React.useState([]);
-  const configSettings = useSelector(
-    (state) => state.customization.configSettings
+  const socket = useSelector(
+    (state) => state.customization.configSettings.socket
   );
 
   //#region useHooks
   React.useEffect(() => {
-    configSettings.socket.on("newUserResponse", (data) => setUsers(data));
-  }, [configSettings.socket, users]);
+    socket.on("liveChat__joinResponse", (data) => setUsers(data));
+  }, [socket, users]);
   //#endregion
 
   const drawer = (
