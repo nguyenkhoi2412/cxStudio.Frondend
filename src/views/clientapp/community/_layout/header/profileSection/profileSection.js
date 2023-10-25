@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { navigateLocation } from "@routes/navigateLocation";
+import { helpersExtension } from "@utils/helpersExtension";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -48,7 +49,6 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import { SIGN_OUT } from "@reduxproviders/auth.reducer";
-import { currentUserState } from "@reduxproviders/auth.reducer";
 import { ConnectWithoutContact } from "@mui/icons-material";
 
 // ==============================|| PROFILE MENU ||============================== //
@@ -56,7 +56,7 @@ import { ConnectWithoutContact } from "@mui/icons-material";
 const ProfileSection = () => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
-  const currentUser = useSelector(currentUserState);
+  const currentUser = useSelector((state) => state.auth.currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -66,6 +66,7 @@ const ProfileSection = () => {
   const [notification, setNotification] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
+  const [avatar, setAvatar] = useState();
 
   const sayGreetings = () => {
     let myDate = new Date();
@@ -117,6 +118,17 @@ const ProfileSection = () => {
     prevOpen.current = open;
   }, [open]);
 
+  useEffect(() => {
+    const avatarPath = currentUser?.detailInfos?.avatarPath;
+    if (helpersExtension.isNotNull(avatarPath)) {
+      setAvatar(
+        avatarPath.indexOf("http") > -1
+          ? avatarPath
+          : process.env.API_HOSTNAME + "/" + avatarPath
+      );
+    }
+  }, [currentUser]);
+
   return (
     <>
       <Chip
@@ -152,11 +164,7 @@ const ProfileSection = () => {
         }}
         icon={
           <Avatar
-            src={
-              process.env.API_HOSTNAME +
-              "/" +
-              currentUser?.detailInfos?.avatarPath
-            }
+            src={avatar}
             className="MuiTypography-mediumAvatar"
             ref={anchorRef}
             aria-controls={open ? "menu-list-grow" : undefined}
@@ -429,7 +437,8 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               3,
-                              navigateLocation.CLIENT_APP.COMMUNITY.ACCOUNT.SETTING
+                              navigateLocation.CLIENT_APP.COMMUNITY.ACCOUNT
+                                .SETTING
                             )
                           }
                         >

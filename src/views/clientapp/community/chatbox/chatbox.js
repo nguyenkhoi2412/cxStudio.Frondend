@@ -11,11 +11,16 @@ import ChatType from "@chatbox/components/chattyping";
 //#endregion
 
 const ChatBox = (props) => {
+  // variables
   const configSettings = useSelector(
     (state) => state.customization.configSettings
   );
-
-  configSettings.socket.emit("message", "ádf");
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  configSettings.socket.emit("newUser", {
+    socketId: configSettings.socket.id,
+    currentUser,
+  });
+  // configSettings.socket.emit("message", "ádf");
   return <>ChatBox</>;
 };
 

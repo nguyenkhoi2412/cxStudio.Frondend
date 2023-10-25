@@ -242,7 +242,7 @@ const TaskItem = (props) => {
   };
 
   const renderTaskItem = () => {
-    if (!helpersExtension.checkIsNotNull(itemValue)) return <></>;
+    if (!helpersExtension.isNotNull(itemValue)) return <></>;
 
     return (
       <Draggable

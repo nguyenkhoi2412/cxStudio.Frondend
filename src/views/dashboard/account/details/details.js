@@ -154,7 +154,7 @@ const AccountInfo = (props) => {
 
   //#region render content
   const renderAvatarDefault = () => {
-    return helpersExtension.checkIsNotNull(
+    return helpersExtension.isNotNull(
       currentUser?.detailInfos?.avatarPath
     ) ? (
       <></>
@@ -178,7 +178,7 @@ const AccountInfo = (props) => {
             <SubCard
               title={t("user.profilepicture")}
               contentClass={
-                helpersExtension.checkIsNotNull(
+                helpersExtension.isNotNull(
                   currentUser?.detailInfos?.avatarPath
                 )
                   ? "avatar-container"

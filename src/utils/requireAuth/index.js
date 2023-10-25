@@ -20,10 +20,10 @@ export const RequireAuth = ({
 export const isLoggedIn = () => {
   // return true;
   return (
-    helpersExtension.checkIsNotNull(
+    helpersExtension.isNotNull(
       localStorage.getItem(storageHandler.AUTH.CURRENT_USER)
     ) &&
-    helpersExtension.checkIsNotNull(
+    helpersExtension.isNotNull(
       storedExtension.getCookie(storageHandler.AUTH.ACCESS_TOKEN)
     )
   );
@@ -35,7 +35,7 @@ export const isAuth = () => {
 
 const _isVerified_2fa = () => {
   // return true;
-  return helpersExtension.checkIsNotNull(
+  return helpersExtension.isNotNull(
     storedExtension.getCookie(storageHandler.AUTH.VERIFIED_2FA)
   )
     ? storedExtension.getCookie(storageHandler.AUTH.VERIFIED_2FA) ===

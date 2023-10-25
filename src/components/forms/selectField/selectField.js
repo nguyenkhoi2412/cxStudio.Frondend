@@ -518,12 +518,12 @@ const SelectField = (props) => {
 
   //#region render content
   const renderImageIcon = (item) => {
-    return helpersExtension.checkIsNotNull(item?.icon) ? (
+    return helpersExtension.isNotNull(item?.icon) ? (
       <img
         className="icon-select"
         loading="lazy"
         src={item.icon}
-        alt={helpersExtension.checkIsNotNull(item.alt) ? item.alt : "svg"}
+        alt={helpersExtension.isNotNull(item.alt) ? item.alt : "svg"}
         style={{
           width: 16,
         }}
