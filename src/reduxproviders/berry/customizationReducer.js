@@ -11,6 +11,9 @@ export const initialState = {
   borderRadius: configSettings.borderRadius,
   opened: true,
   mode: configSettings.mode,
+  configSettings: {
+    socket: configSettings.socket,
+  },
 };
 
 // ==============================|| CUSTOMIZATION REDUCER ||============================== //

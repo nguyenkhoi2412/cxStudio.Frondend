@@ -1,7 +1,7 @@
 import { MODULES } from "@routes/_modules";
-import vars from "@constants/variables";
+import _globalVars from "@constants/variables";
 
-const ASSET_PATH = vars.ASSET_PATH;
+const ASSET_PATH = _globalVars.ASSET_PATH;
 const APP = ASSET_PATH + "app/";
 const ERROR = ASSET_PATH + "error";
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;

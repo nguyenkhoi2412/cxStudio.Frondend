@@ -2,9 +2,8 @@ import "./app.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import defaultFavicon from "@assets/favicons/default/favicon.svg";
-import vars from "@constants/variables";
+import _globalVars from "@constants/variables";
 import { BuildRoutes } from "@routes";
-// import { hookInstance } from "@utils/hookInstance";
 import { SnackbarProvider } from "notistack";
 import { ThemeProvider } from "@mui/system";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
@@ -13,7 +12,6 @@ import NavigationScroll from "@utils/_layout/navigationScroll";
 import { BrowserRouter } from "react-router-dom";
 import IncBackdrop from "@components/mui-ui/backdropSpin";
 import IncProgressBar from "@components/mui-ui/progressBar";
-
 import { helpersExtension } from "@utils/helpersExtension";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -47,7 +45,7 @@ const App = (props) => {
 
   //#region get datas
   const getSiteInfosById = () => {
-    dispatch(SITE_GET_BY_ID(vars.SITE_ID));
+    dispatch(SITE_GET_BY_ID(_globalVars.SITE_ID));
   };
   //#endregion
 

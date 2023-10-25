@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Autocomplete from "@mui/material/Autocomplete";
 import Grid from "@mui/material/Grid";
-import vars from "@constants/variables";
+import _globalVars from "@constants/variables";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -443,8 +443,8 @@ const countries = [
   { code: "ZW", label: "Zimbabwe", phone: "263" },
 ];
 
-const regexEditor = vars.regexEditor;
-const regexXSS = vars.regexXSS;
+const regexEditor = _globalVars.regexEditor;
+const regexXSS = _globalVars.regexXSS;
 const SelectField = (props) => {
   let hasError = false;
   const [dataValue, setDataValue] = React.useState("");

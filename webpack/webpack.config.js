@@ -172,14 +172,17 @@ module.exports = (env, argv) => {
         "@theme": APP_DIR + "/theme",
         "@utils": APP_DIR + "/utils",
         "@constants": APP_DIR + "/constants",
-        "@clientapp": APP_DIR + "/views/clientapp",
-        "@portfolio": APP_DIR + "/portfolio",
-        "@views": APP_DIR + "/views",
         "@dashboard": APP_DIR + "/views/dashboard",
         "@authentication": APP_DIR + "/views/authentication",
         "@components": APP_DIR + "/components",
         "@reduxproviders": APP_DIR + "/reduxproviders",
         "@services": APP_DIR + "/services",
+        //#region ALIAS FOR APPS
+        "@views": APP_DIR + "/views",
+        "@clientapp": APP_DIR + "/views/clientapp",
+        "@community": APP_DIR + "/views/clientapp/community",
+        "@chatbox": APP_DIR + "/views/clientapp/community/chatbox",
+        //#endregion
       },
       fallback: {
         crypto: false,

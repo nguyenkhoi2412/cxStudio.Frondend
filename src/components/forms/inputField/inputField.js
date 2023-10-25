@@ -14,10 +14,10 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import ClearIcon from "@mui/icons-material/Clear";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import vars from "@constants/variables";
+import _globalVars from "@constants/variables";
 
-const regexEditor = vars.regexEditor;
-const regexXSS = vars.regexXSS;
+const regexEditor = _globalVars.regexEditor;
+const regexXSS = _globalVars.regexXSS;
 const InputField = (props) => {
   const [dataValue, setDataValue] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);

@@ -1,11 +1,11 @@
 import { navigateLocation } from "@routes/navigateLocation";
 import { CLIENT_APP } from "@routes/componentLoadable";
-import AppCommunity from "@constants/app";
+import App from "@constants/app";
 
 const ChatBoxCommunityRoutes = [
   {
     element: (
-      <CLIENT_APP.COMMUNITY.LAYOUT appName={AppCommunity.COMMUNITY.CHATBOX} />
+      <CLIENT_APP.COMMUNITY.LAYOUT appName={App.COMMUNITY.CHATBOX} />
     ),
     children: [
       {

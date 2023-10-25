@@ -1,3 +1,4 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_MENU } from "@reduxproviders/berry/actions";
@@ -12,9 +13,8 @@ import { Container, AppBar, Box, Toolbar, useMediaQuery } from "@mui/material";
 //#region Procjects import
 import Header from "./header";
 import Sidebar from "./sidebar";
-import Chatbar from "@clientapp/community/chatbox/components/chatbar";
+import Chatbar from "@chatbox/components/chatbar";
 import Customization from "./customization";
-import React from "react";
 //#endregion
 
 //#region STYLE
@@ -108,7 +108,7 @@ const LayoutCommunity = ({ appName }) => {
         );
       },
     };
-    console.log("appName", appName);
+
     return (sidebar[appName] || sidebar["default"])();
   };
   //#endregion

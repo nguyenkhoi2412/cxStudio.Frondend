@@ -61,7 +61,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
       <ToggleThemeSection />
 
       {/* notification & profile */}
-      {matchesXs ? <></> : <NotificationSection />}
+      {/* {matchesXs ? <></> : <NotificationSection />} */}
       <ProfileSection />
       <MoreIconOnMobile />
     </>
