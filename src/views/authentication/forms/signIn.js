@@ -82,7 +82,6 @@ const FormSignIn = () => {
   };
 
   const responseValidate = (response) => {
-    console.log('response', response);
     if (response.code === HTTP_STATUS.OK) {
       if (response.ok) {
         if (response.rs.verified_token) {

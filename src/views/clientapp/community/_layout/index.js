@@ -1,3 +1,4 @@
+import "./_layout.scss";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -67,12 +68,29 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 const LayoutCommunity = ({ appName }) => {
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
+  const [classWrapper, setClassWrapper] = React.useState("");
 
   //#region useHooks
-  React.useEffect(() => {}, [appName]);
+  React.useEffect(() => {
+    const handleCommunityApps = (appName) => {
+      const comm = {
+        [APP.COMMUNITY.CHATBOX]: () => {
+          setClassWrapper(" chatbox");
+        },
+        ["default"]: () => {
+          setClassWrapper("");
+        },
+      };
+
+      return (comm[appName] || comm["default"])();
+    };
+
+    // set className for wrapper
+    handleCommunityApps(appName);
+  }, [appName]);
   //#endregion
 
-  // Handle left drawer
+  //#region handle events left drawer
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
   const dispatch = useDispatch();
   const [navBarPosition, updateNavbarPosition] = React.useState(false);
@@ -87,6 +105,7 @@ const LayoutCommunity = ({ appName }) => {
   const handleLeftDrawerToggle = () => {
     dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
+  //#endregion
 
   //#region render content
   const renderSideBar = () => {
@@ -114,10 +133,14 @@ const LayoutCommunity = ({ appName }) => {
   //#endregion
 
   return (
-    <Box className="wrapper community" sx={{ display: "flex" }}>
+    <Box
+      className={"wrapper community" + classWrapper}
+      sx={{ display: "flex" }}
+    >
       {/* header */}
       <AppBar
         enableColorOnDark
+        component="header"
         position="fixed"
         color="inherit"
         elevation={0}

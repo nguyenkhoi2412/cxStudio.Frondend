@@ -1,5 +1,5 @@
 import { navigateLocation } from "../navigateLocation";
-import AppCommunity from "@constants/app";
+import APP from "@constants/app";
 
 // project imports
 import { CLIENT_APP } from "@routes/componentLoadable";
@@ -10,7 +10,7 @@ const ClientAppRoutes = [
   {
     // element: <CLIENT_APP.LAYOUT />,
     element: (
-      <CLIENT_APP.COMMUNITY.LAYOUT appName={AppCommunity.COMMUNITY.CHATBOX} />
+      <CLIENT_APP.COMMUNITY.LAYOUT appName={APP.COMMUNITY.CHATBOX} />
     ),
     children: [
       {

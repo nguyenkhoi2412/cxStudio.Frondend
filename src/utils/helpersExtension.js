@@ -392,17 +392,32 @@ export class objectExtension {
   static getValue = (object, keys) =>
     keys.split(".").reduce((o, k) => (o || {})[k], object);
 
-  static parseToQueryString = (url, params) =>
-    url +
-    Object.keys(params)
+  static createQueryString = (url, queryObject) => {
+    // url +
+    // Object.keys(params)
+    //   .map((key) => params[key])
+    //   .join("&");
+    let queryString = Object.keys(queryObject)
+      .filter(
+        (key) =>
+          queryObject[key] &&
+          !(Array.isArray(queryObject[key]) && !queryObject[key].length)
+      )
       .map((key) => {
-        if (key === "query") {
-          const encoded = encrypt.aes.encrypt(params[key]);
-          return encoded;
-        }
-        return JSON.stringify(params[key]);
+        return Array.isArray(queryObject[key])
+          ? queryObject[key]
+              .map(
+                (item) =>
+                  `${encodeURIComponent(key)}=${encodeURIComponent(item)}`
+              )
+              .join("&")
+          : `${encodeURIComponent(key)}=${encodeURIComponent(
+              queryObject[key]
+            )}`;
       })
       .join("&");
+    return url + (queryString ? `?${queryString}` : "");
+  };
 
   static getDiff = (newObj, oldObj) => {
     let diff = Object.keys(newObj).reduce((diff, key) => {
