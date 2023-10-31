@@ -392,11 +392,13 @@ export class objectExtension {
   static getValue = (object, keys) =>
     keys.split(".").reduce((o, k) => (o || {})[k], object);
 
+  static parseToQueryString = (url, params) =>
+    url +
+    Object.keys(params)
+      .map((key) => params[key])
+      .join("&");
+
   static createQueryString = (url, queryObject) => {
-    // url +
-    // Object.keys(params)
-    //   .map((key) => params[key])
-    //   .join("&");
     let queryString = Object.keys(queryObject)
       .filter(
         (key) =>
@@ -416,7 +418,12 @@ export class objectExtension {
             )}`;
       })
       .join("&");
-    return url + (queryString ? `?${queryString}` : "");
+    console.log(
+      "sdfsdfsdfsdfsdf",
+      url + (queryString ? `?${queryString}` : "")
+    );
+    console.log("queryStringqueryStringqueryString", queryString);
+    return url + (queryString ? `${queryString}` : "");
   };
 
   static getDiff = (newObj, oldObj) => {

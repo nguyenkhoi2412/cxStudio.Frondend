@@ -26,7 +26,7 @@ export default {
       params.password = encryptHelper.rsa.encrypt(params.password);
 
       await axios
-        .get(objectExtension.createQueryString("auth/validate/", params))
+        .get(objectExtension.parseToQueryString("auth/validate/", params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
@@ -55,8 +55,8 @@ export default {
           //call backend check data user
           axios
             .get(
-              objectExtension.createQueryString("auth/google/", {
-                query: userInfo,
+              objectExtension.parseToQueryString("auth/google/", {
+                query: encryptHelper.aes.encrypt(userInfo),
               })
             )
             .then((response) => resolve(response))
@@ -101,7 +101,7 @@ export default {
 
       axios
         .get(
-          objectExtension.createQueryString(`auth/recoverypassword/`, params)
+          objectExtension.parseToQueryString(`auth/recoverypassword/`, params)
         )
         .then((response) => resolve(response))
         .catch((error) => reject(error));
