@@ -1,12 +1,24 @@
 .wrapper.community.chatbox {
   .wrapper-content {
     .chat__main {
-      height: calc(100vh - 18vh);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
 
-      .chat__body {
-      }
+      .MuiCardContent-root {
+        height: inherit;
+        display: flex;
 
-      .chat__messagetyping {
+        .MuiGrid-container {
+          flex-direction: column;
+
+          .chat__body {
+          }
+
+          .chat__footer {
+            margin-top: auto;
+          }
+        }
       }
     }
   }

@@ -56,6 +56,7 @@ const ChatBox = (props) => {
       <MainCard
         title="general"
         className="chat__main"
+        // contentClass="chat__body"
         // secondary={
         //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
         // }

@@ -2,7 +2,7 @@ import React from "react";
 import "./../../_chatbox.scss";
 
 //#region mui-ui
-import { Grid, Link } from "@mui/material";
+import { Grid, Box, Link } from "@mui/material";
 import MuiTypography from "@mui/material/Typography";
 //#endregion
 //#region reducer
@@ -17,10 +17,8 @@ const ChatFooter = () => {
 
   return (
     <>
-      <Grid className="chat__messagetyping" item xs={12}>
-        <Grid container direction="column" spacing={1}>
-          Chat message typing
-        </Grid>
+      <Grid className="chat__footer" item sx={12}>
+        <Box>Chat message typing</Box>
       </Grid>
     </>
   );
