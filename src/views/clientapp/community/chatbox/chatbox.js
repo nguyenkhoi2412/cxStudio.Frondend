@@ -25,9 +25,8 @@ const ChatBox = (props) => {
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [messages, setMessages] = React.useState([]);
   const [typingStatus, setTypingStatus] = React.useState("");
-  const lastMessageRef = React.useRef(null);
 
-  //#region useHooks
+  //#region 👇️ useHooks
   React.useEffect(() => {
     socket.emit("liveChat__join", {
       socketId: socket.id,
@@ -44,19 +43,13 @@ const ChatBox = (props) => {
   React.useEffect(() => {
     socket.on("liveChat__typingResponse", (data) => setTypingStatus(data));
   }, [socket]);
-
-  React.useEffect(() => {
-    // 👇️ scroll to bottom every time messages change
-    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
   //#endregion
-  // configSettings.socket.emit("message", "ádf");
   return (
     <>
       <MainCard
         title="general"
         className="chat__main"
-        // contentClass="chat__body"
+        contentClass="chat__body"
         // secondary={
         //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
         // }
@@ -65,7 +58,6 @@ const ChatBox = (props) => {
           <ChatBody
             messages={messages}
             typingStatus={typingStatus}
-            lastMessageRef={lastMessageRef}
           />
           <ChatFooter />
         </Grid>

@@ -8,6 +8,10 @@ import MuiTypography from "@mui/material/Typography";
 //#region reducer
 import { useSelector } from "react-redux";
 //#endregion
+//#region components
+import MessageSend from "@chatbox/components/chatfooter/messageSend";
+import { gridSpacing } from "@constants";
+//#endregion
 
 const ChatFooter = () => {
   // variables
@@ -17,8 +21,10 @@ const ChatFooter = () => {
 
   return (
     <>
-      <Grid className="chat__footer" item sx={12}>
-        <Box>Chat message typing</Box>
+      <Grid item className="chat__footer">
+        <Grid container spacing={gridSpacing}>
+          <MessageSend />
+        </Grid>
       </Grid>
     </>
   );

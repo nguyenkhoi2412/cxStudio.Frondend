@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
@@ -23,7 +23,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
-import { useGoogleLogin } from "@react-oauth/google";
 import {
   Divider,
   Typography,
@@ -38,10 +37,7 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
-import {
-  VALIDATE_USER,
-  SIGNIN_SOCIAL_GOOGLE,
-} from "@reduxproviders/auth.reducer";
+import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 import SocialButtons from "./socialButtons";
