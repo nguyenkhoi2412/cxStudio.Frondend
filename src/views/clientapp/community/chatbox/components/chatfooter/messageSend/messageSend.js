@@ -106,6 +106,7 @@ const MessageSend = () => {
           socketId: socket.id,
           message: message,
           userInfo: currentUser,
+          postedOn: new Date().toISOString(),
         });
 
         socket.emit("liveChat__message", data);

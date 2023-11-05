@@ -28,9 +28,9 @@ const ChatBody = (props) => {
     setDataMessages(messages);
   }, [messages]);
 
-  React.useEffect(() => {
-    // console.log("typingStatus", typingStatus);
-  }, [typingStatus]);
+  // React.useEffect(() => {
+  //   console.log("typingStatus", typingStatus);
+  // }, [typingStatus]);
 
   React.useEffect(() => {
     scrollToBottom();
@@ -39,6 +39,7 @@ const ChatBody = (props) => {
 
   //#region handleEvents
   const scrollToBottom = () => {
+    // 👇️ scroll to bottom every time messages change
     messagesEndRef.current.scrollIntoView({
       behavior: "smooth",
       block: "end",

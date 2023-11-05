@@ -180,6 +180,11 @@
     "organize_courses": "Organize courses"
   },
   "community": {
-    "community": "Community"
+    "community": "Community",
+    "app": {
+      "chatbox": {
+        "you": "You"
+      }
+    }
   }
 }
