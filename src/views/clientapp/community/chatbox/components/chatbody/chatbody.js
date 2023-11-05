@@ -61,4 +61,9 @@ const ChatBody = (props) => {
   );
 };
 
-export default ChatBody;
+export default React.memo(ChatBody, (props, nextProps) => {
+  if (props.messages === nextProps.messages) {
+    // return true if you don't need re-render
+    return true;
+  }
+});

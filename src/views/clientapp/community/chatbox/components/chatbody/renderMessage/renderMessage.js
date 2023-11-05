@@ -22,7 +22,6 @@ const RenderMessage = (props) => {
 
   //#region useHooks
   React.useEffect(() => {
-    console.log('sdfsdfsdfsdf', props.message);
     setMessage(props.message);
   }, [props.message]);
   //#endregion
@@ -53,4 +52,9 @@ const RenderMessage = (props) => {
   );
 };
 
-export default RenderMessage;
+export default React.memo(RenderMessage, (props, nextProps) => {
+  if (props.message === nextProps.message) {
+    // return true if you don't need re-render
+    return true;
+  }
+});
