@@ -33,12 +33,9 @@ import TextEditor from "@components/forms/textEditor";
 
 // assets
 import {
-  IconAdjustmentsHorizontal,
-  IconSearch,
-  IconX,
-  IconBrandWechat,
   IconSend,
-  IconMoodHappy,
+  IconMoodSmileFilled,
+  IconMoodHappyFilled,
 } from "@tabler/icons-react";
 import { shouldForwardProp } from "@mui/system";
 
@@ -167,21 +164,27 @@ const MessageSend = () => {
             placeholder="Type a message"
             startAdornment={
               <InputAdornment position="start" className="adorment-picker">
-                <IconMoodHappy
-                  className="emoji-picker"
-                  stroke={theme.palette.font.icon}
-                  size="1.3rem"
-                  color={theme.palette.grey[500]}
-                  onClick={() => setShowEmoji((val) => !val)}
-                />
                 {showEmoji ? (
-                  <EmojiPicker
-                    onEmojiSelect={handleOnEmojiSelect}
-                    theme={customization.mode}
-                    locale={_globalVars.locale.lang}
-                  />
+                  <>
+                    <IconMoodHappyFilled
+                      className="emoji-picker"
+                      stroke={theme.palette.font.icon}
+                      size="1.3rem"
+                      onClick={() => setShowEmoji((val) => !val)}
+                    />
+                    <EmojiPicker
+                      onEmojiSelect={handleOnEmojiSelect}
+                      theme={customization.mode}
+                      locale={_globalVars.locale.lang}
+                    />
+                  </>
                 ) : (
-                  <></>
+                  <IconMoodSmileFilled
+                    className="emoji-picker"
+                    stroke={theme.palette.font.icon}
+                    size="1.3rem"
+                    onClick={() => setShowEmoji((val) => !val)}
+                  />
                 )}
               </InputAdornment>
             }

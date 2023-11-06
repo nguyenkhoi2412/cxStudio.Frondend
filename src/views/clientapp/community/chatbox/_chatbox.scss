@@ -63,6 +63,10 @@
               }
 
               .adorment-picker {
+                .emoji-picker {
+                  color: var(--icon-font-color);
+                }
+
                 em-emoji-picker {
                   position: absolute;
                   bottom: 55px;
