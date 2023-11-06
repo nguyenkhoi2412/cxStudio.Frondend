@@ -27,7 +27,6 @@ const RenderMessage = (props) => {
 
   //#region useHooks
   React.useEffect(() => {
-    console.log("sdfsdfsdf", props);
     setMessage(props.message);
     setPostedOn(props.message.postedOn);
     setIsYou(props.message.username === currentUser.username);
@@ -51,9 +50,11 @@ const RenderMessage = (props) => {
                 &nbsp; {dateExtension.getUtcDateTime(postedOn)?.local.time}
               </MuiTypography>
             </MuiTypography>
-            <MuiTypography component="p" gutterBottom>
-              {message.message}
-            </MuiTypography>
+            <MuiTypography
+              component="p"
+              gutterBottom
+              dangerouslySetInnerHTML={{ __html: message.message }}
+            ></MuiTypography>
           </Stack>
         </Grid>
       </MainCard>
