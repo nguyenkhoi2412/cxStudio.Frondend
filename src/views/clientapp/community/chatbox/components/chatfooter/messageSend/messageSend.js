@@ -25,8 +25,7 @@ import { useSelector } from "react-redux";
 
 // third-party
 import PopupState, { bindPopper, bindToggle } from "material-ui-popup-state";
-import EmojiPicker from "@emoji-mart/react";
-import { init, SearchIndex, Data } from "emoji-mart";
+import EmojiPicker from "@components/ui/emojiPicker";
 
 // project imports
 import Transitions from "@components/mui-ui/extended/transitions";
@@ -140,7 +139,7 @@ const MessageSend = () => {
       `${currentUser.detailInfos.aliasName} is typing`
     );
 
-  const handleOnEmojiSelect = (emojiObject, e) => {
+  const handleOnEmojiSelect = (emojiObject) => {
     const prevText = objectExtension.getValue(formik, "values.message");
     formik.setFieldValue("message", prevText + emojiObject.native);
     setShowEmoji(false);
@@ -177,24 +176,7 @@ const MessageSend = () => {
                 />
                 {showEmoji ? (
                   <EmojiPicker
-                    set="twitter"
                     onEmojiSelect={handleOnEmojiSelect}
-                    emojiButtonRadius="12px"
-                    emojiButtonSize={32}
-                    emojiSize={20}
-                    maxFrequentRows={2}
-                    perLine={8}
-                    previewPosition="none"
-                    skinTonePosition="none"
-                    color="red"
-                    // emojiButtonColors={[
-                    //   "rgba(155,223,88,.7)",
-                    //   "rgba(149,211,254,.7)",
-                    //   "rgba(247,233,34,.7)",
-                    //   "rgba(238,166,252,.7)",
-                    //   "rgba(255,213,143,.7)",
-                    //   "rgba(211,209,255,.7)",
-                    // ]}
                     theme={customization.mode}
                     locale={_globalVars.locale.lang}
                   />
