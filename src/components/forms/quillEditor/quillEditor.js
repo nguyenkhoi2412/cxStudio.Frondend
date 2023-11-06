@@ -17,17 +17,32 @@ const ReactQuillEditor = (props) => {
   const quillRef = React.useRef();
   const [focus, setFocus] = React.useState(false);
 
+  const getToolbars = React.useCallback(
+    (name) => {
+      console.log("sdfsdfdsf", name);
+      const toolbars = {
+        default: () => {
+          return {
+            ...modules.toolbar.default,
+            handlers: {
+              image: imageHandler,
+            },
+          };
+        },
+        chatbox: () => {
+          return { ...modules.toolbar.chatbox };
+        },
+      };
+
+      return toolbars[name ?? "default"]();
+    },
+    [props.toolbar]
+  );
+
   const mods = React.useMemo(
     () => ({
       ...modules,
-      toolbar: {
-        ...modules.toolbar[
-          props.toolbar !== undefined ? props.toolbar : "default"
-        ],
-        handlers: {
-          image: imageHandler,
-        },
-      },
+      toolbar: getToolbars(props.toolbar),
       "emoji-toolbar": false,
       "emoji-textarea": props.toolbar === "chatbox" ? true : false,
       "emoji-shortname": true,

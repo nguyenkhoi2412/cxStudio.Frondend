@@ -23,15 +23,12 @@ const toolbar = {
       [{ list: "ordered" }, { list: "bullet" }],
       ["link", "code"],
       ["image"],
-      ["emoji"],
+      // ["emoji"],
       ["clean"], // remove formatting button
       ["enter"],
     ],
     handlers: {
       emoji: () => {},
-      enter: () => {
-        this.quill.insertText(this.quill.getSelection().index, "test");
-      },
     },
   },
 };
