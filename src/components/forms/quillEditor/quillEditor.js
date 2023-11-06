@@ -12,7 +12,7 @@ Block.tagName = "DIV";
 Quill.register(Block, true);
 Quill.register("modules/emoji", Emoji);
 
-const TextEditor = (props) => {
+const ReactQuillEditor = (props) => {
   const { autoFocus, value, onChange, placeholder } = props;
   const quillRef = React.useRef();
   const [focus, setFocus] = React.useState(false);
@@ -92,4 +92,4 @@ const TextEditor = (props) => {
   );
 };
 
-export default TextEditor;
+export default ReactQuillEditor;

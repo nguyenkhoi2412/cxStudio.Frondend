@@ -29,7 +29,7 @@ import EmojiPicker from "@components/ui/emojiPicker";
 
 // project imports
 import Transitions from "@components/mui-ui/extended/transitions";
-import QuillEditor from "@components/forms/quillEditor";
+import ReactQuillEditor from "@components/forms/quillEditor";
 
 // assets
 import {
@@ -155,7 +155,7 @@ const MessageSend = () => {
           sx={{ mt: 1 }}
         >
           {/* <Grid item className="outline-typing-message">
-            <QuillEditor
+            <ReactQuillEditor
               className="editor-typing-message"
               toolbar="chatbox"
               onChange={formik.handleChange}
