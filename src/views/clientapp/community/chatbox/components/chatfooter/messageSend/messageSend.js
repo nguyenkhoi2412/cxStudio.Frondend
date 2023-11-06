@@ -1,4 +1,3 @@
-import "./_messageSend.scss";
 import { useState } from "react";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import encryptHelper from "@utils/encrypt.helper";
