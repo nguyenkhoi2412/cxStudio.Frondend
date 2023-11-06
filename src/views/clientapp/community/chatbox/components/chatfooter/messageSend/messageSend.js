@@ -1,3 +1,4 @@
+// import "./_messageSend.scss";
 import { useState } from "react";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import encryptHelper from "@utils/encrypt.helper";
@@ -28,7 +29,7 @@ import EmojiPicker from "@components/ui/emojiPicker";
 
 // project imports
 import Transitions from "@components/mui-ui/extended/transitions";
-import TextEditor from "@components/forms/textEditor";
+import QuillEditor from "@components/forms/quillEditor";
 
 // assets
 import {
@@ -153,6 +154,13 @@ const MessageSend = () => {
           onSubmit={handleSubmit}
           sx={{ mt: 1 }}
         >
+          {/* <Grid item className="outline-typing-message">
+            <QuillEditor
+              className="editor-typing-message"
+              toolbar="chatbox"
+              onChange={formik.handleChange}
+            />
+          </Grid> */}
           <OutlineInputStyle
             id="input-typing-message"
             name="message"

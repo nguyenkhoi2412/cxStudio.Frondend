@@ -50,31 +50,6 @@
               }
             }
           }
-
-          .chat__footer {
-            margin-top: auto;
-
-            .outline-typing-message {
-              width: 100%;
-              padding-right: 1rem;
-
-              .emoji-picker {
-                cursor: pointer;
-              }
-
-              .adorment-picker {
-                .emoji-picker {
-                  color: var(--icon-font-color);
-                }
-
-                em-emoji-picker {
-                  position: absolute;
-                  bottom: 55px;
-                  left: 0;
-                }
-              }
-            }
-          }
         }
       }
     }

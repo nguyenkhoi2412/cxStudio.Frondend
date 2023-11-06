@@ -1,18 +1,39 @@
-// import "react-quill/dist/quill.snow.css";
-import "./_textEditor.scss";
+import "react-quill/dist/quill.snow.css";
+import "quill-emoji/dist/quill-emoji.css";
+import "./_quillEditor.scss";
 import React from "react";
 import ReactQuill, { Quill } from "react-quill";
+import * as Emoji from "quill-emoji";
 import { modules, formats } from "./configs";
 import axios from "axios";
 
 const Block = Quill.import("blots/block");
 Block.tagName = "DIV";
 Quill.register(Block, true);
+Quill.register("modules/emoji", Emoji);
 
 const TextEditor = (props) => {
   const { autoFocus, value, onChange, placeholder } = props;
   const quillRef = React.useRef();
   const [focus, setFocus] = React.useState(false);
+
+  const mods = React.useMemo(
+    () => ({
+      ...modules,
+      toolbar: {
+        ...modules.toolbar[
+          props.toolbar !== undefined ? props.toolbar : "default"
+        ],
+        handlers: {
+          image: imageHandler,
+        },
+      },
+      "emoji-toolbar": false,
+      "emoji-textarea": props.toolbar === "chatbox" ? true : false,
+      "emoji-shortname": true,
+    }),
+    []
+  );
 
   React.useEffect(() => {
     if (autoFocus) setFocus(autoFocus);
@@ -43,7 +64,7 @@ const TextEditor = (props) => {
 
       // Save current cursor state
       const range = quillRef.current.getEditorSelection();
-      console.log(response.data.rs.filename);
+      // console.log(response.data.rs.filename);
       // Insert uploaded image
       quillRef.current
         .getEditor()
@@ -55,22 +76,10 @@ const TextEditor = (props) => {
     };
   };
 
-  const mods = React.useMemo(
-    () => ({
-      ...modules,
-      toolbar: {
-        ...modules.toolbar,
-        handlers: {
-          image: imageHandler,
-        },
-      },
-    }),
-    []
-  );
-
   return (
     <>
       <ReactQuill
+        {...props}
         theme="snow"
         ref={quillRef}
         value={value || ""}

@@ -1,0 +1,47 @@
+.wrapper.community.chatbox {
+  .wrapper-content {
+    .chat__main {
+      .MuiCardContent-root {
+        .MuiGrid-container {
+          .chat__footer {
+            margin-top: auto;
+
+            .outline-typing-message {
+              width: 100%;
+              padding-right: 1rem;
+
+              .emoji-picker {
+                cursor: pointer;
+              }
+
+              .adorment-picker {
+                .emoji-picker {
+                  color: var(--icon-font-color);
+                }
+
+                em-emoji-picker {
+                  position: absolute;
+                  bottom: 55px;
+                  left: 0;
+                }
+              }
+
+              .quill {
+                &.editor-typing-message {
+                  .ql-toolbar {
+                    .emoji-palette {
+                    }
+                  }
+
+                  .ql-container {
+                    height: 24vh;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
