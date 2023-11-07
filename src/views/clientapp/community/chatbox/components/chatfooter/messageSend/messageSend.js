@@ -124,8 +124,7 @@ const MessageSend = () => {
 
   //#region handle event
   const handleSubmit = (event) => {
-    event.preventDefault();
-
+    if (typeof event === "object") event.preventDefault();
     if (submitting) return;
 
     setEnableValidation(true);

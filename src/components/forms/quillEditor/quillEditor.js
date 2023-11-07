@@ -5,6 +5,7 @@ import React from "react";
 import ReactQuill, { Quill } from "react-quill";
 import * as Emoji from "quill-emoji";
 import { modules, formats } from "./configs";
+import { stringExtension } from "@utils/helpersExtension";
 import axios from "axios";
 
 const regexEditor = /<p><br><\/p>|<div><br><\/div>/g;
@@ -30,8 +31,8 @@ const ReactQuillEditor = (props) => {
               ...modules.toolbar.chatbox,
               handlers: {
                 ...modules.toolbar.handlers,
-                send: () => {
-                  props.submitHandler();
+                send: (e) => {
+                  props.submitHandler(e);
                 },
               },
             },
@@ -129,22 +130,15 @@ const ReactQuillEditor = (props) => {
   };
 
   const handleOnChange = (content, delta, source, editor) => {
-    let text = value.replace(regexEditor, "");
-    if (individualConfig.preventXSS) {
-      text = text.replace(regexXSS, "");
-    }
+    let text = content.replace(regexEditor, "");
+    text = stringExtension.stripedHtml(text);
+    // text = stringExtension.stripedHtml(text);
 
-    // default prevent input <|>, javascript, &lt;, &gt;
-    if (_stripedHtml) {
-      text = stringExtension.stripedHtml(text);
-    }
+    // formik.setFieldValue(field, text);
 
-    formik.setFieldValue(field, text);
-    // setTextVal(text);
-
-    setDataValue(content);
+    setDataValue(text);
     if (typeof props.onChange === "function") {
-      props.onChange(content);
+      props.onChange(text);
     }
   };
   //#endregion
