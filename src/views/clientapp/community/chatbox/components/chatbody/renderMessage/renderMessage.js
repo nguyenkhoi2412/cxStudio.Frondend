@@ -23,13 +23,13 @@ const RenderMessage = (props) => {
 
   const [message, setMessage] = React.useState("");
   const [postedOn, setPostedOn] = React.useState();
-  const [isYou, setIsYou] = React.useState(false);
+  const [sender, setSender] = React.useState(false);
 
   //#region useHooks
   React.useEffect(() => {
     setMessage(props.message);
     setPostedOn(props.message.postedOn);
-    setIsYou(props.message.username === currentUser.username);
+    setSender(props.message.username === currentUser.username);
   }, [props.message]);
   //#endregion
 
@@ -39,13 +39,13 @@ const RenderMessage = (props) => {
       item
       xs={12}
       sm={7}
-      className={isYou ? "chat__me" : "chat__other"}
+      className={sender ? "chat__sender" : "chat__recipient"}
     >
       <MainCard>
         <Grid item>
           <Stack direction="column">
             <MuiTypography component="p" variant="subtitle1" gutterBottom>
-              {isYou ? t("community.app.chatbox.you") : message.displayName}
+              {sender ? t("community.app.livechat.you") : message.displayName}
               <MuiTypography align="right" variant="caption" gutterBottom>
                 &nbsp; {dateExtension.getUtcDateTime(postedOn)?.local.time}
               </MuiTypography>

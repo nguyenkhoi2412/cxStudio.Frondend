@@ -25,10 +25,10 @@ const toolbar = {
       ["image"],
       // ["emoji"],
       ["clean"], // remove formatting button
-      ["enter"],
+      ["send"],
     ],
     handlers: {
-      emoji: () => {},
+      send: () => {},
     },
   },
 };

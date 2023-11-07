@@ -16,42 +16,6 @@
           }
         }
       }
-
-      .MuiCardContent-root {
-        &.chat__body {
-          height: inherit;
-          display: flex;
-          padding-right: 1rem;
-        }
-
-        .MuiGrid-container {
-          flex-direction: column;
-
-          .chat__content {
-            max-height: 56vh;
-            padding-right: 1rem;
-            overflow: auto;
-
-            .chat__other {
-              margin-right: auto;
-
-              > .MuiCard-root {
-                background-color: var(--bg-container-main);
-                @include _shadow(0 0 0 0 transparent);
-              }
-            }
-
-            .chat__me {
-              margin-left: auto;
-
-              > .MuiCard-root {
-                background-color: var(--info-background-color);
-                @include _shadow(0 0 0 0 transparent);
-              }
-            }
-          }
-        }
-      }
     }
   }
 }

@@ -115,6 +115,8 @@ const MessageSend = () => {
 
         socket.emit("liveChat__message", data);
         formik.resetForm();
+      } else {
+        setSubmitting(false);
       }
     },
   });
@@ -141,6 +143,12 @@ const MessageSend = () => {
     formik.setFieldValue("message", prevText + emojiObject.native);
     setShowEmoji(false);
   };
+
+  const handleOnChange = (value) => {
+    formik.setFieldValue("message", value);
+    setShowEmoji(false);
+    // formik.handleChange();
+  };
   //#endregion
 
   return (
@@ -158,7 +166,10 @@ const MessageSend = () => {
             <ReactQuillEditor
               className="editor-typing-message"
               toolbar="chatbox"
-              onChange={formik.handleChange}
+              onChange={handleOnChange}
+              submitHandler={(e) => handleSubmit(e)}
+              autoFocus={true}
+              value={objectExtension.getValue(formik, "values.message")}
             />
           </Grid> */}
           <OutlineInputStyle

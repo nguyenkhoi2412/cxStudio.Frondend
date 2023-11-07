@@ -7,30 +7,54 @@ import * as Emoji from "quill-emoji";
 import { modules, formats } from "./configs";
 import axios from "axios";
 
+const regexEditor = /<p><br><\/p>|<div><br><\/div>/g;
 const Block = Quill.import("blots/block");
 Block.tagName = "DIV";
 Quill.register(Block, true);
 Quill.register("modules/emoji", Emoji);
 
 const ReactQuillEditor = (props) => {
-  const { autoFocus, value, onChange, placeholder } = props;
+  const { autoFocus, value, placeholder } = props;
   const quillRef = React.useRef();
   const [focus, setFocus] = React.useState(false);
+  const [dataValue, setDataValue] = React.useState("");
 
+  //#region get infos
   const getToolbars = React.useCallback(
     (name) => {
-      console.log("sdfsdfdsf", name);
       const toolbars = {
-        default: () => {
+        chatbox: () => {
           return {
-            ...modules.toolbar.default,
-            handlers: {
-              image: imageHandler,
+            ...modules,
+            toolbar: {
+              ...modules.toolbar.chatbox,
+              handlers: {
+                ...modules.toolbar.handlers,
+                send: () => {
+                  props.submitHandler();
+                },
+              },
             },
+            // wordCount: wordCountModule,
+            "emoji-toolbar": false,
+            "emoji-textarea": true,
+            "emoji-shortname": true,
           };
         },
-        chatbox: () => {
-          return { ...modules.toolbar.chatbox };
+        default: () => {
+          return {
+            ...modules,
+            toolbar: {
+              ...modules.toolbar.default,
+              handlers: {
+                image: imageHandler,
+              },
+              // wordCount: wordCountModule,
+            },
+            "emoji-toolbar": false,
+            "emoji-textarea": false,
+            "emoji-shortname": true,
+          };
         },
       };
 
@@ -39,22 +63,35 @@ const ReactQuillEditor = (props) => {
     [props.toolbar]
   );
 
-  const mods = React.useMemo(
-    () => ({
-      ...modules,
-      toolbar: getToolbars(props.toolbar),
-      "emoji-toolbar": false,
-      "emoji-textarea": props.toolbar === "chatbox" ? true : false,
-      "emoji-shortname": true,
-    }),
-    []
-  );
+  const mods = React.useMemo(() => getToolbars(props.toolbar), []);
 
+  // const wordCountModule = {
+  //   init: function () {
+  //     // This will refer to the Quill instance when initialized.
+  //     this.quill.on(
+  //       "text-change",
+  //       function () {
+  //         const text = this.quill.getText();
+  //         const wordCount = text.split(/\s+/).filter(Boolean).length;
+  //         console.log(`Word count: ${wordCount}`);
+  //       }.bind(this)
+  //     );
+  //   },
+  // };
+  //#endregion
+
+  //#region useHooks
   React.useEffect(() => {
     if (autoFocus) setFocus(autoFocus);
     if (focus) quillRef.current.focus();
   }, [focus]);
 
+  React.useEffect(() => {
+    setDataValue(value);
+  }, [value]);
+  //#endregion
+
+  //#region handle events
   const imageHandler = async () => {
     const input = document.createElement("input");
 
@@ -91,16 +128,37 @@ const ReactQuillEditor = (props) => {
     };
   };
 
+  const handleOnChange = (content, delta, source, editor) => {
+    let text = value.replace(regexEditor, "");
+    if (individualConfig.preventXSS) {
+      text = text.replace(regexXSS, "");
+    }
+
+    // default prevent input <|>, javascript, &lt;, &gt;
+    if (_stripedHtml) {
+      text = stringExtension.stripedHtml(text);
+    }
+
+    formik.setFieldValue(field, text);
+    // setTextVal(text);
+
+    setDataValue(content);
+    if (typeof props.onChange === "function") {
+      props.onChange(content);
+    }
+  };
+  //#endregion
+
   return (
     <>
       <ReactQuill
         {...props}
         theme="snow"
         ref={quillRef}
-        value={value || ""}
+        value={dataValue || ""}
         modules={mods}
         // formats={formats}
-        onChange={onChange}
+        onChange={handleOnChange}
         placeholder={placeholder}
       />
     </>

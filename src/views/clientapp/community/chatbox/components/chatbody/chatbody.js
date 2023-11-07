@@ -1,5 +1,5 @@
 import React from "react";
-import "@chatbox/_chatbox.scss";
+import "./_chatbody.scss";
 
 //#region mui-ui
 import { Grid, Box, Stack, Link } from "@mui/material";
