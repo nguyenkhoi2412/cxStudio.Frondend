@@ -40,7 +40,7 @@ const ChatBody = (props) => {
   //#region handleEvents
   const scrollToBottom = () => {
     // 👇️ scroll to bottom every time messages change
-    messagesEndRef.current.scrollIntoView({
+    messagesEndRef?.current?.scrollIntoView({
       behavior: "smooth",
       block: "end",
       inline: "nearest",

@@ -29,12 +29,46 @@
               .quill {
                 &.editor-typing-message {
                   .ql-toolbar {
+                    .ql-formats {
+                      &:nth-last-of-type(1) {
+                        position: absolute;
+                        right: 0;
+                        top: 8px;
+                      }
+
+                      .ql-send {
+                        .ti.ti-send {
+                          font-size: 1.2rem;
+                          color: var(--icon-font-color);
+                          padding: 8px;
+
+                          &:hover {
+                            background: var(--bg-container-light);
+                            border-color: var(--bg-container-light);
+                            color: var(--icon-font-color-hover);
+                            @include _rounded_corners();
+                          }
+                        }
+                      }
+                    }
+
                     .emoji-palette {
                     }
                   }
 
                   .ql-container {
                     height: 16vh;
+
+                    .textarea-emoji-control {
+                      cursor: pointer;
+                      right: 8px;
+
+                      > svg {
+                        > * {
+                          stroke: var(--icon-font-color);
+                        }
+                      }
+                    }
                   }
                 }
               }

@@ -33,6 +33,10 @@
                 @include _shadow(0 0 0 0 transparent);
               }
             }
+
+            #messageEndRef {
+              height: 46px;
+            }
           }
         }
       }

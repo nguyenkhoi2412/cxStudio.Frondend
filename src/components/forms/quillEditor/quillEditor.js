@@ -9,10 +9,18 @@ import { stringExtension } from "@utils/helpersExtension";
 import axios from "axios";
 
 const regexEditor = /<p><br><\/p>|<div><br><\/div>/g;
+
+//#region Quill.register
 const Block = Quill.import("blots/block");
 Block.tagName = "DIV";
 Quill.register(Block, true);
 Quill.register("modules/emoji", Emoji);
+
+// Change icons
+const Icons = Quill.import("ui/icons");
+Icons["send"] = '<i class="ti ti-send"></i>';
+Quill.register(Icons, true);
+//#endregion
 
 const ReactQuillEditor = (props) => {
   const { autoFocus, value, placeholder } = props;
@@ -32,7 +40,9 @@ const ReactQuillEditor = (props) => {
               handlers: {
                 ...modules.toolbar.handlers,
                 send: (e) => {
-                  props.submitHandler(e);
+                  if (typeof props.submitHandler === "function") {
+                    props.submitHandler(e);
+                  }
                 },
               },
             },
@@ -130,15 +140,12 @@ const ReactQuillEditor = (props) => {
   };
 
   const handleOnChange = (content, delta, source, editor) => {
-    let text = content.replace(regexEditor, "");
-    text = stringExtension.stripedHtml(text);
+    // let text = content.replace(regexEditor, "");
     // text = stringExtension.stripedHtml(text);
 
-    // formik.setFieldValue(field, text);
-
-    setDataValue(text);
+    setDataValue(content);
     if (typeof props.onChange === "function") {
-      props.onChange(text);
+      props.onChange(content);
     }
   };
   //#endregion
