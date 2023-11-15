@@ -20,6 +20,7 @@ const ChatBody = (props) => {
   const { messages, typingStatus, useHtmlEditor } = props;
 
   const messagesEndRef = React.createRef(null);
+
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [dataMessages, setDataMessages] = React.useState([]);
 
@@ -34,32 +35,38 @@ const ChatBody = (props) => {
 
   React.useEffect(() => {
     scrollToBottom();
-  });
+  }, [dataMessages]);
   //#endregion
 
   //#region handleEvents
   const scrollToBottom = () => {
     // 👇️ scroll to bottom every time messages change
-    messagesEndRef?.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
-      inline: "nearest",
-    });
+    // messagesEndRef?.current?.scrollIntoView({
+    //   behavior: "smooth",
+    //   block: "end",
+    //   inline: "nearest",
+    // });
+    const messageList = document.querySelector("#simplebar");
+    const scroller = document.querySelector(".chat__content");
+    const height = messageList.clientHeight;
+    messagesEndRef.current.scrollTop = height;
   };
   //#endregion
 
   return (
     <>
       <Grid
+        ref={messagesEndRef}
+        component="section"
         item
         className={useHtmlEditor ? "chat__content editor" : "chat__content"}
       >
-        <Grid container spacing={gridSpacing}>
+        <Grid id="simplebar" container spacing={gridSpacing}>
           {dataMessages.map((item) => (
             <RenderMessage id={item._id} key={item._id} message={item} />
           ))}
+          {/* <Grid id="messagesEndRef" container spacing={gridSpacing}></Grid> */}
         </Grid>
-        <div id="messageEndRef" ref={messagesEndRef}></div>
       </Grid>
     </>
   );

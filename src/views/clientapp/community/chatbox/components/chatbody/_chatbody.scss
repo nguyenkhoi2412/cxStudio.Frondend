@@ -15,6 +15,7 @@
             max-height: 56vh;
             padding-right: 1rem;
             overflow: auto;
+            scroll-behavior: smooth;
 
             &.editor {
               max-height: 42vh;

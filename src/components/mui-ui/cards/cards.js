@@ -56,6 +56,7 @@ const Cards = forwardRef(
         {title && (
           <CardHeader
             sx={headerSX}
+            component="section"
             title={
               darkTitle ? <Typography variant="h3">{title}</Typography> : title
             }
@@ -68,7 +69,11 @@ const Cards = forwardRef(
 
         {/* card content */}
         {content && (
-          <CardContent sx={contentSX} className={contentClass}>
+          <CardContent
+            sx={contentSX}
+            className={contentClass}
+            component="section"
+          >
             {children}
           </CardContent>
         )}

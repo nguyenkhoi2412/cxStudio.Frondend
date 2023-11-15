@@ -22,7 +22,7 @@ const ChatFooter = (props) => {
 
   return (
     <>
-      <Grid item className="chat__footer">
+      <Grid item className="chat__footer" component="section">
         <Grid container spacing={gridSpacing}>
           <MessageSend
             useHtmlEditor={useHtmlEditor}
