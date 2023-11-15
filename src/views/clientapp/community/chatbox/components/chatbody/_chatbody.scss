@@ -16,6 +16,16 @@
             padding-right: 1rem;
             overflow: auto;
 
+            &.editor {
+              max-height: 42vh;
+            }
+
+            .box__message {
+              > .MuiCardContent-root {
+                padding: 1rem;
+              }
+            }
+
             .chat__recipient {
               margin-right: auto;
 

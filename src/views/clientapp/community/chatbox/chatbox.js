@@ -25,6 +25,7 @@ const ChatBox = (props) => {
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [messages, setMessages] = React.useState([]);
   const [typingStatus, setTypingStatus] = React.useState("");
+  const [quillEditor, setQuillEditor] = React.useState(true);
 
   //#region 👇️ useHooks
   React.useEffect(() => {
@@ -58,8 +59,12 @@ const ChatBox = (props) => {
           <ChatBody
             messages={messages}
             typingStatus={typingStatus}
+            useHtmlEditor={quillEditor}
           />
-          <ChatFooter />
+          <ChatFooter
+            useHtmlEditor={quillEditor}
+            changeHtmlEditor={() => setQuillEditor((a) => !a)}
+          />
         </Grid>
       </MainCard>
     </>

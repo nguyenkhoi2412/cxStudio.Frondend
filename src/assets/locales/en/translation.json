@@ -183,7 +183,8 @@
     "community": "Community",
     "app": {
       "livechat": {
-        "you": "You"
+        "you": "You",
+        "type_a_message": "Type a message"
       }
     }
   }

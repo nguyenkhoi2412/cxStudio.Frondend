@@ -13,7 +13,8 @@ import MessageSend from "@chatbox/components/chatfooter/messageSend";
 import { gridSpacing } from "@constants";
 //#endregion
 
-const ChatFooter = () => {
+const ChatFooter = (props) => {
+  const { useHtmlEditor, changeHtmlEditor } = props;
   // variables
   const socket = useSelector(
     (state) => state.customization.configSettings.socket
@@ -23,7 +24,10 @@ const ChatFooter = () => {
     <>
       <Grid item className="chat__footer">
         <Grid container spacing={gridSpacing}>
-          <MessageSend />
+          <MessageSend
+            useHtmlEditor={useHtmlEditor}
+            changeHtmlEditor={changeHtmlEditor}
+          />
         </Grid>
       </Grid>
     </>

@@ -41,7 +41,8 @@ const RenderMessage = (props) => {
       sm={7}
       className={sender ? "chat__sender" : "chat__recipient"}
     >
-      <MainCard>
+      <MainCard
+        className="box__message">
         <Grid item>
           <Stack direction="column">
             <MuiTypography component="p" variant="subtitle1" gutterBottom>

@@ -1,5 +1,5 @@
-// import "./_messageSend.scss";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import encryptHelper from "@utils/encrypt.helper";
 import { useFormik } from "formik";
@@ -38,6 +38,7 @@ import {
   IconMoodHappyFilled,
 } from "@tabler/icons-react";
 import { shouldForwardProp } from "@mui/system";
+import { t } from "i18next";
 
 // styles
 const OutlineInputStyle = styled(OutlinedInput, { shouldForwardProp })(
@@ -76,8 +77,11 @@ const HeaderAvatarStyle = styled(Avatar, { shouldForwardProp })(
 
 // ==============================|| SEARCH INPUT ||============================== //
 
-const MessageSend = () => {
+const MessageSend = (props) => {
+  const { useHtmlEditor } = props;
+
   const theme = useTheme();
+  const { t } = useTranslation();
   const customization = useSelector((state) => state.customization);
   const socket = useSelector(
     (state) => state.customization.configSettings.socket
@@ -85,6 +89,13 @@ const MessageSend = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [value, setValue] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
+  const [quillEditor, setQuillEditor] = useState(false);
+
+  //#region useHooks
+  React.useEffect(() => {
+    setQuillEditor(useHtmlEditor);
+  }, [useHtmlEditor]);
+  //#endregion
 
   //#region useFormik
   const [enableValidation, setEnableValidation] = React.useState(false);
@@ -150,6 +161,79 @@ const MessageSend = () => {
   };
   //#endregion
 
+  //#region render
+  const renderQuillEditor = () => {
+    return (
+      <Grid item className="outline-typing-message">
+        <ReactQuillEditor
+          className="editor-typing-message"
+          toolbar="chatbox"
+          onChange={handleOnChange}
+          submitHandler={(e) => handleSubmit(e)}
+          autoFocus={true}
+          placeholder={t("community.app.livechat.type_a_message")}
+          value={objectExtension.getValue(formik, "values.message")}
+        />
+      </Grid>
+    );
+  };
+
+  const renderInputSend = () => {
+    return (
+      <OutlineInputStyle
+        id="input-typing-message"
+        name="message"
+        className="outline-typing-message"
+        value={objectExtension.getValue(formik, "values.message")}
+        onChange={formik.handleChange}
+        onKeyDown={handleTyping}
+        placeholder={t("community.app.livechat.type_a_message")}
+        autoFocus={true}
+        startAdornment={
+          <InputAdornment position="start" className="adorment-picker">
+            {showEmoji ? (
+              <>
+                <IconMoodHappyFilled
+                  className="emoji-picker"
+                  stroke={theme.palette.font.icon}
+                  size="1.3rem"
+                  onClick={() => setShowEmoji((val) => !val)}
+                />
+                <EmojiPicker
+                  onEmojiSelect={handleOnEmojiSelect}
+                  theme={customization.mode}
+                  locale={_globalVars.locale.lang}
+                />
+              </>
+            ) : (
+              <IconMoodSmileFilled
+                className="emoji-picker"
+                stroke={theme.palette.font.icon}
+                size="1.3rem"
+                onClick={() => setShowEmoji((val) => !val)}
+              />
+            )}
+          </InputAdornment>
+        }
+        endAdornment={
+          <InputAdornment position="end">
+            <ButtonBase sx={{ borderRadius: "12px" }} onClick={handleSubmit}>
+              <HeaderAvatarStyle
+                variant="rounded"
+                className="MuiTypography-mediumAvatar MuiTypography-commonAvatar"
+              >
+                <IconSend stroke={theme.palette.font.icon} size="1.3rem" />
+              </HeaderAvatarStyle>
+            </ButtonBase>
+          </InputAdornment>
+        }
+        aria-describedby="search-helper-text"
+        inputProps={{ "aria-label": "weight" }}
+      />
+    );
+  };
+  //#endregion
+
   return (
     <>
       <Grid item xs={12} sx={{ mr: 1 }}>
@@ -161,68 +245,7 @@ const MessageSend = () => {
           onSubmit={handleSubmit}
           sx={{ mt: 1 }}
         >
-          {/* <Grid item className="outline-typing-message">
-            <ReactQuillEditor
-              className="editor-typing-message"
-              toolbar="chatbox"
-              onChange={handleOnChange}
-              submitHandler={(e) => handleSubmit(e)}
-              autoFocus={true}
-              value={objectExtension.getValue(formik, "values.message")}
-            />
-          </Grid> */}
-          <OutlineInputStyle
-            id="input-typing-message"
-            name="message"
-            className="outline-typing-message"
-            value={objectExtension.getValue(formik, "values.message")}
-            onChange={formik.handleChange}
-            onKeyDown={handleTyping}
-            placeholder="Type a message"
-            startAdornment={
-              <InputAdornment position="start" className="adorment-picker">
-                {showEmoji ? (
-                  <>
-                    <IconMoodHappyFilled
-                      className="emoji-picker"
-                      stroke={theme.palette.font.icon}
-                      size="1.3rem"
-                      onClick={() => setShowEmoji((val) => !val)}
-                    />
-                    <EmojiPicker
-                      onEmojiSelect={handleOnEmojiSelect}
-                      theme={customization.mode}
-                      locale={_globalVars.locale.lang}
-                    />
-                  </>
-                ) : (
-                  <IconMoodSmileFilled
-                    className="emoji-picker"
-                    stroke={theme.palette.font.icon}
-                    size="1.3rem"
-                    onClick={() => setShowEmoji((val) => !val)}
-                  />
-                )}
-              </InputAdornment>
-            }
-            endAdornment={
-              <InputAdornment position="end">
-                <ButtonBase
-                  sx={{ borderRadius: "12px" }}
-                  onClick={handleSubmit}
-                >
-                  <HeaderAvatarStyle
-                    variant="rounded"
-                    className="MuiTypography-mediumAvatar MuiTypography-commonAvatar"
-                  >
-                    <IconSend stroke={theme.palette.font.icon} size="1.3rem" />
-                  </HeaderAvatarStyle>
-                </ButtonBase>
-              </InputAdornment>
-            }
-            aria-describedby="search-helper-text"
-            inputProps={{ "aria-label": "weight" }}
-          />
+          {quillEditor ? renderQuillEditor() : renderInputSend()}
         </Box>
       </Grid>
     </>

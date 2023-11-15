@@ -17,7 +17,7 @@ import RenderMessage from "./renderMessage";
 //#endregion
 
 const ChatBody = (props) => {
-  const { messages, typingStatus } = props;
+  const { messages, typingStatus, useHtmlEditor } = props;
 
   const messagesEndRef = React.createRef(null);
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -50,13 +50,16 @@ const ChatBody = (props) => {
 
   return (
     <>
-      <Grid item className="chat__content">
+      <Grid
+        item
+        className={useHtmlEditor ? "chat__content editor" : "chat__content"}
+      >
         <Grid container spacing={gridSpacing}>
           {dataMessages.map((item) => (
-            <RenderMessage key={item._id} message={item} />
+            <RenderMessage id={item._id} key={item._id} message={item} />
           ))}
-          <div id="messageEndRef" ref={messagesEndRef}></div>
         </Grid>
+        <div id="messageEndRef" ref={messagesEndRef}></div>
       </Grid>
     </>
   );
