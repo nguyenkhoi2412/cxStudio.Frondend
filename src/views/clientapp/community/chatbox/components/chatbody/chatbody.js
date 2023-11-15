@@ -46,10 +46,8 @@ const ChatBody = (props) => {
     //   block: "end",
     //   inline: "nearest",
     // });
-    const messageList = document.querySelector("#simplebar");
-    const scroller = document.querySelector(".chat__content");
-    const height = messageList.clientHeight;
-    messagesEndRef.current.scrollTop = height;
+    const messageList = document.querySelector("#message-content");
+    messagesEndRef.current.scrollTop = messageList.clientHeight;
   };
   //#endregion
 
@@ -61,7 +59,7 @@ const ChatBody = (props) => {
         item
         className={useHtmlEditor ? "chat__content editor" : "chat__content"}
       >
-        <Grid id="simplebar" container spacing={gridSpacing}>
+        <Grid id="message-content" container spacing={gridSpacing}>
           {dataMessages.map((item) => (
             <RenderMessage id={item._id} key={item._id} message={item} />
           ))}
