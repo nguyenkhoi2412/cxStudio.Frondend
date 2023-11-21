@@ -1,4 +1,7 @@
+# dependencies
 /node_modules
 /package-lock.json
+
+# misc
 /webpack/.env.development
 /webpack/.env.production

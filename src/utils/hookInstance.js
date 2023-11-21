@@ -159,6 +159,40 @@ export class hookInstance {
   };
 
   /*
+   * useOnScreen
+   * Call hook passing in the ref
+   * const ref = useRef(null);
+   * const isVisible = useOnScreen(ref);
+   * console.log(isVisible);
+   */
+  static useOnScreen = (ref, rootMargin = "0px") => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsVisible(entry.isIntersecting);
+        },
+        {
+          rootMargin,
+        }
+      );
+
+      const currentElement = ref?.current;
+
+      if (currentElement) {
+        observer.observe(currentElement);
+      }
+
+      return () => {
+        observer.unobserve(currentElement);
+      };
+    });
+
+    return isVisible;
+  };
+
+  /*
    * useHover
    * How to use it?
    * const [hoverRef, isHovered] = useHover();
@@ -189,6 +223,37 @@ export class hookInstance {
     );
 
     return [ref, value];
+  };
+
+  /*
+   * useMousePosition
+   * How to use it?
+   * const [x, y, bind] = useMousePosition();
+   * <Wrapper
+      {...bind}
+      style={{
+        transform: `rotateX(${x / 15}deg) rotateY(${y / -15}deg)`
+      }}
+     >
+      ...
+   * </Wrapper
+   *
+   */
+  static useMousePosition = () => {
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
+
+    const bind = useMemo(
+      () => ({
+        onMouseMove: (event) => {
+          setX(event.nativeEvent.offsetX);
+          setY(event.nativeEvent.offsetY);
+        },
+      }),
+      []
+    );
+
+    return [x, y, bind];
   };
 
   /*
