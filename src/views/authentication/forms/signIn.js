@@ -32,10 +32,6 @@ import {
 } from "@mui/material";
 //#endregion
 //#region redux providers
-import {
-  SHOW_PROGRESSBAR,
-  HIDE_PROGRESSBAR,
-} from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
 import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
 //#endregion
@@ -60,14 +56,12 @@ const FormSignIn = () => {
         .unwrap()
         .then((response) => {
           setSubmitting(false);
-          dispatch(HIDE_PROGRESSBAR());
           responseValidate(response);
 
           formik.resetForm();
         })
         .catch((error) => {
           setSubmitting(false);
-          dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
           enqueueSnackbar(error, {
             variant: severity.error,
@@ -114,7 +108,6 @@ const FormSignIn = () => {
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
       setSubmitting(true);
-      dispatch(SHOW_PROGRESSBAR());
       validateUser(values);
     },
   });

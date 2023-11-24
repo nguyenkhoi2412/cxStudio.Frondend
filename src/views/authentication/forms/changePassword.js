@@ -20,10 +20,6 @@ import severity from "@constants/severity";
 import { Button } from "@mui/material";
 //#endregion
 //#region redux providers
-import {
-  SHOW_PROGRESSBAR,
-  HIDE_PROGRESSBAR,
-} from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
 import {
   CHANGE_PASSWORD,
@@ -46,7 +42,6 @@ const FormChangePassword = () => {
         .unwrap()
         .then((result) => {
           setSubmitting(false);
-          dispatch(HIDE_PROGRESSBAR());
 
           if (result.code === HTTP_STATUS.OK) {
             if (result.ok) {
@@ -67,7 +62,6 @@ const FormChangePassword = () => {
           formik.resetForm();
         })
         .catch((error) => {
-          dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
           enqueueSnackbar(error, {
             variant: severity.error,
@@ -92,7 +86,6 @@ const FormChangePassword = () => {
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
       setSubmitting(true);
-      dispatch(SHOW_PROGRESSBAR());
       changePassword(values);
     },
   });

@@ -28,12 +28,14 @@ export const site = createSlice({
       return {
         ...state,
         isFetching: true,
+        showProgressbar: true,
       };
     },
     [SITE_GET_BY_ID.rejected]: (state) => {
       return {
         ...state,
         isFetching: false,
+        showProgressbar: false,
       };
     },
     [SITE_GET_BY_ID.fulfilled]: (state, action) => {
@@ -43,6 +45,7 @@ export const site = createSlice({
       return {
         ...state,
         isFetching: false,
+        showProgressbar: false,
         ok: response.ok,
         message: response.message,
         d: results,

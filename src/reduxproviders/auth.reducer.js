@@ -89,6 +89,7 @@ const currentUser = () => {
 // init state auth
 const initialState = {
   isFetching: false,
+  showProgressbar: false,
   ok: true,
   message: "",
   currentUser: currentUser(),
@@ -114,12 +115,14 @@ export const auth = createSlice({
       return {
         ...state,
         isFetching: true,
+        showProgressbar: true,
       };
     },
     [VALIDATE_USER.rejected]: (state) => {
       return {
         ...state,
         isFetching: false,
+        showProgressbar: false,
       };
     },
     [VALIDATE_USER.fulfilled]: (state, action) => {
@@ -129,6 +132,7 @@ export const auth = createSlice({
       const newState = {
         ...state,
         isFetching: false,
+        showProgressbar: false,
         ok: response.ok,
         message: response.message,
         currentUser: {
@@ -172,12 +176,14 @@ export const auth = createSlice({
       return {
         ...state,
         isFetching: true,
+        showProgressbar: true,
       };
     },
     [USER_UPDATE_INFO.rejected]: (state) => {
       return {
         ...state,
         isFetching: false,
+        showProgressbar: false,
       };
     },
     [USER_UPDATE_INFO.fulfilled]: (state, action) => {
@@ -188,6 +194,7 @@ export const auth = createSlice({
         const newState = {
           ...state,
           isFetching: false,
+          showProgressbar: false,
           ok: response.ok,
           message: response.message,
           currentUser: {
@@ -221,12 +228,14 @@ export const auth = createSlice({
       return {
         ...state,
         isFetching: true,
+        showProgressbar: true,
       };
     },
     [VALIDATE_SECURE_2FA.rejected]: (state) => {
       return {
         ...state,
         isFetching: false,
+        showProgressbar: false,
       };
     },
     [VALIDATE_SECURE_2FA.fulfilled]: (state, action) => {
@@ -249,6 +258,7 @@ export const auth = createSlice({
       return {
         ...state,
         isFetching: false,
+        showProgressbar: false,
       };
     },
     //#endregion
@@ -257,12 +267,14 @@ export const auth = createSlice({
       return {
         ...state,
         isFetching: true,
+        showProgressbar: true,
       };
     },
     [SIGNIN_SOCIAL_GOOGLE.rejected]: (state) => {
       return {
         ...state,
         isFetching: false,
+        showProgressbar: false,
       };
     },
     [SIGNIN_SOCIAL_GOOGLE.fulfilled]: (state, action) => {
@@ -272,6 +284,7 @@ export const auth = createSlice({
       const newState = {
         ...state,
         isFetching: false,
+        showProgressbar: false,
         ok: response.ok,
         message: response.message,
         currentUser: {

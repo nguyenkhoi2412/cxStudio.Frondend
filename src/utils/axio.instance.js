@@ -1,11 +1,10 @@
 import axios from "axios";
 import stored from "@constants/storageHandler";
-// import reduxStore from "@reduxproviders/_storeProvider";
-// import {
-//   SHOW_PROGRESSBAR,
-//   HIDE_PROGRESSBAR,
-// } from "@components/mui-ui/progressBar/progressBar.reducer";
-// import authServices from "@services/auth";
+import reduxStore from "@reduxproviders/_storeProvider";
+import {
+  SHOW_PROGRESSBAR,
+  HIDE_PROGRESSBAR,
+} from "@components/mui-ui/progressBar/progressBar.reducer";
 import { storedExtension } from "./helpersExtension";
 // You can use your own logic to set your local or production domain
 const baseDomain = process.env.API_HOSTNAME;
@@ -38,8 +37,10 @@ axiosInstance.interceptors.request.use(
   (request) => {
     // Do something before request is sent
     const accessToken = getLocalAccessToken();
-    // const { dispatch } = reduxStore; // direct access to redux store.
-    // dispatch(SHOW_PROGRESSBAR());
+
+    // show progressbar when request
+    SPIN.SHOW_PROGRESSBAR(request);
+
     if (accessToken !== null && accessToken !== undefined) {
       request.headers["Authorization"] = "Bearer " + accessToken;
       // request.headers["X-Access-Token"] = "Bearer " + accessToken;
@@ -55,8 +56,9 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => {
-    // const { dispatch } = reduxStore; // direct access to redux store.
-    // dispatch(HIDE_PROGRESSBAR());
+    // hide progressbar when response complete
+    SPIN.HIDE_PROGRESSBAR(response);
+
     // Return a successful response back to the calling service
     if (response && response.data) return response.data;
 
@@ -114,6 +116,50 @@ const removeLocalToken = () => {
   // storedExtension.removeCookie(stored.AUTH.ACCESS_TOKEN);
   // storedExtension.removeCookie(stored.AUTH.REFRESH_TOKEN);
   // window.location.href = "/" + module + "/login";
+};
+
+const getShowProgressbar = (req, objectMulti) => {
+  Object.values(objectMulti).reduce(function (r, obj) {
+    Object.getOwnPropertyNames(obj).map(function (key) {
+      if (key === "showProgressbar" && obj[key] === true) {
+        urlShowProgresBar.push(req.url);
+        return;
+      }
+    });
+  });
+
+  return urlShowProgresBar;
+};
+
+// ==============================|| SPIN ||============================== //
+let urlShowProgresBar = [];
+const SPIN = {
+  SHOW_PROGRESSBAR: (req) => {
+    // show progressbar when request
+    const { dispatch } = reduxStore; // direct access to redux store.
+    const stores = reduxStore.getState();
+
+    Object.values(stores).reduce(function (r, obj) {
+      Object.getOwnPropertyNames(obj).map(function (key) {
+        if (key === "showProgressbar" && obj[key] === true) {
+          urlShowProgresBar.push(req.url);
+          return;
+        }
+      });
+    });
+
+    if (urlShowProgresBar?.length > 0) {
+      dispatch(SHOW_PROGRESSBAR());
+    }
+  },
+  HIDE_PROGRESSBAR: (res) => {
+    const { dispatch } = reduxStore; // direct access to redux store.
+
+    urlShowProgresBar = urlShowProgresBar.filter((x) => x !== res.config.url);
+    if (urlShowProgresBar.length === 0) {
+      dispatch(HIDE_PROGRESSBAR());
+    }
+  },
 };
 
 // const referedEvent = (res) => {

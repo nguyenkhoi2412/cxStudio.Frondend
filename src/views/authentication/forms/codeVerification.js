@@ -21,10 +21,6 @@ import { Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 //#endregion
 //#region redux providers
-import {
-  SHOW_PROGRESSBAR,
-  HIDE_PROGRESSBAR,
-} from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch, useSelector } from "react-redux";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
@@ -55,7 +51,6 @@ const FormCodeVerification = () => {
         .unwrap()
         .then((result) => {
           setSubmitting(false);
-          dispatch(HIDE_PROGRESSBAR());
 
           if (result.code === HTTP_STATUS.OK) {
             if (result.ok) {
@@ -74,7 +69,6 @@ const FormCodeVerification = () => {
         })
         .catch((error) => {
           setSubmitting(false);
-          dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
           enqueueSnackbar(error, {
             variant: severity.error,
@@ -98,7 +92,6 @@ const FormCodeVerification = () => {
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
       setSubmitting(true);
-      dispatch(SHOW_PROGRESSBAR());
       validateSecure2FA(values);
     },
   });

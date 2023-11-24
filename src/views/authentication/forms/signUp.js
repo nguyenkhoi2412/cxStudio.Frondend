@@ -25,10 +25,6 @@ import severity from "@constants/severity";
 import { Divider, Typography, Button, useMediaQuery } from "@mui/material";
 //#endregion
 //#region redux providers
-import {
-  SHOW_PROGRESSBAR,
-  HIDE_PROGRESSBAR,
-} from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
 import { REGISTER_USER } from "@reduxproviders/auth.reducer";
 import { ROLE_GET_ALL } from "@reduxproviders/role.reducer";
@@ -79,7 +75,6 @@ const FormSignUp = () => {
       .unwrap()
       .then((result) => {
         setSubmitting(false);
-        dispatch(HIDE_PROGRESSBAR());
 
         if (result.code === HTTP_STATUS.OK) {
           if (result.ok) {
@@ -103,7 +98,6 @@ const FormSignUp = () => {
       })
       .catch((error) => {
         setSubmitting(false);
-        dispatch(HIDE_PROGRESSBAR());
         // variant could be success, error, warning, info, or default
         enqueueSnackbar(error, {
           variant: severity.error,
@@ -132,7 +126,6 @@ const FormSignUp = () => {
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
       setSubmitting(true);
-      dispatch(SHOW_PROGRESSBAR());
       helpersExtension.simulateNetworkRequest(100).then(async () => {
         registerUser(values);
       });

@@ -23,10 +23,6 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 //#endregion
 //#region redux providers
-import {
-  SHOW_PROGRESSBAR,
-  HIDE_PROGRESSBAR,
-} from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
 import { RECOVERY_PASSWORD } from "@reduxproviders/auth.reducer";
 //#endregion
@@ -47,7 +43,6 @@ const FormForgotPassword = () => {
         .unwrap()
         .then((result) => {
           setSubmitting(false);
-          dispatch(HIDE_PROGRESSBAR());
 
           setShowMessageAlert(true);
           setMessageContentAlert(result.message);
@@ -80,7 +75,6 @@ const FormForgotPassword = () => {
         })
         .catch((error) => {
           setSubmitting(false);
-          dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
           enqueueSnackbar(error, {
             variant: severity.error,
@@ -104,7 +98,6 @@ const FormForgotPassword = () => {
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
       setSubmitting(true);
-      dispatch(SHOW_PROGRESSBAR());
 
       forgotPassword(values);
     },

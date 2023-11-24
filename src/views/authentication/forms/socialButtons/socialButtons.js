@@ -13,10 +13,6 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { Button } from "@mui/material";
 //#endregion
 //#region redux providers
-import {
-  SHOW_PROGRESSBAR,
-  HIDE_PROGRESSBAR,
-} from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
 import { SIGNIN_SOCIAL_GOOGLE } from "@reduxproviders/auth.reducer";
 //#endregion
@@ -40,17 +36,14 @@ const SocialButtons = (props) => {
   //#region handle events
   const signInGoogle = useGoogleLogin({
     onSuccess: async (results) => {
-      dispatch(SHOW_PROGRESSBAR());
       await dispatch(
         SIGNIN_SOCIAL_GOOGLE({ access_token: results.access_token })
       )
         .unwrap()
         .then((response) => {
-          dispatch(HIDE_PROGRESSBAR());
           responseValidate(response);
         })
         .catch((error) => {
-          dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
           enqueueSnackbar(error, {
             variant: severity.error,
