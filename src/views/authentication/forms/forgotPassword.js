@@ -204,7 +204,7 @@ const FormForgotPassword = () => {
                       >
                         {t("authentication.signinwithyournewpassword")}
                         <Link
-                          href={navigateLocation.DASHBOARD.AUTH.SIGNIN}
+                          href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
                           underline="none"
                           variant="subtitle1"
                         >

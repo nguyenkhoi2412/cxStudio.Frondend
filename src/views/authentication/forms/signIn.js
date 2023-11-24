@@ -268,7 +268,7 @@ const FormSignIn = () => {
                 label="Remember me"
               />
               <Link
-                href={navigateLocation.DASHBOARD.AUTH.FORGOT_PASSWORD}
+                href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.FORGOT_PASSWORD}
                 variant="body2"
                 underline="none"
               >

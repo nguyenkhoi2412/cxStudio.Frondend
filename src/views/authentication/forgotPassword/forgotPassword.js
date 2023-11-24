@@ -66,7 +66,7 @@ const ForgotPassword = (props) => {
             <Grid item container direction="column" alignItems="center" xs={12}>
               <Stack alignItems="center" justifyContent="center" spacing={1}>
                 <Link
-                  href={navigateLocation.DASHBOARD.AUTH.SIGNIN}
+                  href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}
@@ -74,7 +74,7 @@ const ForgotPassword = (props) => {
                   {t("authentication.alreadyhaveanaccount")}
                 </Link>
                 <Link
-                  href={navigateLocation.DASHBOARD.AUTH.SIGNUP}
+                  href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNUP}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}
