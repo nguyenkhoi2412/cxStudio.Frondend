@@ -1,5 +1,10 @@
 import axios from "axios";
 import stored from "@constants/storageHandler";
+// import reduxStore from "@reduxproviders/_storeProvider";
+// import {
+//   SHOW_PROGRESSBAR,
+//   HIDE_PROGRESSBAR,
+// } from "@components/mui-ui/progressBar/progressBar.reducer";
 // import authServices from "@services/auth";
 import { storedExtension } from "./helpersExtension";
 // You can use your own logic to set your local or production domain
@@ -33,7 +38,8 @@ axiosInstance.interceptors.request.use(
   (request) => {
     // Do something before request is sent
     const accessToken = getLocalAccessToken();
-
+    // const { dispatch } = reduxStore; // direct access to redux store.
+    // dispatch(SHOW_PROGRESSBAR());
     if (accessToken !== null && accessToken !== undefined) {
       request.headers["Authorization"] = "Bearer " + accessToken;
       // request.headers["X-Access-Token"] = "Bearer " + accessToken;
@@ -49,6 +55,8 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => {
+    // const { dispatch } = reduxStore; // direct access to redux store.
+    // dispatch(HIDE_PROGRESSBAR());
     // Return a successful response back to the calling service
     if (response && response.data) return response.data;
 
