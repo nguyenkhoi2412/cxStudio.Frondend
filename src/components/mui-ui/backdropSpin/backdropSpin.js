@@ -9,31 +9,36 @@ const IncBackdrop = (props) => {
   //   const [open, setOpen] = React.useState(true);
   const dataState = useSelector(backdropSpinState);
   const [dataSource, setDataSource] = React.useState();
+  const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     setDataSource(dataState);
+    setIsOpen(dataState.open);
   }, [dataState]);
+
+  React.useEffect(() => {
+    if (props?.open) {
+      setIsOpen(props?.open);
+    }
+  }, [props]);
 
   const handleClose = () => {
     // setOpen(false);
   };
 
-  const renderSpinProgress =
-    dataSource?.type === "pre" || props.open ? (
-      <div id={dataSource?.open ? "preloader" : "preloader-none"}></div>
-    ) : (
-      <CircularProgress color="inherit" />
-    );
+  const renderSpinProgress = () => {
+    if (dataSource?.type === "pre") {
+      return <div id={isOpen ? "preloader" : "preloader-none"}></div>;
+    } else if (dataSource?.spin === true) {
+      return <CircularProgress color="inherit" />;
+    }
+  };
 
   return (
     <>
-      {dataSource?.open || props.open ? (
-        <Backdrop
-          open={dataSource?.open || props.open}
-          onClick={handleClose}
-          className="white"
-        >
-          {dataSource?.spin || props.open ? renderSpinProgress : <></>}
+      {isOpen ? (
+        <Backdrop open={true} onClick={handleClose} className="white">
+          {renderSpinProgress()}
         </Backdrop>
       ) : (
         <></>

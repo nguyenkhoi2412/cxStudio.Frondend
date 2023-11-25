@@ -13,7 +13,7 @@ const baseURL = `${baseDomain}/api`;
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
-  timeout: 300000,
+  timeout: 300000, // 5min = 300000/1000/60
   withCredentials: true,
   headers: {
     Accept: "application/json",

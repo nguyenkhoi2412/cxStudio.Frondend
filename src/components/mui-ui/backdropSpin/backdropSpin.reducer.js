@@ -14,7 +14,7 @@ export const muiBackdropSpin = createSlice({
       const payload = action.payload;
       return {
         ...current(state),
-        type: payload?.type ?? "default",
+        type: payload?.type ?? "mui", // type: "pre"
         open: payload?.open !== undefined ? payload.open : true,
         spin: payload?.spin !== undefined ? payload.spin : true,
       };
