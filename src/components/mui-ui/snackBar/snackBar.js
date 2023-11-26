@@ -35,6 +35,7 @@ const IncSnackBar = () => {
   const renderSnackBar = React.useMemo(() => {
     return (
       <Snackbar
+        key={new Date().getTime()}
         anchorOrigin={anchorOrigin}
         open={open}
         autoHideDuration={snackBarData?.autoHideDuration || 3000}
