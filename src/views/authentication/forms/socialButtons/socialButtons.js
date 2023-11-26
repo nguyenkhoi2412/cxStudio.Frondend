@@ -43,12 +43,6 @@ const SocialButtons = (props) => {
         .then((response) => {
           responseValidate(response);
         })
-        .catch((error) => {
-          // variant could be success, error, warning, info, or default
-          enqueueSnackbar(error, {
-            variant: severity.error,
-          });
-        });
     },
     // flow: "auth-code",
   });

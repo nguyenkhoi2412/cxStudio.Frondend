@@ -12,6 +12,7 @@ import NavigationScroll from "@utils/_layout/navigationScroll";
 import { BrowserRouter } from "react-router-dom";
 import IncBackdrop from "@components/mui-ui/backdropSpin";
 import IncProgressBar from "@components/mui-ui/progressBar";
+import IncSnackBar from "@components/mui-ui/snackBar";
 import { helpersExtension } from "@utils/helpersExtension";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -95,6 +96,7 @@ const App = (props) => {
 
         <IncProgressBar />
         <IncBackdrop />
+        <IncSnackBar />
         <SnackbarProvider
           maxSnack={3}
           autoHideDuration={3000}

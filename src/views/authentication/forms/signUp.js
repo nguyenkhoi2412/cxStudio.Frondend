@@ -59,12 +59,6 @@ const FormSignUp = () => {
             setLsRoles(result.rs);
           }
         })
-        .catch((error) => {
-          // variant could be success, error, warning, info, or default
-          enqueueSnackbar(t("connection.error"), {
-            variant: severity.error,
-          });
-        });
     });
   };
   //#endregion
@@ -98,10 +92,6 @@ const FormSignUp = () => {
       })
       .catch((error) => {
         setSubmitting(false);
-        // variant could be success, error, warning, info, or default
-        enqueueSnackbar(error, {
-          variant: severity.error,
-        });
       });
   };
   //#endregion

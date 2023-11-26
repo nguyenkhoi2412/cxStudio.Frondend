@@ -62,10 +62,6 @@ const FormChangePassword = () => {
           formik.resetForm();
         })
         .catch((error) => {
-          // variant could be success, error, warning, info, or default
-          enqueueSnackbar(error, {
-            variant: severity.error,
-          });
           formik.resetForm();
         });
     });

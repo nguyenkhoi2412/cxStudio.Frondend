@@ -69,10 +69,6 @@ const FormCodeVerification = () => {
         })
         .catch((error) => {
           setSubmitting(false);
-          // variant could be success, error, warning, info, or default
-          enqueueSnackbar(error, {
-            variant: severity.error,
-          });
           formik.resetForm();
         });
     });

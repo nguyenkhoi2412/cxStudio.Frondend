@@ -52,12 +52,6 @@ const CodeVerification = (props) => {
           variant: severity.success,
         });
       })
-      .catch((error) => {
-        // variant could be success, error, warning, info, or default
-        enqueueSnackbar(t("connection.error"), {
-          variant: severity.error,
-        });
-      });
   };
 
   return (

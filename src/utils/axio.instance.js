@@ -5,6 +5,10 @@ import {
   SHOW_PROGRESSBAR,
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
+import {
+  SHOW_SNACKBAR,
+  HIDE_SNACKBAR,
+} from "@components/mui-ui/snackBar/snackBar.reducer";
 import { storedExtension } from "./helpersExtension";
 // You can use your own logic to set your local or production domain
 const baseDomain = process.env.API_HOSTNAME;
@@ -66,6 +70,21 @@ axiosInstance.interceptors.response.use(
   },
   (responseError) => {
     console.log("responseError", responseError);
+
+    // show snackbar alert error
+    // direct access to redux store.
+    reduxStore.dispatch(
+      SHOW_SNACKBAR({
+        // variant could be success, error, warning, info, or default
+        severity: "error",
+        content: responseError.message,
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "right",
+        },
+      })
+    );
+
     // 405: Method Not Allowed
     if (responseError.response?.status !== 405) {
       removeLocalToken();
