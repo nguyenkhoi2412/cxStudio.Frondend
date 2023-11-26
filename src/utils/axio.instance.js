@@ -85,6 +85,9 @@ axiosInstance.interceptors.response.use(
       })
     );
 
+    // hide progressbar when response complete
+    SPIN.HIDE_PROGRESSBAR(responseError);
+
     // 405: Method Not Allowed
     if (responseError.response?.status !== 405) {
       removeLocalToken();
