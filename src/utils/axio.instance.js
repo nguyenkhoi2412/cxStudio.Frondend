@@ -9,12 +9,13 @@ import {
   SHOW_SNACKBAR,
   HIDE_SNACKBAR,
 } from "@components/mui-ui/snackBar/snackBar.reducer";
-import { storedExtension } from "./helpersExtension";
+import { objectExtension, storedExtension } from "./helpersExtension";
 // You can use your own logic to set your local or production domain
 const baseDomain = process.env.API_HOSTNAME;
 const baseURL = `${baseDomain}/api`;
 // const baseAPI_URL = "http://jsonplaceholder.typicode.com/";
 
+//#region axios
 const axiosInstance = axios.create({
   baseURL: baseURL,
   timeout: 300000, // 5min = 300000/1000/60
@@ -35,15 +36,16 @@ const axiosInstance = axios.create({
 });
 
 export default axiosInstance;
+//#endregion
 
 //#region interceptors
 axiosInstance.interceptors.request.use(
   (request) => {
-    // Do something before request is sent
-    const accessToken = getLocalAccessToken();
-
     // show progressbar when request
     SPIN.SHOW_PROGRESSBAR(request);
+
+    // Do something before request is sent
+    const accessToken = getLocalAccessToken();
 
     if (accessToken !== null && accessToken !== undefined) {
       request.headers["Authorization"] = "Bearer " + accessToken;
@@ -138,19 +140,6 @@ const removeLocalToken = () => {
   // storedExtension.removeCookie(stored.AUTH.ACCESS_TOKEN);
   // storedExtension.removeCookie(stored.AUTH.REFRESH_TOKEN);
   // window.location.href = "/" + module + "/login";
-};
-
-const getShowProgressbar = (req, objectMulti) => {
-  Object.values(objectMulti).reduce(function (r, obj) {
-    Object.getOwnPropertyNames(obj).map(function (key) {
-      if (key === "showProgressbar" && obj[key] === true) {
-        urlShowProgresBar.push(req.url);
-        return;
-      }
-    });
-  });
-
-  return urlShowProgresBar;
 };
 
 // ==============================|| SPIN ||============================== //
