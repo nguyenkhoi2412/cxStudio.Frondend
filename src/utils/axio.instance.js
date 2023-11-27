@@ -5,9 +5,7 @@ import {
   SHOW_PROGRESSBAR,
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
-import {
-  SHOW_SNACKBAR,
-} from "@components/mui-ui/snackBar/snackBar.reducer";
+import { SHOW_SNACKBAR } from "@components/mui-ui/snackBar/snackBar.reducer";
 import { objectExtension, storedExtension } from "./helpersExtension";
 // You can use your own logic to set your local or production domain
 const baseDomain = process.env.API_HOSTNAME;
@@ -65,18 +63,7 @@ axiosInstance.interceptors.response.use(
     // direct access to redux store.
     const { status, data } = response;
     if (status === 200 && data.code !== 200) {
-      reduxStore.dispatch(
-        SHOW_SNACKBAR({
-          // variant could be success, error, warning, info, or default
-          severity: "error",
-          autoHideDuration: 6000,
-          content: data.code + ": " + data.message || response.message,
-          anchorOrigin: {
-            vertical: "bottom",
-            horizontal: "right",
-          },
-        })
-      );
+      SHOW_ERROR_SNACKBAR(data.code + ": " + data.message || response.message);
     }
 
     // hide progressbar when response complete
@@ -91,19 +78,8 @@ axiosInstance.interceptors.response.use(
     console.log("responseError", responseError);
 
     // show snackbar alert error
-    // direct access to redux store.
-    reduxStore.dispatch(
-      SHOW_SNACKBAR({
-        // variant could be success, error, warning, info, or default
-        severity: "error",
-        autoHideDuration: 6000,
-        content:
-          responseError.message + ` .${responseError.response?.data?.message}`,
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "right",
-        },
-      })
+    SHOW_ERROR_SNACKBAR(
+      responseError.message + ` .${responseError.response?.data?.message}`
     );
 
     // hide progressbar when response complete
@@ -190,6 +166,21 @@ const SPIN = {
       dispatch(HIDE_PROGRESSBAR());
     }
   },
+};
+
+const SHOW_ERROR_SNACKBAR = (content) => {
+  reduxStore.dispatch(
+    SHOW_SNACKBAR({
+      // variant could be success, error, warning, info, or default
+      severity: "error",
+      autoHideDuration: 6000,
+      content: content,
+      anchorOrigin: {
+        vertical: "bottom",
+        horizontal: "right",
+      },
+    })
+  );
 };
 
 // const referedEvent = (res) => {
