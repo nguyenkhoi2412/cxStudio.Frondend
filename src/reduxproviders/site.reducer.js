@@ -40,14 +40,14 @@ export const site = createSlice({
     },
     [SITE_GET_BY_ID.fulfilled]: (state, action) => {
       const response = action.payload;
-      const results = response.rs;
+      const results = response?.rs;
 
       return {
         ...state,
         isFetching: false,
         showProgressbar: false,
-        ok: response.ok,
-        message: response.message,
+        ok: response?.ok,
+        message: response?.message,
         d: results,
       };
     },

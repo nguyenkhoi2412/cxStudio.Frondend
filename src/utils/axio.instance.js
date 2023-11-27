@@ -62,6 +62,26 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => {
+    // show snackbar alert error
+    // direct access to redux store.
+    const { status, data } = response;
+    if (status === 200 && data.code !== 200) {
+      reduxStore.dispatch(
+        SHOW_SNACKBAR({
+          // variant could be success, error, warning, info, or default
+          severity: "error",
+          content:
+            data.code +
+              ": " +
+              data.message || response.message,
+          anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "right",
+          },
+        })
+      );
+    }
+
     // hide progressbar when response complete
     SPIN.HIDE_PROGRESSBAR(response);
 
@@ -79,7 +99,10 @@ axiosInstance.interceptors.response.use(
       SHOW_SNACKBAR({
         // variant could be success, error, warning, info, or default
         severity: "error",
-        content: responseError.message,
+        content:
+          responseError.response?.data?.code +
+            ": " +
+            responseError.response?.data?.message || responseError.message,
         anchorOrigin: {
           vertical: "bottom",
           horizontal: "right",

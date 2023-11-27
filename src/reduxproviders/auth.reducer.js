@@ -127,14 +127,14 @@ export const auth = createSlice({
     },
     [VALIDATE_USER.fulfilled]: (state, action) => {
       const response = action.payload;
-      const results = response.rs;
+      const results = response?.rs;
 
       const newState = {
         ...state,
         isFetching: false,
         showProgressbar: false,
-        ok: response.ok,
-        message: response.message,
+        ok: response?.ok,
+        message: response?.message,
         currentUser: {
           ...results.currentUser,
           isAdmin: results?.currentUser?.role === ROLE.ADMIN.name,
@@ -144,7 +144,7 @@ export const auth = createSlice({
         },
       };
 
-      if (response.ok) {
+      if (response?.ok) {
         // save localStore USER INFOS
         localStorage.setItem(
           storageHandler.AUTH.CURRENT_USER,
@@ -188,15 +188,15 @@ export const auth = createSlice({
     },
     [USER_UPDATE_INFO.fulfilled]: (state, action) => {
       const response = action.payload;
-      const results = response.rs;
+      const results = response?.rs;
 
       if (results) {
         const newState = {
           ...state,
           isFetching: false,
           showProgressbar: false,
-          ok: response.ok,
-          message: response.message,
+          ok: response?.ok,
+          message: response?.message,
           currentUser: {
             ...results[0],
             isAdmin: results[0]?.role === ROLE.ADMIN.name,
@@ -206,7 +206,7 @@ export const auth = createSlice({
           },
         };
 
-        if (response.ok) {
+        if (response?.ok) {
           localStorage.removeItem(storageHandler.AUTH.CURRENT_USER);
           // save localStore USER INFOS
           localStorage.setItem(
@@ -240,9 +240,9 @@ export const auth = createSlice({
     },
     [VALIDATE_SECURE_2FA.fulfilled]: (state, action) => {
       const response = action.payload;
-      const results = response.rs;
+      const results = response?.rs;
 
-      if (response.ok) {
+      if (response?.ok) {
         // save token to cookie
         storedExtension.setCookie(
           storageHandler.AUTH.VERIFIED_2FA,
@@ -279,14 +279,14 @@ export const auth = createSlice({
     },
     [SIGNIN_SOCIAL_GOOGLE.fulfilled]: (state, action) => {
       const response = action.payload;
-      const results = response.rs;
+      const results = response?.rs;
 
       const newState = {
         ...state,
         isFetching: false,
         showProgressbar: false,
-        ok: response.ok,
-        message: response.message,
+        ok: response?.ok,
+        message: response?.message,
         currentUser: {
           ...results.currentUser,
           isAdmin: results?.currentUser?.role === ROLE.ADMIN.name,
@@ -296,7 +296,7 @@ export const auth = createSlice({
         },
       };
 
-      if (response.ok) {
+      if (response?.ok) {
         // save localStore USER INFOS
         localStorage.setItem(
           storageHandler.AUTH.CURRENT_USER,
