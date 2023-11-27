@@ -19,6 +19,7 @@ export const muiSnackBar = createSlice({
       return {
         ...state,
         open: true,
+        autoHideDuration: action?.payload?.autoHideDuration,
         severity: action?.payload?.severity,
         content: action?.payload?.content,
         anchorOrigin: action?.payload?.anchorOrigin,

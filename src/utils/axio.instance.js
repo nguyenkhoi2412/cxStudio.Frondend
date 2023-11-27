@@ -7,7 +7,6 @@ import {
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import {
   SHOW_SNACKBAR,
-  HIDE_SNACKBAR,
 } from "@components/mui-ui/snackBar/snackBar.reducer";
 import { objectExtension, storedExtension } from "./helpersExtension";
 // You can use your own logic to set your local or production domain
@@ -70,10 +69,8 @@ axiosInstance.interceptors.response.use(
         SHOW_SNACKBAR({
           // variant could be success, error, warning, info, or default
           severity: "error",
-          content:
-            data.code +
-              ": " +
-              data.message || response.message,
+          autoHideDuration: 6000,
+          content: data.code + ": " + data.message || response.message,
           anchorOrigin: {
             vertical: "bottom",
             horizontal: "right",
@@ -99,10 +96,9 @@ axiosInstance.interceptors.response.use(
       SHOW_SNACKBAR({
         // variant could be success, error, warning, info, or default
         severity: "error",
+        autoHideDuration: 6000,
         content:
-          responseError.response?.data?.code +
-            ": " +
-            responseError.response?.data?.message || responseError.message,
+          responseError.message + ` .${responseError.response?.data?.message}`,
         anchorOrigin: {
           vertical: "bottom",
           horizontal: "right",
