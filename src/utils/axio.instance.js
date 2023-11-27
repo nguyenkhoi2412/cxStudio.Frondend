@@ -11,6 +11,7 @@ import { objectExtension, storedExtension } from "./helpersExtension";
 const baseDomain = process.env.API_HOSTNAME;
 const baseURL = `${baseDomain}/api`;
 // const baseAPI_URL = "http://jsonplaceholder.typicode.com/";
+const ERR_BAD_REQUEST = ["ERR_BAD_REQUEST", "ERR_NETWORK"];
 
 //#region axios
 const axiosInstance = axios.create({
@@ -79,7 +80,10 @@ axiosInstance.interceptors.response.use(
 
     // show snackbar alert error
     SHOW_ERROR_SNACKBAR(
-      responseError.message + ` .${responseError.response?.data?.message}`
+      responseError.message +
+        (ERR_BAD_REQUEST.includes(responseError.code)
+          ? ""
+          : ` .${responseError.response?.data?.message}`)
     );
 
     // hide progressbar when response complete
