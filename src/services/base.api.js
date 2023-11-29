@@ -54,7 +54,7 @@ export default {
   getbyid(url, params) {
     return new Promise((resolve, reject) => {
       axios
-        .get(url + params)
+        .get(objectExtension.parseToQueryString(url, params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });

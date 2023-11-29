@@ -46,7 +46,11 @@ const App = (props) => {
 
   //#region get datas
   const getSiteInfosById = () => {
-    dispatch(SITE_GET_BY_ID(_globalVars.SITE_ID));
+    dispatch(
+      SITE_GET_BY_ID({
+        id: _globalVars.SITE_ID,
+      })
+    );
   };
   //#endregion
 
