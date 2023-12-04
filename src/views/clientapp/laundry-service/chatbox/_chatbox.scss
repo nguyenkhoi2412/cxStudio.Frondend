@@ -1,0 +1,21 @@
+.wrapper.community.chatbox {
+  .wrapper-content {
+    .chat__main {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .MuiCardHeader-root {
+        .MuiCardHeader-content {
+          .MuiCardHeader-title {
+            text-transform: lowercase;
+
+            &:before {
+              content: "#";
+            }
+          }
+        }
+      }
+    }
+  }
+}

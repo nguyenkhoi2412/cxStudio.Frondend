@@ -1,6 +1,7 @@
 export const MODULES = {
   DASHBOARD: "dashboard",
-  COMMUNITY: "community"
+  COMMUNITY: "community",
+  LAUNDRY_SERVICE: "laundry-service"
 };
 
 export const CURRENT_MODULES = () => {

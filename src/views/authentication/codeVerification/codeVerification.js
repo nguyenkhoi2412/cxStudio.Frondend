@@ -135,7 +135,7 @@ const CodeVerification = (props) => {
             <Grid item container direction="column" alignItems="center" xs={12}>
               <Stack alignItems="center" justifyContent="center" spacing={1}>
                 <Link
-                  href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
+                  href={navigateLocation.AUTH.SIGNIN}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}
@@ -143,7 +143,7 @@ const CodeVerification = (props) => {
                   {t("authentication.goback_signin")}
                 </Link>
                 <Link
-                  href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNUP}
+                  href={navigateLocation.AUTH.SIGNUP}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}

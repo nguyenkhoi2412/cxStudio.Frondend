@@ -60,7 +60,7 @@ const SignIn = (props) => {
           <Grid item xs={12}>
             <Grid item container direction="column" alignItems="center" xs={12}>
               <Link
-                href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNUP}
+                href={navigateLocation.AUTH.SIGNUP}
                 underline="none"
                 variant="subtitle1"
                 color={theme.palette.grey[900]}

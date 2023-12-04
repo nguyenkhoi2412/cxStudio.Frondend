@@ -17,13 +17,24 @@ export const CLIENT_APP = {
   LAYOUT: Loadable(lazy(() => import("@clientapp/_layout"))),
   DEFAULT: Loadable(lazy(() => import("@clientapp/home"))),
   HOME: Loadable(lazy(() => import("@clientapp/home"))),
+  //#region COMMUNITY
   COMMUNITY: {
     LAYOUT: Loadable(lazy(() => import("@clientapp/community/_layout"))),
     DEFAULT: Loadable(lazy(() => import("@clientapp/community"))),
-    //#region CHATBOX
+    //* CHATBOX
     CHATBOX: {
       DEFAULT: Loadable(lazy(() => import("@clientapp/community/chatbox"))),
     },
-    //#endregion
   },
+  //#endregion
+  //#region LAUNDRY_SERVICE
+  LAUNDRY_SERVICE: {
+    LAYOUT: Loadable(lazy(() => import("@clientapp/laundry-service/_layout"))),
+    DEFAULT: Loadable(lazy(() => import("@clientapp/laundry-service"))),
+    //* CHATBOX
+    CHATBOX: {
+      DEFAULT: Loadable(lazy(() => import("@clientapp/laundry-service/chatbox"))),
+    },
+  },
+  //#endregion
 };

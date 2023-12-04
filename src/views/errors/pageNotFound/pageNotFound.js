@@ -38,7 +38,7 @@ const Error404 = (props) => {
   const { t } = useTranslation();
 
   const handleBtnGoBackHome = () => {
-    navigate(navigateLocation.CLIENT_APP.ASSET_PATH);
+    navigate(navigateLocation.CLIENT_APP.APP);
   };
 
   return (

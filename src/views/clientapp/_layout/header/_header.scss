@@ -1,0 +1,37 @@
+.MuiButtonBase-root {
+  .navButtons {
+    @include _transition(); // .2s, ease-in-out, all
+    background: var(--bg-container-main);
+    color: var(--icon-font-color);
+  }
+
+  &[aria-controls="menu-list-grow"],
+  &:hover {
+    .navButtons {
+      background: var(--bg-container-light);
+
+      svg {
+        color: var(--icon-font-color-hover);
+      }
+    }
+  }
+}
+
+.toggleTheme {
+  color: var(--text-theme-primary);
+}
+
+.popup-showmore-nav {
+  width: 100vw;
+
+  .MuiPaper-root {
+    @include _rounded_corners(0);
+    margin-top: -8px;
+
+    .MuiStack-root {
+      .MuiBox-root {
+        margin: 0 8px;
+      }
+    }
+  }
+}

@@ -3,30 +3,31 @@ import APP from "@constants/app";
 
 // project imports
 import { CLIENT_APP } from "@routes/componentLoadable";
+import AuthRoutes from "./_auth";
 import CommunityRoutes from "./community";
+import LaundryServicesRoutes from "./laundry-service";
 // ==============================|| MAIN ROUTING ||============================== //
 
 const ClientAppRoutes = [
+  ...AuthRoutes,
   {
-    // element: <CLIENT_APP.LAYOUT />,
-    element: (
-      <CLIENT_APP.COMMUNITY.LAYOUT appName={APP.COMMUNITY.CHATBOX} />
-    ),
+    element: <CLIENT_APP.LAYOUT appName={APP.EMPTY} />,
     children: [
       {
-        path: navigateLocation.CLIENT_APP.ASSET_PATH,
-        title: "💬 Chatbox | Community",
+        path: navigateLocation.CLIENT_APP.APP,
+        title: "Create/Open a workspace",
         // element: <CLIENT_APP.HOME />,
         element: (
-          <CLIENT_APP.COMMUNITY.CHATBOX.DEFAULT
+          <CLIENT_APP.LAUNDRY_SERVICE.DEFAULT
             requireAuth={true}
-            redirectTo={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
+            redirectTo={navigateLocation.AUTH.SIGNIN}
           />
         ),
       },
     ],
   },
   ...CommunityRoutes,
+  ...LaundryServicesRoutes,
 ];
 // path: navigateLocation.CLIENT_APP.ASSET_PATH,
 // element: <CLIENT_APP.LAYOUT />,

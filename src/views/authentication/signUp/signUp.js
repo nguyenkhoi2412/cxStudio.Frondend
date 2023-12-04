@@ -82,7 +82,7 @@ const SignUp = (props) => {
                   xs={12}
                 >
                   <Link
-                    href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.SIGNIN}
+                    href={navigateLocation.AUTH.SIGNIN}
                     underline="none"
                     variant="subtitle1"
                     color={theme.palette.grey[900]}

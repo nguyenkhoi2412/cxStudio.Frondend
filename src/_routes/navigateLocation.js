@@ -10,10 +10,18 @@ const ACCOUNT = DASHBOARD + "/account";
 const SURVEY = DASHBOARD + "/survey";
 const SITE = DASHBOARD + "/site";
 const UTILITIES = DASHBOARD + "/utilities";
+//* auth
+const AUTH = APP + "auth";
+//* community
 const COMMUNITY = APP + MODULES.COMMUNITY;
 const COMMUNITY_AUTH = COMMUNITY + "/auth";
 const COMMUNITY_ACCOUNT = COMMUNITY + "/account";
 const COMMUNITY_CHATBOX = COMMUNITY + "/chatbox";
+//* laundry service
+const LAUNDRY_SERVICE = APP + MODULES.LAUNDRY_SERVICE;
+const LAUNDRY_SERVICE_AUTH = LAUNDRY_SERVICE + "/auth";
+const LAUNDRY_SERVICE_ACCOUNT = LAUNDRY_SERVICE + "/account";
+const LAUNDRY_SERVICE_CHATBOX = LAUNDRY_SERVICE + "/chatbox";
 
 export const navigateLocation = {
   DASHBOARD: {
@@ -51,6 +59,12 @@ export const navigateLocation = {
   ERROR: {
     PAGE_NOTFOUND: ERROR + "/pagenotfound",
   },
+  AUTH: {
+    SIGNIN: AUTH + "/signin",
+    SIGNUP: AUTH + "/signup",
+    FORGOT_PASSWORD: AUTH + "/forgotpassword",
+    CODE_VERIFICATION: AUTH + "/codeverification",
+  },
   CLIENT_APP: {
     ASSET_PATH: ASSET_PATH,
     HOME: ASSET_PATH + "home",
@@ -58,17 +72,22 @@ export const navigateLocation = {
     //#region COMMUNITY
     COMMUNITY: {
       INDEX: COMMUNITY,
-      AUTH: {
-        SIGNIN: COMMUNITY_AUTH + "/signin",
-        SIGNUP: COMMUNITY_AUTH + "/signup",
-        FORGOT_PASSWORD: COMMUNITY_AUTH + "/forgotpassword",
-        CODE_VERIFICATION: COMMUNITY_AUTH + "/codeverification",
-      },
       ACCOUNT: {
         SETTING: COMMUNITY_ACCOUNT + "/setting",
       },
       CHATBOX: {
         INDEX: COMMUNITY_CHATBOX,
+      },
+    },
+    //#endregion
+    //#region laundry-service
+    LAUNDRY_SERVICE: {
+      INDEX: LAUNDRY_SERVICE,
+      ACCOUNT: {
+        SETTING: LAUNDRY_SERVICE_ACCOUNT + "/setting",
+      },
+      CHATBOX: {
+        INDEX: LAUNDRY_SERVICE_CHATBOX,
       },
     },
     //#endregion

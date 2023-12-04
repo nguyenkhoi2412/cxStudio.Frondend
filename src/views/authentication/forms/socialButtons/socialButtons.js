@@ -51,11 +51,11 @@ const SocialButtons = (props) => {
     if (response.code === HTTP_STATUS.OK) {
       if (response.ok) {
         if (response.rs.verified_token) {
-          navigate(navigateLocation.CLIENT_APP.ASSET_PATH);
+          navigate(navigateLocation.CLIENT_APP.APP);
         } else {
           //* verify 2FA
           navigate(
-            navigateLocation.CLIENT_APP.COMMUNITY.AUTH.CODE_VERIFICATION
+            navigateLocation.AUTH.CODE_VERIFICATION
           );
         }
       } else {

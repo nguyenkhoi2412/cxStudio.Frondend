@@ -71,11 +71,11 @@ const FormSignIn = () => {
     if (response.code === HTTP_STATUS.OK) {
       if (response.ok) {
         if (response.rs.verified_token) {
-          navigate(navigateLocation.CLIENT_APP.ASSET_PATH);
+          navigate(navigateLocation.CLIENT_APP.APP);
         } else {
           //* verify 2FA
           navigate(
-            navigateLocation.CLIENT_APP.COMMUNITY.AUTH.CODE_VERIFICATION
+            navigateLocation.AUTH.CODE_VERIFICATION
           );
         }
       } else {
@@ -257,7 +257,7 @@ const FormSignIn = () => {
                 label="Remember me"
               />
               <Link
-                href={navigateLocation.CLIENT_APP.COMMUNITY.AUTH.FORGOT_PASSWORD}
+                href={navigateLocation.AUTH.FORGOT_PASSWORD}
                 variant="body2"
                 underline="none"
               >
