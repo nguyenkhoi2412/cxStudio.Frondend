@@ -52,7 +52,7 @@
     "material-ui-popup-state": "^5.0.8",
     "mini-css-extract-plugin": "^2.7.2",
     "moment": "^2.29.4",
-    "node-sass": "^8.0.0",
+    "node-sass": "^9.0.0",
     "notistack": "^3.0.1",
     "query-string": "^8.1.0",
     "quill-emoji": "^0.2.0",
