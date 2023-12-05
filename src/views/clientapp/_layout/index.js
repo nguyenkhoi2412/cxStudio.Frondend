@@ -79,9 +79,13 @@ const LayoutCommunity = ({ appName }) => {
 
   //#region handle events
   const handleWrapperClassesApps = (appName) => {
+    console.log('appName', appName);
     const comm = {
       [APP.COMMUNITY.CHATBOX]: () => {
         setClassWrapper(" chatbox");
+      },
+      [APP.LAUNDRY_SERVICE]: () => {
+        setClassWrapper(" laundry-service")
       },
       ["default"]: () => {
         setClassWrapper("");
@@ -137,7 +141,7 @@ const LayoutCommunity = ({ appName }) => {
 
   return (
     <Box
-      className={"wrapper community" + classWrapper}
+      className={"wrapper" + classWrapper}
       sx={{ display: "flex" }}
     >
       {/* header */}
@@ -156,7 +160,10 @@ const LayoutCommunity = ({ appName }) => {
         }}
       >
         <Toolbar>
-          <Header appName={appName} handleLeftDrawerToggle={handleLeftDrawerToggle} />
+          <Header
+            appName={appName}
+            handleLeftDrawerToggle={handleLeftDrawerToggle}
+          />
         </Toolbar>
       </AppBar>
       {/* drawer */}

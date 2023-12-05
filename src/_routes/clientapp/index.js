@@ -16,9 +16,8 @@ const ClientAppRoutes = [
       {
         path: navigateLocation.CLIENT_APP.ASSET_PATH,
         title: "Create/Open a workspace",
-        // element: <CLIENT_APP.HOME />,
         element: (
-          <CLIENT_APP.LAUNDRY_SERVICE.DEFAULT
+          <CLIENT_APP.HOME
             requireAuth={true}
             redirectTo={navigateLocation.AUTH.SIGNIN}
           />
@@ -27,9 +26,8 @@ const ClientAppRoutes = [
       {
         path: navigateLocation.CLIENT_APP.APP,
         title: "Create/Open a workspace",
-        // element: <CLIENT_APP.HOME />,
         element: (
-          <CLIENT_APP.LAUNDRY_SERVICE.DEFAULT
+          <CLIENT_APP.HOME
             requireAuth={true}
             redirectTo={navigateLocation.AUTH.SIGNIN}
           />

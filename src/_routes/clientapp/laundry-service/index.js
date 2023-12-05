@@ -1,12 +1,11 @@
-import { Navigate } from "react-router-dom";
 import { navigateLocation } from "@routes/navigateLocation";
 import { CLIENT_APP } from "@routes/componentLoadable";
-import ChatBoxCommunityRoutes from "./_chatbox";
+import APP from "@constants/app";
 import ErrorRoutes from "./_error";
 
 const LaundryServiceRoutes = [
   {
-    element: <CLIENT_APP.LAUNDRY_SERVICE.LAYOUT />,
+    element: <CLIENT_APP.LAYOUT appName={APP.LAUNDRY_SERVICE} />,
     children: [
       {
         path: navigateLocation.CLIENT_APP.LAUNDRY_SERVICE.INDEX,
@@ -21,7 +20,6 @@ const LaundryServiceRoutes = [
     ],
   },
   ...ErrorRoutes,
-  ...ChatBoxCommunityRoutes,
 ];
 
 export default LaundryServiceRoutes;
