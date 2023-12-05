@@ -29,7 +29,6 @@ export const CLIENT_APP = {
   //#endregion
   //#region LAUNDRY_SERVICE
   LAUNDRY_SERVICE: {
-    LAYOUT: Loadable(lazy(() => import("@clientapp/laundry-service/_layout"))),
     DEFAULT: Loadable(lazy(() => import("@clientapp/laundry-service"))),
     //* CHATBOX
     CHATBOX: {

@@ -9,7 +9,7 @@ const LaundryServices = () => {
     navigate("/dashboard");
   };
 
-  return <div className="App">Laundry Services</div>;
+  return <div className="App">Services</div>;
 };
 
 export default LaundryServices;
