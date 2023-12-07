@@ -12,6 +12,8 @@ import { Container, AppBar, Box, Toolbar, useMediaQuery } from "@mui/material";
 //#endregion
 
 //#region Procjects import
+import bgLight from "@assets/images/background-light.svg";
+import bgDark from "@assets/images/background-dark.svg";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import Chatbar from "@chatbox/components/chatbar";
@@ -46,14 +48,13 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       },
     }),
     ...(open && {
+      backgroundImage: `url(${
+        theme.palette.mode === "light" ? bgLight : bgDark
+      })`,
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginLeft: 0,
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0,
-      width: `calc(100% - ${drawerWidth}px)`,
       [theme.breakpoints.down("md")]: {
         marginLeft: "20px",
       },
@@ -79,13 +80,12 @@ const LayoutCommunity = ({ appName }) => {
 
   //#region handle events
   const handleWrapperClassesApps = (appName) => {
-    console.log('appName', appName);
     const comm = {
       [APP.COMMUNITY.CHATBOX]: () => {
         setClassWrapper(" chatbox");
       },
       [APP.LAUNDRY_SERVICE]: () => {
-        setClassWrapper(" laundry-service")
+        setClassWrapper(" laundry-service");
       },
       ["default"]: () => {
         setClassWrapper("");
@@ -140,10 +140,7 @@ const LayoutCommunity = ({ appName }) => {
   //#endregion
 
   return (
-    <Box
-      className={"wrapper" + classWrapper}
-      sx={{ display: "flex" }}
-    >
+    <Box className={"wrapper" + classWrapper} sx={{ display: "flex" }}>
       {/* header */}
       <AppBar
         enableColorOnDark

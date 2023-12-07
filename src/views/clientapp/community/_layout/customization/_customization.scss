@@ -1,5 +1,5 @@
 .customize-settings {
-  @include _rounded_corners(50% 50% 4px 50%);
+  @include _roundedCorners(50% 50% 4px 50%);
   top: 25%;
   position: fixed;
   right: 10px;

@@ -79,7 +79,7 @@
 // }
 
 /* ======================================================================================== */
-@mixin _rounded_corners($radius: 12px) {
+@mixin _roundedCorners($radius: 12px) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   -ms-border-radius: $radius;
@@ -110,6 +110,13 @@
 //     -o-transform: scale($value1, $value2); /* Opera 10.5-12.00 */
 //     transform: scale($value1, $value2); /* Firefox 16+, Opera 12.50+ */
 // }
+
+@mixin _backgroundSize($value: cover) {
+  -webkit-background-size: $value;
+  -moz-background-size: $value;
+  -o-background-size: $value;
+  background-size: $value;
+}
 
 @mixin _translate($value1: -50%, $value2: -50%) {
   -webkit-transform: translate($value1, $value2); /* Safari 3.1+, Chrome */
@@ -187,27 +194,27 @@
   opacity: $value1;
 }
 
-@mixin _posfixed_center() {
+@mixin _posfixedCenter() {
   position: fixed;
   top: 50%;
   left: 50%;
   @include _translate();
 }
 
-@mixin _pos_center() {
+@mixin _posCenter() {
   position: absolute;
   left: 50%;
   top: 50%;
   @include _translate();
 }
 
-@mixin _pos_hoz_center() {
+@mixin _posHozCenter() {
   position: absolute;
   left: 50%;
   @include _translate(-50%, 0);
 }
 
-@mixin _pos_ver_center() {
+@mixin _posVerCenter() {
   position: absolute;
   top: 50%;
   @include _translate(0, -50%);
@@ -231,20 +238,20 @@
   box-shadow: $value; /* Opera 10.5, IE9+, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
-@mixin _text_shadow($value: 1px 1px 0px #ccc) {
+@mixin _textShadow($value: 1px 1px 0px #ccc) {
   text-shadow: $value;
 }
 
 @mixin _textOverFlow($value: 1) {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-inline-box; //chrome
-    //display: -webkit-box; //default
-    //display: inline-block; //firefox
-    //width: 100%; //firefox
-    //white-space: nowrap; //firefox
-    -webkit-line-clamp: $value;
-    -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-inline-box; //chrome
+  //display: -webkit-box; //default
+  //display: inline-block; //firefox
+  //width: 100%; //firefox
+  //white-space: nowrap; //firefox
+  -webkit-line-clamp: $value;
+  -webkit-box-orient: vertical;
 }
 
 // ._textStackVertical() {
@@ -338,7 +345,7 @@
 // .circle4parts(@width: 80px; @height: 80px; @color1: blue; @color2: yellow; @color3: red; @color4: green) {
 //     width: @width;
 //     height: @height;
-//     ._rounded_corners(50%);
+//     ._roundedCorners(50%);
 //     background: linear-gradient(45deg, @color1, @color1 100%), linear-gradient(225deg, @color2, @color2), linear-gradient(225deg, @color3, @color3), linear-gradient(135deg, @color4, @color4);
 //     background-size: 50% 50%;
 //     background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;

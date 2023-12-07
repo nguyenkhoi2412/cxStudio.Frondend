@@ -25,7 +25,7 @@
   width: 100vw;
 
   .MuiPaper-root {
-    @include _rounded_corners(0);
+    @include _roundedCorners(0);
     margin-top: -8px;
 
     .MuiStack-root {

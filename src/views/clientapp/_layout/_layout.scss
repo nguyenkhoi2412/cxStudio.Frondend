@@ -2,13 +2,17 @@
   main.wrapper-content {
     display: flex;
     background-color: $bgContainerMain;
+    background-repeat: no-repeat;
+    @include _backgroundSize();
     color: $textDefault;
     width: 100%;
     min-height: calc(100vh - 88px);
     flex-grow: 1;
     padding: 20px;
     margin-top: 88px;
-    @include _rounded_corners(12px 12px 0 0);
+    margin-left: 0;
+    margin-right: 0;
+    @include _roundedCorners(0);
 
     > .MuiContainer-root {
     }

@@ -46,6 +46,7 @@ export default function themePalette(theme) {
   const colorsPaletteTheme = getColorsPaletteTheme(theme);
 
   return {
+    ...theme,
     ...colorsPaletteTheme,
     background: {
       container: theme.colors?.backgroundContainerMain,

@@ -1,5 +1,20 @@
-.App {
+.workspace {
   @include _shadow(0 0 0 0 transparent);
   background-color: transparent;
   border: none;
+
+  .MuiCardContent-root {
+    .wsa {
+      &--intro {
+      }
+      &--img {
+        img {
+          height: auto;
+          width: 100%;
+
+          
+        }
+      }
+    }
+  }
 }

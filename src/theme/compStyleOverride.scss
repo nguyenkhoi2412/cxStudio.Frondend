@@ -10,7 +10,7 @@
   }
 
   &-rounded {
-    @include _rounded_corners();
+    @include _roundedCorners();
   }
 }
 
@@ -71,7 +71,7 @@
 .MuiButton {
   &-root {
     font-weight: 50;
-    @include _rounded_corners(4px);
+    @include _roundedCorners(4px);
     background-color: var(--bg-button);
 
     &.Mui-disabled {
@@ -92,7 +92,7 @@
 .MuiOutlinedInput {
   &-root {
     background: $bgContainerMain;
-    @include _rounded_corners();
+    @include _roundedCorners();
 
     &:hover,
     &.Mui-focused {
@@ -316,7 +316,7 @@
 
   &-commonAvatar {
     cursor: pointer;
-    @include _rounded_corners(8px);
+    @include _roundedCorners(8px);
   }
 
   &-smallAvatar {
@@ -375,7 +375,7 @@
   &-root {
     color: $iconFontColor;
     background: $bgContainerMain;
-    @include _rounded_corners();
+    @include _roundedCorners();
     @include _transition(".2s", "ease-in-out", "all");
 
     svg {

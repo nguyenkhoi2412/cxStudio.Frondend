@@ -115,7 +115,7 @@ center {
 }
 
 .pos-center {
-  @include _pos_center();
+  @include _posCenter();
 }
 
 .fixed-bottom {
@@ -155,10 +155,11 @@ center {
   display: none;
 }
 
-// @media (max-width: 576px) {
-//   [data-isdevice="true"] {
-//     .isMobile {
-//       display: block;
-//     }
-//   }
-// }
+img {
+  &.responsive {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+}
