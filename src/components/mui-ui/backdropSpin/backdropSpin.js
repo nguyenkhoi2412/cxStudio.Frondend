@@ -5,7 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
 import { backdropSpinState } from "./backdropSpin.reducer";
 
-const IncBackdrop = (props) => {
+const WpBackdrop = (props) => {
   //   const [open, setOpen] = React.useState(true);
   const dataState = useSelector(backdropSpinState);
   const [dataSource, setDataSource] = React.useState();
@@ -47,4 +47,4 @@ const IncBackdrop = (props) => {
   );
 };
 
-export default IncBackdrop;
+export default WpBackdrop;

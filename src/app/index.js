@@ -10,9 +10,9 @@ import { CssBaseline, StyledEngineProvider } from "@mui/material";
 import { configBaseTheme } from "@theme/_base";
 import NavigationScroll from "@utils/_layout/navigationScroll";
 import { BrowserRouter } from "react-router-dom";
-import IncBackdrop from "@components/mui-ui/backdropSpin";
-import IncProgressBar from "@components/mui-ui/progressBar";
-import IncSnackBar from "@components/mui-ui/snackBar";
+import WpBackdrop from "@components/mui-ui/backdropSpin";
+import WpProgressBar from "@components/mui-ui/progressBar";
+import WpSnackBar from "@components/mui-ui/snackBar";
 import { helpersExtension } from "@utils/helpersExtension";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -98,9 +98,9 @@ const App = (props) => {
       <ThemeProvider theme={configBaseTheme(customization)}>
         <CssBaseline />
 
-        <IncProgressBar />
-        <IncBackdrop />
-        <IncSnackBar />
+        <WpProgressBar />
+        <WpBackdrop />
+        <WpSnackBar />
         <SnackbarProvider
           maxSnack={3}
           autoHideDuration={3000}

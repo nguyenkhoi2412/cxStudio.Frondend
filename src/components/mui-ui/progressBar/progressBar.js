@@ -5,7 +5,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import { useSelector } from "react-redux";
 import { progressBarState } from "./progressBar.reducer";
 
-const IncProgressBar = () => {
+const WpProgressBar = () => {
   const dataState = useSelector(progressBarState);
 
   return (
@@ -21,4 +21,4 @@ const IncProgressBar = () => {
   );
 };
 
-export default IncProgressBar;
+export default WpProgressBar;

@@ -6,7 +6,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const IncSnackBar = () => {
+const WpSnackBar = () => {
   const snackBarData = useSelector((state) => state.muiSnackBar);
   const [open, setOpen] = React.useState(false);
   const [anchorOrigin, setAnchorOrigin] = React.useState({
@@ -55,4 +55,4 @@ const IncSnackBar = () => {
   return renderSnackBar;
 };
 
-export default IncSnackBar;
+export default WpSnackBar;
