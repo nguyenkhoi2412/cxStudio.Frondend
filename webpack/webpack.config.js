@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 //#region path url
 var CONFIGS = "webpack";
@@ -61,7 +62,8 @@ module.exports = (env, argv) => {
         {
           test: /\.(less|s[ac]ss|css)$/i,
           use: [
-            "style-loader",
+            // "style-loader",
+            MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
               options: {
@@ -251,6 +253,11 @@ module.exports = (env, argv) => {
               minifyCSS: true,
               minifyURLs: true,
             },
+      }),
+      new MiniCssExtractPlugin({
+        // plugin for controlling how compiled css will be outputted and named
+        filename: "[name].[hash:8].css",
+        chunkFilename: "[id].[hash:8].css",
       }),
     ],
   };

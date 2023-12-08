@@ -4,12 +4,12 @@
 		<linearGradient id="g1" x2="1" gradientUnits="userSpaceOnUse"
 			gradientTransform="matrix(1183.185,-802.788,1118.612,1648.661,-282.416,2410.086)">
 			<stop offset="0" stop-color="#001a26" />
-			<stop offset="1" stop-color="#001a26" />
+			<stop offset="1" stop-color="#364152" />
 		</linearGradient>
 		<linearGradient id="g2" x2="1" gradientUnits="userSpaceOnUse"
 			gradientTransform="matrix(4000,0,0,2844.443,-0.497,-0.5)">
 			<stop offset="0" stop-color="#001a26" />
-			<stop offset="1" stop-color="#001a26" />
+			<stop offset="1" stop-color="#364152" />
 		</linearGradient>
 	</defs>
 	<style>

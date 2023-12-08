@@ -1,10 +1,35 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: "development",
   devtool: "inline-source-map",
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: 6, // or true
+      }),
+    ],
+    splitChunks: {
+      // chunks: "all",
+      cacheGroups: {
+        js: {
+          test: /\.(js|jsx)$/i,
+          name: "commonjs",
+          chunks: "all",
+          minChunks: 7,
+        },
+        css: {
+          test: /\.(less|s[ac]ss|css)$/i,
+          name: "commonsstyle",
+          chunks: "all",
+          minChunks: 2,
+        },
+      },
+    },
+  },
   output: {
-    filename: "[name].js",
+    filename: "[name].bundle.js",
     publicPath: "/",
     environment: {
       arrowFunction: false,
@@ -20,11 +45,4 @@ module.exports = {
     // host: "cxstudio.vn",
     port: 2001,
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      // plugin for controlling how compiled css will be outputted and named
-      filename: "[name].css",
-      chunkFilename: "[id].css",
-    }),
-  ],
 };

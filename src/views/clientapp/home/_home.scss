@@ -7,12 +7,31 @@
     .wsa {
       &--intro {
       }
+
+      &-tilt {
+        display: flex;
+        justify-content: center;
+      }
+
       &--img {
         img {
           height: auto;
-          width: 100%;
 
-          
+          @include respond-above(lg) {
+            max-width: 80%;
+          }
+
+          @include respond-above(xl) {
+            max-width: 75%;
+          }
+
+          @include respond-below(md) {
+            max-width: 65%;
+          }
+
+          @include respond-below(tablet) {
+            max-width: 100%;
+          }
         }
       }
     }

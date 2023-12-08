@@ -40,8 +40,8 @@ const Home = () => {
             Create new workspace
           </Button>
         </Grid>
-        <Grid item xs={12} md={6} className="wsa--img">
-          <Tilt>
+        <Grid item xs={12} md={6} className="wsa--img" justifyContent={`center`}>
+          <Tilt className="wsa-tilt">
             <CardMedia
               className="responsive"
               component="img"
