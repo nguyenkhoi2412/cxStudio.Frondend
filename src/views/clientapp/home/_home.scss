@@ -39,14 +39,8 @@
 
       &__img {
         img {
-          height: auto;
-
-          @include respond-above(lg) {
-            max-width: 80%;
-          }
-
           @include respond-above(xl) {
-            max-width: 75%;
+            max-width: 80%;
           }
 
           @include respond-below(md) {

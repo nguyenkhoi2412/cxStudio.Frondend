@@ -1,12 +1,10 @@
 import "./_home.scss";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
 
 //#region mui-ui
 import {
   Grid,
-  Link,
   CardMedia,
   Button,
   Typography,
@@ -23,10 +21,13 @@ import { gridSpacing } from "@constants";
 import imgWP from "@assets/images/bg_workspace.svg";
 
 const Home = () => {
-  const navigage = useNavigate();
   const { t } = useTranslation();
 
   const [termsChecked, setTermsChecked] = React.useState(false);
+
+  //#region handle events
+  const handleCreateWorkspace = () => {};
+  //#endregion
 
   return (
     <MainCard
@@ -62,7 +63,7 @@ const Home = () => {
                 className="btn"
                 variant="contained"
                 disabled={!termsChecked}
-                // onClick={() => navigage("/dashboard")}
+                onClick={handleCreateWorkspace()}
               >
                 {t("workspace.btn_create_new_workspace")}
               </Button>
