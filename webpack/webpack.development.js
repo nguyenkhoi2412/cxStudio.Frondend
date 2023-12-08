@@ -22,8 +22,9 @@ module.exports = {
     },
   },
   output: {
-    filename: "[name].bundle.js",
-    publicPath: "/",
+    // filename: "[name].[contenthash].bundle.js",
+    // chunkFilename: "[name].[contenthash].chunk.bundle.js",
+    // publicPath: "/",
     environment: {
       arrowFunction: false,
       bigIntLiteral: false,

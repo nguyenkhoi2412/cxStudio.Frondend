@@ -192,7 +192,10 @@ module.exports = (env, argv) => {
     },
     output: {
       path: BUILD_DIR,
-      assetModuleFilename: "assets/[hash][ext][query]",
+      assetModuleFilename: "assets/[contenthash][ext][query]",
+      filename: "[name].[contenthash].bundle.js",
+      chunkFilename: "[name].[contenthash].chunk.bundle.js",
+      publicPath: "/",
     },
     devServer: {
       static: {
@@ -256,8 +259,8 @@ module.exports = (env, argv) => {
       }),
       new MiniCssExtractPlugin({
         // plugin for controlling how compiled css will be outputted and named
-        filename: "[name].[contenthash].css",
-        chunkFilename: "[id].[contenthash].css",
+        filename: "[name].[contenthash].bundle.css",
+        chunkFilename: "[id].[contenthash].chunk.bundle.css",
       }),
     ],
   };

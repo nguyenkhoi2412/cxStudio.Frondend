@@ -33,8 +33,10 @@ module.exports = {
     },
   },
   output: {
-    filename: "./[name].[contenthash].bundle.js",
-    publicPath: "/",
+    // filename: "./[name].[contenthash].bundle.js",
+    // filename: "[name].[contenthash].bundle.js",
+    // chunkFilename: "[name].[contenthash].chunk.bundle.js",
+    // publicPath: "/",
   },
   // devServer: {
   //   contentBase: BUILD_DIR,
