@@ -16,7 +16,7 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        parallel: true, // or true
+        parallel: 4, // or true
         terserOptions: {
           compress: {
             drop_console: true,
@@ -25,25 +25,15 @@ module.exports = {
       }),
     ],
     splitChunks: {
-      // chunks: "all",
-      cacheGroups: {
-        js: {
-          test: /\.(js|jsx)$/i,
-          name: "common",
-          chunks: "all",
-          minChunks: 7,
-        },
-        css: {
-          test: /\.(less|s[ac]ss|css)$/i,
-          name: "common",
-          chunks: "all",
-          minChunks: 2,
-        },
+      vendor: {
+        test: /[\\/]node_modules[\\/]/,
+        filename: "vendors.[contenthash].js",
+        chunks: "all",
       },
     },
   },
   output: {
-    filename: "./[name].[hash:8].bundle.js",
+    filename: "./[name].[contenthash].bundle.js",
     publicPath: "/",
   },
   // devServer: {

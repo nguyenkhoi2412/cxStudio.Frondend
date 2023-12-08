@@ -256,8 +256,8 @@ module.exports = (env, argv) => {
       }),
       new MiniCssExtractPlugin({
         // plugin for controlling how compiled css will be outputted and named
-        filename: "[name].[hash:8].css",
-        chunkFilename: "[id].[hash:8].css",
+        filename: "[name].[contenthash].css",
+        chunkFilename: "[id].[contenthash].css",
       }),
     ],
   };

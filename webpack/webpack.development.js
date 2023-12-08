@@ -4,26 +4,19 @@ module.exports = {
   mode: "development",
   devtool: "inline-source-map",
   optimization: {
+    runtimeChunk: "single",
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        parallel: 6, // or true
+        parallel: 4, // or true
       }),
     ],
     splitChunks: {
-      // chunks: "all",
       cacheGroups: {
-        js: {
-          test: /\.(js|jsx)$/i,
-          name: "commonjs",
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
           chunks: "all",
-          minChunks: 7,
-        },
-        css: {
-          test: /\.(less|s[ac]ss|css)$/i,
-          name: "commonsstyle",
-          chunks: "all",
-          minChunks: 2,
+          filename: "vendors.[contenthash].js",
         },
       },
     },
