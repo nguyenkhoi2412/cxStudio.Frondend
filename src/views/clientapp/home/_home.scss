@@ -5,15 +5,39 @@
 
   .MuiCardContent-root {
     .wsa {
-      &--intro {
+      &__intro {
+        .container__item {
+          .desc {
+            > h1 {
+              word-break: break-word;
+            }
+            > p {
+              font-size: 1.125rem;
+              word-break: break-word;
+            }
+          }
+
+          .acts {
+            .btn {
+              font-weight: 400;
+              font-size: 1rem;
+            }
+          }
+
+          .terms {
+            > h6 {
+              word-break: break-word;
+            }
+          }
+        }
       }
 
-      &-tilt {
+      &_tilt {
         display: flex;
         justify-content: center;
       }
 
-      &--img {
+      &__img {
         img {
           height: auto;
 

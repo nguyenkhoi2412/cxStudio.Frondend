@@ -7,8 +7,8 @@ import { Grid, Link } from "@mui/material";
 
 // project import
 import Logo from "@components/ui/imagesvg";
-import LogoInDark from "@assets/images/logo-culture-comminity-dark.svg";
-import LogoInLight from "@assets/images/logo-culture-comminity-light.svg";
+import LogoInDark from "@assets/images/logo-workspace-dark.svg";
+import LogoInLight from "@assets/images/logo-workspace-light.svg";
 
 // ==============================|| AUTHENTICATION CARD WRAPPER ||============================== //
 

@@ -5,6 +5,9 @@ import Loadable from "@components/ui/loadable";
 export const DASHBOARD = {
   LAYOUT: Loadable(lazy(() => import("@dashboard/_layout"))),
   DEFAULT: Loadable(lazy(() => import("@dashboard/default"))),
+  UTILITIES: {
+    TYPOGRAPHY: Loadable(lazy(() => import("@views/utilities/Typography"))),
+  },
 };
 
 // ==============================|| MAINTENANCE ||============================== //

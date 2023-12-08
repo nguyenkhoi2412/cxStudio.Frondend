@@ -2,7 +2,7 @@ import { navigateLocation } from "../navigateLocation";
 import APP from "@constants/app";
 
 // project imports
-import { CLIENT_APP } from "@routes/componentLoadable";
+import { DASHBOARD, CLIENT_APP } from "@routes/componentLoadable";
 import AuthRoutes from "./_auth";
 import CommunityRoutes from "./community";
 import LaundryServicesRoutes from "./laundry-service";
@@ -32,6 +32,11 @@ const ClientAppRoutes = [
             redirectTo={navigateLocation.AUTH.SIGNIN}
           />
         ),
+      },
+      {
+        path: navigateLocation.UTILITIES.TYPOGRAPHY,
+        title: "TYPOGRAPHY",
+        element: <DASHBOARD.UTILITIES.TYPOGRAPHY />,
       },
     ],
   },

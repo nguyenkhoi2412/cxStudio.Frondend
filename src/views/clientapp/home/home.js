@@ -1,9 +1,18 @@
 import "./_home.scss";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
 
 //#region mui-ui
-import { Grid, CardMedia, Button } from "@mui/material";
+import {
+  Grid,
+  Link,
+  CardMedia,
+  Button,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
 //#endregion
 //#region import components
 import MainCard from "@components/mui-ui/cards";
@@ -15,6 +24,9 @@ import imgWP from "@assets/images/bg_workspace.svg";
 
 const Home = () => {
   const navigage = useNavigate();
+  const { t } = useTranslation();
+
+  const [termsChecked, setTermsChecked] = React.useState(false);
 
   return (
     <MainCard
@@ -27,26 +39,70 @@ const Home = () => {
     >
       <Grid
         container
-        justifyContent={`center`}
-        textAlign={`center`}
         spacing={gridSpacing}
+        direction={"row"}
+        justifyContent={"center"}
+        alignItems={"center"}
       >
-        <Grid item xs={12} md={6} className="wsa--intro">
-          <Button
-            className="btn"
-            variant="contained"
-            onClick={() => navigage("/dashboard")}
-          >
-            Create new workspace
-          </Button>
+        <Grid item xs={12} md={4} className="wsa__intro">
+          <Grid container spacing={gridSpacing} className="container__item">
+            <Grid item className="desc" textAlign={"left"}>
+              <Typography variant="h1" gutterBottom>
+                {t("workspace.get_free_one_workspace")}
+              </Typography>
+              <Typography component={"p"} variant="body1" gutterBottom>
+                {t("workspace.optimizing_saving_your_time")}
+              </Typography>
+              <Typography component={"p"} variant="body1" gutterBottom>
+                {t("workspace.speedup_management_communication_report_search")}
+              </Typography>
+            </Grid>
+            <Grid item className="acts" textAlign={"center"}>
+              <Button
+                className="btn"
+                variant="contained"
+                disabled={!termsChecked}
+                // onClick={() => navigage("/dashboard")}
+              >
+                {t("workspace.btn_create_new_workspace")}
+              </Button>
+            </Grid>
+            <Grid item>
+              <FormControlLabel
+                className="terms"
+                sx={{ alignItems: "flex-start" }}
+                control={
+                  <Checkbox
+                    sx={{
+                      marginTop: -1,
+                    }}
+                    checked={termsChecked}
+                    onChange={(event) => setTermsChecked(event.target.checked)}
+                    name="terms"
+                  />
+                }
+                label={
+                  <Typography variant="subtitle2">
+                    {t("workspace.terms_and_conditions")}
+                  </Typography>
+                }
+              />
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6} className="wsa--img" justifyContent={`center`}>
-          <Tilt className="wsa-tilt">
+        <Grid
+          item
+          xs={12}
+          md={6}
+          className="wsa__img"
+          justifyContent={"center"}
+        >
+          <Tilt className="wsa_tilt">
             <CardMedia
               className="responsive"
               component="img"
               height={550}
-              width={`auto`}
+              width={"auto"}
               image={imgWP}
               alt="Paella dish"
             />
