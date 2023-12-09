@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import FormAccountDetailInfo from "./formAccountDetailInfo";
 import severity from "@constants/severity";
-import { HTTP_STATUS } from "@constants/httpStatus.js";
+import { HTTP_STATUS } from "@constants/httpStatus";
 //#endregion
 
 // material-ui

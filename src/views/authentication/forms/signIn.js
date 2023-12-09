@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
-import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
+import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import { socialSignIn } from "@constants";
 import { HTTP_STATUS } from "@constants/httpStatus";

@@ -2,12 +2,12 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
-import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
+import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../forgotPassword/_schema";
 import { navigateLocation } from "@routes/navigateLocation";
-import { HTTP_STATUS } from "@constants/httpStatus.js";
+import { HTTP_STATUS } from "@constants/httpStatus";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import Alert from "@mui/material/Alert";

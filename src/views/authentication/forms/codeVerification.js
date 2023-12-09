@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
-import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
+import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../codeVerification/_schema";

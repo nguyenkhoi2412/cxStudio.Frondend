@@ -9,7 +9,7 @@ import SelectField from "@components/forms/selectField";
 import _schema from "./../signUp/_schema";
 import { socialSignIn } from "@constants";
 import { useTheme } from "@mui/material/styles";
-import { HTTP_STATUS } from "@constants/httpStatus.js";
+import { HTTP_STATUS } from "@constants/httpStatus";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
