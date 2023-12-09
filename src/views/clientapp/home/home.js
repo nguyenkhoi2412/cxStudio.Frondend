@@ -1,6 +1,7 @@
 import "./_home.scss";
 import { useTranslation } from "react-i18next";
 import Tilt from "react-parallax-tilt";
+import { gridSpacing } from "@constants";
 
 //#region mui-ui
 import {
@@ -16,7 +17,7 @@ import {
 import MainCard from "@components/mui-ui/cards";
 import SubCard from "@components/mui-ui/cards/subCard";
 import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
-import { gridSpacing } from "@constants";
+import WpDrawer from "@components/mui-ui/drawer";
 //#endregion
 import imgWP from "@assets/images/bg_workspace.svg";
 
@@ -24,9 +25,12 @@ const Home = () => {
   const { t } = useTranslation();
 
   const [termsChecked, setTermsChecked] = React.useState(false);
+  const [openDrawer, setOpenDrawer] = React.useState(false);
 
   //#region handle events
-  const handleCreateWorkspace = () => {};
+  const handleToggleOpenDrawer = () => {
+    setOpenDrawer(!openDrawer);
+  };
   //#endregion
 
   return (
@@ -63,7 +67,7 @@ const Home = () => {
                 className="btn"
                 variant="contained"
                 disabled={!termsChecked}
-                onClick={handleCreateWorkspace()}
+                onClick={handleToggleOpenDrawer}
               >
                 {t("workspace.btn_create_new_workspace")}
               </Button>
@@ -110,6 +114,7 @@ const Home = () => {
           </Tilt>
         </Grid>
       </Grid>
+      <WpDrawer open={openDrawer} className="abc" />
     </MainCard>
   );
 };

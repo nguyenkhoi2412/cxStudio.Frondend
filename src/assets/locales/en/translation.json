@@ -189,6 +189,7 @@
     }
   },
   "workspace": {
+    "title_create_open_one_workspace":"Create/open for one workspace | Workspace",
     "get_free_one_workspace": "Start now, get free for one new workspace.",
     "optimizing_saving_your_time": "Optimizing your work, saving your time.",
     "speedup_management_communication_report_search": "Speed up your management, communication, report and search. To create a new workspace, click the button below.",

@@ -1,0 +1,15 @@
+.wp__drawer {
+  .MuiCard-root {
+    height: 100vh;
+    @include _roundedCorners(0 0 0 0);
+    @include _shadow(0 0 0 0 transparent);
+    border: 0;
+
+    .MuiCardHeader-root {
+    }
+
+    .MuiCardContent-root {
+      word-break: break-word;
+    }
+  }
+}

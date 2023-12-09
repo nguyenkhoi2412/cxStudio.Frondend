@@ -49,6 +49,7 @@
     "image-webpack-loader": "^8.1.0",
     "jquery": "^3.6.3",
     "less-loader": "^11.1.0",
+    "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.0.8",
     "mini-css-extract-plugin": "^2.7.6",
     "moment": "^2.29.4",

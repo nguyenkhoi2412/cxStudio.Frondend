@@ -1,3 +1,4 @@
+import "./_cards.scss";
 import PropTypes from "prop-types";
 import { forwardRef } from "react";
 
@@ -10,6 +11,9 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
+
+// third-party
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 // constant
 const headerSX = {
@@ -69,13 +73,15 @@ const Cards = forwardRef(
 
         {/* card content */}
         {content && (
-          <CardContent
-            sx={contentSX}
-            className={contentClass}
-            component="section"
-          >
-            {children}
-          </CardContent>
+          <PerfectScrollbar component="div">
+            <CardContent
+              sx={contentSX}
+              className={contentClass}
+              component="section"
+            >
+              {children}
+            </CardContent>
+          </PerfectScrollbar>
         )}
         {!content && children}
       </Card>

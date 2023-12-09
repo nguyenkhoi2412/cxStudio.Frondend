@@ -13,13 +13,18 @@ module.exports = {
     maxAssetSize: 512000,
   },
   optimization: {
+    runtimeChunk: "single",
     minimize: true,
     minimizer: [
       new TerserPlugin({
         parallel: 4, // or true
+        extractComments: false,
         terserOptions: {
           compress: {
             drop_console: true,
+          },
+          format: {
+            comments: false,
           },
         },
       }),

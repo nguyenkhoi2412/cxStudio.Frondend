@@ -233,6 +233,7 @@ module.exports = (env, argv) => {
         $: "jquery",
         jQuery: "jquery",
         React: "react",
+        _: "lodash",
       }),
       new HtmlWebpackPlugin({
         // plugin for inserting scripts into html
