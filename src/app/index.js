@@ -13,6 +13,7 @@ import { BrowserRouter } from "react-router-dom";
 import WpBackdrop from "@components/mui-ui/backdropSpin";
 import WpProgressBar from "@components/mui-ui/progressBar";
 import WpSnackBar from "@components/mui-ui/snackBar";
+import WpDrawer from "@components/mui-ui/drawer";
 import { helpersExtension } from "@utils/helpersExtension";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -101,6 +102,7 @@ const App = (props) => {
         <WpProgressBar />
         <WpBackdrop />
         <WpSnackBar />
+        <WpDrawer />
         <SnackbarProvider
           maxSnack={3}
           autoHideDuration={3000}

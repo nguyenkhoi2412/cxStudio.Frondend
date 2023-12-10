@@ -19,10 +19,11 @@ export const muiSnackBar = createSlice({
       return {
         ...state,
         open: true,
-        autoHideDuration: action?.payload?.autoHideDuration,
-        severity: action?.payload?.severity,
-        content: action?.payload?.content,
-        anchorOrigin: action?.payload?.anchorOrigin,
+        autoHideDuration:
+          action?.payload?.autoHideDuration || state.autoHideDuration,
+        severity: action?.payload?.severity || state.severity,
+        content: action?.payload?.content || state.content,
+        anchorOrigin: action?.payload?.anchorOrigin || state.anchorOrigin,
       };
     },
     HIDE_SNACKBAR: (state) => {

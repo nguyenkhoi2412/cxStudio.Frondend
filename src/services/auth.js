@@ -46,9 +46,9 @@ export default {
             username: infoGoogle.email,
             role: ROLE.USER.name,
             detailInfos: {
-              firstName: infoGoogle.family_name ?? "",
-              lastName: infoGoogle.given_name ?? "",
-              avatarPath: infoGoogle.picture ?? "",
+              firstName: infoGoogle.family_name || "",
+              lastName: infoGoogle.given_name || "",
+              avatarPath: infoGoogle.picture || "",
             },
           };
 

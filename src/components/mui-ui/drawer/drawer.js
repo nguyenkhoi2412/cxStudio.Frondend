@@ -17,6 +17,7 @@ import {
   SET_FONT_FAMILY,
 } from "@reduxproviders/berry/actions";
 import { gridSpacing } from "@constants";
+import { CLOSE_DRAWER } from "./drawer.reducer";
 
 // concat 'px'
 function valueText(value) {
@@ -27,20 +28,31 @@ function valueText(value) {
 const WpDrawer = React.forwardRef((props, ref) => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const dataState = useSelector((state) => state.muiDrawer);
 
   // drawer on/off
+  const [className, setClassName] = React.useState("");
+  const [title, setTitle] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const [anchor, setAnchor] = React.useState("right");
+  const [width, setWidth] = React.useState(280);
+  const [height, setHeight] = React.useState(280);
 
   //#region useHooks
   React.useEffect(() => {
-    setOpen(props?.open);
-  }, [props?.open]);
+    setClassName(dataState.className);
+    setTitle(dataState.title);
+    setOpen(dataState.open);
+    setAnchor(dataState.anchor);
+    setWidth(dataState.width);
+    setHeight(dataState.height);
+  }, [dataState.open]);
   //#endregion
 
   //#region handle events
-  const handleToggle = () => {
-    setOpen(!open);
+  const handleCloseDrawer = () => {
+    setOpen(false);
+    dispatch(CLOSE_DRAWER());
   };
   //#endregion
 
@@ -48,20 +60,19 @@ const WpDrawer = React.forwardRef((props, ref) => {
     <>
       <Drawer
         ref={ref}
-        anchor="right"
-        onClose={handleToggle}
+        anchor={anchor}
+        onClose={handleCloseDrawer}
         open={open}
-        className={
-          "wp__drawer" + (props?.className ? "" : " " + props.className)
-        }
+        className={"wp__drawer" + (className !== "" ? " " + className : "")}
         PaperProps={{
           sx: {
-            width: 280,
+            width: anchor === "top" || anchor === "bottom" ? "auto" : width,
+            height: anchor === "left" || anchor === "right" ? "auto" : height,
           },
         }}
       >
         <MainCard
-          title="general"
+          title={title}
           // secondary={
           //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
           // }

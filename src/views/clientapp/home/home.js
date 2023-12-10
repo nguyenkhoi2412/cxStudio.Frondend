@@ -20,16 +20,23 @@ import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
 import WpDrawer from "@components/mui-ui/drawer";
 //#endregion
 import imgWP from "@assets/images/bg_workspace.svg";
+//#region reduxprovider
+import { useDispatch, useSelector } from "react-redux";
+import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
+//#endregion
 
 const Home = () => {
   const { t } = useTranslation();
-
+  const dispatch = useDispatch();
   const [termsChecked, setTermsChecked] = React.useState(false);
-  const [openDrawer, setOpenDrawer] = React.useState(false);
 
   //#region handle events
-  const handleToggleOpenDrawer = () => {
-    setOpenDrawer(!openDrawer);
+  const handleOpenDrawerRight = () => {
+    dispatch(
+      OPEN_DRAWER({
+        className: "sdfsdfsfsfsdf",
+      })
+    );
   };
   //#endregion
 
@@ -67,7 +74,7 @@ const Home = () => {
                 className="btn"
                 variant="contained"
                 disabled={!termsChecked}
-                onClick={handleToggleOpenDrawer}
+                onClick={handleOpenDrawerRight}
               >
                 {t("workspace.btn_create_new_workspace")}
               </Button>
@@ -114,7 +121,6 @@ const Home = () => {
           </Tilt>
         </Grid>
       </Grid>
-      <WpDrawer open={openDrawer} className="abc" />
     </MainCard>
   );
 };

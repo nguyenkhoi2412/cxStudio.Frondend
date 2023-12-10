@@ -69,7 +69,7 @@ const ReactQuillEditor = (props) => {
         },
       };
 
-      return toolbars[name ?? "default"]();
+      return toolbars[name || "default"]();
     },
     [props.toolbar]
   );

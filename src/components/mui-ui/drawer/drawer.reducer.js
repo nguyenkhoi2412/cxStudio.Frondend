@@ -2,23 +2,31 @@ import { createSlice, current } from "@reduxjs/toolkit";
 
 // init state
 const initialState = {
+  className: "",
+  title: "",
   open: false,
+  anchor: "right", // left, right, bottom, top
+  width: 280,
+  height: 280,
 };
 
 export const muiDrawer = createSlice({
   name: "muiDrawer",
   initialState: initialState,
   reducers: {
-    SHOW_SPIN: (state, action) => {
+    OPEN_DRAWER: (state, action) => {
       const payload = action.payload;
       return {
-        ...current(state),
-        type: payload?.type ?? "mui", // type: "pre"
-        open: payload?.open !== undefined ? payload.open : true,
-        spin: payload?.spin !== undefined ? payload.spin : true,
+        ...state,
+        open: true,
+        className: payload?.className || state.className,
+        title: payload?.title || state.title,
+        anchor: payload?.anchor || state.anchor,
+        width: payload?.width || state.width,
+        height: payload?.height || state.height,
       };
     },
-    HIDE_SPIN: (state) => {
+    CLOSE_DRAWER: (state) => {
       return {
         ...state,
         ...initialState,
@@ -28,7 +36,7 @@ export const muiDrawer = createSlice({
 });
 
 // export actions to use
-export const { SHOW_SPIN, HIDE_SPIN } = muiDrawer.actions;
+export const { OPEN_DRAWER, CLOSE_DRAWER } = muiDrawer.actions;
 
 //#region The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
