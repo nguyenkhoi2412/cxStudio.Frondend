@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./_rootReducer";
-import thunk from "redux-thunk";
+import { thunk } from "redux-thunk";
 import customMiddleware from "./middleware/customMiddleware";
 
 export default configureStore({
