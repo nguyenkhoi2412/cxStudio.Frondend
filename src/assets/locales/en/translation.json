@@ -189,11 +189,12 @@
     }
   },
   "workspace": {
-    "title_create_open_one_workspace":"Create/open for one workspace | Workspace",
+    "title_create_open_one_workspace": "Create/open for one workspace | Workspace",
     "get_free_one_workspace": "Start now, get free for one new workspace.",
     "optimizing_saving_your_time": "Optimizing your work, saving your time.",
     "speedup_management_communication_report_search": "Speed up your management, communication, report and search. To create a new workspace, click the button below.",
     "btn_create_new_workspace": "Create new workspace",
-    "terms_and_conditions": "It's Okay, you’re agreeing to our Main Services Agreement, User Terms of Service, and Supplemental Terms. Additional disclosures are available in our Privacy Policy and Cookie Policy."
+    "terms_and_conditions": "It's Okay, you’re agreeing to our Main Services Agreement, User Terms of Service, and Supplemental Terms. Additional disclosures are available in our Privacy Policy and Cookie Policy.",
+    "create_new_workspace": "Create new workspace"
   }
 }

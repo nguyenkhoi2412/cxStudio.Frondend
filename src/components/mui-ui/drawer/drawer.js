@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { Drawer, Grid, Typography } from "@mui/material";
+import { Drawer, Grid, IconButton } from "@mui/material";
 
 // project imports
 import MainCard from "@components/mui-ui/cards";
@@ -18,6 +18,7 @@ import {
 } from "@reduxproviders/berry/actions";
 import { gridSpacing } from "@constants";
 import { CLOSE_DRAWER } from "./drawer.reducer";
+import { IconX } from "@tabler/icons-react";
 
 // concat 'px'
 function valueText(value) {
@@ -56,6 +57,15 @@ const WpDrawer = React.forwardRef((props, ref) => {
   };
   //#endregion
 
+  //#region render html
+  const renderIconClose = (
+    <IconButton className="btnClose" onClick={handleCloseDrawer}>
+      <IconX />
+    </IconButton>
+  );
+
+  //#endregion
+
   return (
     <>
       <Drawer
@@ -73,10 +83,9 @@ const WpDrawer = React.forwardRef((props, ref) => {
       >
         <MainCard
           title={title}
-          // secondary={
-          //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
-          // }
+          secondary={title?.length > 0 ? renderIconClose : ""}
         >
+          {title?.length === 0 ? renderIconClose : ""}
           <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
               abc

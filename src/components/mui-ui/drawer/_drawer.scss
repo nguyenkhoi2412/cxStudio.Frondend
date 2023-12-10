@@ -10,6 +10,16 @@
 
     .MuiCardContent-root {
       word-break: break-word;
+
+      .btnClose {
+        position: absolute;
+        right: 25px;
+        top: 18px;
+
+        svg {
+          font-size: 1rem;
+        }
+      }
     }
   }
 }

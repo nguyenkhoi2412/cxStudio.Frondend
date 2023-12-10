@@ -34,7 +34,8 @@ const Home = () => {
   const handleOpenDrawerRight = () => {
     dispatch(
       OPEN_DRAWER({
-        className: "sdfsdfsfsfsdf",
+        className: "",
+        title: t("workspace.create_new_workspace"),
       })
     );
   };
