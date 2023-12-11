@@ -18,6 +18,7 @@ import MainCard from "@components/mui-ui/cards";
 import SubCard from "@components/mui-ui/cards/subCard";
 import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
 import WpDrawer from "@components/mui-ui/drawer";
+import FormAction from "@clientapp/components/workspace/forms/action/action";
 //#endregion
 import imgWP from "@assets/images/bg_workspace.svg";
 //#region reduxprovider
@@ -36,6 +37,7 @@ const Home = () => {
       OPEN_DRAWER({
         className: "",
         title: t("workspace.create_new_workspace"),
+        children: <FormAction />,
       })
     );
   };
