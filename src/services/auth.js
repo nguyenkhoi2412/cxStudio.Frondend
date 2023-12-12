@@ -2,7 +2,6 @@ import axios from "@utils/axio.instance";
 import _axios from "axios";
 import encryptHelper from "@utils/encrypt.helper";
 import storageHandler from "@constants/storageHandler";
-import { ROLE } from "@constants/enumRoles";
 import {
   helpersExtension,
   objectExtension,
@@ -44,7 +43,6 @@ export default {
 
           const userInfo = {
             username: infoGoogle.email,
-            role: ROLE.USER.name,
             detailInfos: {
               firstName: infoGoogle.family_name || "",
               lastName: infoGoogle.given_name || "",

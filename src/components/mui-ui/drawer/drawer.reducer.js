@@ -8,6 +8,7 @@ const initialState = {
   anchor: "right", // left, right, bottom, top
   width: 280,
   height: 280,
+  render: null,
 };
 
 export const muiDrawer = createSlice({
@@ -24,6 +25,7 @@ export const muiDrawer = createSlice({
         anchor: payload?.anchor || state.anchor,
         width: payload?.width || state.width,
         height: payload?.height || state.height,
+        render: payload?.render || state.render,
       };
     },
     CLOSE_DRAWER: (state) => {

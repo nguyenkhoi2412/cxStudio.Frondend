@@ -35,9 +35,9 @@ const Home = () => {
   const handleOpenDrawerRight = () => {
     dispatch(
       OPEN_DRAWER({
-        className: "",
-        title: t("workspace.create_new_workspace"),
-        children: <FormAction />,
+        className: "workspace_created",
+        title: t("workspace.enter_workspace_name"),
+        render: <FormAction />,
       })
     );
   };

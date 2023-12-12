@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { ROLE } from "@constants/enumRoles";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { isUserState, isVisitorState } from "@reduxproviders/auth.reducer";
@@ -12,7 +11,7 @@ export default {
         lastName: "",
         avatarPath: "",
       },
-      role: ROLE.USER.name,
+      role: "",
       username: "",
       password: "",
     };

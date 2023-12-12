@@ -38,6 +38,7 @@ const WpDrawer = React.forwardRef((props, ref) => {
   const [anchor, setAnchor] = React.useState("right");
   const [width, setWidth] = React.useState(280);
   const [height, setHeight] = React.useState(280);
+  const [render, setRender] = React.useState(null);
 
   //#region useHooks
   React.useEffect(() => {
@@ -47,6 +48,7 @@ const WpDrawer = React.forwardRef((props, ref) => {
     setAnchor(dataState.anchor);
     setWidth(dataState.width);
     setHeight(dataState.height);
+    setRender(dataState.render);
   }, [dataState.open]);
   //#endregion
 
@@ -88,7 +90,7 @@ const WpDrawer = React.forwardRef((props, ref) => {
           {title?.length === 0 ? renderIconClose : ""}
           <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
-              abc
+              {render}
             </Grid>
           </Grid>
         </MainCard>

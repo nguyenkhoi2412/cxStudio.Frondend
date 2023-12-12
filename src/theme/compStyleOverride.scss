@@ -63,6 +63,11 @@
     + .MuiInputAdornment-root {
       > .MuiButtonBase-root {
         color: $textHeading;
+        margin-right: -8px;
+
+        svg {
+          font-size: 1rem;
+        }
       }
     }
   }

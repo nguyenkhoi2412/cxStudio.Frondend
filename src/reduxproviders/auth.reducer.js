@@ -1,4 +1,3 @@
-import { ROLE } from "@constants/enumRoles";
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import baseServices from "@services/base.api";
 import authServices from "@services/auth";
@@ -137,10 +136,10 @@ export const auth = createSlice({
         message: response?.message,
         currentUser: {
           ...results.currentUser,
-          isAdmin: results?.currentUser?.role === ROLE.ADMIN.name,
-          isSupervisor: results?.currentUser?.role === ROLE.SUPERVISOR.name,
-          isUser: results?.currentUser?.role === ROLE.USER.name,
-          isVisitor: results?.currentUser?.role === ROLE.VISITOR.name,
+          isAdmin: results?.currentUser?.isAdmin,
+          isSupervisor: results?.currentUser?.isSupervisor,
+          isUser: results?.currentUser?.isUser,
+          isVisitor: results?.currentUser?.isVisitor,
         },
       };
 

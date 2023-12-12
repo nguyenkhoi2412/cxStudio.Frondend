@@ -201,7 +201,7 @@ module.exports = (env, argv) => {
       static: {
         directory: BUILD_DIR,
       },
-      compress: true,
+      // compress: true,
       hot: true,
       historyApiFallback: true,
     },
