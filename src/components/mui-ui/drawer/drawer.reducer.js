@@ -6,8 +6,8 @@ const initialState = {
   title: "",
   open: false,
   anchor: "right", // left, right, bottom, top
-  width: 280,
-  height: 280,
+  width: 360,
+  height: 360,
   render: null,
 };
 

@@ -28,7 +28,7 @@ function valueText(value) {
 const WpDrawer = React.forwardRef((props, ref) => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const dataState = useSelector((state) => state.muiDrawer);
+  const valueState = useSelector((state) => state.muiDrawer);
 
   // drawer on/off
   const [className, setClassName] = React.useState("");
@@ -41,14 +41,14 @@ const WpDrawer = React.forwardRef((props, ref) => {
 
   //#region useHooks
   React.useEffect(() => {
-    setClassName(dataState.className);
-    setTitle(dataState.title);
-    setOpen(dataState.open);
-    setAnchor(dataState.anchor);
-    setWidth(dataState.width);
-    setHeight(dataState.height);
-    setRender(dataState.render);
-  }, [dataState.open]);
+    setClassName(valueState.className);
+    setTitle(valueState.title);
+    setOpen(valueState.open);
+    setAnchor(valueState.anchor);
+    setWidth(valueState.width);
+    setHeight(valueState.height);
+    setRender(valueState.render);
+  }, [valueState.open]);
   //#endregion
 
   //#region handle events

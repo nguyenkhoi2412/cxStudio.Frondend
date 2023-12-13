@@ -21,6 +21,9 @@ export default {
         name: {
           [locale.lang]: "",
         },
+        company: {
+          [locale.lang]: "",
+        },
         logo_path: "",
         team_members: [],
         is_active: true,
@@ -36,6 +39,9 @@ export default {
       name: yup.object().shape({
         [locale.lang]: yup.string().required(t("validate.required")),
       }),
+      company: yup.object().shape({
+        [locale.lang]: yup.string().required(t("validate.required")),
+      }),
     };
 
     return yup.object().shape(objSchema);
@@ -49,15 +55,28 @@ export default {
       id: "name",
       field: "name." + locale.lang,
       type: "text",
-      label: t("workspace.workspace_name"),
+      label: t("workspace.name"),
       autoFocus: true,
       preventXSS: true,
       helperText: t("workspace.enter_workspace_name"),
     };
 
+    // render company
+    const company = {
+      tabIndex: 1,
+      id: "company",
+      field: "company." + locale.lang,
+      type: "text",
+      label: t("workspace.w_is_your_company"),
+      autoFocus: true,
+      preventXSS: true,
+      helperText: t("workspace.enter_your_company"),
+    };
+
     // push all to array
     let inputForms = [];
     inputForms.push(name);
+    inputForms.push(company);
 
     //sort fields by index
     inputForms.sort((a, b) => (a.tabIndex > b.tabIndex ? 1 : -1));

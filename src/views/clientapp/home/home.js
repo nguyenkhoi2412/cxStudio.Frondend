@@ -2,7 +2,6 @@ import "./_home.scss";
 import { useTranslation } from "react-i18next";
 import Tilt from "react-parallax-tilt";
 import { gridSpacing } from "@constants";
-
 //#region mui-ui
 import {
   Grid,
@@ -19,6 +18,7 @@ import SubCard from "@components/mui-ui/cards/subCard";
 import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
 import WpDrawer from "@components/mui-ui/drawer";
 import FormAction from "@clientapp/components/workspace/forms/action/action";
+import AnimateButton from "@components/mui-ui/extended/animateButton";
 //#endregion
 import imgWP from "@assets/images/bg_workspace.svg";
 //#region reduxprovider
@@ -73,14 +73,16 @@ const Home = () => {
               </Typography>
             </Grid>
             <Grid item className="acts" textAlign={"center"}>
-              <Button
-                className="btn"
-                variant="contained"
-                disabled={!termsChecked}
-                onClick={handleOpenDrawerRight}
-              >
-                {t("workspace.btn_create_new_workspace")}
-              </Button>
+              <AnimateButton>
+                <Button
+                  className="btn"
+                  variant="contained"
+                  disabled={!termsChecked}
+                  onClick={handleOpenDrawerRight}
+                >
+                  {t("workspace.btn_create_new_workspace")}
+                </Button>
+              </AnimateButton>
             </Grid>
             <Grid item>
               <FormControlLabel

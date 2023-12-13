@@ -11,6 +11,7 @@ import InputField from "@components/mui-ui/forms/inputField";
 import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
+import UploadFile from "@components/mui-ui/forms/uploadFile/uploadFile";
 
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
@@ -136,10 +137,14 @@ const FormAction = () => {
             }
           })}
           <Grid item xs={12}>
+            <UploadFile />
+          </Grid>
+          <Grid item xs={12} className="btns-action">
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button
                   disableElevation
+                  fullWidth
                   disabled={submitting}
                   size="large"
                   type="submit"

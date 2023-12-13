@@ -1,0 +1,15 @@
+.uploadFile {
+  @include _roundedCorners(12px 12px 12px 12px);
+  border: 1px dashed var(--border-round-color);
+  padding: 2rem;
+  margin: 2rem 0;
+
+  .btn-select-file {
+    background-color: $bgButtonUploadFile;
+    color: $textDefault;
+  }
+
+  .selected-files {
+    margin: 1rem 0;
+  }
+}
