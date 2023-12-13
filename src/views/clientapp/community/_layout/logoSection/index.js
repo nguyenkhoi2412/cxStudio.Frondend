@@ -6,7 +6,7 @@ import { ButtonBase } from "@mui/material";
 
 // project imports
 import config from "configSettings";
-import Logo from "@components/ui/imagesvg";
+import Logo from "@components/common/imagesvg";
 import LogoInDark from "@assets/images/logo-workspace-dark.svg";
 import LogoInLight from "@assets/images/logo-workspace-light.svg";
 import { MENU_OPEN } from "@reduxproviders/berry/actions";

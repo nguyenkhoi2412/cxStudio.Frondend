@@ -22,7 +22,7 @@ import {
 import ErrorWrapper from "@views/errors/errorWrapper";
 import ErrorCardWrapper from "@views/errors/errorCardWrapper";
 // import FormSignIn from "../forms/signIn";
-import Logo from "@components/ui/imagesvg";
+import Logo from "@components/common/imagesvg";
 import LogoInDark from "@assets/images/logo-workspace-dark.svg";
 import LogoInLight from "@assets/images/logo-workspace-light.svg";
 import PageNotFound from "@assets/images/errorPages/page_notfound.svg";

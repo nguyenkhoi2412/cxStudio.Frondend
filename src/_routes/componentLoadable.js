@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import Loadable from "@components/ui/loadable";
+import Loadable from "@components/common/loadable";
 
 // ==============================|| DASHBOARD ||============================== //
 export const DASHBOARD = {

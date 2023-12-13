@@ -25,7 +25,7 @@ import { useSelector } from "react-redux";
 
 // third-party
 import PopupState, { bindPopper, bindToggle } from "material-ui-popup-state";
-import EmojiPicker from "@components/ui/emojiPicker";
+import EmojiPicker from "@components/common/emojiPicker";
 
 // project imports
 import Transitions from "@components/mui-ui/extended/transitions";
