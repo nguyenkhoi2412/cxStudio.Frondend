@@ -1,5 +1,5 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import baseServices from "@services/base.api";
+import baseServices from "@services/_base.api";
 import authServices from "@services/auth";
 import { storedExtension } from "@utils/helpersExtension";
 import storageHandler from "@constants/storageHandler";
