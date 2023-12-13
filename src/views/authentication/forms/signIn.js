@@ -7,7 +7,7 @@ import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import { socialSignIn } from "@constants";
 import { HTTP_STATUS } from "@constants/httpStatus";
-import InputField from "@components/forms/inputField";
+import InputField from "@components/mui-ui/forms/inputField";
 import _schema from "./../signIn/_schema";
 import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";

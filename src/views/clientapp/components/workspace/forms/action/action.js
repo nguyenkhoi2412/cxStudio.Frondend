@@ -8,7 +8,7 @@ import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import { gridSpacing } from "@constants";
 import { HTTP_STATUS } from "@constants/httpStatus";
-import InputField from "@components/forms/inputField";
+import InputField from "@components/mui-ui/forms/inputField";
 import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";
 import AnimateButton from "@components/mui-ui/extended/animateButton";

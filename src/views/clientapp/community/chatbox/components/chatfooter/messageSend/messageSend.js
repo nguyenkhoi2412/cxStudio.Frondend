@@ -29,7 +29,7 @@ import EmojiPicker from "@components/ui/emojiPicker";
 
 // project imports
 import Transitions from "@components/mui-ui/extended/transitions";
-import ReactQuillEditor from "@components/forms/quillEditor";
+import ReactQuillEditor from "@components/mui-ui/forms/quillEditor";
 
 // assets
 import {

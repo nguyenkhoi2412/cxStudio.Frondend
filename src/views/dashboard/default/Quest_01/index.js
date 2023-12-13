@@ -3,7 +3,7 @@ import { useTheme, styled } from "@mui/material/styles";
 import SubCard from "@components/mui-ui/cards/subCard";
 import MainContentCardWrapper from "@dashboard/_layout/mainContentCardWrapper";
 import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
-import InputField from "@components/forms/inputField";
+import InputField from "@components/mui-ui/forms/inputField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";

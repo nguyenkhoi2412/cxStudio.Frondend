@@ -4,7 +4,7 @@ import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { useSnackbar } from "notistack";
-import InputField from "@components/forms/inputField";
+import InputField from "@components/mui-ui/forms/inputField";
 import { HTTP_STATUS } from "@constants/httpStatus";
 import _schema from "../changePassword/_schema";
 //#endregion

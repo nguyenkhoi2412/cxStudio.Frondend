@@ -5,7 +5,7 @@ import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import InputField from "@components/forms/inputField";
+import InputField from "@components/mui-ui/forms/inputField";
 import Button from "@mui/material/Button";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { gridSpacing } from "@constants";

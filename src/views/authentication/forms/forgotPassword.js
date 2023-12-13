@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
-import InputField from "@components/forms/inputField";
+import InputField from "@components/mui-ui/forms/inputField";
 import _schema from "../forgotPassword/_schema";
 import { navigateLocation } from "@routes/navigateLocation";
 import { HTTP_STATUS } from "@constants/httpStatus";
