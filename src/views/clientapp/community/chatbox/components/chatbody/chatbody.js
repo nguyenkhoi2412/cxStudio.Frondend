@@ -1,4 +1,3 @@
-import React from "react";
 import "./_chatbody.scss";
 
 //#region mui-ui

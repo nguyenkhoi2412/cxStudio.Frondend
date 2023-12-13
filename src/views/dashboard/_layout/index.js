@@ -1,5 +1,3 @@
-import React from "react";
-
 // material-ui
 import { styled, useTheme } from "@mui/material/styles";
 import { AppBar, Box, Toolbar, useMediaQuery } from "@mui/material";

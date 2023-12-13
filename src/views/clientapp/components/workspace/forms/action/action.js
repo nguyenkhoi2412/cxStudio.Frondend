@@ -1,5 +1,4 @@
 import "./_action.scss";
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import _globalVars from "@constants/variables";

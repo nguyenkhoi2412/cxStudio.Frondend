@@ -1,5 +1,4 @@
 import "./app.scss";
-import React from "react";
 import { useTranslation } from "react-i18next";
 import defaultFavicon from "@assets/favicons/default/favicon.svg";
 import _globalVars from "@constants/variables";

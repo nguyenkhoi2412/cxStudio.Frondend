@@ -1,4 +1,3 @@
-import React from "react";
 import { useRoutes } from "react-router-dom";
 import { hookInstance } from "@utils/hookInstance";
 import { useTranslation } from "react-i18next";

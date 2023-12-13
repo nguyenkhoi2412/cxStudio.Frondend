@@ -1,5 +1,4 @@
 import "./_layout.scss";
-import React from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_MENU } from "@reduxproviders/berry/actions";

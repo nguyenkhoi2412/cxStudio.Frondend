@@ -1,4 +1,3 @@
-import React from "react";
 import "@chatbox/_chatbox.scss";
 import { useTranslation } from "react-i18next";
 import { dateExtension } from "@utils/helpersExtension";
