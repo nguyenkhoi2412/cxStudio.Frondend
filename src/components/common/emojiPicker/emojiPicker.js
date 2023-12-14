@@ -40,7 +40,7 @@ const EmojiPicker = (props) => {
 };
 
 export default React.memo(EmojiPicker, (props, nextProps) => {
-  if (props === nextProps) {
+  if (JSON.stringify(props) === JSON.stringify(nextProps)) {
     // return true if you don't need re-render
     return true;
   }
