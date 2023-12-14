@@ -3,7 +3,14 @@ import fileServices from "@services/file";
 import initialData from "./_initialState";
 
 export const CHANGE_PROFILE_IMAGE = createAsyncThunk(
-  "fileUpload",
+  "change_profile_gravatar",
+  async (params, thunkAPI) => {
+    return await fileServices.fileUpload(params);
+  }
+);
+
+export const UPLOAD_FILE = createAsyncThunk(
+  "file/upload",
   async (params, thunkAPI) => {
     return await fileServices.fileUpload(params);
   }

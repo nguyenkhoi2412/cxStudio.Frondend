@@ -39,6 +39,7 @@ import _schema from "./_schema";
 const FormAction = () => {
   const { t } = useTranslation();
   const { locale } = _globalVars;
+  const currentUser = useSelector((state) => state.auth.currentUser);
 
   //#region useFormik
   const initialValues = _schema.initialValues();
@@ -137,7 +138,7 @@ const FormAction = () => {
             }
           })}
           <Grid item xs={12}>
-            <UploadFile />
+            <UploadFile type="single" identifyFolder={currentUser._id} />
           </Grid>
           <Grid item xs={12} className="btns-action">
             <Box sx={{ mt: 2 }}>

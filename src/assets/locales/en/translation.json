@@ -7,7 +7,9 @@
     "required": "* is required",
     "isnumber": "* be number",
     "email": "Email is not valid",
-    "mustbebefore_startdate": "End date can't be before Start date"
+    "mustbebefore_startdate": "End date can't be before Start date",
+    "pls_upload_file_image": "Invalid file type. Please upload a JPEG, PNG, or GIF image.",
+    "file_size_exeed": "File size exceeds {{MAX_FILE_SIZE_MB}} MB. Please choose a smaller file."
   },
   "error": {
     "page_not_found": "Page not found",
@@ -165,7 +167,9 @@
   },
   "file": {
     "select_files": "Select file(s)",
-    "upload_files": "Upload file(s)"
+    "upload_files": "Upload file(s)",
+    "upload_complete": "Upload file(s) completed",
+    "uploading": "File(s) uploading..."
   },
   "site": {
     "site": "Site",

@@ -35,8 +35,8 @@ const WpDrawer = React.forwardRef((props, ref) => {
   const [title, setTitle] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [anchor, setAnchor] = React.useState("right");
-  const [width, setWidth] = React.useState(280);
-  const [height, setHeight] = React.useState(280);
+  const [width, setWidth] = React.useState(360);
+  const [height, setHeight] = React.useState(360);
   const [render, setRender] = React.useState(null);
 
   //#region useHooks
