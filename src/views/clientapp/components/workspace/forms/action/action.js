@@ -2,6 +2,7 @@ import "./_action.scss";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import _globalVars from "@constants/variables";
+import eventEmitter from "@utils/eventEmitter";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension.js";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
@@ -40,6 +41,7 @@ const FormAction = () => {
   const { t } = useTranslation();
   const { locale } = _globalVars;
   const currentUser = useSelector((state) => state.auth.currentUser);
+  const uploadFileRef = React.useRef();
 
   //#region useFormik
   const initialValues = _schema.initialValues();
@@ -54,7 +56,13 @@ const FormAction = () => {
     validateOnChange: enableValidation,
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
-      console.log("values", values);
+      uploadFileRef.current.handleUploadFiles().then((rs) => {
+        if (rs?.filenames?.length > 0) {
+          values.logo_path = rs.filenames[0];
+        }
+        values.currentuser_id = currentUser._id;
+        console.log("values", values);
+      });
       // setSubmitting(true);
       // helpersExtension.simulateNetworkRequest(100).then(async () => {
       //   registerUser(values);
@@ -138,7 +146,12 @@ const FormAction = () => {
             }
           })}
           <Grid item xs={12}>
-            <UploadFile type="single" identifyFolder={currentUser._id} />
+            <UploadFile
+              ref={uploadFileRef}
+              type="single"
+              identifyFolder={currentUser._id}
+              hideUploadFileButton={true}
+            />
           </Grid>
           <Grid item xs={12} className="btns-action">
             <Box sx={{ mt: 2 }}>

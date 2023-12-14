@@ -1,12 +1,11 @@
-import EventEmitter from 'events'
+import EventEmitter from "events";
 
-const eventEmitter = new EventEmitter()
+const eventEmitter = new EventEmitter();
 
 //turn off the limit of eventEmitter
-eventEmitter.setMaxListeners(0)
+eventEmitter.setMaxListeners(0);
 
-export default eventEmitter
-
+export default eventEmitter;
 
 /*
  * How to use it?
@@ -15,7 +14,7 @@ export default eventEmitter
     return () => {
       eventEmitter.removeListener('createExportTodosRequest', handlecreateExportTodosRequest)
     }
-  }, [])
+  })
   *
   * Call it?
   * eventEmitter.emit('createExportTodosRequest', selectedTodoIds)

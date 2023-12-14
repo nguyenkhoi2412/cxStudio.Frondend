@@ -25,7 +25,7 @@ export default {
           [locale.lang]: "",
         },
         logo_path: "",
-        team_members: [],
+        currentuser_id: "",
         is_active: true,
       };
     }

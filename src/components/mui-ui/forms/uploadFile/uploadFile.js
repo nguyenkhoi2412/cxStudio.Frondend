@@ -1,11 +1,10 @@
 import "./_uploadFile.scss";
 import { useTranslation } from "react-i18next";
-import { IconButton, Typography, Button, Box, Alert } from "@mui/material";
+import { Typography, Button, Box, Alert } from "@mui/material";
 import { CloudUpload } from "@mui/icons-material";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 import { useDispatch, useSelector } from "react-redux";
 import { UPLOAD_FILE } from "@reduxproviders/file.reducer";
-import encryptHelper from "@utils/encrypt.helper";
 
 const MAX_FILE_SIZE_MB = 1;
 const ALLOWED_FILE_TYPES = /jpeg|jpg|png/;
@@ -17,8 +16,12 @@ const UploadFile = React.forwardRef((props, ref) => {
   const [textAlert, setTextAlert] = React.useState(null);
   const [alertSeverity, setAlertSeverity] = React.useState(null);
 
+  React.useImperativeHandle(ref, () => ({
+    handleUploadFiles,
+  }));
+
   //#region useHooks
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {});
   //#endregion
 
   //#region handle events
@@ -29,7 +32,7 @@ const UploadFile = React.forwardRef((props, ref) => {
     return mimetype && extname;
   };
 
-  const handleFileChange = (event) => {
+  const handleValidateFileCheck = (event) => {
     let file = null;
     let fileSize = 0;
 
@@ -93,19 +96,23 @@ const UploadFile = React.forwardRef((props, ref) => {
     setTextAlert(t("file.uploading"));
     setAlertSeverity("info");
 
-    await dispatch(
-      UPLOAD_FILE({
-        type: props.type || "single",
-        formData: formData,
-        identifyFolder: props.identifyFolder || "anonymous",
-      })
-    )
-      .unwrap()
-      .then((result) => {
-        setSelectedFile(null);
-        setTextAlert(t("file.upload_complete"));
-        setAlertSeverity("success");
-      });
+    return new Promise(async (resolve, reject) => {
+      await dispatch(
+        UPLOAD_FILE({
+          type: props.type || "single",
+          formData: formData,
+          identifyFolder: props.identifyFolder || "anonymous",
+        })
+      )
+        .unwrap()
+        .then((result) => {
+          setSelectedFile(null);
+          setTextAlert(t("file.upload_complete"));
+          setAlertSeverity("success");
+
+          resolve(result.rs);
+        });
+    });
   };
   //#endregion
 
@@ -118,7 +125,7 @@ const UploadFile = React.forwardRef((props, ref) => {
           name="multiple"
           type="file"
           // accept="image/*"
-          onChange={handleFileChange}
+          onChange={handleValidateFileCheck}
           hidden
           id="image-file-input"
         />
@@ -128,7 +135,7 @@ const UploadFile = React.forwardRef((props, ref) => {
           name="single"
           type="file"
           // accept="image/*"
-          onChange={handleFileChange}
+          onChange={handleValidateFileCheck}
           hidden
           id="image-file-input"
         />
@@ -150,14 +157,18 @@ const UploadFile = React.forwardRef((props, ref) => {
                 <li key={selectedFile.name}>{selectedFile.name}</li>
               )}
             </ul>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleUploadFiles}
-              mt={2}
-            >
-              {t("file.upload_files")}
-            </Button>
+            {props.hideUploadFileButton ? (
+              <></>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleUploadFiles}
+                mt={2}
+              >
+                {t("file.upload_files")}
+              </Button>
+            )}
           </div>
         )}
       </>
@@ -184,7 +195,7 @@ const UploadFile = React.forwardRef((props, ref) => {
         </label>
         {renderSelectedFiles()}
         {textAlert && (
-          <Typography variant="body2" mt={2}>
+          <Typography variant="body2" mt={2} component="div">
             <Alert severity={alertSeverity || "error"}>{textAlert}</Alert>
           </Typography>
         )}
