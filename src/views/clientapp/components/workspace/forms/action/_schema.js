@@ -9,6 +9,7 @@ const { locale } = _globalVars;
 export default {
   initialValues: (data) => {
     const siteData = useSelector((state) => state.site);
+
     let objData = {};
 
     if (helpersExtension.isNotNull(data)) {
@@ -17,7 +18,7 @@ export default {
       };
     } else {
       objData = {
-        site_id: siteData.d._id,
+        site_id: siteData.d?._id,
         name: {
           [locale.lang]: "",
         },

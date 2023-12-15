@@ -1,10 +1,10 @@
 import "./_uploadFile.scss";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import { Typography, Button, Box, Alert } from "@mui/material";
+import { Typography, Button, Box, Alert, LinearProgress } from "@mui/material";
 import { CloudUpload } from "@mui/icons-material";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { UPLOAD_FILE } from "@reduxproviders/file.reducer";
 
 const MAX_FILE_SIZE_MB = 1;
@@ -199,9 +199,21 @@ const UploadFile = React.forwardRef(
           </label>
           {renderSelectedFiles()}
           {textAlert && (
-            <Typography variant="body2" mt={2} component="div">
-              <Alert severity={alertSeverity || "error"}>{textAlert}</Alert>
-            </Typography>
+            <>
+              {alertSeverity === "info" ? (
+                <>
+                  {" "}
+                  <Box sx={{ width: "100%", mt: 2 }}>
+                    <LinearProgress />
+                  </Box>
+                </>
+              ) : (
+                <></>
+              )}
+              <Typography variant="body2" mt={2} component="div">
+                <Alert severity={alertSeverity || "error"}>{textAlert}</Alert>
+              </Typography>
+            </>
           )}
         </Box>
       </>

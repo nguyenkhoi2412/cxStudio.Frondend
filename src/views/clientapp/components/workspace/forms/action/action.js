@@ -1,8 +1,8 @@
 import "./_action.scss";
+import _schema from "./_schema";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import _globalVars from "@constants/variables";
-import eventEmitter from "@utils/eventEmitter";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension.js";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
@@ -15,31 +15,15 @@ import AnimateButton from "@components/mui-ui/extended/animateButton";
 import UploadFile from "@components/mui-ui/forms/uploadFile/uploadFile";
 
 //#region mui-ui
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Alert from "@mui/material/Alert";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
-import CloseIcon from "@mui/icons-material/Close";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import severity from "@constants/severity";
-import {
-  Divider,
-  Typography,
-  Button,
-  Stack,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Typography, Button, Grid } from "@mui/material";
 //#endregion
-import { useSelector } from "react-redux";
-import _schema from "./_schema";
+import { useDispatch, useSelector } from "react-redux";
+import { INSERT_NEW } from "@reduxproviders/workspace.reducer";
 
 const FormAction = () => {
   const { t } = useTranslation();
   const { locale } = _globalVars;
+  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.currentUser);
   const uploadFileRef = React.useRef();
 
@@ -56,17 +40,23 @@ const FormAction = () => {
     validateOnChange: enableValidation,
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
+      setSubmitting(true);
       uploadFileRef.current.handleUploadFiles().then((rs) => {
         if (rs?.filenames?.length > 0) {
           values.logo_path = rs.filenames[0];
         }
         values.currentuser_id = currentUser._id;
-        console.log("values", values);
+        dispatch(INSERT_NEW(values))
+          .unwrap()
+          .then((result) => {
+            setSubmitting(false);
+            formik.resetForm();
+          })
+          .catch(() => {
+            setSubmitting(false);
+            formik.resetForm();
+          });
       });
-      // setSubmitting(true);
-      // helpersExtension.simulateNetworkRequest(100).then(async () => {
-      //   registerUser(values);
-      // });
     },
   });
   //#endregion
@@ -74,7 +64,7 @@ const FormAction = () => {
   // #region handle event
   const handleSubmit = (event) => {
     event.preventDefault();
-    // if (submitting) return;
+    if (submitting) return;
 
     setEnableValidation(true);
     formik.handleSubmit();

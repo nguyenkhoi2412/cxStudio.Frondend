@@ -11,7 +11,7 @@ import { objectExtension, storedExtension } from "./helpersExtension";
 const baseDomain = process.env.API_HOSTNAME;
 const baseURL = `${baseDomain}/api`;
 // const baseAPI_URL = "http://jsonplaceholder.typicode.com/";
-const ERR_BAD_REQUEST = ["ERR_BAD_REQUEST", "ERR_NETWORK"];
+const ERR_BAD_REQUEST = ["ERR_BAD_REQUEST", "ERR_BAD_RESPONSE", "ERR_NETWORK"];
 
 //#region axios
 const axiosInstance = axios.create({
@@ -77,12 +77,16 @@ axiosInstance.interceptors.response.use(
   },
   (responseError) => {
     console.log("responseError", responseError);
+    const messageError =
+      responseError.response?.data !== undefined
+        ? responseError.response?.data
+        : "";
 
     // show snackbar alert error
     SHOW_ERROR_SNACKBAR(
       responseError.message +
         (ERR_BAD_REQUEST.includes(responseError.code)
-          ? ""
+          ? messageError
           : ` .${responseError.response?.data?.message}`)
     );
 
