@@ -36,7 +36,7 @@ const UploadFile = React.forwardRef(
         progressUploadFileCompleted < 100
       ) {
         setTextAlert(
-          t("file.files_processing") + " " + progressUploadFileCompleted + "%"
+          t("file.files_processing") + " " + progressUploadFileThrottle + "%"
         );
         setAlertSeverity("info");
       }
