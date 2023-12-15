@@ -44,6 +44,35 @@ export class hookInstance {
   };
 
   /*
+   * useThrottle
+   * Throttling enforces a maximum number of times a function can be called over time
+   * How to use it?
+   * const [value, setValue] = useState("hello");
+   * const throttledValue = useThrottle(value, 1000);
+   * <p>Throttled value: {throttledValue}</p>
+   * If we setValue success, this value will process (change/call API) after 1000ms = 1s
+   */
+  static useThrottle = (value, limit) => {
+    const [throttledValue, setThrottledValue] = useState(value);
+    const lastRan = useRef(Date.now());
+
+    useEffect(() => {
+      const handler = setTimeout(function () {
+        if (Date.now() - lastRan.current >= limit) {
+          setThrottledValue(value);
+          lastRan.current = Date.now();
+        }
+      }, limit - (Date.now() - lastRan.current));
+
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [value, limit]);
+
+    return throttledValue;
+  };
+
+  /*
    * useWindowSize
    * Call hook when window resize
    * const [width, height] = useWindowSize();

@@ -1,6 +1,7 @@
 import "./_uploadFile.scss";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+import { hookInstance } from "@utils/hookInstance";
 import { Typography, Button, Box, Alert, LinearProgress } from "@mui/material";
 import { CloudUpload } from "@mui/icons-material";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
@@ -19,6 +20,10 @@ const UploadFile = React.forwardRef(
     const [alertSeverity, setAlertSeverity] = React.useState(null);
     const [progressUploadFileCompleted, setProgressUploadFileCompleted] =
       React.useState(0);
+    const progressUploadFileThrottle = hookInstance.useThrottle(
+      progressUploadFileCompleted,
+      400
+    );
 
     React.useImperativeHandle(ref, () => ({
       handleUploadFiles,
@@ -34,6 +39,12 @@ const UploadFile = React.forwardRef(
           t("file.files_processing") + " " + progressUploadFileCompleted + "%"
         );
         setAlertSeverity("info");
+      }
+
+      if (progressUploadFileCompleted === 100) {
+        setSelectedFile(null);
+        setTextAlert(t("file.upload_complete"));
+        setAlertSeverity("success");
       }
     }, [progressUploadFileCompleted]);
     //#endregion
@@ -120,6 +131,9 @@ const UploadFile = React.forwardRef(
 
           setProgressUploadFileCompleted(percentCompleted);
         },
+        onDownloadProgress: function (progressEvent) {
+          // Do whatever you want with the native progress event
+        },
       };
 
       return new Promise(async (resolve, reject) => {
@@ -133,10 +147,6 @@ const UploadFile = React.forwardRef(
         )
           .unwrap()
           .then((result) => {
-            setSelectedFile(null);
-            setTextAlert(t("file.upload_complete"));
-            setAlertSeverity("success");
-
             resolve(result.rs);
           });
       });
@@ -230,7 +240,7 @@ const UploadFile = React.forwardRef(
                   <Box sx={{ width: "100%", mt: 2 }}>
                     <LinearProgress
                       variant="determinate"
-                      value={progressUploadFileCompleted}
+                      value={progressUploadFileThrottle}
                     />
                   </Box>
                 </>
