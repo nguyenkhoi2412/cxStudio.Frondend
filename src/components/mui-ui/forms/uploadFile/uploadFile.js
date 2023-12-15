@@ -17,13 +17,25 @@ const UploadFile = React.forwardRef(
     const [selectedFile, setSelectedFile] = React.useState(null);
     const [textAlert, setTextAlert] = React.useState(null);
     const [alertSeverity, setAlertSeverity] = React.useState(null);
+    const [progressUploadFileCompleted, setProgressUploadFileCompleted] =
+      React.useState(0);
 
     React.useImperativeHandle(ref, () => ({
       handleUploadFiles,
     }));
 
     //#region useHooks
-    React.useEffect(() => {});
+    React.useEffect(() => {
+      if (
+        progressUploadFileCompleted > 0 &&
+        progressUploadFileCompleted < 100
+      ) {
+        setTextAlert(
+          t("file.files_processing") + " " + progressUploadFileCompleted + "%"
+        );
+        setAlertSeverity("info");
+      }
+    }, [progressUploadFileCompleted]);
     //#endregion
 
     //#region handle events
@@ -33,7 +45,7 @@ const UploadFile = React.forwardRef(
 
       return mimetype && extname;
     };
-    console.log("hideUploadFileButton", hideUploadFileButton);
+
     const handleValidateFileCheck = (event) => {
       let file = null;
       let fileSize = 0;
@@ -86,6 +98,7 @@ const UploadFile = React.forwardRef(
     const handleUploadFiles = async () => {
       if (!selectedFile) return;
 
+      // prepare data
       const formData = new FormData();
       if (type === "multiple") {
         selectedFile.map((file) => {
@@ -95,8 +108,19 @@ const UploadFile = React.forwardRef(
         formData.append("single", selectedFile);
       }
 
-      setTextAlert(t("file.uploading"));
-      setAlertSeverity("info");
+      // callback api us axios
+      const configAxios = {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+        onUploadProgress: function (progressEvent) {
+          var percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+
+          setProgressUploadFileCompleted(percentCompleted);
+        },
+      };
 
       return new Promise(async (resolve, reject) => {
         await dispatch(
@@ -104,6 +128,7 @@ const UploadFile = React.forwardRef(
             type: type || "single",
             formData: formData,
             identifyFolder: identifyFolder || "anonymous",
+            configAxios: configAxios,
           })
         )
           .unwrap()
@@ -202,9 +227,11 @@ const UploadFile = React.forwardRef(
             <>
               {alertSeverity === "info" ? (
                 <>
-                  {" "}
                   <Box sx={{ width: "100%", mt: 2 }}>
-                    <LinearProgress />
+                    <LinearProgress
+                      variant="determinate"
+                      value={progressUploadFileCompleted}
+                    />
                   </Box>
                 </>
               ) : (

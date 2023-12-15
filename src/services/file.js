@@ -5,14 +5,25 @@ import { objectExtension } from "@utils/helpersExtension";
 export default {
   fileUpload: (params) => {
     return new Promise((resolve, reject) => {
-      const config = {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      };
-      const { formData, type, identifyFolder } = params;
+      // const configAxios = {
+      //   headers: {
+      //     "content-type": "multipart/form-data",
+      //   },
+      //   onUploadProgress: function (progressEvent) {
+      //     var percentCompleted = Math.round(
+      //       (progressEvent.loaded * 100) / progressEvent.total
+      //     );
+      //     console.log(percentCompleted);
+      //   },
+      // };
+
+      const { formData, type, identifyFolder, configAxios } = params;
       axios
-        .post(`file/upload/` + type + "/" + identifyFolder, formData, config)
+        .post(
+          `file/upload/` + type + "/" + identifyFolder,
+          formData,
+          configAxios
+        )
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });

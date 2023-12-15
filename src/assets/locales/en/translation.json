@@ -169,7 +169,7 @@
     "select_files": "Select file(s)",
     "upload_files": "Upload file(s)",
     "upload_complete": "Upload file(s) completed",
-    "uploading": "File(s) uploading..."
+    "files_processing": "File(s) in processing..."
   },
   "site": {
     "site": "Site",

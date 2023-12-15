@@ -117,7 +117,7 @@ const ReactQuillEditor = (props) => {
       // API post, returns image location as string e.g. 'http://www.example.com/images/foo.png'
       const response = await axios({
         method: "post",
-        url: process.env.API_IMAGE_UPLOAD,
+        url: process.env.API_FILE_UPLOAD,
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",
