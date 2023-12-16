@@ -112,6 +112,10 @@ export class helpersExtension {
     );
   }
 
+  static isNull(data) {
+    return !this.isNotNull(data);
+  }
+
   static detectEnvironment() {
     {
       var unknown = "-";

@@ -1,6 +1,14 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import baseServices from "@services/_base.api";
+import { workspaceService } from "@services/workspace";
 import initialData from "./_initialState";
+
+export const WORKSPACE_GET_BY_USER = createAsyncThunk(
+  "workspace/getbyuser",
+  async (params, thunkAPI) => {
+    return await workspaceService.getByUser(params);
+  }
+);
 
 export const INSERT_NEW = createAsyncThunk(
   "workspace/insertnew",
@@ -35,6 +43,37 @@ export const workspace = createSlice({
       };
     },
     [INSERT_NEW.fulfilled]: (state, action) => {
+      const response = action.payload;
+      let results = response?.rs;
+      let data = [...current(state).d];
+      data.push(results);
+
+      return {
+        ...state,
+        isFetching: false,
+        showProgressbar: false,
+        ok: response?.ok,
+        message: response?.message,
+        d: data,
+      };
+    },
+    //#endregion
+    //#region WORKSPACE_GET_BY_USER
+    [WORKSPACE_GET_BY_USER.pending]: (state) => {
+      return {
+        ...state,
+        isFetching: true,
+        showProgressbar: true,
+      };
+    },
+    [WORKSPACE_GET_BY_USER.rejected]: (state) => {
+      return {
+        ...state,
+        isFetching: false,
+        showProgressbar: false,
+      };
+    },
+    [WORKSPACE_GET_BY_USER.fulfilled]: (state, action) => {
       const response = action.payload;
       const results = response?.rs;
 

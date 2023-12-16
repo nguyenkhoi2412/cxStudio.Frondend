@@ -2,6 +2,8 @@ import "./_home.scss";
 import { useTranslation } from "react-i18next";
 import Tilt from "react-parallax-tilt";
 import { gridSpacing } from "@constants";
+import { ROLE } from "@constants/role";
+import { helpersExtension } from "@utils/helpersExtension";
 //#region mui-ui
 import {
   Grid,
@@ -24,12 +26,66 @@ import imgWP from "@assets/images/bg_workspace.svg";
 //#region reduxprovider
 import { useDispatch, useSelector } from "react-redux";
 import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
+import { WORKSPACE_GET_BY_USER } from "@reduxproviders/workspace.reducer";
+import { workspaceService } from "@services/workspace";
 //#endregion
 
 const Home = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const workspaceState = useSelector((state) => state.workspace);
+  const currentUser = useSelector((state) => state.auth.currentUser);
   const [termsChecked, setTermsChecked] = React.useState(false);
+  const [dataValue, setDataValue] = React.useState([]);
+  const [owner, setOwner] = React.useState([]);
+  const [teamMembers, setTeamMembers] = React.useState([]);
+
+  //#region get data content
+  const getWorkspaceByCurrentUser = () => {
+    dispatch(
+      WORKSPACE_GET_BY_USER({
+        id: currentUser._id,
+      })
+    );
+  };
+
+  const getWorkspaceOwner = (wp) => {
+    if (helpersExtension.isNull(wp)) return;
+    workspaceService
+      .getOwner({
+        data: wp,
+        currentUser: currentUser,
+      })
+      .then((rs) => setOwner(rs));
+  };
+
+  const getWorkspaceTeams = (wp) => {
+    if (helpersExtension.isNull(wp)) return;
+    workspaceService
+      .getTeamMembers({
+        data: wp,
+        currentUser: currentUser,
+      })
+      .then((rs) => setTeamMembers(rs));
+  };
+  //#endregion
+
+  //#region useHooks
+  React.useEffect(() => {
+    getWorkspaceByCurrentUser();
+  }, []);
+
+  React.useEffect(() => {
+    setDataValue(workspaceState?.d);
+  }, [workspaceState]);
+
+  React.useEffect(() => {
+    // getWorkspaceOwner
+    getWorkspaceOwner(workspaceState?.d);
+    // getWorkspaceTeams
+    getWorkspaceTeams(workspaceState?.d);
+  }, [dataValue]);
+  //#endregion
 
   //#region handle events
   const handleOpenDrawerRight = () => {
@@ -114,7 +170,7 @@ const Home = () => {
           className="wsa__img"
           justifyContent={"center"}
         >
-          <Tilt className="wsa_tilt">
+          {/* <Tilt className="wsa_tilt"> */}
             <CardMedia
               className="responsive"
               component="img"
@@ -123,7 +179,7 @@ const Home = () => {
               image={imgWP}
               alt="Paella dish"
             />
-          </Tilt>
+          {/* </Tilt> */}
         </Grid>
       </Grid>
     </MainCard>
