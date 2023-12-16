@@ -1,6 +1,5 @@
 import "./_home.scss";
 import { useTranslation } from "react-i18next";
-import Tilt from "react-parallax-tilt";
 import { gridSpacing } from "@constants";
 import { ROLE } from "@constants/role";
 import { helpersExtension } from "@utils/helpersExtension";
@@ -115,6 +114,7 @@ const Home = () => {
         justifyContent={"center"}
         alignItems={"center"}
       >
+        <Grid item xs md={1}></Grid>
         <Grid item xs={12} md={4} className="wsa__intro">
           <Grid container spacing={gridSpacing} className="container__item">
             <Grid item className="desc" textAlign={"left"}>
@@ -163,23 +163,15 @@ const Home = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          className="wsa__img"
-          justifyContent={"center"}
-        >
-          {/* <Tilt className="wsa_tilt"> */}
-            <CardMedia
-              className="responsive"
-              component="img"
-              height={550}
-              width={"auto"}
-              image={imgWP}
-              alt="Paella dish"
-            />
-          {/* </Tilt> */}
+        <Grid item xs={12} md={7} className="wsa__img" justifyContent={"center"}>
+          <CardMedia
+            className="responsive"
+            component="img"
+            height={550}
+            width={"auto"}
+            image={imgWP}
+            alt="Paella dish"
+          />
         </Grid>
       </Grid>
     </MainCard>

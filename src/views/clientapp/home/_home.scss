@@ -32,12 +32,10 @@
         }
       }
 
-      &_tilt {
+      &__img {
         display: flex;
         justify-content: center;
-      }
 
-      &__img {
         img {
           @include respond-above(xl) {
             max-width: 80%;
