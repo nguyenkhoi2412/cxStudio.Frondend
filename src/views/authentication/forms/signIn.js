@@ -10,15 +10,11 @@ import InputField from "@components/mui-ui/forms/inputField";
 import _schema from "./../signIn/_schema";
 import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";
+import WpAlert from "@components/mui-ui/alert";
 //#region mui-ui
-import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Alert from "@mui/material/Alert";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
-import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
@@ -73,9 +69,7 @@ const FormSignIn = () => {
           navigate(navigateLocation.CLIENT_APP.APP);
         } else {
           //* verify 2FA
-          navigate(
-            navigateLocation.AUTH.CODE_VERIFICATION
-          );
+          navigate(navigateLocation.AUTH.CODE_VERIFICATION);
         }
       } else {
         //* show message
@@ -217,28 +211,11 @@ const FormSignIn = () => {
                 />
               );
             })}
-            <FormControl fullWidth>
-              <Collapse in={showMessageAlert}>
-                <Alert
-                  action={
-                    <IconButton
-                      aria-label="close"
-                      color="inherit"
-                      size="small"
-                      onClick={() => {
-                        setShowMessageAlert(false);
-                      }}
-                    >
-                      <CloseIcon fontSize="inherit" />
-                    </IconButton>
-                  }
-                  sx={{ mb: 2 }}
-                  severity="error"
-                >
-                  {messageContentAlert}
-                </Alert>
-              </Collapse>
-            </FormControl>
+            <WpAlert
+              open={showMessageAlert}
+              message={messageContentAlert}
+              close={() => setShowMessageAlert(false)}
+            />
             <Stack
               direction="row"
               alignItems="center"

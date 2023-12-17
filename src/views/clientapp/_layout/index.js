@@ -72,6 +72,13 @@ const LayoutCommunity = ({ appName }) => {
 
   //#region useHooks
   React.useEffect(() => {
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
+
+  React.useEffect(() => {
     // set className for wrapper
     handleWrapperClassesApps(appName);
   }, [appName]);

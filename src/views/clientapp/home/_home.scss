@@ -28,6 +28,10 @@
             > h6 {
               word-break: break-word;
             }
+
+            &.disabled {
+              cursor: default;
+            }
           }
         }
       }

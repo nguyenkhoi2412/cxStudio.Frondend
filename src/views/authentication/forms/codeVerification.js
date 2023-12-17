@@ -11,7 +11,7 @@ import { navigateLocation } from "@routes/navigateLocation";
 import { HTTP_STATUS } from "@constants/httpStatus";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
-import Alert from "@mui/material/Alert";
+import WpAlert from "@components/mui-ui/alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
@@ -154,28 +154,11 @@ const FormCodeVerification = () => {
                 />
               );
             })}
-            <FormControl fullWidth>
-              <Collapse in={showMessageAlert}>
-                <Alert
-                  action={
-                    <IconButton
-                      aria-label="close"
-                      color="inherit"
-                      size="small"
-                      onClick={() => {
-                        setShowMessageAlert(false);
-                      }}
-                    >
-                      <CloseIcon fontSize="inherit" />
-                    </IconButton>
-                  }
-                  sx={{ mb: 2 }}
-                  severity="error"
-                >
-                  {messageContentAlert}
-                </Alert>
-              </Collapse>
-            </FormControl>
+            <WpAlert
+              open={showMessageAlert}
+              message={messageContentAlert}
+              close={() => setShowMessageAlert(false)}
+            />
             <AnimateButton>
               <Button
                 disableElevation

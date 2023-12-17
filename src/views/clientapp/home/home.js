@@ -11,6 +11,7 @@ import {
   Typography,
   Checkbox,
   FormControlLabel,
+  Tooltip,
 } from "@mui/material";
 //#endregion
 //#region import components
@@ -38,6 +39,7 @@ const Home = () => {
   const [dataValue, setDataValue] = React.useState([]);
   const [owner, setOwner] = React.useState([]);
   const [teamMembers, setTeamMembers] = React.useState([]);
+  const [disabledCbTerms, setDisabledCbTerms] = React.useState(false);
 
   //#region get data content
   const getWorkspaceByCurrentUser = () => {
@@ -55,7 +57,10 @@ const Home = () => {
         data: wp,
         currentUser: currentUser,
       })
-      .then((rs) => setOwner(rs));
+      .then((rs) => {
+        setOwner(rs);
+        setDisabledCbTerms(rs?.length > 0);
+      });
   };
 
   const getWorkspaceTeams = (wp) => {
@@ -133,7 +138,7 @@ const Home = () => {
                 <Button
                   className="btn"
                   variant="contained"
-                  disabled={!termsChecked}
+                  disabled={disabledCbTerms || !termsChecked}
                   onClick={handleOpenDrawerRight}
                 >
                   {t("workspace.btn_create_new_workspace")}
@@ -142,17 +147,31 @@ const Home = () => {
             </Grid>
             <Grid item>
               <FormControlLabel
-                className="terms"
+                className={"terms" + (disabledCbTerms ? " disabled" : "")}
                 sx={{ alignItems: "flex-start" }}
                 control={
-                  <Checkbox
-                    sx={{
-                      marginTop: -1,
-                    }}
-                    checked={termsChecked}
-                    onChange={(event) => setTermsChecked(event.target.checked)}
-                    name="terms"
-                  />
+                  <Tooltip
+                    title={
+                      disabledCbTerms
+                        ? t("workspace.limited_for_one_workpsace")
+                        : ""
+                    }
+                    placement="top"
+                  >
+                    <span>
+                      <Checkbox
+                        sx={{
+                          marginTop: -1,
+                        }}
+                        disabled={disabledCbTerms}
+                        checked={termsChecked && !disabledCbTerms}
+                        onChange={(event) =>
+                          setTermsChecked(event.target.checked)
+                        }
+                        name="terms"
+                      />
+                    </span>
+                  </Tooltip>
                 }
                 label={
                   <Typography variant="subtitle2">
@@ -163,7 +182,13 @@ const Home = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} md={7} className="wsa__img" justifyContent={"center"}>
+        <Grid
+          item
+          xs={12}
+          md={7}
+          className="wsa__img"
+          justifyContent={"center"}
+        >
           <CardMedia
             className="responsive"
             component="img"

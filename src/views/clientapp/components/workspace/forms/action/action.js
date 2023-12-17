@@ -1,18 +1,16 @@
 import "./_action.scss";
 import _schema from "./_schema";
 import { useTranslation } from "react-i18next";
+import WpAlert from "@components/mui-ui/alert";
+import { useSnackbar } from "notistack";
+import severity from "@constants/severity";
 import { useFormik } from "formik";
 import _globalVars from "@constants/variables";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension.js";
-import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
-import { useSnackbar } from "notistack";
-import { gridSpacing } from "@constants";
-import { HTTP_STATUS } from "@constants/httpStatus";
+import { objectExtension } from "@utils/helpersExtension.js";
 import InputField from "@components/mui-ui/forms/inputField";
-import { useTheme } from "@mui/material/styles";
-import { navigateLocation } from "@routes/navigateLocation";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 import UploadFile from "@components/mui-ui/forms/uploadFile/uploadFile";
+import { CLOSE_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
 
 //#region mui-ui
 import { Box, Typography, Button, Grid } from "@mui/material";
@@ -22,10 +20,11 @@ import { INSERT_NEW } from "@reduxproviders/workspace.reducer";
 
 const FormAction = () => {
   const { t } = useTranslation();
-  const { locale } = _globalVars;
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.currentUser);
   const uploadFileRef = React.useRef();
+  const { enqueueSnackbar } = useSnackbar();
+  const [showMessageAlert, setShowMessageAlert] = React.useState(false);
 
   //#region useFormik
   const initialValues = _schema.initialValues();
@@ -51,8 +50,16 @@ const FormAction = () => {
           .then((result) => {
             setSubmitting(false);
             formik.resetForm();
+            //* Show message info success
+            enqueueSnackbar(result.message, {
+              variant: severity.success,
+            });
+            //* Close DRAWER
+            dispatch(CLOSE_DRAWER());
           })
           .catch(() => {
+            //* Show message info when error
+            setShowMessageAlert(true);
             setSubmitting(false);
             formik.resetForm();
           });
@@ -144,6 +151,11 @@ const FormAction = () => {
             />
           </Grid>
           <Grid item xs={12} className="btns-action">
+            <WpAlert
+              open={showMessageAlert}
+              message={`abcabaabc`}
+              close={() => setShowMessageAlert(false)}
+            />
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button
