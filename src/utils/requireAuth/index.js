@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
-import { crossCutting, storedExtension } from "@utils/crossCutting";
+import { crossCutting } from "@utils/crossCutting";
+import { storedHelper } from "@utils/stored.helper"
 import storageHandler from "@constants/storageHandler";
 
 export const RequireLoggedIn = ({ children, redirectTo, navigateTo }) => {
@@ -24,7 +25,7 @@ export const isLoggedIn = () => {
       localStorage.getItem(storageHandler.AUTH.CURRENT_USER)
     ) &&
     crossCutting.isNotNull(
-      storedExtension.getCookie(storageHandler.AUTH.ACCESS_TOKEN)
+      storedHelper.getCookie(storageHandler.AUTH.ACCESS_TOKEN)
     )
   );
 };
@@ -36,9 +37,9 @@ export const isAuth = () => {
 const _isVerified_2fa = () => {
   // return true;
   return crossCutting.isNotNull(
-    storedExtension.getCookie(storageHandler.AUTH.VERIFIED_2FA)
+    storedHelper.getCookie(storageHandler.AUTH.VERIFIED_2FA)
   )
-    ? storedExtension.getCookie(storageHandler.AUTH.VERIFIED_2FA) ===
+    ? storedHelper.getCookie(storageHandler.AUTH.VERIFIED_2FA) ===
         "true"
     : false;
 };

@@ -1,6 +1,6 @@
 import "@chatbox/_chatbox.scss";
 import { useTranslation } from "react-i18next";
-import { dateExtension } from "@utils/crossCutting";
+import { dateTimeHelper } from "@utils/datetime.helper";
 
 //#region mui-ui
 import { Grid, Box, Stack, Link } from "@mui/material";
@@ -40,14 +40,13 @@ const RenderMessage = (props) => {
       sm={7}
       className={sender ? "chat__sender" : "chat__recipient"}
     >
-      <MainCard
-        className="box__message">
+      <MainCard className="box__message">
         <Grid item>
           <Stack direction="column">
             <MuiTypography component="p" variant="subtitle1" gutterBottom>
               {sender ? t("community.app.livechat.you") : message.displayName}
               <MuiTypography align="right" variant="caption" gutterBottom>
-                &nbsp; {dateExtension.getUtcDateTime(postedOn)?.local.time}
+                &nbsp; {dateTimeHelper.getUtcDateTime(postedOn)?.local.time}
               </MuiTypography>
             </MuiTypography>
             <MuiTypography

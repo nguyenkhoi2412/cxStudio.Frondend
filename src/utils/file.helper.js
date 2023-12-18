@@ -1,7 +1,7 @@
 import Resizer from "react-image-file-resizer";
 import { stringHelper } from "@utils/string.helper";
 
-export class fileExtension {
+export class fileHelper {
   // static uploadfile = (file, cb) => {
   //   let reader = new FileReader();
   //   reader.readAsDataURL(file);

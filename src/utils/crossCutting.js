@@ -1,4 +1,3 @@
-import encrypt from "@utils/encrypt.helper";
 import { objectHelper } from "./object.helper";
 // import * as _ from "lodash";
 
@@ -108,9 +107,7 @@ export class crossCutting {
 
   //#region check/detect
   static isNotNull(data) {
-    return (
-      data !== null && data !== undefined && !objectHelper.isEmpty(data)
-    );
+    return data !== null && data !== undefined && !objectHelper.isEmpty(data);
   }
 
   static isNull(data) {
@@ -390,131 +387,3 @@ export class crossCutting {
   }
   //#endregion
 }
-
-//#region datetime
-export class dateExtension {
-  static diffInDays = (startDateVal, endDateVal) => {
-    var startDate = new Date(startDateVal); //Default date format
-    var endDate = new Date(endDateVal);
-
-    // One day in milliseconds
-    const oneDay = 1000 * 60 * 60 * 24;
-
-    // Calculating the time difference between two dates
-    const diffInTime = endDate.getTime() - startDate.getTime();
-
-    // Calculating the no. of days between two dates
-    const diffInDays = Math.round(diffInTime / oneDay);
-
-    return diffInDays;
-  };
-
-  static getUtcDateTime = (isoDate, locales = "en") => {
-    const date = new Date(isoDate);
-    // let d = Date.UTC(
-    //   date.getFullYear(),
-    //   date.getMonth(),
-    //   date.getDate(),
-    //   date.getHours(),
-    //   date.getMinutes(),
-    //   date.getSeconds()
-    // );
-
-    const localTime = date.toLocaleTimeString(locales, {
-      timeStyle: "short",
-    });
-    const utcTime = date.getUTCHours() + ":" + date.getUTCMinutes();
-    const data = {
-      toISOString: isoDate,
-      toUTCString: new Date(date.toUTCString().slice(0, -4)).toString(), // ignore the timezone
-      local: {
-        date: date.toLocaleDateString(locales),
-        time: localTime,
-      },
-      utc: {
-        time: utcTime,
-      },
-    };
-
-    return data;
-
-    // var curLocalDate = new Date(datetime);
-    // var curlLocalMiliSec = curLocalDate.getTime();
-    // var utcOffsetInMin = curLocalDate.getTimezoneOffset();
-    // var utcOffsetInMiliSec = utcOffsetInMin * 60 * 1000;
-
-    // var utcTime = new Date(curlLocalMiliSec + utcOffsetInMiliSec);
-
-    // var utcHour = utcTime.getHours();
-    // var utcMinutes = utcTime.getMinutes();
-
-    // return {
-    //   localTime: curLocalDate.getHours() + ":" + curLocalDate.getMinutes(),
-    //   utcTime: utcHour + ":" + utcMinutes,
-    // };
-  };
-}
-//#endregion
-
-//#region stores
-export class storedExtension {
-  static setCookie = (name, value, hours = 6) => {
-    // var expires = "";
-    // if (hours) {
-    //   var date = new Date();
-    //   //date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    //   date.setTime(date.getTime() + hours * 60 * 60 * 1000);
-    //   expires = "; expires=" + date.toUTCString();
-    // }
-    // document.cookie = name + "=" + (value || "") + expires + "; path=/";
-
-    var date = new Date();
-    date.setTime(date.getTime() + hours * 60 * 60 * 1000);
-    var options = {
-      path: "/",
-      // add other defaults here if necessary
-      expires: date,
-    };
-
-    if (options.expires instanceof Date) {
-      options.expires = options.expires.toUTCString();
-    }
-
-    let updatedCookie =
-      encodeURIComponent(name) + "=" + encodeURIComponent(value);
-
-    for (let optionKey in options) {
-      updatedCookie += "; " + optionKey;
-      let optionValue = options[optionKey];
-      if (optionValue !== true) {
-        updatedCookie += "=" + optionValue;
-      }
-    }
-
-    storedExtension.removeCookie(name);
-    document.cookie = updatedCookie;
-  };
-  static getCookie = (name) => {
-    // var nameEQ = name + "=";
-    // var ca = document.cookie.split(";");
-    // for (var i = 0; i < ca.length; i++) {
-    //   var c = ca[i];
-    //   while (c.charAt(0) == " ") c = c.substring(1, c.length);
-    //   if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    // }
-    // return null;
-    let matches = document.cookie.match(
-      new RegExp(
-        "(?:^|; )" +
-          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-          "=([^;]*)"
-      )
-    );
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-  };
-  static removeCookie = (name) => {
-    document.cookie =
-      name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-  };
-}
-//#endregion

@@ -1,7 +1,7 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import baseServices from "@services/_base.api";
 import authServices from "@services/auth";
-import { storedExtension } from "@utils/crossCutting";
+import { storedHelper } from "@utils/stored.helper";
 import storageHandler from "@constants/storageHandler";
 
 // ==============================|| ACTIONS ||============================== //
@@ -101,9 +101,9 @@ export const auth = createSlice({
   reducers: {
     SIGN_OUT: (state) => {
       localStorage.removeItem(storageHandler.AUTH.CURRENT_USER);
-      storedExtension.removeCookie(storageHandler.AUTH.ACCESS_TOKEN);
-      storedExtension.removeCookie(storageHandler.AUTH.REFRESH_TOKEN);
-      storedExtension.removeCookie(storageHandler.AUTH.VERIFIED_2FA);
+      storedHelper.removeCookie(storageHandler.AUTH.ACCESS_TOKEN);
+      storedHelper.removeCookie(storageHandler.AUTH.REFRESH_TOKEN);
+      storedHelper.removeCookie(storageHandler.AUTH.VERIFIED_2FA);
 
       return { ...state, ...initialState };
     },
@@ -151,17 +151,17 @@ export const auth = createSlice({
         );
 
         // save token to cookie
-        storedExtension.setCookie(
+        storedHelper.setCookie(
           storageHandler.AUTH.VERIFIED_2FA,
           results.verified_token + ""
         );
 
-        storedExtension.setCookie(
+        storedHelper.setCookie(
           storageHandler.AUTH.ACCESS_TOKEN,
           results.access_token
         );
 
-        // storedExtension.setCookie(
+        // storedHelper.setCookie(
         //   storageHandler.AUTH.REFRESH_TOKEN,
         //   results.refresh_token
         // );
@@ -243,12 +243,12 @@ export const auth = createSlice({
 
       if (response?.ok) {
         // save token to cookie
-        storedExtension.setCookie(
+        storedHelper.setCookie(
           storageHandler.AUTH.VERIFIED_2FA,
           results.verified_token + ""
         );
 
-        storedExtension.setCookie(
+        storedHelper.setCookie(
           storageHandler.AUTH.ACCESS_TOKEN,
           results.access_token
         );
@@ -303,17 +303,17 @@ export const auth = createSlice({
         );
 
         // save token to cookie
-        storedExtension.setCookie(
+        storedHelper.setCookie(
           storageHandler.AUTH.VERIFIED_2FA,
           results.verified_token + ""
         );
 
-        storedExtension.setCookie(
+        storedHelper.setCookie(
           storageHandler.AUTH.ACCESS_TOKEN,
           results.access_token
         );
 
-        // storedExtension.setCookie(
+        // storedHelper.setCookie(
         //   storageHandler.AUTH.REFRESH_TOKEN,
         //   results.refresh_token
         // );
