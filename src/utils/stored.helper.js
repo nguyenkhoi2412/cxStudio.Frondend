@@ -32,7 +32,7 @@ export class storedHelper {
       }
     }
 
-    storedExtension.removeCookie(name);
+    this.removeCookie(name);
     document.cookie = updatedCookie;
   };
   static getCookie = (name) => {
