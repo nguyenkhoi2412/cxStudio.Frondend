@@ -1,6 +1,6 @@
 import axios from "@utils/axio.instance";
 import _axios from "axios";
-import { objectExtension } from "@utils/helpersExtension";
+import { objectExtension } from "@utils/crossCutting";
 import { ROLE } from "@constants/role";
 
 export class workspaceService {

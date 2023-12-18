@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { crossCutting, objectExtension } from "@utils/crossCutting";
 import encryptHelper from "@utils/encrypt.helper";
 import { useFormik } from "formik";
 import _globalVars from "@constants/variables";
@@ -112,7 +112,7 @@ const MessageSend = (props) => {
       const message = values.message.trim();
       setSubmitting(true);
 
-      if (helpersExtension.isNotNull(message) && currentUser) {
+      if (crossCutting.isNotNull(message) && currentUser) {
         setSubmitting(false);
 
         //Encrypt data sent by socket

@@ -3,10 +3,10 @@ import _axios from "axios";
 import encryptHelper from "@utils/encrypt.helper";
 import storageHandler from "@constants/storageHandler";
 import {
-  helpersExtension,
+  crossCutting,
   objectExtension,
   storedExtension,
-} from "@utils/helpersExtension";
+} from "@utils/crossCutting";
 
 export default {
   findByUser: (params) => {

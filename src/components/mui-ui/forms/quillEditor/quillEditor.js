@@ -4,7 +4,7 @@ import "./_quillEditor.scss";
 import ReactQuill, { Quill } from "react-quill";
 import * as Emoji from "quill-emoji";
 import { modules, formats } from "./configs";
-import { stringExtension } from "@utils/helpersExtension";
+import { stringExtension } from "@utils/crossCutting";
 import axios from "axios";
 
 const regexEditor = /<p><br><\/p>|<div><br><\/div>/g;

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { navigateLocation } from "@routes/navigateLocation";
-import { helpersExtension } from "@utils/helpersExtension";
+import { crossCutting } from "@utils/crossCutting";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -121,7 +121,7 @@ const ProfileSection = () => {
 
   useEffect(() => {
     const avatarPath = currentUser?.detailInfos?.avatarPath;
-    if (helpersExtension.isNotNull(avatarPath)) {
+    if (crossCutting.isNotNull(avatarPath)) {
       setAvatar(
         avatarPath.indexOf("http") > -1
           ? avatarPath

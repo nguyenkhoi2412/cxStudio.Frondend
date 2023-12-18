@@ -1,10 +1,10 @@
 import "./_selectField.scss";
 import * as React from "react";
 import {
-  helpersExtension,
+  crossCutting,
   objectExtension,
   stringExtension,
-} from "@utils/helpersExtension";
+} from "@utils/crossCutting";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
@@ -518,12 +518,12 @@ const SelectField = (props) => {
 
   //#region render content
   const renderImageIcon = (item) => {
-    return helpersExtension.isNotNull(item?.icon) ? (
+    return crossCutting.isNotNull(item?.icon) ? (
       <img
         className="icon-select"
         loading="lazy"
         src={item.icon}
-        alt={helpersExtension.isNotNull(item.alt) ? item.alt : "svg"}
+        alt={crossCutting.isNotNull(item.alt) ? item.alt : "svg"}
         style={{
           width: 16,
         }}
@@ -577,7 +577,7 @@ const SelectField = (props) => {
       <React.Fragment key={props.id + "select"}>
         <InputLabel id={props.id + "-label"}>{props.label}</InputLabel>
         <Select
-          key={helpersExtension.uuidv4()}
+          key={crossCutting.uuidv4()}
           fullWidth
           multiple={multiple}
           tabIndex={props.tabIndex}

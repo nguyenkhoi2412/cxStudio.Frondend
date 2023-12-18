@@ -1,7 +1,7 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import baseServices from "@services/_base.api";
 import authServices from "@services/auth";
-import { storedExtension } from "@utils/helpersExtension";
+import { storedExtension } from "@utils/crossCutting";
 import storageHandler from "@constants/storageHandler";
 
 // ==============================|| ACTIONS ||============================== //

@@ -13,7 +13,7 @@ import WpBackdrop from "@components/mui-ui/backdropSpin";
 import WpProgressBar from "@components/mui-ui/progressBar";
 import WpSnackBar from "@components/mui-ui/snackBar";
 import WpDrawer from "@components/mui-ui/drawer";
-import { helpersExtension } from "@utils/helpersExtension";
+import { crossCutting } from "@utils/crossCutting";
 import { useDispatch, useSelector } from "react-redux";
 import {
   SHOW_SPIN,
@@ -81,8 +81,8 @@ const App = (props) => {
   //#endregion
 
   //#region handle events
-  const handleResize = helpersExtension.debounce(() => {
-    setDeviceInfos(helpersExtension.detectEnvironment());
+  const handleResize = crossCutting.debounce(() => {
+    setDeviceInfos(crossCutting.detectEnvironment());
   }, 10);
 
   //* window resize

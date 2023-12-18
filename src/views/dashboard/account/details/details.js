@@ -3,7 +3,7 @@ import PersonPinOutlinedIcon from "@mui/icons-material/PersonPinOutlined";
 import * as React from "react";
 //#region utils support
 import { useSnackbar } from "notistack";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { crossCutting, objectExtension } from "@utils/crossCutting";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import FormAccountDetailInfo from "./formAccountDetailInfo";
@@ -67,7 +67,7 @@ const AccountInfo = (props) => {
     // for (let i = 0; i < file.length; i++) {
     //   formData.append("multiple", file[i]);
     // }
-    helpersExtension.simulateNetworkRequest(100).then(async () => {
+    crossCutting.simulateNetworkRequest(100).then(async () => {
       await dispatch(
         CHANGE_PROFILE_IMAGE({
           formData: formData,
@@ -110,7 +110,7 @@ const AccountInfo = (props) => {
     const _currentUser = { ...currentUser };
 
     // update currentUser avatar
-    helpersExtension.simulateNetworkRequest(100).then(async () => {
+    crossCutting.simulateNetworkRequest(100).then(async () => {
       const newValues = {
         ...currentUser,
         detailInfos: {
@@ -154,7 +154,7 @@ const AccountInfo = (props) => {
 
   //#region render content
   const renderAvatarDefault = () => {
-    return helpersExtension.isNotNull(
+    return crossCutting.isNotNull(
       currentUser?.detailInfos?.avatarPath
     ) ? (
       <></>
@@ -178,7 +178,7 @@ const AccountInfo = (props) => {
             <SubCard
               title={t("user.profilepicture")}
               contentClass={
-                helpersExtension.isNotNull(
+                crossCutting.isNotNull(
                   currentUser?.detailInfos?.avatarPath
                 )
                   ? "avatar-container"

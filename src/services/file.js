@@ -1,6 +1,6 @@
 import axios from "@utils/axio.instance";
 import encryptHelper from "@utils/encrypt.helper";
-import { objectExtension } from "@utils/helpersExtension";
+import { objectExtension } from "@utils/crossCutting";
 
 export default {
   fileUpload: (params) => {

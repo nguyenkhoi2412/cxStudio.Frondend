@@ -2,7 +2,7 @@ import * as React from "react";
 //#region hooks, utils support
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { crossCutting, objectExtension } from "@utils/crossCutting";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
 import { HTTP_STATUS } from "@constants/httpStatus";
@@ -37,7 +37,7 @@ const FormChangePassword = () => {
 
   //#region call API process
   const changePassword = (values) => {
-    helpersExtension.simulateNetworkRequest(100).then(async () => {
+    crossCutting.simulateNetworkRequest(100).then(async () => {
       await dispatch(CHANGE_PASSWORD(values))
         .unwrap()
         .then((result) => {

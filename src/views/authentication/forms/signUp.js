@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { crossCutting, objectExtension } from "@utils/crossCutting";
 import { strengthColor, strengthIndicator } from "@utils/passwordStrength";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
@@ -51,7 +51,7 @@ const FormSignUp = () => {
 
   //#region getData
   const getRoles = () => {
-    helpersExtension.simulateNetworkRequest(100).then(async () => {
+    crossCutting.simulateNetworkRequest(100).then(async () => {
       await dispatch(ROLE_GET_ALL())
         .unwrap()
         .then((result) => {
@@ -116,7 +116,7 @@ const FormSignUp = () => {
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
       setSubmitting(true);
-      helpersExtension.simulateNetworkRequest(100).then(async () => {
+      crossCutting.simulateNetworkRequest(100).then(async () => {
         registerUser(values);
       });
     },

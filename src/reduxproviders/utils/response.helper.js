@@ -1,5 +1,5 @@
 import gVariables from "@stores/shared/variables";
-import { arrayExtension } from "@utils/helpersExtension";
+import { arrayExtension } from "@utils/crossCutting";
 import { HTTP_STATUS } from "@constants/httpStatus";
 import { useSnackbar } from "notistack";
 import severity from "@constants/severity";

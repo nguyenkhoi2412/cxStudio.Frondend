@@ -2,7 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { crossCutting, objectExtension } from "@utils/crossCutting";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
@@ -40,7 +40,7 @@ const FormCodeVerification = () => {
   const [messageContentAlert, setMessageContentAlert] = React.useState();
 
   const validateSecure2FA = (values) => {
-    helpersExtension.simulateNetworkRequest(100).then(async () => {
+    crossCutting.simulateNetworkRequest(100).then(async () => {
       //? validate token
       await dispatch(
         VALIDATE_SECURE_2FA({

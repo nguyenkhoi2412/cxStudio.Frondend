@@ -86,7 +86,7 @@ export class hookInstance {
     });
     useEffect(() => {
       // Handler to call on window resize
-      const handleResize = helpersExtension.debounce(() => {
+      const handleResize = crossCutting.debounce(() => {
         // Set window width/height to state
         setWindowSize({
           width: window.innerWidth,

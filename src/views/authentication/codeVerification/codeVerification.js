@@ -6,7 +6,7 @@ import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { useSnackbar } from "notistack";
-import { stringExtension } from "@utils/helpersExtension";
+import { stringExtension } from "@utils/crossCutting";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion

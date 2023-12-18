@@ -1,7 +1,7 @@
 import encrypt from "@utils/encrypt.helper";
 // import * as _ from "lodash";
 
-export class helpersExtension {
+export class crossCutting {
   static Spinner() {
     return (
       <React.Fragment>
@@ -350,7 +350,7 @@ export class helpersExtension {
     // $(window)
     //   .off("resize.setAttributesHtml")
     //   .on("resize.setAttributesHtml", function () {
-    //     helpersExtension.detectEnvironment();
+    //     crossCutting.detectEnvironment();
     //   });
     //#endregion
 
@@ -450,7 +450,7 @@ export class objectExtension {
     //           if (_.isNil(oldObj[key][index])) {
     //             result[key].push(innerObjFrom1);
     //           } else {
-    //             let changes = helpersExtension.diffObjects(
+    //             let changes = crossCutting.diffObjects(
     //               innerObjFrom1,
     //               oldObj[key][index]
     //             );
@@ -461,7 +461,7 @@ export class objectExtension {
     //         });
     //       }
     //       // else if (_.isObject(value)) {
-    //       //   result[key] = helpersExtension.diffObjects(value, oldObj[key]);
+    //       //   result[key] = crossCutting.diffObjects(value, oldObj[key]);
     //       // }
     //       else {
     //         result[key] = value;
@@ -609,9 +609,9 @@ export class arrayExtension {
 //#region string
 export class stringExtension {
   static render = (value, langCode = "", defaultValue = "Noname") => {
-    return helpersExtension.isNotNull(value)
+    return crossCutting.isNotNull(value)
       ? langCode !== ""
-        ? helpersExtension.isNotNull(value[langCode])
+        ? crossCutting.isNotNull(value[langCode])
           ? value[langCode]
           : defaultValue
         : value

@@ -1,6 +1,6 @@
 import "@chatbox/_chatbox.scss";
 import { useTranslation } from "react-i18next";
-import { dateExtension } from "@utils/helpersExtension";
+import { dateExtension } from "@utils/crossCutting";
 
 //#region mui-ui
 import { Grid, Box, Stack, Link } from "@mui/material";

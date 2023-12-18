@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import InputField from "@components/mui-ui/forms/inputField";
 import Button from "@mui/material/Button";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { crossCutting, objectExtension } from "@utils/crossCutting";
 import { gridSpacing } from "@constants";
 //#region components
 import { Draggable } from "react-beautiful-dnd";
@@ -94,7 +94,7 @@ const TaskItem = (props) => {
     onSubmit: (values) => {
       setSubmitting(true);
 
-      helpersExtension.simulateNetworkRequest(100).then(async () => {
+      crossCutting.simulateNetworkRequest(100).then(async () => {
         setItemValue(values);
         setEdited(false);
         setSubmitting(false);
@@ -242,7 +242,7 @@ const TaskItem = (props) => {
   };
 
   const renderTaskItem = () => {
-    if (!helpersExtension.isNotNull(itemValue)) return <></>;
+    if (!crossCutting.isNotNull(itemValue)) return <></>;
 
     return (
       <Draggable

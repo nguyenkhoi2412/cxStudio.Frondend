@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { crossCutting, objectExtension } from "@utils/crossCutting";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import { socialSignIn } from "@constants";
@@ -46,7 +46,7 @@ const FormSignIn = () => {
   const [checked, setChecked] = React.useState(true);
 
   const validateUser = (values) => {
-    helpersExtension.simulateNetworkRequest(100).then(async () => {
+    crossCutting.simulateNetworkRequest(100).then(async () => {
       await dispatch(VALIDATE_USER(values))
         .unwrap()
         .then((response) => {

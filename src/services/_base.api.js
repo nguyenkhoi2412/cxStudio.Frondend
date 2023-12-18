@@ -1,5 +1,5 @@
 import axios from "@utils/axio.instance";
-import { objectExtension } from "@utils/helpersExtension";
+import { objectExtension } from "@utils/crossCutting";
 
 export default {
   /*

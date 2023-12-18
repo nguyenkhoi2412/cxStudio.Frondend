@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import _globalVars from "@constants/variables";
-import { helpersExtension } from "@utils/helpersExtension";
+import { crossCutting } from "@utils/crossCutting";
 import * as yup from "yup";
 
 const { locale } = _globalVars;
@@ -12,7 +12,7 @@ export default {
 
     let objData = {};
 
-    if (helpersExtension.isNotNull(data)) {
+    if (crossCutting.isNotNull(data)) {
       objData = {
         ...data,
       };

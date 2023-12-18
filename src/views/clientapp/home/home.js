@@ -2,7 +2,7 @@ import "./_home.scss";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import { ROLE } from "@constants/role";
-import { helpersExtension } from "@utils/helpersExtension";
+import { crossCutting } from "@utils/crossCutting";
 //#region mui-ui
 import {
   Grid,
@@ -51,7 +51,7 @@ const Home = () => {
   };
 
   const getWorkspaceOwner = (wp) => {
-    if (helpersExtension.isNull(wp)) return;
+    if (crossCutting.isNull(wp)) return;
     workspaceService
       .getOwner({
         data: wp,
@@ -64,7 +64,7 @@ const Home = () => {
   };
 
   const getWorkspaceTeams = (wp) => {
-    if (helpersExtension.isNull(wp)) return;
+    if (crossCutting.isNull(wp)) return;
     workspaceService
       .getTeamMembers({
         data: wp,

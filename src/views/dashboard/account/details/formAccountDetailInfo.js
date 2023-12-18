@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { crossCutting, objectExtension } from "@utils/crossCutting";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
 import SelectField from "@components/mui-ui/forms/selectField";
@@ -60,7 +60,7 @@ const FormAccountDetailInfo = (props) => {
 
   //#region getData
   const getRoles = () => {
-    helpersExtension.simulateNetworkRequest(100).then(async () => {
+    crossCutting.simulateNetworkRequest(100).then(async () => {
       await dispatch(ROLE_GET_ALL())
         .unwrap()
         .then((result) => {
@@ -78,7 +78,7 @@ const FormAccountDetailInfo = (props) => {
   };
 
   const getCountries = () => {
-    helpersExtension.simulateNetworkRequest(100).then(async () => {
+    crossCutting.simulateNetworkRequest(100).then(async () => {
       await dispatch(GET_COUNTRIES())
         .unwrap()
         .then((result) => {
@@ -161,7 +161,7 @@ const FormAccountDetailInfo = (props) => {
     onSubmit: (values) => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
-      helpersExtension.simulateNetworkRequest(100).then(async () => {
+      crossCutting.simulateNetworkRequest(100).then(async () => {
         updateUser(values);
       });
     },

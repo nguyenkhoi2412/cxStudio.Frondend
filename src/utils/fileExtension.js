@@ -1,5 +1,5 @@
 import Resizer from "react-image-file-resizer";
-import { stringExtension } from "@utils/helpersExtension";
+import { stringExtension } from "@utils/crossCutting";
 
 export class fileExtension {
   // static uploadfile = (file, cb) => {

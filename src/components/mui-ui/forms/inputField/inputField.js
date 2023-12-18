@@ -1,10 +1,10 @@
 import "./_inputField.scss";
 import * as React from "react";
 import {
-  helpersExtension,
+  crossCutting,
   objectExtension,
   stringExtension,
-} from "@utils/helpersExtension";
+} from "@utils/crossCutting";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
