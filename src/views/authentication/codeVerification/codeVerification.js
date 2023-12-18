@@ -6,7 +6,7 @@ import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { useSnackbar } from "notistack";
-import { stringExtension } from "@utils/crossCutting";
+import { stringHelper } from "@utils/string.helper";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
@@ -51,7 +51,7 @@ const CodeVerification = (props) => {
         enqueueSnackbar(result.message, {
           variant: severity.success,
         });
-      })
+      });
   };
 
   return (
@@ -86,7 +86,7 @@ const CodeVerification = (props) => {
                     fontSize="16px"
                     textAlign={matchDownSM ? "center" : "inherit"}
                   >
-                    {stringExtension.mungeEmailAddress(currentUser.email)}
+                    {stringHelper.mungeEmailAddress(currentUser.email)}
                   </Typography>
                 </Stack>
               </Grid>

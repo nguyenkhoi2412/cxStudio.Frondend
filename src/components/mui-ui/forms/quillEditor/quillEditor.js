@@ -4,7 +4,6 @@ import "./_quillEditor.scss";
 import ReactQuill, { Quill } from "react-quill";
 import * as Emoji from "quill-emoji";
 import { modules, formats } from "./configs";
-import { stringExtension } from "@utils/crossCutting";
 import axios from "axios";
 
 const regexEditor = /<p><br><\/p>|<div><br><\/div>/g;
@@ -140,7 +139,6 @@ const ReactQuillEditor = (props) => {
 
   const handleOnChange = (content, delta, source, editor) => {
     // let text = content.replace(regexEditor, "");
-    // text = stringExtension.stripedHtml(text);
 
     setDataValue(content);
     if (typeof props.onChange === "function") {
