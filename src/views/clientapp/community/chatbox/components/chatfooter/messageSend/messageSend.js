@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { crossCutting, objectExtension } from "@utils/crossCutting";
+import { crossCutting } from "@utils/crossCutting";
+import { objectHelper } from "@utils/object.helper";
 import encryptHelper from "@utils/encrypt.helper";
 import { useFormik } from "formik";
 import _globalVars from "@constants/variables";
@@ -149,7 +150,7 @@ const MessageSend = (props) => {
     );
 
   const handleOnEmojiSelect = (emojiObject) => {
-    const prevText = objectExtension.getValue(formik, "values.message");
+    const prevText = objectHelper.getValue(formik, "values.message");
     formik.setFieldValue("message", prevText + emojiObject.native);
     setShowEmoji(false);
   };
@@ -172,7 +173,7 @@ const MessageSend = (props) => {
           submitHandler={(e) => handleSubmit(e)}
           autoFocus={true}
           placeholder={t("community.app.livechat.type_a_message")}
-          value={objectExtension.getValue(formik, "values.message")}
+          value={objectHelper.getValue(formik, "values.message")}
         />
       </Grid>
     );
@@ -184,7 +185,7 @@ const MessageSend = (props) => {
         id="input-typing-message"
         name="message"
         className="outline-typing-message"
-        value={objectExtension.getValue(formik, "values.message")}
+        value={objectHelper.getValue(formik, "values.message")}
         onChange={formik.handleChange}
         onKeyDown={handleTyping}
         placeholder={t("community.app.livechat.type_a_message")}

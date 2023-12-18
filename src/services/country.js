@@ -1,5 +1,4 @@
 import axios from "@utils/axio.instance";
-import { objectExtension } from "@utils/crossCutting";
 
 export default {
   getCountries: () => {

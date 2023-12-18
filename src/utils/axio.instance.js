@@ -6,7 +6,7 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { SHOW_SNACKBAR } from "@components/mui-ui/snackBar/snackBar.reducer";
-import { objectExtension, storedExtension } from "./crossCutting";
+import { storedExtension } from "./crossCutting";
 // You can use your own logic to set your local or production domain
 const baseDomain = process.env.API_HOSTNAME;
 const baseURL = `${baseDomain}/api`;

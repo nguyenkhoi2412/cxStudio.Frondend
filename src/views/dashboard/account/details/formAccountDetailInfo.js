@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
-import { crossCutting, objectExtension } from "@utils/crossCutting";
+import { crossCutting } from "@utils/crossCutting";
+import { objectHelper } from "@utils/object.helper";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
 import SelectField from "@components/mui-ui/forms/selectField";
@@ -99,7 +100,7 @@ const FormAccountDetailInfo = (props) => {
     //! update 2fa values
     values.oneTimePassword = twoFactorChecked;
     // compare 2 object get diff for update
-    values = objectExtension.getDiff(values, currentUser);
+    values = objectHelper.getDiff(values, currentUser);
     values._id = currentUser._id;
     await dispatch(USER_UPDATE_INFO(values))
       .unwrap()
@@ -218,13 +219,13 @@ const FormAccountDetailInfo = (props) => {
           <Grid container spacing={2}>
             {dataForm.map((item, index) => {
               let keyField = item.id + "_" + index;
-              let errorText = objectExtension.getValue(
+              let errorText = objectHelper.getValue(
                 formik,
                 "errors." + item.field
               );
               let hasError =
                 Boolean(
-                  objectExtension.getValue(formik, "touched." + item.field)
+                  objectHelper.getValue(formik, "touched." + item.field)
                 ) && errorText;
               switch (item.type) {
                 case "text":
@@ -240,7 +241,7 @@ const FormAccountDetailInfo = (props) => {
                       label={item.label}
                       name={item.field}
                       autoFocus={item.autoFocus}
-                      value={objectExtension.getValue(
+                      value={objectHelper.getValue(
                         formik,
                         "values." + item.field
                       )}
@@ -267,7 +268,7 @@ const FormAccountDetailInfo = (props) => {
                       name={item.field}
                       disabled={item.disabled}
                       autoComplete={item.autoComplete}
-                      value={objectExtension.getValue(
+                      value={objectHelper.getValue(
                         formik,
                         "values." + item.field
                       )}

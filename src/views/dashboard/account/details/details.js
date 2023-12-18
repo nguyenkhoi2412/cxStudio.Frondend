@@ -3,7 +3,8 @@ import PersonPinOutlinedIcon from "@mui/icons-material/PersonPinOutlined";
 import * as React from "react";
 //#region utils support
 import { useSnackbar } from "notistack";
-import { crossCutting, objectExtension } from "@utils/crossCutting";
+import { crossCutting } from "@utils/crossCutting";
+import { objectHelper } from "@utils/object.helper";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import FormAccountDetailInfo from "./formAccountDetailInfo";
@@ -120,7 +121,7 @@ const AccountInfo = (props) => {
       };
 
       // compare 2 object get diff for update
-      let values = objectExtension.getDiff(newValues, _currentUser);
+      let values = objectHelper.getDiff(newValues, _currentUser);
       values._id = currentUser._id;
       await dispatch(USER_UPDATE_INFO(values))
         .unwrap()

@@ -1,12 +1,6 @@
 import "./_inputField.scss";
 import * as React from "react";
-import {
-  crossCutting,
-  objectExtension,
-  stringExtension,
-} from "@utils/crossCutting";
-import FormHelperText from "@mui/material/FormHelperText";
-import InputLabel from "@mui/material/InputLabel";
+import { stringExtension } from "@utils/crossCutting";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -150,7 +144,11 @@ const InputField = (props) => {
 };
 
 export default React.memo(InputField, (props, nextProps) => {
-  if (props.value === nextProps.value && props.id === nextProps.id && props.error === nextProps.error) {
+  if (
+    props.value === nextProps.value &&
+    props.id === nextProps.id &&
+    props.error === nextProps.error
+  ) {
     // return true if you don't need re-render
     return true;
   }

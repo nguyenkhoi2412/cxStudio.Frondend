@@ -2,7 +2,8 @@ import * as React from "react";
 //#region hooks, utils support
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import { crossCutting, objectExtension } from "@utils/crossCutting";
+import { crossCutting } from "@utils/crossCutting";
+import { objectHelper } from "@utils/object.helper";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
 import { HTTP_STATUS } from "@constants/httpStatus";
@@ -117,16 +118,16 @@ const FormChangePassword = () => {
             sx={{ mt: 1 }}
           >
             {dataForm.map((item, index) => {
-              const errorText = objectExtension.getValue(
+              const errorText = objectHelper.getValue(
                 formik,
                 "errors." + item.field
               );
               let hasError =
                 Boolean(
-                  objectExtension.getValue(formik, "touched." + item.field)
+                  objectHelper.getValue(formik, "touched." + item.field)
                 ) && errorText;
               let dataValue =
-                objectExtension.getValue(formik, "values." + item.field) || "";
+                objectHelper.getValue(formik, "values." + item.field) || "";
               return (
                 <InputField
                   margin="normal"

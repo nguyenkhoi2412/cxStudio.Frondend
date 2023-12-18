@@ -1,10 +1,6 @@
 import "./_selectField.scss";
 import * as React from "react";
-import {
-  crossCutting,
-  objectExtension,
-  stringExtension,
-} from "@utils/crossCutting";
+import { crossCutting } from "@utils/crossCutting";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
@@ -15,8 +11,6 @@ import Grid from "@mui/material/Grid";
 import _globalVars from "@constants/variables";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import CircularProgress from "@mui/material/CircularProgress";
-import OutlinedInput from "@mui/material/OutlinedInput";
 
 const countries = [
   { code: "AD", label: "Andorra", phone: "376" },

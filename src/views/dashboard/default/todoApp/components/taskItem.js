@@ -7,7 +7,8 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import InputField from "@components/mui-ui/forms/inputField";
 import Button from "@mui/material/Button";
-import { crossCutting, objectExtension } from "@utils/crossCutting";
+import { crossCutting } from "@utils/crossCutting";
+import { objectHelper } from "@utils/object.helper";
 import { gridSpacing } from "@constants";
 //#region components
 import { Draggable } from "react-beautiful-dnd";
@@ -140,21 +141,21 @@ const TaskItem = (props) => {
                     label="Tiêu đề"
                     name="task"
                     autoFocus={true}
-                    value={objectExtension.getValue(formik, "values.task")}
+                    value={objectHelper.getValue(formik, "values.task")}
                     setValue={formik.setFieldValue}
                     onChange={(e) => {
                       formik.handleChange;
                     }}
                     error={
                       Boolean(
-                        objectExtension.getValue(formik, "touched.task")
-                      ) && objectExtension.getValue(formik, "errors.task")
+                        objectHelper.getValue(formik, "touched.task")
+                      ) && objectHelper.getValue(formik, "errors.task")
                     }
                     helperText={
                       Boolean(
-                        objectExtension.getValue(formik, "touched.task")
-                      ) && objectExtension.getValue(formik, "errors.task")
-                        ? objectExtension.getValue(formik, "errors.task")
+                        objectHelper.getValue(formik, "touched.task")
+                      ) && objectHelper.getValue(formik, "errors.task")
+                        ? objectHelper.getValue(formik, "errors.task")
                         : ""
                     }
                     preventXSS={true}
@@ -187,21 +188,21 @@ const TaskItem = (props) => {
                       label="Chi tiết"
                       name="desc"
                       autoFocus={true}
-                      value={objectExtension.getValue(formik, "values.desc")}
+                      value={objectHelper.getValue(formik, "values.desc")}
                       setValue={formik.setFieldValue}
                       onChange={(e) => {
                         formik.handleChange;
                       }}
                       error={
                         Boolean(
-                          objectExtension.getValue(formik, "touched.desc")
-                        ) && objectExtension.getValue(formik, "errors.desc")
+                          objectHelper.getValue(formik, "touched.desc")
+                        ) && objectHelper.getValue(formik, "errors.desc")
                       }
                       helperText={
                         Boolean(
-                          objectExtension.getValue(formik, "touched.desc")
-                        ) && objectExtension.getValue(formik, "errors.desc")
-                          ? objectExtension.getValue(formik, "errors.desc")
+                          objectHelper.getValue(formik, "touched.desc")
+                        ) && objectHelper.getValue(formik, "errors.desc")
+                          ? objectHelper.getValue(formik, "errors.desc")
                           : ""
                       }
                       preventXSS={true}
