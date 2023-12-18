@@ -1,6 +1,7 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import baseServices from "@services/_base.api";
 import { workspaceService } from "@services/workspace";
+import { arrayHelper } from "@utils/array.helper";
 import initialData from "./_initialState";
 
 export const WORKSPACE_GET_BY_USER = createAsyncThunk(
@@ -46,7 +47,7 @@ export const workspace = createSlice({
       const response = action.payload;
       let results = response?.rs;
       let data = [...current(state).d];
-      data.push(results);
+      data = arrayHelper.insert(data, data.length, results);
 
       return {
         ...state,

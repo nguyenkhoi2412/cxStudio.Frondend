@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 const WpAlert = ({ open, message, close, severity = "error" }) => {
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
-  console.log(open);
+
   React.useEffect(() => {
     setShowMessageAlert(open);
   }, [open]);

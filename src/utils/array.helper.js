@@ -1,12 +1,18 @@
 export class arrayHelper {
-  static insert = (arr, index, ...items) => {
+  /**
+   * Insert new item into an array
+   * @params array: original array
+   * @params index: index position append new item
+   * @params items: item insert
+   */
+  static insert = (array, index, ...items) => {
     return [
       // part of the array before the specified index
-      ...arr.slice(0, index),
+      ...array.slice(0, index),
       // inserted items
       ...items,
       // part of the array after the specified index
-      ...arr.slice(index),
+      ...array.slice(index),
     ];
   };
 
