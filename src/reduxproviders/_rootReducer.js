@@ -13,6 +13,7 @@ import roleReducer from "./role.reducer";
 // import secure_2faReducer from "./secure_2fa.reducer";
 import siteReducer from "./site.reducer";
 import workspaceReducer from "./workspace.reducer";
+import industryReducer from "./industry.reducer";
 
 const rootReducer = combineReducers({
   //? shared
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   //   secure_2fa: secure_2faReducer,
   site: siteReducer,
   workspace: workspaceReducer,
+  industry: industryReducer,
 });
 
 export default rootReducer;

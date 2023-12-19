@@ -27,6 +27,7 @@ import imgWP from "@assets/images/bg_workspace.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
 import { WORKSPACE_GET_BY_USER } from "@reduxproviders/workspace.reducer";
+import { INDUSTRY_GET_ALL } from "@reduxproviders/industry.reducer";
 import { WorkspaceService } from "@services/workspace";
 //#endregion
 
@@ -48,29 +49,27 @@ const Home = () => {
         id: currentUser._id,
       })
     );
+
+    dispatch(INDUSTRY_GET_ALL());
   };
 
   const getWorkspaceOwner = (wp) => {
     if (crossCutting.isNull(wp)) return;
-    WorkspaceService
-      .getOwner({
-        data: wp,
-        currentUser: currentUser,
-      })
-      .then((rs) => {
-        setOwner(rs);
-        setDisabledCbTerms(rs?.length > 0);
-      });
+    WorkspaceService.getOwner({
+      data: wp,
+      currentUser: currentUser,
+    }).then((rs) => {
+      setOwner(rs);
+      setDisabledCbTerms(rs?.length > 0);
+    });
   };
 
   const getWorkspaceTeams = (wp) => {
     if (crossCutting.isNull(wp)) return;
-    WorkspaceService
-      .getTeamMembers({
-        data: wp,
-        currentUser: currentUser,
-      })
-      .then((rs) => setTeamMembers(rs));
+    WorkspaceService.getTeamMembers({
+      data: wp,
+      currentUser: currentUser,
+    }).then((rs) => setTeamMembers(rs));
   };
   //#endregion
 

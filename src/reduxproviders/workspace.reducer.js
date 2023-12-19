@@ -1,5 +1,4 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import baseServices from "@services/_base.api";
 import { WorkspaceService } from "@services/workspace";
 import { arrayHelper } from "@utils/array.helper";
 import initialData from "./_initialState";
@@ -14,7 +13,7 @@ export const WORKSPACE_GET_BY_USER = createAsyncThunk(
 export const INSERT_NEW = createAsyncThunk(
   "workspace/insertnew",
   async (params, thunkAPI) => {
-    return await baseServices.insertnew("workspace/insertnew/", params);
+    return await WorkspaceService.insertnew("workspace/insertnew/", params);
   }
 );
 
