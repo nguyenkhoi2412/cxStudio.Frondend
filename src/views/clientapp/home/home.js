@@ -27,7 +27,7 @@ import imgWP from "@assets/images/bg_workspace.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
 import { WORKSPACE_GET_BY_USER } from "@reduxproviders/workspace.reducer";
-import { workspaceService } from "@services/workspace";
+import { WorkspaceService } from "@services/workspace";
 //#endregion
 
 const Home = () => {
@@ -52,7 +52,7 @@ const Home = () => {
 
   const getWorkspaceOwner = (wp) => {
     if (crossCutting.isNull(wp)) return;
-    workspaceService
+    WorkspaceService
       .getOwner({
         data: wp,
         currentUser: currentUser,
@@ -65,7 +65,7 @@ const Home = () => {
 
   const getWorkspaceTeams = (wp) => {
     if (crossCutting.isNull(wp)) return;
-    workspaceService
+    WorkspaceService
       .getTeamMembers({
         data: wp,
         currentUser: currentUser,

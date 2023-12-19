@@ -1,11 +1,11 @@
 import axios from "@utils/axio.instance";
 import { objectHelper } from "@utils/object.helper";
 
-export default {
+export default class BaseServices {
   /*
    * GET: {dynamic}/getbyno/:pageno&:pagesize&:query
    */
-  getByPageNo(url, params) {
+  static getByPageNo = (url, params) => {
     params = params || {};
 
     if (
@@ -29,12 +29,12 @@ export default {
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
-  },
+  };
 
   /*
    * GET: {dynamic}/getbyfilter/:query
    */
-  getbyfilter(url, params) {
+  static getbyfilter = (url, params) => {
     params = params || {};
     if (!params.hasOwnProperty("query")) {
       params.query = {};
@@ -46,53 +46,53 @@ export default {
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
-  },
+  };
 
   /*
    * GET: {dynamic}/getbyid/:id
    */
-  getbyid(url, params) {
+  static getbyid = (url, params) => {
     return new Promise((resolve, reject) => {
       axios
         .get(objectHelper.parseToQueryString(url, params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
-  },
+  };
 
   /*
    * POST: {dynamic}/insertnew
    */
-  insertnew(url, params) {
+  static insertnew = (url, params) => {
     return new Promise((resolve, reject) => {
       axios
         .post(url, params)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
-  },
+  };
 
   /*
    * PUT: {dynamic}/update
    */
-  update(url, params) {
+  static update = (url, params) => {
     return new Promise((resolve, reject) => {
       axios
         .put(url, params)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
-  },
+  };
 
   /*
    * DELETE: {dynamic}/delete
    */
-  delete(url, params) {
+  static delete = (url, params) => {
     return new Promise((resolve, reject) => {
       axios
         .delete(url + params.ids.join(","))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
-  },
-};
+  };
+}

@@ -1,5 +1,5 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import baseServices from "@services/_base.api";
+import SiteService from "@services/site";
 import initialData from "./_initialState";
 
 // ==============================|| ACTIONS ||============================== //
@@ -7,7 +7,7 @@ import initialData from "./_initialState";
 export const SITE_GET_BY_ID = createAsyncThunk(
   "site/getbyid",
   async (params, thunkAPI) => {
-    return await baseServices.getbyid("site/getbyid/", params);
+    return await SiteService.getbyid("site/getbyid/", params);
   }
 );
 

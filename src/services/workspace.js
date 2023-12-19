@@ -2,8 +2,9 @@ import axios from "@utils/axio.instance";
 import _axios from "axios";
 import { objectHelper } from "@utils/object.helper";
 import { ROLE } from "@constants/role";
+import BaseServices from "@services/_base.api";
 
-export class workspaceService {
+export class WorkspaceService extends BaseServices {
   //#region CALLBACK API
   static getByUser = (params) => {
     return new Promise(async (resolve, reject) => {
