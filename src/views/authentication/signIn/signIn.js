@@ -54,7 +54,7 @@ const SignIn = (props) => {
           <Grid item xs={12}>
             <FormSignIn />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Divider />
           </Grid>
           <Grid item xs={12}>
@@ -68,7 +68,7 @@ const SignIn = (props) => {
                 {t("authentication.donthaveanaccount")}
               </Link>
             </Grid>
-          </Grid>
+          </Grid> */}
         </AuthMainContainer>
       </AuthCardWrapper>
     </AuthWrapper>
