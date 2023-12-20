@@ -1,3 +1,5 @@
+import { objectHelper } from "./object.helper";
+
 export class arrayHelper {
   /**
    * Insert new item into an array
