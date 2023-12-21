@@ -1,33 +1,7 @@
-import { useState, useRef, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
-
 // material-ui
 import { useTheme } from "@mui/material/styles";
 import { IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
-import {
-  Avatar,
-  Box,
-  Button,
-  ButtonBase,
-  CardActions,
-  Chip,
-  ClickAwayListener,
-  Divider,
-  Grid,
-  Paper,
-  Popper,
-  Stack,
-  TextField,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-
-// third-party
-import PerfectScrollbar from "react-perfect-scrollbar";
-
-// project imports
-import MainCard from "@components/mui-ui/cards";
-import Transitions from "@components/mui-ui/extended/transitions";
+import { Avatar, Box, ButtonBase, useMediaQuery } from "@mui/material";
 
 import { SET_MODE } from "@reduxproviders/berry/actions";
 import { CUSTOMIZATION } from "@reduxproviders/berry/customization.reducer";
@@ -48,12 +22,24 @@ const ToggleThemeSection = () => {
   const dispatch = useDispatch();
 
   // state - mode
-  const [mode, setMode] = useState(customization.mode);
-  useEffect(() => {
+  const [mode, setMode] = React.useState(customization.mode);
+
+  React.useEffect(() => {
+    let myDate = new Date();
+    let hours = myDate.getHours();
+
+    if (hours > 6 && hours < 18) {
+      setMode(modeTheme.LIGHT);
+    } else {
+      setMode(modeTheme.DARK);
+    }
+  }, []);
+
+  React.useEffect(() => {
     dispatch(CUSTOMIZATION({ type: SET_MODE, mode: mode }));
   }, [dispatch, mode]);
 
-  const ToggleThemeIcon = useMemo(
+  const ToggleThemeIcon = React.useMemo(
     () => (mode === modeTheme.DARK ? IconMoonFilled : IconSunFilled),
     [mode]
   );
