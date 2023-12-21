@@ -28,6 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
 import { WORKSPACE_GET_BY_USER } from "@reduxproviders/workspace.reducer";
 import { INDUSTRY_GET_ALL } from "@reduxproviders/industry.reducer";
+import { IndustryService } from "@services/industry";
 import { WorkspaceService } from "@services/workspace";
 //#endregion
 
@@ -43,14 +44,14 @@ const Home = () => {
   const [disabledCbTerms, setDisabledCbTerms] = React.useState(false);
 
   //#region get data content
-  const getWorkspaceByCurrentUser = () => {
-    dispatch(
+  const getWorkspaceByCurrentUser = async () => {
+    await dispatch(
       WORKSPACE_GET_BY_USER({
         id: currentUser._id,
       })
     );
 
-    dispatch(INDUSTRY_GET_ALL());
+    await dispatch(INDUSTRY_GET_ALL());
   };
 
   const getWorkspaceOwner = (wp) => {

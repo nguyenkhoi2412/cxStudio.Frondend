@@ -26,66 +26,66 @@ export const workspace = createSlice({
   name: "workspace",
   initialState: initialState,
   reducers: {},
-  extraReducers: {
+  extraReducers: (builder) => {
     //#region INSERT_NEW
-    [INSERT_NEW.pending]: (state) => {
-      return {
-        ...state,
-        isFetching: true,
-        showProgressbar: true,
-      };
-    },
-    [INSERT_NEW.rejected]: (state) => {
-      return {
-        ...state,
-        isFetching: false,
-        showProgressbar: false,
-      };
-    },
-    [INSERT_NEW.fulfilled]: (state, action) => {
-      const response = action.payload;
-      let results = response?.rs;
-      let data = [...current(state).d];
-      data = arrayHelper.insert(data, data.length, results);
+    builder
+      .addCase(INSERT_NEW.pending, (state) => {
+        return {
+          ...state,
+          isFetching: true,
+          showProgressbar: true,
+        };
+      })
+      .addCase(INSERT_NEW.rejected, (state) => {
+        return {
+          ...state,
+          isFetching: false,
+          showProgressbar: false,
+        };
+      })
+      .addCase(INSERT_NEW.fulfilled, (state, { payload }) => {
+        let results = payload?.rs;
+        let data = [...current(state).d];
+        data = arrayHelper.insert(data, data.length, results);
 
-      return {
-        ...state,
-        isFetching: false,
-        showProgressbar: false,
-        ok: response?.ok,
-        message: response?.message,
-        d: data,
-      };
-    },
+        return {
+          ...state,
+          isFetching: false,
+          showProgressbar: false,
+          ok: payload?.ok,
+          message: payload?.message,
+          d: data,
+        };
+      });
     //#endregion
     //#region WORKSPACE_GET_BY_USER
-    [WORKSPACE_GET_BY_USER.pending]: (state) => {
-      return {
-        ...state,
-        isFetching: true,
-        showProgressbar: true,
-      };
-    },
-    [WORKSPACE_GET_BY_USER.rejected]: (state) => {
-      return {
-        ...state,
-        isFetching: false,
-        showProgressbar: false,
-      };
-    },
-    [WORKSPACE_GET_BY_USER.fulfilled]: (state, action) => {
-      const response = action.payload;
-      const results = response?.rs;
+    builder
+      .addCase(WORKSPACE_GET_BY_USER.pending, (state) => {
+        return {
+          ...state,
+          isFetching: true,
+          showProgressbar: true,
+        };
+      })
+      .addCase(WORKSPACE_GET_BY_USER.rejected, (state) => {
+        return {
+          ...state,
+          isFetching: false,
+          showProgressbar: false,
+        };
+      })
+      .addCase(WORKSPACE_GET_BY_USER.fulfilled, (state, { payload }) => {
+        const results = payload?.rs;
 
-      return {
-        ...state,
-        isFetching: false,
-        showProgressbar: false,
-        ok: response?.ok,
-        message: response?.message,
-        d: results,
-      };
-    },
+        return {
+          ...state,
+          isFetching: false,
+          showProgressbar: false,
+          ok: payload?.ok,
+          message: payload?.message,
+          d: results,
+        };
+      });
     //#endregion
   },
 });

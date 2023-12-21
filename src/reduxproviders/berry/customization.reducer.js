@@ -25,37 +25,45 @@ export const customization = createSlice({
     CUSTOMIZATION: (state, { payload }) => {
       let id;
 
-      switch (payload.type) {
-        case actionTypes.MENU_OPEN:
+      var customizeType = {
+        [actionTypes.MENU_OPEN]: () => {
           id = payload.id;
           return {
             ...state,
             isOpen: [id],
           };
-        case actionTypes.SET_MENU:
+        },
+        [actionTypes.SET_MENU]: () => {
           return {
             ...state,
             opened: payload.opened,
           };
-        case actionTypes.SET_MODE:
+        },
+        [actionTypes.SET_MODE]: () => {
           localStorage.setItem("themeMode", payload.mode);
           return {
             ...state,
             mode: payload.mode,
           };
-        case actionTypes.SET_FONT_FAMILY:
+        },
+        [actionTypes.SET_FONT_FAMILY]: () => {
           return {
             ...state,
             fontFamily: payload.fontFamily,
           };
-        case actionTypes.SET_BORDER_RADIUS:
+        },
+        [actionTypes.SET_BORDER_RADIUS]: () => {
           return {
             ...state,
             borderRadius: payload.borderRadius,
           };
-        default:
-          return state;
-      }
+        },
+        default: () => {
+          return { ...state };
+        },
+      };
+
+      return (customizeType[payload.type] || customizeType["default"])();
     },
   },
 });

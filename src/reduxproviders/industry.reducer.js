@@ -18,35 +18,34 @@ export const industry = createSlice({
   name: "industry",
   initialState: initialState,
   reducers: {},
-  extraReducers: {
+  extraReducers: (builder) => {
     //#region INDUSTRY_GET_ALL
-    [INDUSTRY_GET_ALL.pending]: (state) => {
-      return {
-        ...state,
-        isFetching: true,
-        showProgressbar: true,
-      };
-    },
-    [INDUSTRY_GET_ALL.rejected]: (state) => {
-      return {
-        ...state,
-        isFetching: false,
-        showProgressbar: false,
-      };
-    },
-    [INDUSTRY_GET_ALL.fulfilled]: (state, action) => {
-      const response = action.payload;
-      const results = response?.rs;
-
-      return {
-        ...state,
-        isFetching: false,
-        showProgressbar: false,
-        ok: response?.ok,
-        message: response?.message,
-        d: results,
-      };
-    },
+    builder
+      .addCase(INDUSTRY_GET_ALL.pending, (state) => {
+        return {
+          ...state,
+          isFetching: true,
+          showProgressbar: true,
+        };
+      })
+      .addCase(INDUSTRY_GET_ALL.rejected, (state) => {
+        return {
+          ...state,
+          isFetching: false,
+          showProgressbar: false,
+        };
+      })
+      .addCase(INDUSTRY_GET_ALL.fulfilled, (state, { payload }) => {
+        const results = payload?.rs;
+        return {
+          ...state,
+          isFetching: false,
+          showProgressbar: false,
+          ok: payload?.ok,
+          message: payload?.message,
+          d: results,
+        };
+      });
     //#endregion
   },
 });

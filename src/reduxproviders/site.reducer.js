@@ -39,7 +39,7 @@ export const site = createSlice({
           showProgressbar: false,
         };
       })
-      .addCase(SITE_GET_BY_ID.fulfilled.type, (state, { payload }) => {
+      .addCase(SITE_GET_BY_ID.fulfilled, (state, { payload }) => {
         const results = payload?.rs;
 
         return {
