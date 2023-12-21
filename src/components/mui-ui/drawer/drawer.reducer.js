@@ -15,8 +15,7 @@ export const muiDrawer = createSlice({
   name: "muiDrawer",
   initialState: initialState,
   reducers: {
-    OPEN_DRAWER: (state, action) => {
-      const payload = action.payload;
+    OPEN_DRAWER: (state, { payload }) => {
       return {
         ...state,
         open: true,

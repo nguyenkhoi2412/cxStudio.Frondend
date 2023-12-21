@@ -22,35 +22,35 @@ export const site = createSlice({
   name: "site",
   initialState: initialState,
   reducers: {},
-  extraReducers: {
+  extraReducers: (builder) => {
     //#region SITE_GET_BY_ID
-    [SITE_GET_BY_ID.pending]: (state) => {
-      return {
-        ...state,
-        isFetching: true,
-        showProgressbar: true,
-      };
-    },
-    [SITE_GET_BY_ID.rejected]: (state) => {
-      return {
-        ...state,
-        isFetching: false,
-        showProgressbar: false,
-      };
-    },
-    [SITE_GET_BY_ID.fulfilled]: (state, action) => {
-      const response = action.payload;
-      const results = response?.rs;
+    builder
+      .addCase(SITE_GET_BY_ID.pending, (state) => {
+        return {
+          ...state,
+          isFetching: true,
+          showProgressbar: true,
+        };
+      })
+      .addCase(SITE_GET_BY_ID.rejected, (state) => {
+        return {
+          ...state,
+          isFetching: false,
+          showProgressbar: false,
+        };
+      })
+      .addCase(SITE_GET_BY_ID.fulfilled.type, (state, { payload }) => {
+        const results = payload?.rs;
 
-      return {
-        ...state,
-        isFetching: false,
-        showProgressbar: false,
-        ok: response?.ok,
-        message: response?.message,
-        d: results,
-      };
-    },
+        return {
+          ...state,
+          isFetching: false,
+          showProgressbar: false,
+          ok: payload?.ok,
+          message: payload?.message,
+          d: results,
+        };
+      });
     //#endregion
   },
 });

@@ -31,11 +31,6 @@ export class objectHelper {
             )}`;
       })
       .join("&");
-    console.log(
-      "sdfsdfsdfsdfsdf",
-      url + (queryString ? `?${queryString}` : "")
-    );
-    console.log("queryStringqueryStringqueryString", queryString);
     return url + (queryString ? `${queryString}` : "");
   };
 

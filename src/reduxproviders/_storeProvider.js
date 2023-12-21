@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./_rootReducer";
-import { thunk } from "redux-thunk";
-import customMiddleware from "./middleware/customMiddleware";
+// import { thunk } from "redux-thunk";
+// import customMiddleware from "./middleware/customMiddleware";
 
 export default configureStore({
   reducer: rootReducer,
-  middleware: [thunk, customMiddleware],
+  // middleware: [thunk, customMiddleware],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
   devTools: process.env.NODE_ENV !== "production",
 });
 

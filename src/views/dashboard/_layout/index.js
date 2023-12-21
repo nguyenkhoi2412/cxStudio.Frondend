@@ -72,7 +72,7 @@ const LayoutDashboard = () => {
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
   const dispatch = useDispatch();
   const handleLeftDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
+    dispatch(SET_MENU({ opened: !leftDrawerOpened}));
   };
 
   const [navColour, updateNavbar] = React.useState(false);

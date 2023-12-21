@@ -15,15 +15,14 @@ export const muiSnackBar = createSlice({
   name: "muiSnackBar",
   initialState: initialState,
   reducers: {
-    SHOW_SNACKBAR: (state, action) => {
+    SHOW_SNACKBAR: (state, { payload }) => {
       return {
         ...state,
         open: true,
-        autoHideDuration:
-          action?.payload?.autoHideDuration || state.autoHideDuration,
-        severity: action?.payload?.severity || state.severity,
-        content: action?.payload?.content || state.content,
-        anchorOrigin: action?.payload?.anchorOrigin || state.anchorOrigin,
+        autoHideDuration: payload?.autoHideDuration || state.autoHideDuration,
+        severity: payload?.severity || state.severity,
+        content: payload?.content || state.content,
+        anchorOrigin: payload?.anchorOrigin || state.anchorOrigin,
       };
     },
     HIDE_SNACKBAR: (state) => {

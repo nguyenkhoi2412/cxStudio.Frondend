@@ -102,7 +102,7 @@ const LayoutCommunity = ({ appName }) => {
   };
 
   const handleLeftDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
+    dispatch(SET_MENU({ opened: !leftDrawerOpened }));
   };
   //#endregion
 

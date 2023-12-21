@@ -12,7 +12,7 @@ export const navigation = createSlice({
   initialState: initialState,
   reducers: {
     //* WINDOW.PERFORMANCE: performance.navigation.type == 1 => IS REFRESH
-    DETECT_BROWSER_NAVIGATION: (state, action) => {
+    DETECT_BROWSER_NAVIGATION: (state) => {
       const tempState = current(state);
       let browserIsRefresh = false;
 

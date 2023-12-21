@@ -10,6 +10,7 @@ import Logo from "@components/common/imagesvg";
 import LogoInDark from "@assets/images/logo-workspace-dark.svg";
 import LogoInLight from "@assets/images/logo-workspace-light.svg";
 import { MENU_OPEN } from "@reduxproviders/berry/actions";
+import { CUSTOMIZATION } from "@reduxproviders/berry/customization.reducer";
 
 // ==============================|| MAIN LOGO ||============================== //
 
@@ -29,7 +30,9 @@ const LogoSection = (props) => {
   return (
     <ButtonBase
       disableRipple
-      onClick={() => dispatch({ type: MENU_OPEN, id: defaultId })}
+      onClick={() =>
+        dispatch(CUSTOMIZATION({ type: MENU_OPEN, id: defaultId }))
+      }
       component={Link}
       className={linkLogo !== null ? "" : "no-pointer"}
       to={linkLogo}

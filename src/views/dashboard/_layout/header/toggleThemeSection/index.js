@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { IconMoonFilled, IconSunFilled} from "@tabler/icons-react";
+import { IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
 import {
   Avatar,
   Box,
@@ -30,6 +30,7 @@ import MainCard from "@components/mui-ui/cards";
 import Transitions from "@components/mui-ui/extended/transitions";
 
 import { SET_MODE } from "@reduxproviders/berry/actions";
+import { CUSTOMIZATION } from "@reduxproviders/berry/customization.reducer";
 import { useDispatch, useSelector } from "react-redux";
 
 // notification status options
@@ -49,7 +50,7 @@ const ToggleThemeSection = () => {
   // state - mode
   const [mode, setMode] = useState(customization.mode);
   useEffect(() => {
-    dispatch({ type: SET_MODE, mode: mode });
+    dispatch(CUSTOMIZATION({ type: SET_MODE, mode: mode }));
   }, [dispatch, mode]);
 
   const ToggleThemeIcon = useMemo(
@@ -74,7 +75,11 @@ const ToggleThemeSection = () => {
             className="navButtons"
             aria-controls={open ? "menu-list-grow" : undefined}
             aria-haspopup="true"
-            onClick={() => setMode(mode === modeTheme.DARK ? modeTheme.LIGHT : modeTheme.DARK)}
+            onClick={() =>
+              setMode(
+                mode === modeTheme.DARK ? modeTheme.LIGHT : modeTheme.DARK
+              )
+            }
             color="inherit"
           >
             <ToggleThemeIcon className="toggleTheme" />

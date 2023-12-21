@@ -32,6 +32,7 @@ import {
   SET_FONT_FAMILY,
 } from "@reduxproviders/berry/actions";
 import { gridSpacing } from "@constants";
+import { CUSTOMIZATION } from "@reduxproviders/berry/customization.reducer";
 
 // concat 'px'
 function valueText(value) {
@@ -92,7 +93,7 @@ const Customization = () => {
         newFont = `'Roboto', sans-serif`;
         break;
     }
-    dispatch({ type: SET_FONT_FAMILY, fontFamily: newFont });
+    dispatch(CUSTOMIZATION({ type: SET_FONT_FAMILY, fontFamily: newFont }));
   }, [dispatch, fontFamily]);
 
   return (

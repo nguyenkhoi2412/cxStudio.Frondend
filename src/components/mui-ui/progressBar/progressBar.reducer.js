@@ -2,16 +2,16 @@ import { createSlice, current } from "@reduxjs/toolkit";
 
 // init state
 const initialState = {
-  open: false
+  open: false,
 };
 
 export const muiProgressBar = createSlice({
   name: "muiProgressBar",
   initialState: initialState,
   reducers: {
-    SHOW_PROGRESSBAR: (state, action) => {
+    SHOW_PROGRESSBAR: (state) => {
       return {
-        open: true
+        open: true,
       };
     },
     HIDE_PROGRESSBAR: (state) => {

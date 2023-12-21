@@ -56,7 +56,7 @@ import { ConnectWithoutContact } from "@mui/icons-material";
 const ProfileSection = () => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
-  const currentUser = useSelector((state) => state.auth.currentUser);
+  const currentUser = useSelector((state) => state.auth?.currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();

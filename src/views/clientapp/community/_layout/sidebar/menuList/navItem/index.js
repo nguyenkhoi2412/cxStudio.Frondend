@@ -17,6 +17,7 @@ import {
 
 // project imports
 import { MENU_OPEN, SET_MENU } from "@reduxproviders/berry/actions";
+import { CUSTOMIZATION } from "@reduxproviders/berry/customization.reducer";
 
 // assets
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
@@ -60,8 +61,8 @@ const NavItem = ({ item, level }) => {
   }
 
   const itemHandler = (id) => {
-    dispatch({ type: MENU_OPEN, id });
-    if (matchesSM) dispatch({ type: SET_MENU, opened: false });
+    dispatch(CUSTOMIZATION({ type: MENU_OPEN, id: id }));
+    if (matchesSM) dispatch(CUSTOMIZATION({ type: SET_MENU, opened: false }));
   };
 
   // active menu item on page load
