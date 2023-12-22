@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import _globalVars from "@constants/variables";
 import { crossCutting } from "@utils/crossCutting";
+import { stringHelper } from "@utils/string.helper";
 import * as yup from "yup";
 
 const { locale } = _globalVars;
@@ -25,6 +26,7 @@ export default {
         company: {
           [locale.lang]: "",
         },
+        industry_related: "",
         logo_path: "",
         currentuser_id: "",
         is_active: true,
@@ -47,7 +49,7 @@ export default {
 
     return yup.object().shape(objSchema);
   },
-  dataForm: () => {
+  dataForm: (countries) => {
     const { t } = useTranslation();
 
     // render name
@@ -74,10 +76,28 @@ export default {
       helperText: t("workspace.enter_your_company"),
     };
 
+    // render industry_related
+    const industry_related = {
+      tabIndex: 2,
+      id: "industry_related",
+      field: "industry_related",
+      type: "select",
+      label: t("workspace.industry_related"),
+      listItems: countries.map((x) => {
+        return {
+          _id: x._id,
+          name: stringHelper.render(x.name, locale.lang),
+        };
+      }),
+      preventXSS: true,
+      helperText: t("workspace.select_industry_related"),
+    };
+
     // push all to array
     let inputForms = [];
     inputForms.push(name);
     inputForms.push(company);
+    inputForms.push(industry_related);
 
     //sort fields by index
     inputForms.sort((a, b) => (a.tabIndex > b.tabIndex ? 1 : -1));

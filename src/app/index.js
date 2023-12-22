@@ -50,7 +50,14 @@ const App = (props) => {
       SITE_GET_BY_ID({
         id: _globalVars.SITE_ID,
       })
-    );
+    )
+      .unwrap()
+      .then((payload) => {
+        localStorage.setItem(
+          "locale",
+          JSON.stringify(payload.rs.locale.filter((lc) => lc.is_default)[0])
+        );
+      });
   };
   //#endregion
 

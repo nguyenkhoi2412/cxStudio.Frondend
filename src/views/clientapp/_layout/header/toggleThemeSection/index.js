@@ -24,16 +24,16 @@ const ToggleThemeSection = () => {
   // state - mode
   const [mode, setMode] = React.useState(customization.mode);
 
-  React.useEffect(() => {
-    let myDate = new Date();
-    let hours = myDate.getHours();
+  // React.useEffect(() => {
+  //   let myDate = new Date();
+  //   let hours = myDate.getHours();
 
-    if (hours > 6 && hours < 18) {
-      setMode(modeTheme.LIGHT);
-    } else {
-      setMode(modeTheme.DARK);
-    }
-  }, []);
+  //   if (hours > 6 && hours < 18) {
+  //     setMode(modeTheme.LIGHT);
+  //   } else {
+  //     setMode(modeTheme.DARK);
+  //   }
+  // }, []);
 
   React.useEffect(() => {
     dispatch(CUSTOMIZATION({ type: SET_MODE, mode: mode }));

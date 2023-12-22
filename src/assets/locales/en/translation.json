@@ -210,6 +210,8 @@
     "limited_for_one_workpsace": "Limited one workspace for one account. You can register get more than one workspace.",
     "enter_workspace_name": "Enter your workspace's name",
     "w_is_your_company": "What is your company/organization?",
-    "enter_your_company": "Enter your company/organization."
+    "enter_your_company": "Enter your company/organization.",
+    "industry_related": "Industry related",
+    "select_industry_related": "Select industry"
   }
 }

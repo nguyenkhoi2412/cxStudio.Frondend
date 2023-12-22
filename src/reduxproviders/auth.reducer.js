@@ -277,9 +277,8 @@ export const auth = createSlice({
           showProgressbar: false,
         };
       })
-      .addCase(SIGNIN_SOCIAL_GOOGLE.fulfilled, (state, payload) => {
+      .addCase(SIGNIN_SOCIAL_GOOGLE.fulfilled, (state, { payload }) => {
         const results = payload?.rs;
-
         const newState = {
           ...state,
           isFetching: false,

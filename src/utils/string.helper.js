@@ -1,8 +1,10 @@
-export class stringHelper {
+import { crossCutting } from "./crossCutting";
+
+export class stringHelper extends crossCutting {
   static render = (value, langCode = "", defaultValue = "Noname") => {
-    return crossCutting.isNotNull(value)
+    return this.isNotNull(value)
       ? langCode !== ""
-        ? crossCutting.isNotNull(value[langCode])
+        ? this.isNotNull(value[langCode])
           ? value[langCode]
           : defaultValue
         : value

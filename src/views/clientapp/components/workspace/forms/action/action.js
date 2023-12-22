@@ -15,8 +15,11 @@ import { CLOSE_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
 //#region mui-ui
 import { Box, Typography, Button, Grid } from "@mui/material";
 //#endregion
+//#region redux/services
 import { useDispatch, useSelector } from "react-redux";
 import { INSERT_NEW } from "@reduxproviders/workspace.reducer";
+import { IndustryService } from "@services/industry";
+//#endregion
 
 const FormAction = () => {
   const { t } = useTranslation();
@@ -25,11 +28,24 @@ const FormAction = () => {
   const uploadFileRef = React.useRef();
   const { enqueueSnackbar } = useSnackbar();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
+  const [countries, setContries] = React.useState([]);
+
+  //#region useHook
+  React.useEffect(() => {
+    const getIndustries = async () => {
+      await IndustryService.getAll().then((payload) => {
+        setContries(payload.rs);
+      });
+    };
+
+    getIndustries();
+  }, []);
+  //#endregion
 
   //#region useFormik
   const initialValues = _schema.initialValues();
   const validationSchema = _schema.validation();
-  const dataForm = _schema.dataForm();
+  const dataForm = _schema.dataForm(countries);
   const [enableValidation, setEnableValidation] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const formik = useFormik({
@@ -110,9 +126,8 @@ const FormAction = () => {
               "errors." + item.field
             );
             let hasError =
-              Boolean(
-                objectHelper.getValue(formik, "touched." + item.field)
-              ) && errorText;
+              Boolean(objectHelper.getValue(formik, "touched." + item.field)) &&
+              errorText;
 
             switch (item.type) {
               case "text":

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import _globalVars from "@constants/variables";
 
 // project imports
 import configSettings from "configSettings";
@@ -46,18 +47,18 @@ export const customization = createSlice({
             mode: payload.mode,
           };
         },
-        [actionTypes.SET_FONT_FAMILY]: () => {
-          return {
-            ...state,
-            fontFamily: payload.fontFamily,
-          };
-        },
-        [actionTypes.SET_BORDER_RADIUS]: () => {
-          return {
-            ...state,
-            borderRadius: payload.borderRadius,
-          };
-        },
+        // [actionTypes.SET_FONT_FAMILY]: () => {
+        //   return {
+        //     ...state,
+        //     fontFamily: payload.fontFamily,
+        //   };
+        // },
+        // [actionTypes.SET_BORDER_RADIUS]: () => {
+        //   return {
+        //     ...state,
+        //     borderRadius: payload.borderRadius,
+        //   };
+        // },
         default: () => {
           return { ...state };
         },
