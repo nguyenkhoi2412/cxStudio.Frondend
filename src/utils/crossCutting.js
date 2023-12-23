@@ -1,3 +1,15 @@
+// get from localStorage.getItem("locale")// locale get from data site/locale
+// locale = {
+//   _id: "36cb8e3e-9167-42a9-9dce-877541901e2d",
+//   lang: "en",
+//   code: "en-EN",
+//   language_name: "English",
+//   date_format: "MM-DD-YYYY",
+//   time_format: "HH:mm",
+//   currency: "$",
+// }
+import _globalVars from "@constants/variables";
+
 export const crossCutting = {
   //#region generate
   generate: {
@@ -383,6 +395,11 @@ export const validate = {
 
 export const string = {
   render: (value, langCode = "", defaultValue = "-") => {
+    // get lang code from localStorage locale
+    if (crossCutting.check.isNull(langCode)) {
+      langCode = _globalVars.locale.lang;
+    }
+
     return crossCutting.check.isNotNull(value)
       ? langCode !== ""
         ? crossCutting.check.isNotNull(value[langCode])

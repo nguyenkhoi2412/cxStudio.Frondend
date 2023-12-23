@@ -48,7 +48,7 @@ export default {
 
     return yup.object().shape(objSchema);
   },
-  dataForm: (countries) => {
+  dataForm: (industries) => {
     const { t } = useTranslation();
 
     // render name
@@ -82,10 +82,10 @@ export default {
       field: "industry_related",
       type: "select",
       label: t("workspace.industry_related"),
-      listItems: countries.map((x) => {
+      listItems: industries.map((x) => {
         return {
           _id: x._id,
-          name: string.render(x.name, locale.lang),
+          name: string.render(x.name),
         };
       }),
       preventXSS: true,

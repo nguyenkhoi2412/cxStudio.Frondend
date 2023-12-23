@@ -584,9 +584,9 @@ const SelectField = (props) => {
           onChange={(e) => selectOnChange(e, e.target.value)}
           className="form-control"
         >
-          <MenuItem value="">
+          {/* <MenuItem value="">
             <em></em>
-          </MenuItem>
+          </MenuItem> */}
           {lsItems.map((item, index) => {
             return (
               <MenuItem key={`MenuItem_` + index} value={item._id}>

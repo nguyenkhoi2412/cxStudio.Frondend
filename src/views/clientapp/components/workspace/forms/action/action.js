@@ -6,8 +6,7 @@ import { useSnackbar } from "notistack";
 import severity from "@constants/severity";
 import { useFormik } from "formik";
 import _globalVars from "@constants/variables";
-import { object } from "@utils/crossCutting";
-import InputField from "@components/mui-ui/forms/inputField";
+import RenderField from "@components/mui-ui/forms/renderField";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 import UploadFile from "@components/mui-ui/forms/uploadFile/uploadFile";
 import { CLOSE_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
@@ -28,13 +27,13 @@ const FormAction = () => {
   const uploadFileRef = React.useRef();
   const { enqueueSnackbar } = useSnackbar();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
-  const [countries, setContries] = React.useState([]);
+  const [industries, setIndustries] = React.useState([]);
 
   //#region useHook
   React.useEffect(() => {
     const getIndustries = async () => {
       await IndustryService.getAll().then((payload) => {
-        setContries(payload.rs);
+        setIndustries(payload.rs);
       });
     };
 
@@ -45,7 +44,7 @@ const FormAction = () => {
   //#region useFormik
   const initialValues = _schema.initialValues();
   const validationSchema = _schema.validation();
-  const dataForm = _schema.dataForm(countries);
+  const dataForm = _schema.dataForm(industries);
   const [enableValidation, setEnableValidation] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const formik = useFormik({
@@ -119,44 +118,7 @@ const FormAction = () => {
             </Typography>
           </Grid>
           {/* Build form create new workspace */}
-          {dataForm.map((item, index) => {
-            let keyField = item.id + "_" + index;
-            let errorText = object.getValue(
-              formik,
-              "errors." + item.field
-            );
-            let hasError =
-              Boolean(object.getValue(formik, "touched." + item.field)) &&
-              errorText;
-
-            switch (item.type) {
-              case "text":
-                return (
-                  <InputField
-                    margin="normal"
-                    fullWidth
-                    key={keyField}
-                    id={item.id}
-                    type={item.type}
-                    tabIndex={item.tabIndex}
-                    label={item.label}
-                    name={item.field}
-                    autoFocus={item.autoFocus}
-                    value={object.getValue(
-                      formik,
-                      "values." + item.field
-                    )}
-                    setValue={formik.setFieldValue}
-                    onChange={formik.handleChange}
-                    error={hasError}
-                    helperText={hasError ? errorText : ""}
-                    preventXSS={item.preventXSS}
-                    xs={item.xs}
-                    sm={item.sm}
-                  />
-                );
-            }
-          })}
+          <RenderField metadata={dataForm} formik={formik} />
           <Grid item xs={12}>
             <UploadFile
               ref={uploadFileRef}
@@ -192,11 +154,9 @@ const FormAction = () => {
   );
 };
 
-export default FormAction;
-
-// export default React.memo(SignUp, (props, nextProps) => {
-//   if (props === nextProps) {
-//     // return true if you don't need re-render
-//     return true;
-//   }
-// });
+export default React.memo(FormAction, (props, nextProps) => {
+  if (Object.is(props, nextProps)) {
+    // return true if you don't need re-render
+    return true;
+  }
+});
