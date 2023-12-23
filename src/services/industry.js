@@ -1,6 +1,5 @@
 import axios from "@utils/axio.instance";
 import _axios from "axios";
-import { objectHelper } from "@utils/object.helper";
 
 export class IndustryService {
   //#region CALLBACK API

@@ -6,7 +6,7 @@ import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { useSnackbar } from "notistack";
-import { stringHelper } from "@utils/string.helper";
+import { string } from "@utils/crossCutting";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
@@ -86,7 +86,7 @@ const CodeVerification = (props) => {
                     fontSize="16px"
                     textAlign={matchDownSM ? "center" : "inherit"}
                   >
-                    {stringHelper.mungeEmailAddress(currentUser.email)}
+                    {string.mungeEmailAddress(currentUser.email)}
                   </Typography>
                 </Stack>
               </Grid>

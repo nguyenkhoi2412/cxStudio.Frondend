@@ -1,6 +1,6 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import { WorkspaceService } from "@services/workspace";
-import { arrayHelper } from "@utils/array.helper";
+import { array } from "@utils/crossCutting";
 import initialData from "./_initialState";
 
 export const WORKSPACE_GET_BY_USER = createAsyncThunk(
@@ -46,7 +46,7 @@ export const workspace = createSlice({
       .addCase(INSERT_NEW.fulfilled, (state, { payload }) => {
         let results = payload?.rs;
         let data = [...current(state).d];
-        data = arrayHelper.insert(data, data.length, results);
+        data = array.insert(data, data.length, results);
 
         return {
           ...state,

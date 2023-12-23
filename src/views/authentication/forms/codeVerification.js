@@ -2,8 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
-import { crossCutting } from "@utils/crossCutting";
-import { objectHelper } from "@utils/object.helper";
+import { crossCutting, object } from "@utils/crossCutting";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
@@ -11,15 +10,11 @@ import _schema from "../codeVerification/_schema";
 import { navigateLocation } from "@routes/navigateLocation";
 import { HTTP_STATUS } from "@constants/httpStatus";
 //#region mui-ui
-import FormControl from "@mui/material/FormControl";
 import WpAlert from "@components/mui-ui/alert";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
 import { Button } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 //#endregion
 //#region redux providers
 import { useDispatch, useSelector } from "react-redux";
@@ -124,15 +119,15 @@ const FormCodeVerification = () => {
             sx={{ mt: 1 }}
           >
             {dataForm.map((item, index) => {
-              const errorText = objectHelper.getValue(
+              const errorText = object.getValue(
                 formik,
                 "errors." + item.field
               );
               let hasError =
                 Boolean(
-                  objectHelper.getValue(formik, "touched." + item.field)
+                  object.getValue(formik, "touched." + item.field)
                 ) && errorText;
-              let dataValue = objectHelper.getValue(
+              let dataValue = object.getValue(
                 formik,
                 "values." + item.field
               );

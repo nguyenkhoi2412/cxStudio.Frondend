@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
-import { crossCutting } from "@utils/crossCutting";
-import { objectHelper } from "@utils/object.helper";
+import { crossCutting, object } from "@utils/crossCutting";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import { socialSignIn } from "@constants";
@@ -181,15 +180,15 @@ const FormSignIn = () => {
             sx={{ mt: 1 }}
           >
             {dataForm.map((item, index) => {
-              const errorText = objectHelper.getValue(
+              const errorText = object.getValue(
                 formik,
                 "errors." + item.field
               );
               let hasError =
                 Boolean(
-                  objectHelper.getValue(formik, "touched." + item.field)
+                  object.getValue(formik, "touched." + item.field)
                 ) && errorText;
-              let dataValue = objectHelper.getValue(
+              let dataValue = object.getValue(
                 formik,
                 "values." + item.field
               );

@@ -1,14 +1,11 @@
 import "../_todoApp.scss";
 import MainCard from "@components/mui-ui/cards";
-import SubCard from "@components/mui-ui/cards/subCard";
 import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
 import InputField from "@components/mui-ui/forms/inputField";
 import Button from "@mui/material/Button";
-import { crossCutting } from "@utils/crossCutting";
-import { objectHelper } from "@utils/object.helper";
+import { crossCutting, object } from "@utils/crossCutting";
 import { gridSpacing } from "@constants";
 //#region components
 import { Draggable } from "react-beautiful-dnd";
@@ -141,21 +138,21 @@ const TaskItem = (props) => {
                     label="Tiêu đề"
                     name="task"
                     autoFocus={true}
-                    value={objectHelper.getValue(formik, "values.task")}
+                    value={object.getValue(formik, "values.task")}
                     setValue={formik.setFieldValue}
                     onChange={(e) => {
                       formik.handleChange;
                     }}
                     error={
                       Boolean(
-                        objectHelper.getValue(formik, "touched.task")
-                      ) && objectHelper.getValue(formik, "errors.task")
+                        object.getValue(formik, "touched.task")
+                      ) && object.getValue(formik, "errors.task")
                     }
                     helperText={
                       Boolean(
-                        objectHelper.getValue(formik, "touched.task")
-                      ) && objectHelper.getValue(formik, "errors.task")
-                        ? objectHelper.getValue(formik, "errors.task")
+                        object.getValue(formik, "touched.task")
+                      ) && object.getValue(formik, "errors.task")
+                        ? object.getValue(formik, "errors.task")
                         : ""
                     }
                     preventXSS={true}
@@ -188,21 +185,21 @@ const TaskItem = (props) => {
                       label="Chi tiết"
                       name="desc"
                       autoFocus={true}
-                      value={objectHelper.getValue(formik, "values.desc")}
+                      value={object.getValue(formik, "values.desc")}
                       setValue={formik.setFieldValue}
                       onChange={(e) => {
                         formik.handleChange;
                       }}
                       error={
                         Boolean(
-                          objectHelper.getValue(formik, "touched.desc")
-                        ) && objectHelper.getValue(formik, "errors.desc")
+                          object.getValue(formik, "touched.desc")
+                        ) && object.getValue(formik, "errors.desc")
                       }
                       helperText={
                         Boolean(
-                          objectHelper.getValue(formik, "touched.desc")
-                        ) && objectHelper.getValue(formik, "errors.desc")
-                          ? objectHelper.getValue(formik, "errors.desc")
+                          object.getValue(formik, "touched.desc")
+                        ) && object.getValue(formik, "errors.desc")
+                          ? object.getValue(formik, "errors.desc")
                           : ""
                       }
                       preventXSS={true}
@@ -243,7 +240,7 @@ const TaskItem = (props) => {
   };
 
   const renderTaskItem = () => {
-    if (!crossCutting.isNotNull(itemValue)) return <></>;
+    if (!crossCutting.check.isNotNull(itemValue)) return <></>;
 
     return (
       <Draggable

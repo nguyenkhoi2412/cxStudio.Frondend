@@ -1,7 +1,7 @@
 import axios from "@utils/axio.instance";
 import _axios from "axios";
 import encryptHelper from "@utils/encrypt.helper";
-import { objectHelper } from "@utils/object.helper";
+import { object } from "@utils/crossCutting";
 
 export default {
   findByUser: (params) => {
@@ -20,7 +20,7 @@ export default {
       params.password = encryptHelper.rsa.encrypt(params.password);
 
       await axios
-        .get(objectHelper.parseToQueryString("auth/validate/", params))
+        .get(object.parseToQueryString("auth/validate/", params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
@@ -48,7 +48,7 @@ export default {
           //call backend check data user
           axios
             .get(
-              objectHelper.parseToQueryString("auth/google/", {
+              object.parseToQueryString("auth/google/", {
                 query: encryptHelper.aes.encrypt(userInfo),
               })
             )
@@ -93,7 +93,7 @@ export default {
       params.username = encryptHelper.rsa.encrypt(params.username);
 
       axios
-        .get(objectHelper.parseToQueryString(`auth/recoverypassword/`, params))
+        .get(object.parseToQueryString(`auth/recoverypassword/`, params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });

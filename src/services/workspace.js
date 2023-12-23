@@ -1,6 +1,6 @@
 import axios from "@utils/axio.instance";
 import _axios from "axios";
-import { objectHelper } from "@utils/object.helper";
+import { object } from "@utils/crossCutting";
 import { ROLE } from "@constants/role";
 import BaseServices from "@services/_base.api";
 
@@ -9,7 +9,7 @@ export class WorkspaceService extends BaseServices {
   static getByUser = (params) => {
     return new Promise(async (resolve, reject) => {
       await axios
-        .get(objectHelper.parseToQueryString("workspace/getbyuser/", params))
+        .get(object.parseToQueryString("workspace/getbyuser/", params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });

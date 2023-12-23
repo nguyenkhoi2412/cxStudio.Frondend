@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import { crossCutting } from "@utils/crossCutting";
-import { objectHelper } from "@utils/object.helper";
+import { crossCutting, object } from "@utils/crossCutting";
 import { strengthColor, strengthIndicator } from "@utils/passwordStrength";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
@@ -201,13 +200,13 @@ const FormSignUp = () => {
           <Grid container spacing={matchDownSM ? 0 : 2}>
             {dataForm.map((item, index) => {
               let keyField = item.id + "_" + index;
-              let errorText = objectHelper.getValue(
+              let errorText = object.getValue(
                 formik,
                 "errors." + item.field
               );
               let hasError =
                 Boolean(
-                  objectHelper.getValue(formik, "touched." + item.field)
+                  object.getValue(formik, "touched." + item.field)
                 ) && errorText;
               switch (item.type) {
                 case "text":
@@ -223,7 +222,7 @@ const FormSignUp = () => {
                       label={item.label}
                       name={item.field}
                       autoFocus={item.autoFocus}
-                      value={objectHelper.getValue(
+                      value={object.getValue(
                         formik,
                         "values." + item.field
                       )}
@@ -250,7 +249,7 @@ const FormSignUp = () => {
                       label={item.label}
                       name={item.field}
                       disabled={item.disabled}
-                      value={objectHelper.getValue(
+                      value={object.getValue(
                         formik,
                         "values." + item.field
                       )}

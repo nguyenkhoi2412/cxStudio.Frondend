@@ -12,7 +12,7 @@ export default {
   regexEditor: /<p><br><\/p>|<div><br><\/div>/g,
   //* use for frontend site
   defaultDateFormat: "YYYY-MM-DD",
-  locale: crossCutting.isNotNull(localStorage.getItem("locale"))
+  locale: crossCutting.check.isNotNull(localStorage.getItem("locale"))
     ? JSON.parse(localStorage.getItem("locale"))
     : {
         _id: "36cb8e3e-9167-42a9-9dce-877541901e2d",

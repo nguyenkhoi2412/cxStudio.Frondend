@@ -6,7 +6,7 @@ import { useSnackbar } from "notistack";
 import severity from "@constants/severity";
 import { useFormik } from "formik";
 import _globalVars from "@constants/variables";
-import { objectHelper } from "@utils/object.helper";
+import { object } from "@utils/crossCutting";
 import InputField from "@components/mui-ui/forms/inputField";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 import UploadFile from "@components/mui-ui/forms/uploadFile/uploadFile";
@@ -121,12 +121,12 @@ const FormAction = () => {
           {/* Build form create new workspace */}
           {dataForm.map((item, index) => {
             let keyField = item.id + "_" + index;
-            let errorText = objectHelper.getValue(
+            let errorText = object.getValue(
               formik,
               "errors." + item.field
             );
             let hasError =
-              Boolean(objectHelper.getValue(formik, "touched." + item.field)) &&
+              Boolean(object.getValue(formik, "touched." + item.field)) &&
               errorText;
 
             switch (item.type) {
@@ -142,7 +142,7 @@ const FormAction = () => {
                     label={item.label}
                     name={item.field}
                     autoFocus={item.autoFocus}
-                    value={objectHelper.getValue(
+                    value={object.getValue(
                       formik,
                       "values." + item.field
                     )}

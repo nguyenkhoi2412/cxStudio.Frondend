@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-
+import { crossCutting } from "@utils/crossCutting";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { navigateLocation } from "@routes/navigateLocation";
-import { crossCutting } from "@utils/crossCutting";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -121,7 +120,7 @@ const ProfileSection = () => {
 
   useEffect(() => {
     const avatarPath = currentUser?.detailInfos?.avatarPath;
-    if (crossCutting.isNotNull(avatarPath)) {
+    if (crossCutting.check.isNotNull(avatarPath)) {
       setAvatar(
         avatarPath.indexOf("http") > -1
           ? avatarPath

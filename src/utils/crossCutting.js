@@ -1,119 +1,131 @@
-import { objectHelper } from "./object.helper";
-
-export class crossCutting {
-  static Spinner() {
-    return (
-      <React.Fragment>
-        {/* <div className="pos-center">
-          <CircularProgress disableShrink />
-        </div> */}
-      </React.Fragment>
-    );
-  }
-
+export const crossCutting = {
   //#region generate
-  static generateKey = (pre) => {
-    return `${this.isNotNull(pre) ? pre + "_" : ""}${
-      new Date().getTime() + this.randomNumber()
-    }`;
-  };
-
-  // Generate a cryptographically secure random password.
-  static generatePassword = (length = 8) => {
-    let password = "";
-    const chars = [
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-      "abcdefghijklmnopqrstuvwxyz",
-      "@$!%*?&",
-      "1234567890",
-    ];
-    for (let j = 0; j < chars.length; j++) {
-      password += chars[j].charAt(Math.floor(Math.random() * chars[j].length));
-    }
-    if (length > chars.length) {
-      length = length - chars.length;
-      for (let i = 0; i < length; i++) {
-        const index = Math.floor(Math.random() * chars.length);
-        password += chars[index].charAt(
-          Math.floor(Math.random() * chars[index].length)
+  generate: {
+    uuidv4: () => {
+      var dt = new Date().getTime();
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function (c) {
+          var r = (dt + Math.random() * 16) % 16 | 0;
+          dt = Math.floor(dt / 16);
+          return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+        }
+      );
+    },
+    key: (pre) => {
+      return `${crossCutting.check.isNotNull(pre) ? pre + "_" : ""}${
+        new Date().getTime() + crossCutting.generate.randomNumber()
+      }`;
+    },
+    password: (length = 8) => {
+      let password = "";
+      const chars = [
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "abcdefghijklmnopqrstuvwxyz",
+        "@$!%*?&",
+        "1234567890",
+      ];
+      for (let j = 0; j < chars.length; j++) {
+        password += chars[j].charAt(
+          Math.floor(Math.random() * chars[j].length)
         );
       }
-    }
-    return password
-      .split("")
-      .sort(function () {
-        return 0.5 - Math.random();
-      })
-      .join("");
-  };
-
-  static uuidv4 = () => {
-    var dt = new Date().getTime();
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-      /[xy]/g,
-      function (c) {
-        var r = (dt + Math.random() * 16) % 16 | 0;
-        dt = Math.floor(dt / 16);
-        return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+      if (length > chars.length) {
+        length = length - chars.length;
+        for (let i = 0; i < length; i++) {
+          const index = Math.floor(Math.random() * chars.length);
+          password += chars[index].charAt(
+            Math.floor(Math.random() * chars[index].length)
+          );
+        }
       }
-    );
-  };
+      return password
+        .split("")
+        .sort(function () {
+          return 0.5 - Math.random();
+        })
+        .join("");
+    },
+    number: (min = 1, max = 100) => {
+      return min + Math.random() * (max - min);
+    },
+    color: (color = "") => {
+      switch (color) {
+        //* Generate light color
+        case "light":
+          var letters = "BCDEF".split("");
+          var color = "#";
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * letters.length)];
+          }
+          return color;
 
-  static randomNumber = (min = 1, max = 100) => {
-    return min + Math.random() * (max - min);
-  };
+        //* Generate dark color
+        case "dark":
+          var lum = -0.25;
+          var hex = String(
+            "#" + Math.random().toString(16).slice(2, 8).toUpperCase()
+          ).replace(/[^0-9a-f]/gi, "");
+          if (hex.length < 6) {
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+          }
+          var rgb = "#",
+            c,
+            i;
+          for (i = 0; i < 3; i++) {
+            c = parseInt(hex.substr(i * 2, 2), 16);
+            c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(
+              16
+            );
+            rgb += ("00" + c).substr(c.length);
+          }
+          return rgb;
 
-  static generateColor = (color = "") => {
-    switch (color) {
-      //* Generate light color
-      case "light":
-        var letters = "BCDEF".split("");
-        var color = "#";
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * letters.length)];
-        }
-        return color;
-
-      //* Generate dark color
-      case "dark":
-        var lum = -0.25;
-        var hex = String(
-          "#" + Math.random().toString(16).slice(2, 8).toUpperCase()
-        ).replace(/[^0-9a-f]/gi, "");
-        if (hex.length < 6) {
-          hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-        }
-        var rgb = "#",
-          c,
-          i;
-        for (i = 0; i < 3; i++) {
-          c = parseInt(hex.substr(i * 2, 2), 16);
-          c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(16);
-          rgb += ("00" + c).substr(c.length);
-        }
-        return rgb;
-
-      default:
-        return (
-          "#" +
-          Math.floor(Math.random() * 16777215)
-            .toString(16)
-            .padStart(6, "0")
-        );
-    }
-  };
+        default:
+          return (
+            "#" +
+            Math.floor(Math.random() * 16777215)
+              .toString(16)
+              .padStart(6, "0")
+          );
+      }
+    },
+  },
   //#endregion
+  //#region check
+  check: {
+    isNotNull: (value) => {
+      return value !== null && value !== undefined && !object.isEmpty(value);
+    },
+    isNull: (value) => {
+      return !crossCutting.check.isNotNull(value);
+    },
+    acceptFileExtension: (file, filetypes = /jpeg|jpg|png/) => {
+      var mimetype = filetypes.test(file.mimetype);
+      var extname = filetypes.test(
+        path.extname(file.originalname).toLowerCase()
+      );
 
-  //#region check/detect
-  static isNotNull(data) {
-    return data !== null && data !== undefined && !objectHelper.isEmpty(data);
-  }
-
-  static isNull(data) {
-    return !this.isNotNull(data);
-  }
-
-  static detectEnvironment() {
+      return mimetype && extname;
+    },
+  },
+  //#endregion
+  //#region simulate
+  debounce: (func, wait = 400) => {
+    let timeout;
+    return function (...args) {
+      const context = this;
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        timeout = null;
+        func.apply(context, args);
+      }, wait);
+    };
+  },
+  simulateNetworkRequest: (timer = 2000) => {
+    return new Promise((resolve) => setTimeout(resolve, timer));
+  },
+  detectEnvironment: () => {
     {
       var unknown = "-";
 
@@ -352,29 +364,12 @@ export class crossCutting {
     //#endregion
 
     return jscd;
-  }
+  },
   //#endregion
+};
 
-  //#region simulator
-  static simulateNetworkRequest(timer = 2000) {
-    return new Promise((resolve) => setTimeout(resolve, timer));
-  }
-
-  static debounce(func, wait = 400) {
-    let timeout;
-    return function (...args) {
-      const context = this;
-      if (timeout) clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        timeout = null;
-        func.apply(context, args);
-      }, wait);
-    };
-  }
-  //#endregion
-
-  //#region validation
-  static validatePassword(value) {
+export const validate = {
+  password: (value) => {
     if (value.length < 6) {
       return "Password should be at-least 6 characters.";
     } else if (
@@ -383,6 +378,374 @@ export class crossCutting {
       return "Password should contain at least one uppercase letter, lowercase letter, digit, and special symbol.";
     }
     return true;
-  }
-  //#endregion
-}
+  },
+};
+
+export const string = {
+  render: (value, langCode = "", defaultValue = "-") => {
+    return crossCutting.check.isNotNull(value)
+      ? langCode !== ""
+        ? crossCutting.check.isNotNull(value[langCode])
+          ? value[langCode]
+          : defaultValue
+        : value
+      : defaultValue;
+  },
+  stripedHtml: (text) => {
+    text = text.replace(/[<|>]/gi, "");
+
+    if (
+      text.toLowerCase().indexOf("javascript") > -1 ||
+      text.toLowerCase().indexOf("&lt;") > -1 ||
+      text.toLowerCase().indexOf("&gt;") > -1
+    ) {
+      text = text.replace(/[javascript|&lt;|&gt;]/gi, "");
+    }
+
+    return text;
+  },
+  mungeEmailAddress: (text) => {
+    var i = text.indexOf("@");
+    var startIndex = (i * 0.2) | 0;
+    var endIndex = (i * 0.9) | 0;
+    return (
+      text.slice(0, startIndex) +
+      text.slice(startIndex, endIndex).replace(/./g, "*") +
+      text.slice(endIndex)
+    );
+  },
+  parseValueToBool: (value) => {
+    return value === true || value === "true" || value === "True";
+  },
+  numberWithSympol: (value, dot = ",", decimal_point = 0) => {
+    let valueCheck = isNaN(value) ? 0 : parseFloat(value);
+
+    return valueCheck
+      .toFixed(decimal_point)
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1" + dot);
+  },
+  compactNumber: (value) => {
+    const suffixes = ["", "k", "m", "b", "t"];
+    const suffixNum = Math.floor(("" + value).length / 3);
+
+    let shortValue = parseFloat(
+      (suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(
+        2
+      )
+    );
+
+    if (shortValue % 1 != 0) {
+      shortValue = shortValue.toFixed(1);
+    }
+
+    return shortValue + suffixes[suffixNum];
+  },
+  formatBytes: (bytes) => {
+    var sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+    if (bytes == 0) return "0 Byte";
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return Math.round(bytes / Math.pow(1024, i), 2) + sizes[i];
+  },
+  //* RANK
+  ordinalSuffix: (number) => {
+    let j = number % 10;
+    let k = number % 100;
+    if (j == 1 && k != 11) {
+      return `${number}st`;
+    }
+
+    if (j == 2 && k != 12) {
+      return `${number}nd`;
+    }
+
+    if (j == 3 && k != 13) {
+      return `${number}rd`;
+    }
+
+    return `${number}th`;
+  },
+};
+
+export const object = {
+  getValue: (object, keys) =>
+    keys.split(".").reduce((o, k) => (o || {})[k], object),
+
+  isEmpty: (obj) => {
+    for (var prop in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+        return false;
+      }
+    }
+    return true;
+  },
+
+  //* QUERY
+  parseToQueryString: (url, params) =>
+    url +
+    Object.keys(params)
+      .map((key) => params[key])
+      .join("&"),
+
+  createQueryString: (url, queryObject) => {
+    // url +
+    // Object.keys(params)
+    //   .map((key) => params[key])
+    //   .join("&");
+    let queryString = Object.keys(queryObject)
+      .filter(
+        (key) =>
+          queryObject[key] &&
+          !(Array.isArray(queryObject[key]) && !queryObject[key].length)
+      )
+      .map((key) => {
+        return Array.isArray(queryObject[key])
+          ? queryObject[key]
+              .map(
+                (item) =>
+                  `${encodeURIComponent(key)}=${encodeURIComponent(item)}`
+              )
+              .join("&")
+          : `${encodeURIComponent(key)}=${encodeURIComponent(
+              queryObject[key]
+            )}`;
+      })
+      .join("&");
+    return url + (queryString ? `?${queryString}` : "");
+  },
+
+  queryStringToObject: (queryString = "", options = {}) => {
+    let queryObject = {};
+    queryString &&
+      decodeURIComponent(queryString.replace("?", ""))
+        .split("&")
+        .map((itemString) => {
+          let [itemKey, itemValue] = itemString.split("=");
+          if (options.hasOwnProperty(itemKey)) {
+            if (!queryObject[itemKey] && Array.isArray(options[itemKey])) {
+              queryObject[itemKey] = [];
+            }
+            Array.isArray(options[itemKey])
+              ? queryObject[itemKey].push(itemValue)
+              : (queryObject[itemKey] =
+                  typeof options[itemKey] === "number"
+                    ? parseInt(itemValue)
+                    : itemValue);
+          }
+        });
+    return queryObject;
+  },
+
+  //* GET DIFF/COMPARE
+  getDiff: (newObj, oldObj) => {
+    let diff = Object.keys(newObj).reduce((diff, key) => {
+      if (newObj[key] === oldObj[key]) return diff;
+      return {
+        ...diff,
+        [key]: newObj[key],
+      };
+    }, {});
+
+    return diff;
+  },
+
+  diffArrayObjects: (current, otherArray, filterKey = "_id") => {
+    return current.filter(
+      ({ [filterKey]: currentKey }) =>
+        !otherArray.some(({ [filterKey]: otherKey }) => currentKey === otherKey)
+    );
+  },
+
+  compareArrays: (a, b) =>
+    a.length === b.length &&
+    a.every(
+      (element, index) =>
+        element === b[index] ||
+        JSON.stringify(element) === JSON.stringify(b[index])
+    ),
+
+  // Check if the input is a json object (whether startsWidth '{' and endsWidth '}') or not
+  isJsonObject: (text) => {
+    let str = String(text).trim();
+
+    if (!str.startsWith("{") || !str.endsWith("}")) return false;
+
+    try {
+      JSON.parse(str);
+    } catch (e) {
+      return false;
+    }
+
+    return true;
+  },
+
+  // Check if the input is a json array (whether startsWidth '[' and endsWidth ']') or not
+  isJsonArray: (text) => {
+    let str = String(text).trim();
+    return str.startsWith("[") && str.endsWith("]");
+  },
+
+  compareArrays: (a, b) =>
+    a.length === b.length &&
+    a.every(
+      (element, index) =>
+        element === b[index] ||
+        JSON.stringify(element) === JSON.stringify(b[index])
+    ),
+};
+
+export const array = {
+  /**
+   * Insert new item into an array
+   * @params array: original array
+   * @params index: index position append new item
+   * @params items: item insert
+   */
+  insert: (arr, index, ...items) => {
+    return [
+      // part of the array before the specified index
+      ...arr.slice(0, index),
+      // inserted items
+      ...items,
+      // part of the array after the specified index
+      ...arr.slice(index),
+    ];
+  },
+  update: (arr, newItem, field = "_id") => {
+    var itemField = Array.isArray(newItem) ? newItem[0] : newItem;
+
+    if (Array.isArray(arr)) {
+      return arr.map((item) => {
+        if (item[field] === itemField[field]) {
+          return {
+            ...item,
+            ...itemField,
+          };
+        }
+
+        return item;
+      });
+    }
+
+    return itemField;
+  },
+  delete: (arr, objItems, field = "_id") => {
+    return objItems.length
+      ? object.diffArrayObjects(arr, objItems) // deleteMany
+      : arr.filter((item) => {
+          // deleteOne
+          return item[field] !== objItems[field];
+        });
+  },
+  shuffle: (array) => {
+    let ctr = array.length;
+    let temp;
+    let index;
+
+    // While there are elements in the array
+    while (ctr > 0) {
+      // Pick a random index
+      index = Math.floor(Math.random() * ctr);
+      // Decrease ctr by 1
+      ctr--;
+      // And swap the last element with it
+      temp = array[ctr];
+      array[ctr] = array[index];
+      array[index] = temp;
+    }
+    return array;
+  },
+  buildHierarchy: (array = [], idField = "_id", parentField = "parent") => {
+    let arr = [...array];
+    let arrMap = new Map(arr.map((item) => [item[idField], item]));
+    let tree = [];
+    let tempItem = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      let item = arr[i];
+
+      if (item[parentField] !== "") {
+        let parentItem = arrMap.get(item[parentField]);
+
+        if (parentItem) {
+          parentItem = {
+            ...parentItem,
+            children: [...parentItem.children, item],
+          };
+
+          tempItem.push(parentItem);
+        }
+      } else {
+        tree.push(item);
+      }
+    }
+
+    tempItem.map((item) => {
+      tree = crossCutting.array.update(tree, item);
+    });
+
+    return tree;
+  },
+};
+
+export const datetime = {
+  diffInDays: (startDateVal, endDateVal) => {
+    var startDate = new Date(startDateVal); //Default date format
+    var endDate = new Date(endDateVal);
+
+    // One day in milliseconds
+    const oneDay = 1000 * 60 * 60 * 24;
+
+    // Calculating the time difference between two dates
+    const diffInTime = endDate.getTime() - startDate.getTime();
+
+    // Calculating the no. of days between two dates
+    const diffInDays = Math.round(diffInTime / oneDay);
+
+    return diffInDays;
+  },
+
+  getUtcDateTime: (isoDate, locales = "en") => {
+    const date = new Date(isoDate);
+    // let d = Date.UTC(
+    //   date.getFullYear(),
+    //   date.getMonth(),
+    //   date.getDate(),
+    //   date.getHours(),
+    //   date.getMinutes(),
+    //   date.getSeconds()
+    // );
+
+    const localTime = date.toLocaleTimeString(locales, {
+      timeStyle: "short",
+    });
+    const utcTime = date.getUTCHours() + ":" + date.getUTCMinutes();
+    const data = {
+      toISOString: isoDate,
+      toUTCString: new Date(date.toUTCString().slice(0, -4)).toString(), // ignore the timezone
+      local: {
+        date: date.toLocaleDateString(locales),
+        time: localTime,
+      },
+      utc: {
+        time: utcTime,
+      },
+    };
+
+    return data;
+
+    // var curLocalDate = new Date(datetime);
+    // var curlLocalMiliSec = curLocalDate.getTime();
+    // var utcOffsetInMin = curLocalDate.getTimezoneOffset();
+    // var utcOffsetInMiliSec = utcOffsetInMin * 60 * 1000;
+
+    // var utcTime = new Date(curlLocalMiliSec + utcOffsetInMiliSec);
+
+    // var utcHour = utcTime.getHours();
+    // var utcMinutes = utcTime.getMinutes();
+
+    // return {
+    //   localTime: curLocalDate.getHours() + ":" + curLocalDate.getMinutes(),
+    //   utcTime: utcHour + ":" + utcMinutes,
+    // };
+  },
+};

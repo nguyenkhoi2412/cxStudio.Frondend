@@ -1,6 +1,6 @@
 import "./_inputField.scss";
 import * as React from "react";
-import { stringHelper } from "@utils/string.helper";
+import { string } from "@utils/crossCutting";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -56,7 +56,7 @@ const InputField = (props) => {
 
     let val = e.target.value;
     setDataValue(val);
-    val = stringHelper.stripedHtml(val);
+    val = string.stripedHtml(val);
 
     if (props.preventXSS) {
       val = val.replace(regexXSS, "");

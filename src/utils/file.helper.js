@@ -1,5 +1,5 @@
 import Resizer from "react-image-file-resizer";
-import { stringHelper } from "@utils/string.helper";
+import { string } from "@utils/crossCutting";
 
 export class fileHelper {
   // static uploadfile = (file, cb) => {
@@ -71,7 +71,7 @@ export class fileHelper {
           code: 200,
           message:
             "File too large - max size is " +
-            stringHelper.formatBytes(maxSize),
+            string.formatBytes(maxSize),
           ok: false,
         });
       }

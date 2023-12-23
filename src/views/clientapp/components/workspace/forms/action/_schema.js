@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import _globalVars from "@constants/variables";
-import { crossCutting } from "@utils/crossCutting";
-import { stringHelper } from "@utils/string.helper";
+import { crossCutting, string } from "@utils/crossCutting";
 import * as yup from "yup";
 
 const { locale } = _globalVars;
@@ -13,7 +12,7 @@ export default {
 
     let objData = {};
 
-    if (crossCutting.isNotNull(data)) {
+    if (crossCutting.check.isNotNull(data)) {
       objData = {
         ...data,
       };
@@ -86,7 +85,7 @@ export default {
       listItems: countries.map((x) => {
         return {
           _id: x._id,
-          name: stringHelper.render(x.name, locale.lang),
+          name: string.render(x.name, locale.lang),
         };
       }),
       preventXSS: true,

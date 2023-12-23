@@ -1,5 +1,5 @@
 import axios from "@utils/axio.instance";
-import { objectHelper } from "@utils/object.helper";
+import { object } from "@utils/crossCutting";
 
 export default class BaseServices {
   /*
@@ -25,7 +25,7 @@ export default class BaseServices {
 
     return new Promise((resolve, reject) => {
       axios
-        .get(objectHelper.parseToQueryString(url, params))
+        .get(object.parseToQueryString(url, params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
@@ -42,7 +42,7 @@ export default class BaseServices {
 
     return new Promise((resolve, reject) => {
       axios
-        .get(objectHelper.parseToQueryString(url, params))
+        .get(object.parseToQueryString(url, params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
@@ -54,7 +54,7 @@ export default class BaseServices {
   static getbyid = (url, params) => {
     return new Promise((resolve, reject) => {
       axios
-        .get(objectHelper.parseToQueryString(url, params))
+        .get(object.parseToQueryString(url, params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { crossCutting } from "@utils/crossCutting";
-import { objectHelper } from "@utils/object.helper";
+import { object } from "@utils/crossCutting";
 import encryptHelper from "@utils/encrypt.helper";
 import { useFormik } from "formik";
 import _globalVars from "@constants/variables";
@@ -113,7 +112,7 @@ const MessageSend = (props) => {
       const message = values.message.trim();
       setSubmitting(true);
 
-      if (crossCutting.isNotNull(message) && currentUser) {
+      if (crossCutting.check.isNotNull(message) && currentUser) {
         setSubmitting(false);
 
         //Encrypt data sent by socket
@@ -150,7 +149,7 @@ const MessageSend = (props) => {
     );
 
   const handleOnEmojiSelect = (emojiObject) => {
-    const prevText = objectHelper.getValue(formik, "values.message");
+    const prevText = object.getValue(formik, "values.message");
     formik.setFieldValue("message", prevText + emojiObject.native);
     setShowEmoji(false);
   };
@@ -173,7 +172,7 @@ const MessageSend = (props) => {
           submitHandler={(e) => handleSubmit(e)}
           autoFocus={true}
           placeholder={t("community.app.livechat.type_a_message")}
-          value={objectHelper.getValue(formik, "values.message")}
+          value={object.getValue(formik, "values.message")}
         />
       </Grid>
     );
@@ -185,7 +184,7 @@ const MessageSend = (props) => {
         id="input-typing-message"
         name="message"
         className="outline-typing-message"
-        value={objectHelper.getValue(formik, "values.message")}
+        value={object.getValue(formik, "values.message")}
         onChange={formik.handleChange}
         onKeyDown={handleTyping}
         placeholder={t("community.app.livechat.type_a_message")}

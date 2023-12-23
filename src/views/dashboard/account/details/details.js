@@ -3,8 +3,7 @@ import PersonPinOutlinedIcon from "@mui/icons-material/PersonPinOutlined";
 import * as React from "react";
 //#region utils support
 import { useSnackbar } from "notistack";
-import { crossCutting } from "@utils/crossCutting";
-import { objectHelper } from "@utils/object.helper";
+import { crossCutting, object } from "@utils/crossCutting";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import FormAccountDetailInfo from "./formAccountDetailInfo";
@@ -121,7 +120,7 @@ const AccountInfo = (props) => {
       };
 
       // compare 2 object get diff for update
-      let values = objectHelper.getDiff(newValues, _currentUser);
+      let values = object.getDiff(newValues, _currentUser);
       values._id = currentUser._id;
       await dispatch(USER_UPDATE_INFO(values))
         .unwrap()
@@ -155,7 +154,7 @@ const AccountInfo = (props) => {
 
   //#region render content
   const renderAvatarDefault = () => {
-    return crossCutting.isNotNull(
+    return crossCutting.check.isNotNull(
       currentUser?.detailInfos?.avatarPath
     ) ? (
       <></>
@@ -179,7 +178,7 @@ const AccountInfo = (props) => {
             <SubCard
               title={t("user.profilepicture")}
               contentClass={
-                crossCutting.isNotNull(
+                crossCutting.check.isNotNull(
                   currentUser?.detailInfos?.avatarPath
                 )
                   ? "avatar-container"

@@ -1,7 +1,6 @@
 import "./_home.scss";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
-import { ROLE } from "@constants/role";
 import { crossCutting } from "@utils/crossCutting";
 //#region mui-ui
 import {
@@ -16,9 +15,6 @@ import {
 //#endregion
 //#region import components
 import MainCard from "@components/mui-ui/cards";
-import SubCard from "@components/mui-ui/cards/subCard";
-import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
-import WpDrawer from "@components/mui-ui/drawer";
 import FormAction from "@clientapp/components/workspace/forms/action/action";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 //#endregion
@@ -51,7 +47,7 @@ const Home = () => {
   };
 
   const getWorkspaceOwner = (wp) => {
-    if (crossCutting.isNull(wp)) return;
+    if (crossCutting.check.isNull(wp)) return;
     WorkspaceService.getOwner({
       data: wp,
       currentUser: currentUser,
@@ -62,7 +58,7 @@ const Home = () => {
   };
 
   const getWorkspaceTeams = (wp) => {
-    if (crossCutting.isNull(wp)) return;
+    if (crossCutting.check.isNull(wp)) return;
     WorkspaceService.getTeamMembers({
       data: wp,
       currentUser: currentUser,

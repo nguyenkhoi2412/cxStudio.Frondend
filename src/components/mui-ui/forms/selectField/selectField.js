@@ -512,12 +512,12 @@ const SelectField = (props) => {
 
   //#region render content
   const renderImageIcon = (item) => {
-    return crossCutting.isNotNull(item?.icon) ? (
+    return crossCutting.check.isNotNull(item?.icon) ? (
       <img
         className="icon-select"
         loading="lazy"
         src={item.icon}
-        alt={crossCutting.isNotNull(item.alt) ? item.alt : "svg"}
+        alt={crossCutting.check.isNotNull(item.alt) ? item.alt : "svg"}
         style={{
           width: 16,
         }}
@@ -571,7 +571,7 @@ const SelectField = (props) => {
       <React.Fragment key={props.id + "select"}>
         <InputLabel id={props.id + "-label"}>{props.label}</InputLabel>
         <Select
-          key={crossCutting.uuidv4()}
+          key={crossCutting.generate.uuidv4()}
           fullWidth
           multiple={multiple}
           tabIndex={props.tabIndex}
