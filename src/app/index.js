@@ -31,7 +31,7 @@ const App = (props) => {
   const customization = useSelector((state) => state.customization);
   const siteDatas = useSelector(siteState);
   const dispatch = useDispatch();
-  const sessionLocale = hook.useSession("locale", true);
+  const savedLocale = hook.useSession("locale", true);
 
   document.body.classList.toggle("darkTheme", customization.mode === "dark");
   document.body.classList.toggle(
@@ -54,11 +54,7 @@ const App = (props) => {
     )
       .unwrap()
       .then((payload) => {
-        sessionLocale.save(payload.rs.locale.filter((lc) => lc.is_default));
-        // localStorage.setItem(
-        //   "locale",
-        //   JSON.stringify(payload.rs.locale.filter((lc) => lc.is_default)[0])
-        // );
+        savedLocale.save(payload.rs.locale.filter((lc) => lc.is_default)[0]);
       });
   };
   //#endregion

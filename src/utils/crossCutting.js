@@ -26,6 +26,7 @@ import {
 } from "react-router-dom";
 import queryString from "query-string";
 
+//* ==============================|| CROSSCUTTING ||============================== //
 export const crossCutting = {
   //#region generate
   generate: {
@@ -396,6 +397,7 @@ export const crossCutting = {
   //#endregion
 };
 
+//* ==============================|| VALIDATE ||============================== //
 export const validate = {
   password: (value) => {
     if (value.length < 6) {
@@ -409,6 +411,7 @@ export const validate = {
   },
 };
 
+//* ==============================|| STRING ||============================== //
 export const string = {
   render: (value, langCode = "", defaultValue = "-") => {
     // get lang code from localStorage locale
@@ -499,6 +502,7 @@ export const string = {
   },
 };
 
+//* ==============================|| OBJECT ||============================== //
 export const object = {
   getValue: (object, keys) =>
     keys.split(".").reduce((o, k) => (o || {})[k], object),
@@ -626,6 +630,7 @@ export const object = {
     ),
 };
 
+//* ==============================|| ARRAY ||============================== //
 export const array = {
   /**
    * Insert new item into an array
@@ -720,6 +725,7 @@ export const array = {
   },
 };
 
+//* ==============================|| DATETIME ||============================== //
 export const datetime = {
   diffInDays: (startDateVal, endDateVal) => {
     var startDate = new Date(startDateVal); //Default date format
@@ -783,6 +789,7 @@ export const datetime = {
   },
 };
 
+//* ==============================|| HOOKS ||============================== //
 export const hook = {
   useDocumentTitle: (title) => {
     React.useEffect(() => {
@@ -919,13 +926,14 @@ export const hook = {
       setDragging,
     };
   },
-  /*
-   * useOnClickOutside
+
+  /**
+   * useClickOutside
    * Call hook passing in the ref and a function to call on outside click
    * const [isModalOpen, setModalOpen] = useState(false);
-   * useOnClickOutside(ref, () => setModalOpen(false));
+   * useClickOutside(ref, () => setModalOpen(false));
    */
-  useOnClickOutside: (ref, handler) => {
+  useClickOutside: (ref, handler) => {
     useEffect(
       () => {
         const listener = (event) => {
@@ -1051,51 +1059,6 @@ export const hook = {
     );
 
     return [x, y, bind];
-  },
-
-  /*
-   * useLocalStorage
-   * How to use it?
-   * const [name, setName] = useLocalStorage();
-   * <input
-      type="text"
-      placeholder="Enter your name"
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-     />
-   */
-  useLocalStorage: (key, initialValue) => {
-    // State to store our value
-    // Pass initial state function to React.useState so logic is only executed once
-    const [storedValue, setStoredValue] = React.useState(() => {
-      try {
-        // Get from local storage by key
-        const item = window.localStorage.getItem(key);
-        // Parse stored json or if none return initialValue
-        return item ? JSON.parse(item) : initialValue;
-      } catch (error) {
-        // If error also return initialValue
-        console.log(error);
-        return initialValue;
-      }
-    });
-    // Return a wrapped version of React.useState's setter function that ...
-    // ... persists the new value to localStorage.
-    const setValue = (value) => {
-      try {
-        // Allow value to be a function so we have same API as React.useState
-        const valueToStore =
-          value instanceof Function ? value(storedValue) : value;
-        // Save state
-        setStoredValue(valueToStore);
-        // Save to local storage
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      } catch (error) {
-        // A more advanced implementation would handle the error case
-        console.log(error);
-      }
-    };
-    return [storedValue, setValue];
   },
 
   /*
@@ -1422,8 +1385,70 @@ export const hook = {
     }, [sessionKey]);
     return { session: state, save, saveJWT, clear };
   },
+
+  /**
+   * useWindowScrollPosition
+   * How to use it?
+   * const { x, y } = useWindowScrollPosition();
+   */
+  useWindowScrollPosition: (options = {}) => {
+    const { throttleMs = 100 } = options;
+    const [scroll, setScroll] = React.useState({
+      x: window.pageXOffset,
+      y: window.pageYOffset,
+    });
+
+    const handle = crossCutting.debounce(() => {
+      setScroll({
+        x: window.pageXOffset,
+        y: window.pageYOffset,
+      });
+    }, throttleMs);
+
+    React.useEffect(() => {
+      window.addEventListener("scroll", handle);
+
+      return () => {
+        window.removeEventListener("scroll", handle);
+      };
+    }, []);
+
+    return scroll;
+  },
+
+  /**
+   * useHash
+   * How to use it?
+   * const [hash, setHash] = useHash();
+   */
+  useHash: () => {
+    const [hash, setHash] = React.useState(() => window.location.hash);
+
+    const hashChangeHandler = React.useCallback(() => {
+      setHash(window.location.hash);
+    }, []);
+
+    React.useEffect(() => {
+      window.addEventListener("hashchange", hashChangeHandler);
+      return () => {
+        window.removeEventListener("hashchange", hashChangeHandler);
+      };
+    }, []);
+
+    const updateHash = React.useCallback(
+      (newHash) => {
+        if (newHash !== hash) window.location.hash = newHash;
+      },
+      [hash]
+    );
+
+    return [hash, updateHash];
+  },
+
+  
 };
 
+//* ==============================|| SESSION ||============================== //
 export const cookie = {
   set: (name, value, hours = 6) => {
     // var expires = "";
