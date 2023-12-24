@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { storedHelper } from "@utils/stored.helper"
+import { cookie } from "@utils/crossCutting";
 import storageHandler from "@constants/storageHandler";
 import { crossCutting } from "@utils/crossCutting";
 
@@ -24,9 +24,7 @@ export const isLoggedIn = () => {
     crossCutting.check.isNotNull(
       localStorage.getItem(storageHandler.AUTH.CURRENT_USER)
     ) &&
-    crossCutting.check.isNotNull(
-      storedHelper.getCookie(storageHandler.AUTH.ACCESS_TOKEN)
-    )
+    crossCutting.check.isNotNull(cookie.get(storageHandler.AUTH.ACCESS_TOKEN))
   );
 };
 
@@ -37,9 +35,8 @@ export const isAuth = () => {
 const _isVerified_2fa = () => {
   // return true;
   return crossCutting.check.isNotNull(
-    storedHelper.getCookie(storageHandler.AUTH.VERIFIED_2FA)
+    cookie.get(storageHandler.AUTH.VERIFIED_2FA)
   )
-    ? storedHelper.getCookie(storageHandler.AUTH.VERIFIED_2FA) ===
-        "true"
+    ? cookie.get(storageHandler.AUTH.VERIFIED_2FA) === "true"
     : false;
 };

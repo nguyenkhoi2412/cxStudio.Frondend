@@ -13,7 +13,7 @@ import WpBackdrop from "@components/mui-ui/backdropSpin";
 import WpProgressBar from "@components/mui-ui/progressBar";
 import WpSnackBar from "@components/mui-ui/snackBar";
 import WpDrawer from "@components/mui-ui/drawer";
-import { crossCutting } from "@utils/crossCutting";
+import { crossCutting, hook, array } from "@utils/crossCutting";
 import { useDispatch, useSelector } from "react-redux";
 import {
   SHOW_SPIN,
@@ -31,6 +31,7 @@ const App = (props) => {
   const customization = useSelector((state) => state.customization);
   const siteDatas = useSelector(siteState);
   const dispatch = useDispatch();
+  const sessionLocale = hook.useSession("locale", true);
 
   document.body.classList.toggle("darkTheme", customization.mode === "dark");
   document.body.classList.toggle(
@@ -53,10 +54,11 @@ const App = (props) => {
     )
       .unwrap()
       .then((payload) => {
-        localStorage.setItem(
-          "locale",
-          JSON.stringify(payload.rs.locale.filter((lc) => lc.is_default)[0])
-        );
+        sessionLocale.save(payload.rs.locale.filter((lc) => lc.is_default));
+        // localStorage.setItem(
+        //   "locale",
+        //   JSON.stringify(payload.rs.locale.filter((lc) => lc.is_default)[0])
+        // );
       });
   };
   //#endregion

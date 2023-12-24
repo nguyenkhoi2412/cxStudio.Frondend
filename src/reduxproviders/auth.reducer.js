@@ -1,7 +1,7 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import baseServices from "@services/_base.api";
 import authServices from "@services/auth";
-import { storedHelper } from "@utils/stored.helper";
+import { cookie } from "@utils/crossCutting";
 import storageHandler from "@constants/storageHandler";
 
 // ==============================|| ACTIONS ||============================== //
@@ -101,9 +101,9 @@ export const auth = createSlice({
   reducers: {
     SIGN_OUT: (state) => {
       localStorage.removeItem(storageHandler.AUTH.CURRENT_USER);
-      storedHelper.removeCookie(storageHandler.AUTH.ACCESS_TOKEN);
-      storedHelper.removeCookie(storageHandler.AUTH.REFRESH_TOKEN);
-      storedHelper.removeCookie(storageHandler.AUTH.VERIFIED_2FA);
+      cookie.del(storageHandler.AUTH.ACCESS_TOKEN);
+      cookie.del(storageHandler.AUTH.REFRESH_TOKEN);
+      cookie.del(storageHandler.AUTH.VERIFIED_2FA);
 
       return { ...state, ...initialState };
     },
@@ -150,17 +150,17 @@ export const auth = createSlice({
           );
 
           // save token to cookie
-          storedHelper.setCookie(
+          cookie.set(
             storageHandler.AUTH.VERIFIED_2FA,
             results.verified_token + ""
           );
 
-          storedHelper.setCookie(
+          cookie.set(
             storageHandler.AUTH.ACCESS_TOKEN,
             results.access_token
           );
 
-          // storedHelper.setCookie(
+          // cookie.set(
           //   storageHandler.AUTH.REFRESH_TOKEN,
           //   results.refresh_token
           // );
@@ -243,12 +243,12 @@ export const auth = createSlice({
 
         if (payload?.ok) {
           // save token to cookie
-          storedHelper.setCookie(
+          cookie.set(
             storageHandler.AUTH.VERIFIED_2FA,
             results.verified_token + ""
           );
 
-          storedHelper.setCookie(
+          cookie.set(
             storageHandler.AUTH.ACCESS_TOKEN,
             results.access_token
           );
@@ -302,17 +302,17 @@ export const auth = createSlice({
           );
 
           // save token to cookie
-          storedHelper.setCookie(
+          cookie.set(
             storageHandler.AUTH.VERIFIED_2FA,
             results.verified_token + ""
           );
 
-          storedHelper.setCookie(
+          cookie.set(
             storageHandler.AUTH.ACCESS_TOKEN,
             results.access_token
           );
 
-          // storedHelper.setCookie(
+          // cookie.set(
           //   storageHandler.AUTH.REFRESH_TOKEN,
           //   results.refresh_token
           // );

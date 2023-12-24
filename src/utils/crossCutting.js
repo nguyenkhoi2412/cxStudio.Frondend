@@ -1206,22 +1206,12 @@ export const hook = {
   },
 
   /*
-   * useAsync
+   * useTimeout
    * How to use it?
-   * const { execute, status, value, error } = useAsync(myFunction, false);
-   * <button onClick={execute} disabled={status === "pending"}>
-        {status !== "pending" ? "Click me" : "Loading..."}
-     </button>
-   * const myFunction = () => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          const rnd = Math.random() * 10;
-          rnd <= 5
-            ? resolve("Submitted successfully 🙌")
-            : reject("Oh no there was an error 😞");
-        }, 2000);
-      });
-    };
+   * const ready = useTimeout(2000);
+   * useEffect(() => {
+   *  process anything after ready is 2s
+   * }, [ready])
    */
   useTimeout: (ms = 0) => {
     const [ready, setReady] = useState(false);
@@ -1237,6 +1227,51 @@ export const hook = {
     }, [ms]);
 
     return ready;
+  },
+
+  /**
+   * useInterval
+   * How to use it?
+   * const { start, stop } = useInterval({
+   *  duration: 1000,
+   *  startImmediate: false,
+   *  callback: () => {
+   *     process func
+   *   }
+   * });
+   */
+  useInterval: ({ startImmediate, duration, callback }) => {
+    const [count, updateCount] = useState(0);
+    const [intervalState, setIntervalState] = useState(
+      startImmediate === undefined ? true : startImmediate
+    );
+    const [intervalId, setIntervalId] = useState(null);
+
+    useEffect(() => {
+      if (intervalState) {
+        const intervalId = setInterval(() => {
+          updateCount(count + 1);
+          callback && callback();
+        }, duration);
+        setIntervalId(intervalId);
+      }
+
+      return () => {
+        if (intervalId) {
+          clearInterval(intervalId);
+          setIntervalId(null);
+        }
+      };
+    }, [intervalState, count]);
+    return {
+      intervalId,
+      start: () => {
+        setIntervalState(true);
+      },
+      stop: () => {
+        setIntervalState(false);
+      },
+    };
   },
 
   /*
@@ -1310,5 +1345,142 @@ export const hook = {
       };
     }, []); // Empty array ensures that effect is only run on mount and unmount
     return keyPressed;
+  },
+
+  /**
+   * useSession
+   * How to use it?
+   * const { session, saveJWT, clear } = useSession("storage-key");
+   */
+  useSession: (sessionKey, keepOnWindowClosed = false) => {
+    if (!sessionKey) {
+      throw new Error(
+        "sessionKey was not provided to useSession hook. Example: useSession('facebook-session')"
+      );
+    }
+
+    const getStorage = () => {
+      return keepOnWindowClosed ? localStorage : sessionStorage;
+    };
+    const getStorageValue = () => {
+      try {
+        const storageValue = getStorage().getItem(sessionKey);
+        if (storageValue != null) {
+          // There is a session in the storage already
+          try {
+            const session = JSON.parse(storageValue);
+            return session;
+          } catch (_a) {
+            // Oops... It seems it wasn't an object, returning as String then
+            return storageValue;
+          }
+        }
+      } catch (_b) {
+        // This catch block handles the known issues listed here: https://caniuse.com/#feat=namevalue-storage
+        console.warn(
+          "useSession could not access the browser storage. Session will be lost when closing browser window"
+        );
+      }
+      return null;
+    };
+    const [state, setState] = useState(getStorageValue);
+    const save = (sessionValue) => {
+      if (typeof sessionValue == "object" || typeof sessionValue === "string") {
+        getStorage().setItem(sessionKey, JSON.stringify(sessionValue));
+        setState(sessionValue);
+      } else {
+        throw new Error(
+          "useSession hook only accepts objects or strings as session values"
+        );
+      }
+    };
+
+    const saveJWT = (jwt) => {
+      try {
+        const base64Url = jwt.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        save(JSON.parse(window.atob(base64)));
+      } catch (ex) {
+        throw new Error("Could not parse provided Json Web Token: " + ex);
+      }
+    };
+
+    const clear = () => {
+      getStorage().removeItem(sessionKey);
+      setState(null);
+    };
+    const syncState = (event) => {
+      if (event.key === sessionKey) {
+        setState(getStorageValue());
+      }
+    };
+    useEffect(() => {
+      window.addEventListener("storage", syncState);
+      return () => {
+        window.removeEventListener("storage", syncState);
+      };
+    }, [sessionKey]);
+    return { session: state, save, saveJWT, clear };
+  },
+};
+
+export const cookie = {
+  set: (name, value, hours = 6) => {
+    // var expires = "";
+    // if (hours) {
+    //   var date = new Date();
+    //   //date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    //   date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+    //   expires = "; expires=" + date.toUTCString();
+    // }
+    // document.cookie = name + "=" + (value || "") + expires + "; path=/";
+
+    var date = new Date();
+    date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+    var options = {
+      path: "/",
+      // add other defaults here if necessary
+      expires: date,
+    };
+
+    if (options.expires instanceof Date) {
+      options.expires = options.expires.toUTCString();
+    }
+
+    let updatedCookie =
+      encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+    for (let optionKey in options) {
+      updatedCookie += "; " + optionKey;
+      let optionValue = options[optionKey];
+      if (optionValue !== true) {
+        updatedCookie += "=" + optionValue;
+      }
+    }
+
+    cookie.del(name);
+    document.cookie = updatedCookie;
+  },
+  get: (name) => {
+    // var nameEQ = name + "=";
+    // var ca = document.cookie.split(";");
+    // for (var i = 0; i < ca.length; i++) {
+    //   var c = ca[i];
+    //   while (c.charAt(0) == " ") c = c.substring(1, c.length);
+    //   if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    // }
+    // return null;
+    let matches = document.cookie.match(
+      new RegExp(
+        "(?:^|; )" +
+          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+          "=([^;]*)"
+      )
+    );
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  },
+  del: (name) => {
+    document.cookie =
+      name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
   },
 };
