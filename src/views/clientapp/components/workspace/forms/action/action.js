@@ -55,6 +55,7 @@ const FormAction = () => {
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
       setSubmitting(true);
+
       uploadFileRef.current.handleUploadFiles().then((rs) => {
         if (rs?.filenames?.length > 0) {
           values.logo_path = rs.filenames[0];

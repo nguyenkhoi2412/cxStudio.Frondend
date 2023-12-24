@@ -1,7 +1,7 @@
 import "./_uploadFile.scss";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import { hookInstance } from "@utils/hookInstance";
+import { hook } from "@utils/crossCutting";
 import { Typography, Button, Box, Alert, LinearProgress } from "@mui/material";
 import { CloudUpload } from "@mui/icons-material";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
@@ -20,7 +20,7 @@ const UploadFile = React.forwardRef(
     const [alertSeverity, setAlertSeverity] = React.useState(null);
     const [progressUploadFileCompleted, setProgressUploadFileCompleted] =
       React.useState(0);
-    const progressUploadFileThrottle = hookInstance.useThrottle(
+    const progressUploadFileThrottle = hook.useThrottle(
       progressUploadFileCompleted,
       400
     );

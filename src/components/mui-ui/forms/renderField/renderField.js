@@ -49,7 +49,7 @@ const RenderField = ({ metadata, formik, renderType = "" }) => {
           setValue={formik.setFieldValue}
           onChange={formik.handleChange}
           error={hasError}
-          helperText={hasError ? item.helperText : ""}
+          helperText={hasError ? errorText : ""}
           xs={item.xs}
           sm={item.sm}
         />

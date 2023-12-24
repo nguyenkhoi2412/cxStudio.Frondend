@@ -571,7 +571,7 @@ const SelectField = (props) => {
       <React.Fragment key={props.id + "select"}>
         <InputLabel id={props.id + "-label"}>{props.label}</InputLabel>
         <Select
-          key={crossCutting.generate.uuidv4()}
+          key={crossCutting.generate.key()}
           fullWidth
           multiple={multiple}
           tabIndex={props.tabIndex}
@@ -683,7 +683,5 @@ export default React.memo(SelectField, (props, nextProps) => {
 const compareArrays = (a, b) =>
   a.length === b.length &&
   a.every(
-    (element, index) =>
-      element === b[index] ||
-      JSON.stringify(element) === JSON.stringify(b[index])
+    (element, index) => element === b[index] || Object.is(element, b[index])
   );

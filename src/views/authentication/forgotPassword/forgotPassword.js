@@ -5,7 +5,7 @@ import _schema from "./_schema";
 import { useSelector } from "react-redux";
 //#region mui-ui
 import Link from "@mui/material/Link";
-import { hookInstance } from "@utils/hookInstance";
+import { hook } from "@utils/crossCutting";
 import { navigateLocation } from "@routes/navigateLocation";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";

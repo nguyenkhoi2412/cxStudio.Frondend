@@ -3,7 +3,7 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 //#region utils support
-import { hookInstance } from "@utils/hookInstance";
+import { hook } from "@utils/crossCutting";
 import { isAuth } from "@utils/requireAuth";
 //#endregion
 //#region mui-ui

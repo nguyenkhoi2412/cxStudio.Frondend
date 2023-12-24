@@ -1,4 +1,4 @@
-import { hookInstance } from "@utils/hookInstance";
+import { hook } from "@utils/crossCutting";
 import { useTheme, styled } from "@mui/material/styles";
 import MainContentCardWrapper from "@dashboard/_layout/mainContentCardWrapper";
 import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";

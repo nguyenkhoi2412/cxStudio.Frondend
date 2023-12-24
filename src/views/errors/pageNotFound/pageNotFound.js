@@ -4,7 +4,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { hookInstance } from "@utils/hookInstance";
+import { hook } from "@utils/crossCutting";
 import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
 import Link from "@mui/material/Link";

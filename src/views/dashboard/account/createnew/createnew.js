@@ -1,4 +1,4 @@
-import { hookInstance } from "@utils/hookInstance";
+import { hook } from "@utils/crossCutting";
 import SignUp from "@authentication/signUp";
 
 const CreateNew = (props) => {

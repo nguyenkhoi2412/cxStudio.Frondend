@@ -44,6 +44,7 @@ export default {
       company: yup.object().shape({
         [locale.lang]: yup.string().required(t("validate.required")),
       }),
+      industry_related: yup.string().required(t("validate.required")),
     };
 
     return yup.object().shape(objSchema);

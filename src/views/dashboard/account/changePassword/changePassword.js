@@ -1,7 +1,7 @@
 import * as React from "react";
 //#region utils support
 import { useTranslation } from "react-i18next";
-import { hookInstance } from "@utils/hookInstance";
+import { hook } from "@utils/crossCutting";
 //#endregion
 
 // material-ui

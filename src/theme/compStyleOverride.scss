@@ -137,6 +137,17 @@
   }
 }
 
+// ==============================|| MuiMenu ||============================== //
+.MuiMenu-root {
+  .MuiMenu-paper {
+    ul.MuiMenu-list {
+      li.MuiMenuItem-root {
+        color: var(--text-heading);
+      }
+    }
+  }
+}
+
 // ==============================|| MuiListItem ||============================== //
 .MuiListItemButton {
   &-root {

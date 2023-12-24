@@ -1,5 +1,5 @@
 import { useRoutes } from "react-router-dom";
-import { hookInstance } from "@utils/hookInstance";
+import { hook } from "@utils/crossCutting";
 import { useTranslation } from "react-i18next";
 // routes
 // import AuthenticationRoutes from "./data/authentication";
@@ -19,7 +19,7 @@ export const RouteMaps = () => {
 };
 
 const buildTitle = () => {
-  const currentLocation = hookInstance.useRouter();
+  const currentLocation = hook.useRouter();
   const { t } = useTranslation();
   const { pathname } = currentLocation;
 
