@@ -108,7 +108,7 @@ const FormAction = () => {
         }}
       >
         <Grid container>
-          <Grid item className="desc" ref={ref} textAlign={"left"}>
+          <Grid item className="desc" textAlign={"left"}>
             <Typography variant="h2" gutterBottom>
               {t("workspace.let_get_started")}
             </Typography>
