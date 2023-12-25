@@ -17,6 +17,7 @@ import {
   useState,
   useEffect,
   useCallback,
+  useLayoutEffect,
 } from "react";
 import {
   useParams,
@@ -1061,6 +1062,37 @@ export const hook = {
     return [x, y, bind];
   },
 
+  /**
+   * useOnGlobalEvent
+   * How to use it?
+   * useOnGlobalEvent('mousemove', e => {
+   *  console.log(`(${e.x}, ${e.y})`);
+   * });
+   */
+  useOnGlobalEvent: (type, callback, options) => {
+    const listener = React.useRef(null);
+    const previousProps = React.useRef({ type, options });
+
+    React.useEffect(() => {
+      const { type: previousType, options: previousOptions } = previousProps;
+
+      if (listener.current) {
+        window.removeEventListener(
+          previousType,
+          listener.current,
+          previousOptions
+        );
+      }
+
+      listener.current = window.addEventListener(type, callback, options);
+      previousProps.current = { type, options };
+
+      return () => {
+        window.removeEventListener(type, listener.current, options);
+      };
+    }, [callback, type, options]);
+  },
+
   /*
    * useRouter
    * How to use it?
@@ -1452,6 +1484,110 @@ export const hook = {
     );
 
     return [hash, updateHash];
+  },
+
+  /**
+   * useCopyToClipboard
+   * How to use it?
+   * const [copied, copy] = useCopyToClipboard('Lorem ipsum');
+   * <button onClick={copy}>Click to copy</button>
+   * <span>{copied && 'Copied!'}</span>
+   */
+  useCopyToClipboard: (text) => {
+    const copyToClipboard = (str) => {
+      const el = document.createElement("textarea");
+      el.value = str;
+      el.setAttribute("readonly", "");
+      el.style.position = "absolute";
+      el.style.left = "-9999px";
+      document.body.appendChild(el);
+      const selected =
+        document.getSelection().rangeCount > 0
+          ? document.getSelection().getRangeAt(0)
+          : false;
+      el.select();
+      const success = document.execCommand("copy");
+      document.body.removeChild(el);
+      if (selected) {
+        document.getSelection().removeAllRanges();
+        document.getSelection().addRange(selected);
+      }
+      return success;
+    };
+
+    const [copied, setCopied] = React.useState(false);
+
+    const copy = React.useCallback(() => {
+      if (!copied) setCopied(copyToClipboard(text));
+    }, [text]);
+    React.useEffect(() => () => setCopied(false), [text]);
+
+    return [copied, copy];
+  },
+
+  /**
+   * useDimensions
+   * How to use it?
+   * const [dimensions, ref] = hook.useDimensions();
+   * <div ref={ref}>html content</div>
+   */
+  useDimensions: () => {
+    const [height, setHeight] = useState(0);
+    const [width, setWidth] = useState(0);
+    const [dimensions, setDimensions] = useState({
+      width: 0,
+      height: 0,
+      left: 0,
+      top: 0,
+      bottom: 0,
+      right: 0,
+    });
+
+    // The following measures the size of the div and listens to changes
+    const elementRef = useRef();
+    const RESET_TIMEOUT = 100;
+
+    const getDimensions = () => {
+      if (elementRef.current === undefined) return;
+      const height = elementRef.current.offsetHeight;
+      const width = elementRef.current.offsetWidth;
+
+      const left = elementRef.current.offsetLeft;
+      const top = elementRef.current.offsetTop;
+
+      const bottom = top + height;
+      const right = left + width;
+
+      setDimensions({
+        ...dimensions,
+        height,
+        width,
+        left,
+        top,
+        bottom,
+        right,
+      });
+    };
+
+    useLayoutEffect(() => {
+      getDimensions();
+    }, []);
+
+    const debouncedDimensions = crossCutting.debounce(
+      getDimensions,
+      RESET_TIMEOUT
+    );
+
+    useEffect(() => {
+      window.addEventListener("resize", debouncedDimensions);
+      window.addEventListener("scroll", debouncedDimensions);
+      return () => {
+        window.removeEventListener("resize", debouncedDimensions);
+        window.removeEventListener("scroll", debouncedDimensions);
+      };
+    });
+
+    return [{ dimensions }, elementRef];
   },
 };
 

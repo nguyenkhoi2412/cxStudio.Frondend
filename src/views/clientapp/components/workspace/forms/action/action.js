@@ -5,6 +5,7 @@ import WpAlert from "@components/mui-ui/alert";
 import { useSnackbar } from "notistack";
 import severity from "@constants/severity";
 import { useFormik } from "formik";
+import { hook } from "@utils/crossCutting";
 import _globalVars from "@constants/variables";
 import RenderField from "@components/mui-ui/forms/renderField";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
@@ -107,7 +108,7 @@ const FormAction = () => {
         }}
       >
         <Grid container>
-          <Grid item className="desc" textAlign={"left"}>
+          <Grid item className="desc" ref={ref} textAlign={"left"}>
             <Typography variant="h2" gutterBottom>
               {t("workspace.let_get_started")}
             </Typography>

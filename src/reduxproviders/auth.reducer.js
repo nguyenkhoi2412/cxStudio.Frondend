@@ -146,7 +146,7 @@ export const auth = createSlice({
           // save localStore USER INFOS
           storage.local.set(
             storageHandler.AUTH.CURRENT_USER,
-            JSON.stringify(newState.currentUser)
+            newState.currentUser
           );
 
           // save token to storage.cookie
@@ -155,7 +155,10 @@ export const auth = createSlice({
             results.verified_token + ""
           );
 
-          storage.cookie.set(storageHandler.AUTH.ACCESS_TOKEN, results.access_token);
+          storage.cookie.set(
+            storageHandler.AUTH.ACCESS_TOKEN,
+            results.access_token
+          );
 
           // storage.cookie.set(
           //   storageHandler.AUTH.REFRESH_TOKEN,
@@ -206,7 +209,7 @@ export const auth = createSlice({
             // save localStore USER INFOS
             storage.local.set(
               storageHandler.AUTH.CURRENT_USER,
-              JSON.stringify(newState.currentUser)
+              newState.currentUser
             );
           }
           return newState;
@@ -244,7 +247,10 @@ export const auth = createSlice({
             results.verified_token + ""
           );
 
-          storage.cookie.set(storageHandler.AUTH.ACCESS_TOKEN, results.access_token);
+          storage.cookie.set(
+            storageHandler.AUTH.ACCESS_TOKEN,
+            results.access_token
+          );
         }
 
         return {
@@ -291,7 +297,7 @@ export const auth = createSlice({
           // save localStore USER INFOS
           storage.local.set(
             storageHandler.AUTH.CURRENT_USER,
-            JSON.stringify(newState.currentUser)
+            newState.currentUser
           );
 
           // save token to storage.cookie
@@ -300,7 +306,10 @@ export const auth = createSlice({
             results.verified_token + ""
           );
 
-          storage.cookie.set(storageHandler.AUTH.ACCESS_TOKEN, results.access_token);
+          storage.cookie.set(
+            storageHandler.AUTH.ACCESS_TOKEN,
+            results.access_token
+          );
 
           // storage.cookie.set(
           //   storageHandler.AUTH.REFRESH_TOKEN,
