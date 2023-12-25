@@ -639,14 +639,14 @@ export const array = {
    * @params index: index position append new item
    * @params items: item insert
    */
-  insert: (arr, index, ...items) => {
+  insert: (currentArray, index, ...items) => {
     return [
       // part of the array before the specified index
-      ...arr.slice(0, index),
+      ...currentArray.slice(0, index),
       // inserted items
       ...items,
       // part of the array after the specified index
-      ...arr.slice(index),
+      ...currentArray.slice(index + 1, currentArray.length),
     ];
   },
   update: (arr, newItem, field = "_id") => {
