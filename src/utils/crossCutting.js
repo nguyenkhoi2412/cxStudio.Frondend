@@ -1387,6 +1387,15 @@ export const hook = {
   },
 
   /**
+   * useLocalStorage
+   * How to use it?
+   * const { session, saveJWT, clear } = useLocalStorage("storage-key");
+   */
+  useLocalStorage: (sessionKey) => {
+    return hook.useSession(sessionKey, true);
+  },
+
+  /**
    * useWindowScrollPosition
    * How to use it?
    * const { x, y } = useWindowScrollPosition();
@@ -1444,8 +1453,6 @@ export const hook = {
 
     return [hash, updateHash];
   },
-
-  
 };
 
 //* ==============================|| SESSION ||============================== //
@@ -1507,5 +1514,19 @@ export const cookie = {
   del: (name) => {
     document.cookie =
       name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  },
+};
+
+export const savedLocal = {
+  set: (key, data) => {
+    localStorage.removeItem(key);
+    localStorage.setItem(key, JSON.stringify(data));
+  },
+  get: (key) => {
+    if (crossCutting.check.isNull(localStorage.getItem(key))) return undefined;
+    return JSON.parse(localStorage.getItem(key));
+  },
+  del: (key) => {
+    localStorage.removeItem(key);
   },
 };

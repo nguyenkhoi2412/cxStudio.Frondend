@@ -41,7 +41,7 @@ export const customization = createSlice({
           };
         },
         [actionTypes.SET_MODE]: () => {
-          localStorage.setItem("themeMode", payload.mode);
+          savedLocal.set("themeMode", payload.mode);
           return {
             ...state,
             mode: payload.mode,

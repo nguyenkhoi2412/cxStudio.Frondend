@@ -31,7 +31,7 @@ const App = (props) => {
   const customization = useSelector((state) => state.customization);
   const siteDatas = useSelector(siteState);
   const dispatch = useDispatch();
-  const savedLocale = hook.useSession("locale", true);
+  const savedLocale = hook.useLocalStorage("locale");
 
   document.body.classList.toggle("darkTheme", customization.mode === "dark");
   document.body.classList.toggle(

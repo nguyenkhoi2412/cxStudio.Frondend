@@ -1,4 +1,4 @@
-import { crossCutting } from "../utils/crossCutting";
+import { crossCutting, savedLocal } from "../utils/crossCutting";
 
 export default {
   ASSET_PATH: process.env.ASSET_PATH || "/",
@@ -12,17 +12,18 @@ export default {
   regexEditor: /<p><br><\/p>|<div><br><\/div>/g,
   //* use for frontend site
   defaultDateFormat: "YYYY-MM-DD",
-  locale: crossCutting.check.isNotNull(localStorage.getItem("locale"))
-    ? JSON.parse(localStorage.getItem("locale"))
-    : {
-        _id: "36cb8e3e-9167-42a9-9dce-877541901e2d",
-        lang: "en",
-        code: "en-EN",
-        language_name: "English",
-        date_format: "MM-DD-YYYY",
-        time_format: "HH:mm",
-        currency: "$",
-      },
+  locale:
+    savedLocal.get("locale") !== undefined
+      ? savedLocal.get("locale")
+      : {
+          _id: "36cb8e3e-9167-42a9-9dce-877541901e2d",
+          lang: "en",
+          code: "en-EN",
+          language_name: "English",
+          date_format: "MM-DD-YYYY",
+          time_format: "HH:mm",
+          currency: "$",
+        },
   viewType: {
     LIST: "list",
     GRID: "grid",
