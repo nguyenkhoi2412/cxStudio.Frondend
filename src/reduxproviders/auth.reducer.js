@@ -1,7 +1,7 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import baseServices from "@services/_base.api";
 import authServices from "@services/auth";
-import { cookie, savedLocal } from "@utils/crossCutting";
+import { storage } from "@utils/crossCutting";
 import storageHandler from "@constants/storageHandler";
 
 // ==============================|| ACTIONS ||============================== //
@@ -71,8 +71,8 @@ export const SIGNIN_SOCIAL_GOOGLE = createAsyncThunk(
 //#endregion
 
 const currentUser = () => {
-  if (savedLocal.get(storageHandler.AUTH.CURRENT_USER) !== undefined) {
-    return savedLocal.get(storageHandler.AUTH.CURRENT_USER);
+  if (storage.local.get(storageHandler.AUTH.CURRENT_USER) !== undefined) {
+    return storage.local.get(storageHandler.AUTH.CURRENT_USER);
   }
 
   return {
@@ -100,10 +100,10 @@ export const auth = createSlice({
   initialState: initialState,
   reducers: {
     SIGN_OUT: (state) => {
-      savedLocal.del(storageHandler.AUTH.CURRENT_USER);
-      cookie.del(storageHandler.AUTH.ACCESS_TOKEN);
-      cookie.del(storageHandler.AUTH.REFRESH_TOKEN);
-      cookie.del(storageHandler.AUTH.VERIFIED_2FA);
+      storage.local.del(storageHandler.AUTH.CURRENT_USER);
+      storage.cookie.del(storageHandler.AUTH.ACCESS_TOKEN);
+      storage.cookie.del(storageHandler.AUTH.REFRESH_TOKEN);
+      storage.cookie.del(storageHandler.AUTH.VERIFIED_2FA);
 
       return { ...state, ...initialState };
     },
@@ -144,20 +144,20 @@ export const auth = createSlice({
 
         if (payload?.ok) {
           // save localStore USER INFOS
-          savedLocal.set(
+          storage.local.set(
             storageHandler.AUTH.CURRENT_USER,
             JSON.stringify(newState.currentUser)
           );
 
-          // save token to cookie
-          cookie.set(
+          // save token to storage.cookie
+          storage.cookie.set(
             storageHandler.AUTH.VERIFIED_2FA,
             results.verified_token + ""
           );
 
-          cookie.set(storageHandler.AUTH.ACCESS_TOKEN, results.access_token);
+          storage.cookie.set(storageHandler.AUTH.ACCESS_TOKEN, results.access_token);
 
-          // cookie.set(
+          // storage.cookie.set(
           //   storageHandler.AUTH.REFRESH_TOKEN,
           //   results.refresh_token
           // );
@@ -204,7 +204,7 @@ export const auth = createSlice({
 
           if (response?.ok) {
             // save localStore USER INFOS
-            savedLocal.set(
+            storage.local.set(
               storageHandler.AUTH.CURRENT_USER,
               JSON.stringify(newState.currentUser)
             );
@@ -238,13 +238,13 @@ export const auth = createSlice({
         const results = payload?.rs;
 
         if (payload?.ok) {
-          // save token to cookie
-          cookie.set(
+          // save token to storage.cookie
+          storage.cookie.set(
             storageHandler.AUTH.VERIFIED_2FA,
             results.verified_token + ""
           );
 
-          cookie.set(storageHandler.AUTH.ACCESS_TOKEN, results.access_token);
+          storage.cookie.set(storageHandler.AUTH.ACCESS_TOKEN, results.access_token);
         }
 
         return {
@@ -289,20 +289,20 @@ export const auth = createSlice({
 
         if (payload?.ok) {
           // save localStore USER INFOS
-          savedLocal.set(
+          storage.local.set(
             storageHandler.AUTH.CURRENT_USER,
             JSON.stringify(newState.currentUser)
           );
 
-          // save token to cookie
-          cookie.set(
+          // save token to storage.cookie
+          storage.cookie.set(
             storageHandler.AUTH.VERIFIED_2FA,
             results.verified_token + ""
           );
 
-          cookie.set(storageHandler.AUTH.ACCESS_TOKEN, results.access_token);
+          storage.cookie.set(storageHandler.AUTH.ACCESS_TOKEN, results.access_token);
 
-          // cookie.set(
+          // storage.cookie.set(
           //   storageHandler.AUTH.REFRESH_TOKEN,
           //   results.refresh_token
           // );

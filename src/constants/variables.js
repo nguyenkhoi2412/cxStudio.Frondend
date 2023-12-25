@@ -1,4 +1,4 @@
-import { crossCutting, savedLocal } from "../utils/crossCutting";
+import { storage } from "../utils/crossCutting";
 
 export default {
   ASSET_PATH: process.env.ASSET_PATH || "/",
@@ -13,8 +13,8 @@ export default {
   //* use for frontend site
   defaultDateFormat: "YYYY-MM-DD",
   locale:
-    savedLocal.get("locale") !== undefined
-      ? savedLocal.get("locale")
+    storage.local.get("locale") !== undefined
+      ? storage.local.get("locale")
       : {
           _id: "36cb8e3e-9167-42a9-9dce-877541901e2d",
           lang: "en",

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import _globalVars from "@constants/variables";
+import { storage } from "@utils/crossCutting";
 
 // project imports
 import configSettings from "configSettings";
@@ -41,7 +42,7 @@ export const customization = createSlice({
           };
         },
         [actionTypes.SET_MODE]: () => {
-          savedLocal.set("themeMode", payload.mode);
+          storage.local.set("themeMode", payload.mode);
           return {
             ...state,
             mode: payload.mode,

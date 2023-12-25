@@ -6,7 +6,7 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { SHOW_SNACKBAR } from "@components/mui-ui/snackBar/snackBar.reducer";
-import { cookie } from "./crossCutting";
+import { storage } from "./crossCutting";
 // You can use your own logic to set your local or production domain
 const baseDomain = process.env.API_HOSTNAME;
 const baseURL = `${baseDomain}/api`;
@@ -130,18 +130,18 @@ axiosInstance.interceptors.response.use(
 
 //#region functions support for axios callback
 const getLocalRefreshToken = () => {
-  return cookie.get(stored.AUTH.REFRESH_TOKEN);
+  return storage.cookie.get(stored.AUTH.REFRESH_TOKEN);
 };
 
 const getLocalAccessToken = () => {
-  return cookie.get(stored.AUTH.ACCESS_TOKEN);
+  return storage.cookie.get(stored.AUTH.ACCESS_TOKEN);
 };
 
 const removeLocalToken = () => {
   // const module = CURRENT_MODULES();
   // localStorage.removeItem(stored.AUTH.CURRENT_USER);
-  // cookie.del(stored.AUTH.ACCESS_TOKEN);
-  // cookie.del(stored.AUTH.REFRESH_TOKEN);
+  // storage.cookie.del(stored.AUTH.ACCESS_TOKEN);
+  // storage.cookie.del(stored.AUTH.REFRESH_TOKEN);
   // window.location.href = "/" + module + "/login";
 };
 
