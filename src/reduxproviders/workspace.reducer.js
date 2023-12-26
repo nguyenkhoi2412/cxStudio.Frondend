@@ -46,7 +46,7 @@ export const workspace = createSlice({
       .addCase(INSERT_NEW.fulfilled, (state, { payload }) => {
         let results = payload?.rs;
         let data = [...current(state).d];
-        data = array.insert(data, data.length, results);
+        data = data.push(results);
 
         return {
           ...state,

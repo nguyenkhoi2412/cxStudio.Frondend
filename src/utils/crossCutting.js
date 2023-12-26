@@ -640,14 +640,7 @@ export const array = {
    * @params items: item insert
    */
   insert: (currentArray, index, ...items) => {
-    return [
-      // part of the array before the specified index
-      ...currentArray.slice(0, index),
-      // inserted items
-      ...items,
-      // part of the array after the specified index
-      ...currentArray.slice(index + 1, currentArray.length),
-    ];
+    return currentArray.splice(index + 1, 0, ...items);
   },
   update: (arr, newItem, field = "_id") => {
     var itemField = Array.isArray(newItem) ? newItem[0] : newItem;
@@ -723,6 +716,36 @@ export const array = {
     });
 
     return tree;
+  },
+  /**
+   * array.orderBy
+   * How to use it?
+   * [{ name: 'fred', age: 48 },
+   * { name: 'barney', age: 36 },
+   * { name: 'fred', age: 40 }]
+   * orderBy(users, ['name', 'age'], ['asc', 'desc']);
+   */
+  orderBy: (arr, props, orders) =>
+    [...arr].sort((a, b) =>
+      props.reduce((acc, prop, i) => {
+        if (acc === 0) {
+          const [p1, p2] =
+            orders && orders[i] === "desc"
+              ? [b[prop], a[prop]]
+              : [a[prop], b[prop]];
+          acc = p1 > p2 ? 1 : p1 < p2 ? -1 : 0;
+        }
+        return acc;
+      }, 0)
+    ),
+  chunks: (currentAray, chunk_size) => {
+    var results = [];
+
+    while (currentAray.length) {
+      results.push(currentAray.splice(0, chunk_size));
+    }
+
+    return results;
   },
 };
 
@@ -1614,9 +1637,7 @@ export const hook = {
 
     const insertAtPos = (index, newElement) => {
       setArray((currentArray) => [
-        ...currentArray.slice(0, index),
-        newElement,
-        ...currentArray.slice(index + 1, currentArray.length),
+        ...currentArray.splice(index + 1, 0, ...newElement),
       ]);
     };
 
