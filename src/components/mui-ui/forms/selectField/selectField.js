@@ -681,7 +681,10 @@ export default React.memo(SelectField, (props, nextProps) => {
 });
 
 const compareArrays = (a, b) =>
-  a.length === b.length &&
-  a.every(
-    (element, index) => element === b[index] || Object.is(element, b[index])
-  );
+  (a.length === b.length &&
+    a.every(
+      (element, index) =>
+        element === b[index] ||
+        JSON.stringify(element) === JSON.stringify(b[index])
+    )) ||
+  Object.is(a, b);

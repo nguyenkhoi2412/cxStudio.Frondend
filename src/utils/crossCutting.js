@@ -130,6 +130,33 @@ export const crossCutting = {
     isNull: (value) => {
       return !crossCutting.check.isNotNull(value);
     },
+    isEquals: (a, b) => {
+      if (a === b) return true;
+
+      if (a instanceof Date && b instanceof Date)
+        return a.getTime() === b.getTime();
+
+      if (!a || !b || (typeof a !== "object" && typeof b !== "object"))
+        return a === b;
+
+      if (a.prototype !== b.prototype) return false;
+
+      const keys = Object.keys(a);
+      if (keys.length !== Object.keys(b).length) return false;
+
+      return (
+        // array compare with object
+        keys.every((k) => crossCutting.check.isEquals(a[k], b[k]))
+        // || array
+        // (a.length === b.length &&
+        //   a.every(
+        //     (element, index) =>
+        //       element === b[index] ||
+        //       JSON.stringify(element) === JSON.stringify(b[index])
+        //   )) ||
+        // Object.is(a, b)
+      );
+    },
     acceptFileExtension: (file, filetypes = /jpeg|jpg|png/) => {
       var mimetype = filetypes.test(file.mimetype);
       var extname = filetypes.test(
@@ -509,12 +536,20 @@ export const object = {
     keys.split(".").reduce((o, k) => (o || {})[k], object),
 
   isEmpty: (obj) => {
+    let isE =
+      obj === null || obj === undefined || !(Object.keys(obj) || obj).length;
+    if (isE) return true;
+
     for (var prop in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, prop)) {
         return false;
       }
     }
     return true;
+  },
+
+  isEquals: (a, b) => {
+    return crossCutting.check.isEquals(a, b);
   },
 
   //* QUERY
@@ -586,21 +621,6 @@ export const object = {
     return diff;
   },
 
-  diffArrayObjects: (current, otherArray, filterKey = "_id") => {
-    return current.filter(
-      ({ [filterKey]: currentKey }) =>
-        !otherArray.some(({ [filterKey]: otherKey }) => currentKey === otherKey)
-    );
-  },
-
-  compareArrays: (a, b) =>
-    a.length === b.length &&
-    a.every(
-      (element, index) =>
-        element === b[index] ||
-        JSON.stringify(element) === JSON.stringify(b[index])
-    ),
-
   // Check if the input is a json object (whether startsWidth '{' and endsWidth '}') or not
   isJsonObject: (text) => {
     let str = String(text).trim();
@@ -622,13 +642,84 @@ export const object = {
     return str.startsWith("[") && str.endsWith("]");
   },
 
-  compareArrays: (a, b) =>
-    a.length === b.length &&
-    a.every(
-      (element, index) =>
-        element === b[index] ||
-        JSON.stringify(element) === JSON.stringify(b[index])
-    ),
+  /**
+   * use an object as an array
+   * const x = toKeyedArray({ a: 'A', b: 'B' });
+   */
+  toKeyedArray: (obj) => {
+    const methods = {
+      map(target) {
+        return (callback) =>
+          Object.keys(target).map((key) => callback(target[key], key, target));
+      },
+      reduce(target) {
+        return (callback, accumulator) =>
+          Object.keys(target).reduce(
+            (acc, key) => callback(acc, target[key], key, target),
+            accumulator
+          );
+      },
+      forEach(target) {
+        return (callback) =>
+          Object.keys(target).forEach((key) =>
+            callback(target[key], key, target)
+          );
+      },
+      filter(target) {
+        return (callback) =>
+          Object.keys(target).reduce((acc, key) => {
+            if (callback(target[key], key, target)) acc[key] = target[key];
+            return acc;
+          }, {});
+      },
+      slice(target) {
+        return (start, end) => Object.values(target).slice(start, end);
+      },
+      find(target) {
+        return (callback) => {
+          return (Object.entries(target).find(([key, value]) =>
+            callback(value, key, target)
+          ) || [])[0];
+        };
+      },
+      findKey(target) {
+        return (callback) =>
+          Object.keys(target).find((key) => callback(target[key], key, target));
+      },
+      includes(target) {
+        return (val) => Object.values(target).includes(val);
+      },
+      keyOf(target) {
+        return (value) =>
+          Object.keys(target).find((key) => target[key] === value) || null;
+      },
+      lastKeyOf(target) {
+        return (value) =>
+          Object.keys(target)
+            .reverse()
+            .find((key) => target[key] === value) || null;
+      },
+    };
+    const methodKeys = Object.keys(methods);
+
+    const handler = {
+      get(target, prop, receiver) {
+        if (methodKeys.includes(prop)) return methods[prop](...arguments);
+        const [keys, values] = [Object.keys(target), Object.values(target)];
+        if (prop === "length") return keys.length;
+        if (prop === "keys") return keys;
+        if (prop === "values") return values;
+        if (prop === Symbol.iterator)
+          return function* () {
+            for (value of values) yield value;
+            return;
+          };
+        else return Reflect.get(...arguments);
+      },
+    };
+
+    return new Proxy(obj, handler);
+  },
 };
 
 //* ==============================|| ARRAY ||============================== //
@@ -662,11 +753,14 @@ export const array = {
   },
   delete: (arr, objItems, field = "_id") => {
     return objItems.length
-      ? object.diffArrayObjects(arr, objItems) // deleteMany
+      ? array.diffArrayObjects(arr, objItems) // deleteMany
       : arr.filter((item) => {
           // deleteOne
           return item[field] !== objItems[field];
         });
+  },
+  removeDuplicate: (currentArray) => {
+    return [...new Set(currentArray)];
   },
   shuffle: (array) => {
     let ctr = array.length;
@@ -685,6 +779,35 @@ export const array = {
       array[index] = temp;
     }
     return array;
+  },
+  /**
+   * array.combine
+   * How to use it?
+   * const x = [
+      { id: 1, name: 'John' },
+      { id: 2, name: 'Maria' }
+    ];
+   * const y = [
+      { id: 1, age: 28 },
+      { id: 3, age: 26 },
+      { age: 3}
+    ];
+   *
+   * combine(x, y, 'id');
+   */
+  combine: (a, b, prop) =>
+    Object.values(
+      [...a, ...b].reduce((acc, v) => {
+        if (v[prop])
+          acc[v[prop]] = acc[v[prop]] ? { ...acc[v[prop]], ...v } : { ...v };
+        return acc;
+      }, {})
+    ),
+  diffArrayObjects: (current, otherArray, filterKey = "_id") => {
+    return current.filter(
+      ({ [filterKey]: currentKey }) =>
+        !otherArray.some(({ [filterKey]: otherKey }) => currentKey === otherKey)
+    );
   },
   buildHierarchy: (array = [], idField = "_id", parentField = "parent") => {
     let arr = [...array];
@@ -717,6 +840,9 @@ export const array = {
 
     return tree;
   },
+  isEquals: (a, b) => {
+    return crossCutting.check.isEquals(a, b);
+  },
   /**
    * array.orderBy
    * How to use it?
@@ -747,6 +873,23 @@ export const array = {
 
     return results;
   },
+  /**
+   * Partition array in two
+   * const users = [
+      { user: 'barney', age: 36, active: false },
+      { user: 'barn', age: 75, active: true },
+      { user: 'fred', age: 40, active: true },
+    ];
+    array.partition(users, o => o.active);
+   */
+  partition: (arr, fn) =>
+    arr.reduce(
+      (acc, val, i, arr) => {
+        acc[fn(val, i, arr) ? 0 : 1].push(val);
+        return acc;
+      },
+      [[], []]
+    ),
 };
 
 //* ==============================|| DATETIME ||============================== //
