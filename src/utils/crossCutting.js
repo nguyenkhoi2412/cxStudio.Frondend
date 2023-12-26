@@ -528,12 +528,55 @@ export const string = {
 
     return `${number}th`;
   },
+  copyToClipboard: (str) => {
+    const el = document.createElement("textarea");
+    el.value = str;
+    el.setAttribute("readonly", "");
+    el.style.position = "absolute";
+    el.style.left = "-9999px";
+    document.body.appendChild(el);
+    const selected =
+      document.getSelection().rangeCount > 0
+        ? document.getSelection().getRangeAt(0)
+        : false;
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    if (selected) {
+      document.getSelection().removeAllRanges();
+      document.getSelection().addRange(selected);
+    }
+  },
 };
 
 //* ==============================|| OBJECT ||============================== //
 export const object = {
-  getValue: (object, keys) =>
-    keys.split(".").reduce((o, k) => (o || {})[k], object),
+  // getValue: (object, keys) =>
+  //   keys.split(".").reduce((o, k) => (o || {})[k], object),
+
+  /**
+   * Get nested object property from path string
+   * const obj = {
+   *   selector: { to: { val: 'val to select' } },
+   *   target: [1, 2, { a: 'test' }],
+   * };
+   * get(obj, 'selector.to.val', 'target[0]', 'target[2].a'); // ['val to select', 1, 'test']
+   *
+   */
+  getValue: (obj, ...selectors) => {
+    const rs = [...selectors].map((item) =>
+      item
+        .replace(/\[([^\[\]]*)\]/g, ".$1.")
+        .split(".")
+        .filter((t) => t !== "")
+        .reduce((prev, cur) => prev && prev[cur], obj)
+    );
+    if (rs?.length === 1) {
+      return rs[0];
+    }
+
+    return rs;
+  },
 
   isEmpty: (obj) => {
     let isE =
@@ -780,6 +823,29 @@ export const array = {
     }
     return array;
   },
+  /**
+   * Find index by binarySearch
+   * findIndex([1, 2, 3, 4, 5], 5); // 4
+   */
+  findIndex: (arr, item) => {
+    let l = 0,
+      r = arr.length - 1;
+    while (l <= r) {
+      const mid = Math.floor((l + r) / 2);
+      const guess = arr[mid];
+      if (guess === item) return mid;
+      if (guess > item) r = mid - 1;
+      else l = mid + 1;
+    }
+    return -1;
+  },
+  /**
+   * Find index of all
+   * indexOfAll([1, 2, 3, 1, 2, 3], 1); // [0, 3]
+   * indexOfAll([1, 2, 3], 4); // []
+   */
+  findIndexOfAll: (arr, val) =>
+    arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []),
   /**
    * array.combine
    * How to use it?
