@@ -55,15 +55,16 @@ export const crossCutting = {
         "@$!%*?&",
         "1234567890",
       ];
-      for (let j = 0; j < chars.length; j++) {
+      const charsLength = chars.length;
+      for (let j = 0; j < charsLength; j++) {
         password += chars[j].charAt(
           Math.floor(Math.random() * chars[j].length)
         );
       }
-      if (length > chars.length) {
-        length = length - chars.length;
+      if (length > charsLength) {
+        length = length - charsLength;
         for (let i = 0; i < length; i++) {
-          const index = Math.floor(Math.random() * chars.length);
+          const index = Math.floor(Math.random() * charsLength);
           password += chars[index].charAt(
             Math.floor(Math.random() * chars[index].length)
           );
@@ -422,6 +423,12 @@ export const crossCutting = {
 
     return jscd;
   },
+  timeTaken: (callback) => {
+    console.time("timeTaken");
+    const r = callback();
+    console.timeEnd("timeTaken");
+    return r;
+  },
   //#endregion
 };
 
@@ -720,7 +727,7 @@ export const object = {
       },
       find(target) {
         return (callback) => {
-          return (Object.entries(target).find(([key, value]) =>
+          return (Object.values(target).find(([key, value]) =>
             callback(value, key, target)
           ) || [])[0];
         };
@@ -880,8 +887,9 @@ export const array = {
     let arrMap = new Map(arr.map((item) => [item[idField], item]));
     let tree = [];
     let tempItem = [];
+    let arrLength = arr.length;
 
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arrLength; i++) {
       let item = arr[i];
 
       if (item[parentField] !== "") {
@@ -930,11 +938,12 @@ export const array = {
         return acc;
       }, 0)
     ),
-  chunks: (currentAray, chunk_size) => {
+  chunks: (currentArray, chunk_size) => {
     var results = [];
+    var arrayLength = currentArray.length;
 
-    while (currentAray.length) {
-      results.push(currentAray.splice(0, chunk_size));
+    while (arrayLength) {
+      results.push(currentArray.splice(0, chunk_size));
     }
 
     return results;
@@ -1955,5 +1964,21 @@ export const storage = {
     del: (key) => {
       localStorage.removeItem(key);
     },
+  },
+  /**
+   * Memoization increase speed process in javascript
+   * const fibonacci = n => (n <= 1 ? 1 : fibonacci(n - 1) + fibonacci(n - 2));
+   * const memoizedFibonacci = memoize(fibonacci);
+   *
+   */
+  memoize: (fn) => {
+    const cache = new Map();
+    const cached = function (val) {
+      return cache.has(val)
+        ? cache.get(val)
+        : cache.set(val, fn.call(this, val)) && cache.get(val);
+    };
+    cached.cache = cache;
+    return cached;
   },
 };
