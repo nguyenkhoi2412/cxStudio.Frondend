@@ -8,12 +8,12 @@ import { useFormik } from "formik";
 import { hook } from "@utils/crossCutting";
 import _globalVars from "@constants/variables";
 import RenderField from "@components/mui-ui/forms/renderField";
-import AnimateButton from "@components/mui-ui/extended/animateButton";
 import UploadFile from "@components/mui-ui/forms/uploadFile/uploadFile";
 import { CLOSE_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
 
 //#region mui-ui
-import { Box, Typography, Button, Grid } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
+import LoadingButton from "@components/mui-ui/extended/loadingButton";
 //#endregion
 //#region redux/services
 import { useDispatch, useSelector } from "react-redux";
@@ -136,18 +136,11 @@ const FormAction = () => {
               close={() => setShowMessageAlert(false)}
             />
             <Box sx={{ mt: 2 }}>
-              <AnimateButton>
-                <Button
-                  disableElevation
-                  fullWidth
-                  disabled={submitting}
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                >
-                  {t("workspace.btn_create_new_workspace")}
-                </Button>
-              </AnimateButton>
+              <LoadingButton
+                disabled={submitting}
+                spin={submitting}
+                text={t("workspace.btn_create_new_workspace")}
+              />
             </Box>
           </Grid>
         </Grid>

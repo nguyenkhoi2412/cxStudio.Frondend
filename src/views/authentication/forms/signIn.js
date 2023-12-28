@@ -30,7 +30,7 @@ import {
 import { useDispatch } from "react-redux";
 import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
 //#endregion
-import AnimateButton from "@components/mui-ui/extended/animateButton";
+import LoadingButton from "@components/mui-ui/extended/loadingButton";
 import SocialButtons from "./socialButtons";
 
 const FormSignIn = () => {
@@ -180,18 +180,11 @@ const FormSignIn = () => {
             sx={{ mt: 1 }}
           >
             {dataForm.map((item, index) => {
-              const errorText = object.getValue(
-                formik,
-                "errors." + item.field
-              );
+              const errorText = object.getValue(formik, "errors." + item.field);
               let hasError =
-                Boolean(
-                  object.getValue(formik, "touched." + item.field)
-                ) && errorText;
-              let dataValue = object.getValue(
-                formik,
-                "values." + item.field
-              );
+                Boolean(object.getValue(formik, "touched." + item.field)) &&
+                errorText;
+              let dataValue = object.getValue(formik, "values." + item.field);
               return (
                 <InputField
                   margin="normal"
@@ -240,18 +233,12 @@ const FormSignIn = () => {
                 {t("authentication.forgotpassword")}
               </Link>
             </Stack>
-            <AnimateButton>
-              <Button
-                disableElevation
-                disabled={submitting}
-                fullWidth
-                size="large"
-                type="submit"
-                variant="contained"
-              >
-                {t("authentication.signin")}
-              </Button>
-            </AnimateButton>
+            <LoadingButton
+              disabled={submitting}
+              spin={submitting}
+              text={t("authentication.signin")}
+              animate={false}
+            />
           </Box>
         </Grid>
       </Grid>

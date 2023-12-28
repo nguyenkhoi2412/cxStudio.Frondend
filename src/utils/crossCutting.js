@@ -133,6 +133,7 @@ export const crossCutting = {
     },
     isEquals: (a, b) => {
       if (a === b) return true;
+      if (typeof a === "function" && typeof b === "function") return true;
 
       if (a instanceof Date && b instanceof Date)
         return a.getTime() === b.getTime();
@@ -1954,12 +1955,17 @@ export const storage = {
   local: {
     set: (key, data) => {
       localStorage.removeItem(key);
-      localStorage.setItem(key, JSON.stringify(data));
+      localStorage.setItem(
+        key,
+        typeof data === "string" ? data : JSON.stringify(data)
+      );
     },
     get: (key) => {
       if (crossCutting.check.isNull(localStorage.getItem(key)))
         return undefined;
-      return JSON.parse(localStorage.getItem(key));
+      return typeof data === "string"
+        ? localStorage.getItem(key)
+        : JSON.parse(localStorage.getItem(key));
     },
     del: (key) => {
       localStorage.removeItem(key);

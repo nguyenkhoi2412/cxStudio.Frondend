@@ -1,7 +1,7 @@
 import "./_home.scss";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
-import { crossCutting, array, object } from "@utils/crossCutting";
+import { crossCutting } from "@utils/crossCutting";
 //#region mui-ui
 import {
   Grid,
@@ -16,7 +16,7 @@ import {
 //#region import components
 import MainCard from "@components/mui-ui/cards";
 import FormAction from "@clientapp/components/workspace/forms/action/action";
-import AnimateButton from "@components/mui-ui/extended/animateButton";
+import LoadingButton from "@components/mui-ui/extended/loadingButton";
 //#endregion
 import imgWP from "@assets/images/bg_workspace.svg";
 //#region reduxprovider
@@ -39,7 +39,6 @@ const Home = () => {
 
   //#region get data content
   const getWorkspaceByCurrentUser = async () => {
-
     await dispatch(
       WORKSPACE_GET_BY_USER({
         id: currentUser._id,
@@ -127,7 +126,7 @@ const Home = () => {
               </Typography>
             </Grid>
             <Grid item className="acts" textAlign={"center"}>
-              <AnimateButton>
+              {/* <AnimateButton>
                 <Button
                   className="btn"
                   variant="contained"
@@ -136,7 +135,12 @@ const Home = () => {
                 >
                   {t("workspace.btn_create_new_workspace")}
                 </Button>
-              </AnimateButton>
+              </AnimateButton> */}
+              <LoadingButton
+                disabled={disabledCbTerms || !termsChecked}
+                text={t("workspace.btn_create_new_workspace")}
+                onClick={handleOpenDrawerRight}
+              />
             </Grid>
             <Grid item>
               <FormControlLabel

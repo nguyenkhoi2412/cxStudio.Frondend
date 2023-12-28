@@ -26,7 +26,7 @@ const WpDrawer = React.forwardRef((props, ref) => {
   const [width, setWidth] = React.useState(360);
   const [height, setHeight] = React.useState(360);
   const [render, setRender] = React.useState(null);
-
+  console.log("sdf");
   //#region useHooks
   React.useEffect(() => {
     setClassName(valueState.className);
@@ -95,4 +95,9 @@ const WpDrawer = React.forwardRef((props, ref) => {
   );
 });
 
-export default WpDrawer;
+export default React.memo(WpDrawer, (props, nextProps) => {
+  if (JSON.stringify(props) === JSON.stringify(nextProps)) {
+    // return true if you don't need re-render
+    return true;
+  }
+});

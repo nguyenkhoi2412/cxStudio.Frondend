@@ -21,4 +21,9 @@ const WpProgressBar = () => {
   );
 };
 
-export default WpProgressBar;
+export default React.memo(WpProgressBar, (props, nextProps) => {
+  if (JSON.stringify(props) === JSON.stringify(nextProps)) {
+    // return true if you don't need re-render
+    return true;
+  }
+});
