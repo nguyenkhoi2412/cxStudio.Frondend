@@ -661,16 +661,68 @@ export const object = {
   },
 
   //* GET DIFF/COMPARE
-  getDiff: (newObj, oldObj) => {
-    let diff = Object.keys(newObj).reduce((diff, key) => {
-      if (newObj[key] === oldObj[key]) return diff;
-      return {
-        ...diff,
-        [key]: newObj[key],
-      };
-    }, {});
-
-    return diff;
+  getDiff: (baseObj, newObj) => {
+    const isNativeType1 = typeof baseObj !== "object";
+    const isNativeType2 = typeof newObj !== "object";
+    if (isNativeType1 && isNativeType2) {
+      return baseObj === newObj ? null : newObj;
+    }
+    if (isNativeType1 && !isNativeType2) {
+      return newObj;
+    }
+    if (!isNativeType1 && isNativeType2) {
+      return newObj;
+    }
+    const isArray1 = Array.isArray(baseObj);
+    const isArray2 = Array.isArray(newObj);
+    if (isArray1 && isArray2) {
+      const firstLenght = baseObj.length;
+      const secondLenght = newObj.length;
+      const hasSameLength = firstLenght === secondLenght;
+      if (!hasSameLength) return newObj;
+      let hasChange = false;
+      for (let index = 0; index < baseObj.length; index += 1) {
+        const element1 = baseObj[index];
+        const element2 = newObj[index];
+        const changed = object.getDiff(element1, element2);
+        if (changed) {
+          hasChange = true;
+        }
+      }
+      return hasChange ? newObj : null;
+    }
+    if (isArray1 || isArray2) return newObj;
+    const keys1 = Object.keys(baseObj);
+    const keys2 = Object.keys(newObj);
+    const hasSameKeys = keys1.length === keys2.length;
+    if (!hasSameKeys) {
+      const retObj = { ...newObj };
+      for (let index = 0; index < keys1.length; index += 1) {
+        const key = keys1[index];
+        if (!keys2.includes(key)) {
+          retObj[key] = null;
+          // eslint-disable-next-line no-continue
+          continue;
+        }
+        delete retObj[key];
+      }
+      return retObj;
+    }
+    let hasChange = false;
+    const retObj = {};
+    for (let index = 0; index < keys1.length; index += 1) {
+      const key = keys1[index];
+      const element1 = baseObj[key];
+      const element2 = newObj[key];
+      const changed = object.getDiff(element1, element2);
+      if (changed) {
+        hasChange = true;
+      }
+      if (changed) {
+        retObj[key] = changed;
+      }
+    }
+    return hasChange ? retObj : null;
   },
 
   // Check if the input is a json object (whether startsWidth '{' and endsWidth '}') or not
@@ -686,12 +738,6 @@ export const object = {
     }
 
     return true;
-  },
-
-  // Check if the input is a json array (whether startsWidth '[' and endsWidth ']') or not
-  isJsonArray: (text) => {
-    let str = String(text).trim();
-    return str.startsWith("[") && str.endsWith("]");
   },
 
   /**
@@ -782,8 +828,12 @@ export const array = {
    * @params index: index position append new item
    * @params items: item insert
    */
-  insert: (currentArray, index, ...items) => {
-    return currentArray.splice(index + 1, 0, ...items);
+  insert: (currentArray, index, items) => {
+    return [
+      ...currentArray.slice(0, index),
+      ...items,
+      ...currentArray.slice(index),
+    ];
   },
   update: (arr, newItem, field = "_id") => {
     var itemField = Array.isArray(newItem) ? newItem[0] : newItem;
@@ -803,13 +853,23 @@ export const array = {
 
     return itemField;
   },
-  delete: (arr, objItems, field = "_id") => {
-    return objItems.length
-      ? array.diffArrayObjects(arr, objItems) // deleteMany
-      : arr.filter((item) => {
-          // deleteOne
-          return item[field] !== objItems[field];
-        });
+  delete: (arr, objItems) => {
+    let tempArray = [...arr];
+    if (Array.isArray(objItems)) {
+      // delete multiple objectItems
+      var itemLength = objItems?.length || 0;
+      for (let i = 0; i < itemLength; i++) {
+        let indexItem = array.findIndex(tempArray, objItems[i]);
+        tempArray.splice(indexItem, 1);
+      }
+      console.log("delete", tempArray);
+      return tempArray;
+    }
+
+    // Find index from objItems
+    let indexItem = array.findIndex(tempArray, objItems);
+    tempArray.splice(indexItem, 1);
+    return tempArray;
   },
   removeDuplicate: (currentArray) => {
     return [...new Set(currentArray)];
@@ -878,11 +938,52 @@ export const array = {
         return acc;
       }, {})
     ),
-  diffArrayObjects: (current, otherArray, filterKey = "_id") => {
-    return current.filter(
-      ({ [filterKey]: currentKey }) =>
-        !otherArray.some(({ [filterKey]: otherKey }) => currentKey === otherKey)
+  // Check if the input is a json array (whether startsWidth '[' and endsWidth ']') or not
+  isJsonArray: (text) => {
+    let str = String(text).trim();
+    return str.startsWith("[") && str.endsWith("]");
+  },
+  mergeArrayObjects: (current, newArray, field = "_id") => {
+    const rsAdd = newArray.filter(
+      ({ [field]: id1 }) => !current.some(({ [field]: id2 }) => id2 === id1)
     );
+    const rsRemoved = current.filter(
+      ({ [field]: id1 }) => !newArray.some(({ [field]: id2 }) => id2 === id1)
+    );
+    const rsUpdated = newArray.filter(({ [field]: id1, ...rest1 }) =>
+      current.some(
+        ({ [field]: id2, ...rest2 }) =>
+          id2 === id1 && JSON.stringify(rest1) !== JSON.stringify(rest2)
+      )
+    );
+
+    let tempArray = [...current];
+    // Delete in current
+    if (rsRemoved?.length > 0) {
+      tempArray = array.delete(tempArray, rsRemoved, field);
+    }
+
+    // Update data for current array
+    if (rsUpdated?.length > 0) {
+      for (var i = 0; i < rsUpdated.length; i++) {
+        tempArray = array.update(tempArray, rsUpdated[i], field);
+      }
+    }
+
+    // Insert new item for current array
+    if (rsAdd?.length > 0) {
+      tempArray = array.insert(tempArray, tempArray.length, rsAdd);
+    }
+
+    return {
+      isChanged:
+        rsAdd?.length > 0 || rsUpdated?.length > 0 || rsRemoved?.length > 0,
+      originalList: current,
+      newList: tempArray,
+      inserted: rsAdd,
+      updated: rsUpdated,
+      deleted: rsRemoved,
+    };
   },
   buildHierarchy: (array = [], idField = "_id", parentField = "parent") => {
     let arr = [...array];
@@ -1869,7 +1970,8 @@ export const hook = {
       ]);
     };
 
-    const removeFromPos = (index) => {
+    const removeFromPos = (newElement) => {
+      var index = currentArray.indexOf(newElement);
       setArray((currentArray) => [
         ...currentArray.slice(0, index),
         ...currentArray.slice(index + 1, currentArray.length),
