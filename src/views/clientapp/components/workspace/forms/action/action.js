@@ -28,6 +28,7 @@ const FormAction = () => {
   const uploadFileRef = React.useRef();
   const { enqueueSnackbar } = useSnackbar();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
+  const [messageContentAlert, setMessageContentAlert] = React.useState();
   const [industries, setIndustries] = React.useState([]);
 
   //#region useHook
@@ -77,6 +78,7 @@ const FormAction = () => {
           .catch(() => {
             //* Show message info when error
             setShowMessageAlert(true);
+            setMessageContentAlert("no message");
             setSubmitting(false);
             formik.resetForm();
           });
@@ -132,7 +134,7 @@ const FormAction = () => {
           <Grid item xs={12} className="btns-action">
             <WpAlert
               open={showMessageAlert}
-              message={`abcabaabc`}
+              message={messageContentAlert}
               close={() => setShowMessageAlert(false)}
             />
             <Box sx={{ mt: 2 }}>

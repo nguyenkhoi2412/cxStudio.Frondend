@@ -53,7 +53,7 @@ const Home = () => {
       currentUser: currentUser,
     }).then((rs) => {
       setOwner(rs);
-      setDisabledCbTerms(rs?.length > 0);
+      // setDisabledCbTerms(rs?.length > 0);
     });
   };
 

@@ -862,7 +862,6 @@ export const array = {
         let indexItem = array.findIndex(tempArray, objItems[i]);
         tempArray.splice(indexItem, 1);
       }
-      console.log("delete", tempArray);
       return tempArray;
     }
 
