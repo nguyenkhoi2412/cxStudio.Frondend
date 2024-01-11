@@ -1296,6 +1296,50 @@ export const datetime = {
     return d;
   },
 
+  /**
+   * dayOfYear(new Date('2024-09-28')); // 272
+   */
+  dayOfYear: (date) =>
+    Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86_400_000),
+
+  /**
+   * quarterOfYear(new Date('2024-09-28')); // 3
+   */
+  weekOfYear: (date) => {
+    const startOfYear = new Date(date.getFullYear(), 0, 1);
+    startOfYear.setDate(startOfYear.getDate() + (startOfYear.getDay() % 7));
+    return Math.round((date - startOfYear) / 604_800_000);
+  },
+
+  /**
+   * weekOfYear(new Date('2021-06-18')); // 23
+   */
+  quarterOfYear: (date) => Math.ceil((date.getMonth() + 1) / 3),
+
+  /**
+   * daysInMonth(2020, 12)); // 31
+   * daysInMonth(2024, 2)); // 29
+   */
+  daysInMonth: (year, month) => new Date(year, month, 0).getDate(),
+
+  /**
+   * const dates = [
+   *  new Date('2017-05-13'),
+   *  new Date('2018-03-12'),
+   *  new Date('2016-01-10'),
+   *  new Date('2016-01-09')
+   * ];
+   * minDate(...dates); // 2016-01-09
+   * maxDate(...dates); // 2018-03-12
+   */
+  minDate: (...dates) => new Date(Math.min(...dates)),
+  maxDate: (...dates) => new Date(Math.max(...dates)),
+
+  /**
+   * monthOfYear(new Date('2024-09-28')); // 9
+   */
+  monthOfYear: (date) => date.getMonth() + 1,
+
   //#region add time todate
   /**
    * addSecondsToDate(new Date('2020-10-19 12:00:00'), 10); // 2020-10-19 12:00:10
