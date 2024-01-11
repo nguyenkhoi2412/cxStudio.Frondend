@@ -446,6 +446,7 @@ export const validate = {
     }
     return true;
   },
+  isEmailValid: (address) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address),
 };
 
 //* ==============================|| STRING ||============================== //
@@ -555,6 +556,106 @@ export const string = {
       document.getSelection().removeAllRanges();
       document.getSelection().addRange(selected);
     }
+  },
+
+  /**
+   * toCamelCase('some_database_field_name'); // 'someDatabaseFieldName'
+   * toCamelCase('Some label that needs to be camelized'); // 'someLabelThatNeedsToBeCamelized'
+   * toCamelCase('some-javascript-property'); // 'someJavascriptProperty'
+   * toCamelCase('some-mixed_string with spaces_underscores-and-hyphens'); // 'someMixedStringWithSpacesUnderscoresAndHyphens'
+   */
+  toCamelCase: (str) => {
+    const s =
+      str &&
+      str
+        .match(
+          /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+        )
+        .map((x) => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
+        .join("");
+    return s.slice(0, 1).toLowerCase() + s.slice(1);
+  },
+
+  /**
+   * toPascalCase('some_database_field_name'); // 'SomeDatabaseFieldName'
+   * toPascalCase('Some label that needs to be pascalized');// 'SomeLabelThatNeedsToBePascalized'
+   * toPascalCase('some-javascript-property'); // 'SomeJavascriptProperty'
+   * toPascalCase('some-mixed_string with spaces_underscores-and-hyphens');// 'SomeMixedStringWithSpacesUnderscoresAndHyphens'
+   */
+  toPascalCase: (str, splitChr = "") =>
+    str
+      .match(
+        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+      )
+      .map((x) => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
+      .join(splitChr),
+
+  /**
+   * toSentenceCase('some_database_field_name'); // 'Some database field name'
+   * toSentenceCase('Some label that needs to be title-cased'); // 'Some label that needs to be title cased'
+   * toSentenceCase('some-package-name'); // 'Some package name'
+   * toSentenceCase('some-mixed_string with spaces_underscores-and-hyphens');// 'Some mixed string with spaces underscores and hyphens'
+   */
+  toSentenceCase: (str) => {
+    const s =
+      str &&
+      str
+        .match(
+          /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+        )
+        .join(" ");
+    return s.slice(0, 1).toUpperCase() + s.slice(1);
+  },
+
+  /**
+   * toTitleCase('some_database_field_name'); // 'Some Database Field Name'
+   * toTitleCase('Some label that needs to be pascalized');// 'Some Label That Needs To Be Pascalized'
+   * toTitleCase('some-javascript-property'); // 'Some Javascript Property'
+   * toTitleCase('some-mixed_string with spaces_underscores-and-hyphens');// 'Some Mixed String With Spaces Underscores And Hyphens'
+   */
+  toTitleCase: (str) => string.toPascalCase(str, " "),
+
+  /**
+   * toSnakeCase('camelCase'); // 'camel_case'
+   * toSnakeCase('some text'); // 'some_text'
+   * toSnakeCase('some-mixed_string With spaces_underscores-and-hyphens'); // 'some_mixed_string_with_spaces_underscores_and_hyphens'
+   * toSnakeCase('AllThe-small Things'); // 'all_the_small_things'
+   * toSnakeCase('IAmEditingSomeXMLAndHTML'); // 'i_am_editing_some_xml_and_html'
+   */
+  toSnakeCase: (str, splitChr = "_") =>
+    str &&
+    str
+      .match(
+        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+      )
+      .map((x) => x.toLowerCase())
+      .join(splitChr),
+
+  /**
+   * truncateStringAtWhitespace
+   */
+  truncateStringAtWhitespace: (str, lim, ending = "...") => {
+    if (str.length <= lim) return str;
+    const lastSpace = str.slice(0, lim - ending.length + 1).lastIndexOf(" ");
+    return (
+      str.slice(0, lastSpace > 0 ? lastSpace : lim - ending.length) + ending
+    );
+  },
+
+  /**
+   * truncateStringAtWord
+   */
+  truncateStringAtWord: (str, lim, locale = "en-US", ending = "...") => {
+    const segmenter = new Intl.Segmenter(locale, { granularity: "word" });
+    let lastWordBreak = -1;
+
+    for (let word of segmenter.segment(str)) {
+      if (word.isWordLike) continue;
+      if (word.index >= lim) break;
+      lastWordBreak = word.index;
+    }
+
+    return str.slice(0, lastWordBreak) + ending;
   },
 };
 
@@ -1131,6 +1232,104 @@ export const datetime = {
     //   utcTime: utcHour + ":" + utcMinutes,
     // };
   },
+
+  /**
+   * Check date input is valid?
+   * isDateValid('December 17, 1995 03:24:00'); // true
+   * isDateValid('1995-12-17T03:24:00'); // true
+   * isDateValid(1995, 11, 17); // true
+   * isDateValid('1995-12-17 T03:24:00'); // false
+   * isDateValid('Duck'); // false
+   * isDateValid(1995, 11, 17, 'Duck'); // false
+   * isDateValid({}); // false
+   */
+  isDateValid: (...val) => !Number.isNaN(new Date(...val).valueOf()),
+
+  /**
+   * Check days of work in week
+   *
+   */
+  isWeekday: (date) => date.getDay() % 6 !== 0,
+
+  /**
+   * toTimestamp(new Date('2024-01-04')); // 1704326400
+   */
+  toTimestamp: (date) => Math.floor(date.getTime() / 1000),
+
+  /**
+   * fromTimestamp(1704326400); // 2024-01-04T00:00:00.000Z
+   */
+  fromTimestamp: (timestamp) => new Date(timestamp * 1000),
+
+  /**
+   * daysAgo(20); // 2023-12-17 (if current date is 2024-01-06)
+   */
+  daysAgo: (n) => {
+    let d = new Date();
+    d.setDate(d.getDate() - Math.abs(n));
+    return d;
+  },
+
+  /**
+   * daysFromToday(20); 2024-01-26 (if current date is 2024-01-06)
+   */
+  daysFromToday: (n) => {
+    let d = new Date();
+    d.setDate(d.getDate() + Math.abs(n));
+    return d;
+  },
+
+  //#region add time todate
+  /**
+   * addSecondsToDate(new Date('2020-10-19 12:00:00'), 10); // 2020-10-19 12:00:10
+   */
+  addSecondsToDate: (date, n) => {
+    const d = new Date(date);
+    d.setTime(d.getTime() + n * 1000);
+    return d;
+  },
+
+  /**
+   * addMinutesToDate('2020-10-19 12:00:00', 10); // 2020-10-19 12:10:00
+   */
+  addMinutesToDate: (date, n) => {
+    const d = new Date(date);
+    d.setTime(d.getTime() + n * 60_000);
+    return d;
+  },
+
+  /**
+   * addHoursToDate('2020-10-19 12:00:00', 10); // 2020-10-19 22:00:00
+   */
+  addHoursToDate: (date, n) => {
+    const d = new Date(date);
+    d.setTime(d.getTime() + n * 3_600_000);
+    return d;
+  },
+
+  /**
+   * addDaysToDate('2020-10-19 12:00:00', 10); // 2020-10-29 12:00:00
+   */
+  addDaysToDate: (date, n) => {
+    const d = new Date(date);
+    d.setDate(d.getDate() + n);
+    return d;
+  },
+
+  /**
+   * addWeekDays('2020-10-05', 5); // 2020-10-12
+   */
+  addWeekDays: (date, n) => {
+    const s = Math.sign(n);
+    const d = new Date(date);
+    return Array.from({ length: Math.abs(n) }).reduce((currentDate) => {
+      currentDate = addDaysToDate(currentDate, s);
+      while (!datetime.isWeekday(currentDate))
+        currentDate = addDaysToDate(currentDate, s);
+      return currentDate;
+    }, d);
+  },
+  //#endregion
 };
 
 //* ==============================|| HOOKS ||============================== //

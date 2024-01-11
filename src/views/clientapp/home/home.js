@@ -3,20 +3,25 @@ import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import { crossCutting } from "@utils/crossCutting";
 //#region mui-ui
+import { useTheme } from "@mui/material/styles";
 import {
   Grid,
+  Box,
+  Divider,
   CardMedia,
   Button,
   Typography,
   Checkbox,
   FormControlLabel,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 //#endregion
 //#region import components
 import MainCard from "@components/mui-ui/cards";
 import FormAction from "@clientapp/components/workspace/forms/action/action";
 import LoadingButton from "@components/mui-ui/extended/loadingButton";
+import BoxCard from "@components/mui-ui/extended/boxCard";
 //#endregion
 import imgWP from "@assets/images/bg_workspace.svg";
 //#region reduxprovider
@@ -28,6 +33,8 @@ import { WorkspaceService } from "@services/workspace";
 
 const Home = () => {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch();
   const workspaceState = useSelector((state) => state.workspace);
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -126,16 +133,6 @@ const Home = () => {
               </Typography>
             </Grid>
             <Grid item className="acts" textAlign={"center"}>
-              {/* <AnimateButton>
-                <Button
-                  className="btn"
-                  variant="contained"
-                  disabled={disabledCbTerms || !termsChecked}
-                  onClick={handleOpenDrawerRight}
-                >
-                  {t("workspace.btn_create_new_workspace")}
-                </Button>
-              </AnimateButton> */}
               <LoadingButton
                 disabled={disabledCbTerms || !termsChecked}
                 text={t("workspace.btn_create_new_workspace")}
@@ -194,6 +191,16 @@ const Home = () => {
             image={imgWP}
             alt="Paella dish"
           />
+        </Grid>
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              alignItems: "center",
+              display: "flex",
+            }}
+          >
+            <BoxCard />
+          </Box>
         </Grid>
       </Grid>
     </MainCard>
