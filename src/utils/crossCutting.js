@@ -126,7 +126,12 @@ export const crossCutting = {
   //#region check
   check: {
     isNotNull: (value) => {
-      return value !== null && value !== undefined && !object.isEmpty(value);
+      return (
+        value !== null &&
+        value !== undefined &&
+        !string.isEmptyOrWhitespace(value) &&
+        !object.isEmpty(value)
+      );
     },
     isNull: (value) => {
       return !crossCutting.check.isNotNull(value);
@@ -465,6 +470,13 @@ export const string = {
         : value
       : defaultValue;
   },
+  /**
+   * isEmptyOrWhitespace(' '); // true
+   * isEmptyOrWhitespace('\t\n\r'); // true
+   */
+  isEmptyOrWhitespace: (value) =>
+    typeof value === "string" && /^\s*$/.test(value),
+
   stripedHtml: (text) => {
     text = text.replace(/[<|>]/gi, "");
 
@@ -689,16 +701,21 @@ export const object = {
   },
 
   isEmpty: (obj) => {
-    let isE =
-      obj === null || obj === undefined || !(Object.keys(obj) || obj).length;
-    if (isE) return true;
+    return (
+      (Array.isArray(value) || value === Object(value)) &&
+      !Object.keys(value).length
+    );
 
-    for (var prop in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-        return false;
-      }
-    }
-    return true;
+    // let isE =
+    //   obj === null || obj === undefined || !(Object.keys(obj) || obj).length;
+    // if (isE) return true;
+
+    // for (var prop in obj) {
+    //   if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+    //     return false;
+    //   }
+    // }
+    // return true;
   },
 
   isEquals: (a, b) => {
