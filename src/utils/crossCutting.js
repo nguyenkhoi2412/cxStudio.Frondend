@@ -700,7 +700,7 @@ export const object = {
     return rs;
   },
 
-  isEmpty: (obj) => {
+  isEmpty: (value) => {
     return (
       (Array.isArray(value) || value === Object(value)) &&
       !Object.keys(value).length
