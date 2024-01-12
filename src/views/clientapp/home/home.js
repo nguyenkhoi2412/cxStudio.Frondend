@@ -7,9 +7,7 @@ import { useTheme } from "@mui/material/styles";
 import {
   Grid,
   Box,
-  Divider,
   CardMedia,
-  Button,
   Typography,
   Checkbox,
   FormControlLabel,
@@ -21,14 +19,13 @@ import {
 import MainCard from "@components/mui-ui/cards";
 import FormAction from "@clientapp/components/workspace/forms/action/action";
 import LoadingButton from "@components/mui-ui/extended/loadingButton";
-import BoxCard from "@components/mui-ui/extended/boxCard";
+import ViewOwner from "@clientapp/components/workspace/ViewOwner";
 //#endregion
 import imgWP from "@assets/images/bg_workspace.svg";
 //#region reduxprovider
 import { useDispatch, useSelector } from "react-redux";
 import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
 import { WORKSPACE_GET_BY_USER } from "@reduxproviders/workspace.reducer";
-import { WorkspaceService } from "@services/workspace";
 //#endregion
 
 const Home = () => {
@@ -36,7 +33,6 @@ const Home = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch();
-  const workspaceState = useSelector((state) => state.workspace);
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [termsChecked, setTermsChecked] = React.useState(false);
   const [dataValue, setDataValue] = React.useState([]);
@@ -50,44 +46,26 @@ const Home = () => {
       WORKSPACE_GET_BY_USER({
         id: currentUser._id,
       })
-    );
+    )
+      .unwrap()
+      .then(({ rs }) => {
+        setDataValue(rs);
+      });
   };
 
-  const getWorkspaceOwner = (wp) => {
-    if (crossCutting.check.isNull(wp)) return;
-    WorkspaceService.getOwner({
-      data: wp,
-      currentUser: currentUser,
-    }).then((rs) => {
-      setOwner(rs);
-      // setDisabledCbTerms(rs?.length > 0);
-    });
-  };
-
-  const getWorkspaceTeams = (wp) => {
-    if (crossCutting.check.isNull(wp)) return;
-    WorkspaceService.getTeamMembers({
-      data: wp,
-      currentUser: currentUser,
-    }).then((rs) => setTeamMembers(rs));
-  };
+  // const getWorkspaceTeams = (wp) => {
+  //   if (crossCutting.check.isNull(wp)) return;
+  //   WorkspaceService.getTeamMembers({
+  //     data: wp,
+  //     currentUser: currentUser,
+  //   }).then((rs) => setTeamMembers(rs));
+  // };
   //#endregion
 
   //#region useHooks
   React.useEffect(() => {
     getWorkspaceByCurrentUser();
   }, []);
-
-  React.useEffect(() => {
-    setDataValue(workspaceState?.d);
-  }, [workspaceState]);
-
-  React.useEffect(() => {
-    // getWorkspaceOwner
-    getWorkspaceOwner(workspaceState?.d);
-    // getWorkspaceTeams
-    getWorkspaceTeams(workspaceState?.d);
-  }, [dataValue]);
   //#endregion
 
   //#region handle events
@@ -119,6 +97,9 @@ const Home = () => {
         alignItems={"center"}
       >
         <Grid item xs md={1}></Grid>
+        <Grid item xs={12}>
+          <ViewOwner workspaceValues={dataValue} />
+        </Grid>
         <Grid item xs={12} md={4} className="wsa__intro">
           <Grid container spacing={gridSpacing} className="container__item">
             <Grid item className="desc" textAlign={"left"}>
@@ -191,16 +172,6 @@ const Home = () => {
             image={imgWP}
             alt="Paella dish"
           />
-        </Grid>
-        <Grid item xs={12}>
-          <Box
-            sx={{
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <BoxCard />
-          </Box>
         </Grid>
       </Grid>
     </MainCard>

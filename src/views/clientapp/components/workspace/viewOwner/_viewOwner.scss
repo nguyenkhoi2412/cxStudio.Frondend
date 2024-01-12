@@ -1,0 +1,13 @@
+.workspace {
+  .wrapper-owner {
+    @include _shadow(0 0 0 0 transparent);
+
+    .MuiCardHeader-root {
+      text-transform: unset;
+
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+  }
+}
