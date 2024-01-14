@@ -86,7 +86,7 @@ const Header = ({ appName, handleLeftDrawerToggle }) => {
       >
         <LoadingButton
           // disabled={disabledCbTerms || !termsChecked}
-          text={t("workspace.btn_create_new_workspace")}
+          text={t("workspace.new_workspace")}
           // onClick={handleOpenDrawerRight}
         />
       </Box>

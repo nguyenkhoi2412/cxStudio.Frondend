@@ -28,6 +28,7 @@ const Cards = forwardRef(
       boxShadow,
       children,
       content = true,
+      headerClass = "",
       contentClass = "",
       contentSX = {},
       darkTitle,
@@ -60,6 +61,7 @@ const Cards = forwardRef(
         {title && (
           <CardHeader
             sx={headerSX}
+            className={headerClass}
             component="section"
             title={
               darkTitle ? <Typography variant="h3">{title}</Typography> : title
@@ -94,6 +96,7 @@ Cards.propTypes = {
   boxShadow: PropTypes.bool,
   children: PropTypes.node,
   content: PropTypes.bool,
+  headerClass: PropTypes.string,
   contentClass: PropTypes.string,
   contentSX: PropTypes.object,
   darkTitle: PropTypes.bool,
