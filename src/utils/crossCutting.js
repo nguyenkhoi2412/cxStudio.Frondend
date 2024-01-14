@@ -56,19 +56,23 @@ export const crossCutting = {
         "1234567890",
       ];
       const charsLength = chars.length;
-      for (let j = 0; j < charsLength; j++) {
-        password += chars[j].charAt(
-          Math.floor(Math.random() * chars[j].length)
-        );
-      }
+      let j = 0;
+      do {
+        const charsJ = chars[j];
+        const charsJLen = charsJ.length;
+        password += charsJ.charAt(Math.floor(Math.random() * charsJLen));
+        j++;
+      } while (j < charsLength);
       if (length > charsLength) {
         length = length - charsLength;
-        for (let i = 0; i < length; i++) {
+        let i = 0;
+        do {
           const index = Math.floor(Math.random() * charsLength);
           password += chars[index].charAt(
             Math.floor(Math.random() * chars[index].length)
           );
-        }
+          i++;
+        } while (i < length);
       }
       return password
         .split("")
@@ -85,9 +89,12 @@ export const crossCutting = {
         //* Generate light color
         case "light":
           var letters = "BCDEF".split("");
+          var letterLen = letters.length;
           var color = "#";
-          for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * letters.length)];
+          var i = 0;
+          while (i < 6) {
+            color += letters[Math.floor(Math.random() * letterLen)];
+            i++;
           }
           return color;
 
@@ -102,13 +109,15 @@ export const crossCutting = {
           }
           var rgb = "#",
             c,
-            i;
-          for (i = 0; i < 3; i++) {
+            i = 0;
+          while (i < 3) {
             c = parseInt(hex.substr(i * 2, 2), 16);
             c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(
               16
             );
             rgb += ("00" + c).substr(c.length);
+
+            i++;
           }
           return rgb;
 
@@ -129,8 +138,9 @@ export const crossCutting = {
       return (
         value !== null &&
         value !== undefined &&
-        !string.isEmptyOrWhitespace(value) &&
-        !object.isEmpty(value)
+        (typeof value === "string"
+          ? !string.isEmptyOrWhitespace(value)
+          : !object.isEmpty(value))
       );
     },
     isNull: (value) => {
@@ -325,12 +335,18 @@ export const crossCutting = {
           r: /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/,
         },
       ];
-      for (var id in clientStrings) {
+
+      var id = 0;
+      var csLength = clientStrings.length;
+
+      while (id < csLength) {
         var cs = clientStrings[id];
         if (cs.r.test(nAgt)) {
           os = cs.s;
           break;
         }
+
+        id++;
       }
 
       var osVersion = unknown;
@@ -664,11 +680,16 @@ export const string = {
     const segmenter = new Intl.Segmenter(locale, { granularity: "word" });
     let lastWordBreak = -1;
 
-    for (let word of segmenter.segment(str)) {
+    const segStr = segmenter.segment(str);
+    const strLength = segStr.length;
+    const stt = 0;
+    do {
+      const word = segStr[stt];
       if (word.isWordLike) continue;
       if (word.index >= lim) break;
       lastWordBreak = word.index;
-    }
+      stt++;
+    } while (stt < strLength);
 
     return str.slice(0, lastWordBreak) + ending;
   },
@@ -797,36 +818,48 @@ export const object = {
       const hasSameLength = firstLenght === secondLenght;
       if (!hasSameLength) return newObj;
       let hasChange = false;
-      for (let index = 0; index < baseObj.length; index += 1) {
-        const element1 = baseObj[index];
-        const element2 = newObj[index];
+      let indexArr = 0;
+      do {
+        const element1 = baseObj[indexArr];
+        const element2 = newObj[indexArr];
         const changed = object.getDiff(element1, element2);
         if (changed) {
           hasChange = true;
         }
-      }
+
+        indexArr++;
+      } while (indexArr < firstLenght);
+
       return hasChange ? newObj : null;
     }
     if (isArray1 || isArray2) return newObj;
     const keys1 = Object.keys(baseObj);
     const keys2 = Object.keys(newObj);
-    const hasSameKeys = keys1.length === keys2.length;
+    const keys1Len = keys1.length;
+    const keys2Len = keys2.length;
+    const hasSameKeys = keys1Len === keys2Len;
     if (!hasSameKeys) {
       const retObj = { ...newObj };
-      for (let index = 0; index < keys1.length; index += 1) {
-        const key = keys1[index];
+      let indexKey = 0;
+      do {
+        const key = keys1[indexKey];
         if (!keys2.includes(key)) {
           retObj[key] = null;
           // eslint-disable-next-line no-continue
           continue;
         }
         delete retObj[key];
-      }
+
+        indexKey++;
+      } while (indexKey < keys1Len);
+
       return retObj;
     }
     let hasChange = false;
     const retObj = {};
-    for (let index = 0; index < keys1.length; index += 1) {
+
+    let index = 0;
+    do {
       const key = keys1[index];
       const element1 = baseObj[key];
       const element2 = newObj[key];
@@ -837,7 +870,9 @@ export const object = {
       if (changed) {
         retObj[key] = changed;
       }
-    }
+      index++;
+    } while (index < keys1Len);
+
     return hasChange ? retObj : null;
   },
 
@@ -974,10 +1009,13 @@ export const array = {
     if (Array.isArray(objItems)) {
       // delete multiple objectItems
       var itemLength = objItems?.length || 0;
-      for (let i = 0; i < itemLength; i++) {
+      let i = 0;
+      do {
         let indexItem = array.findIndex(tempArray, objItems[i]);
         tempArray.splice(indexItem, 1);
-      }
+
+        i++;
+      } while (i < itemLength);
       return tempArray;
     }
 
@@ -1079,10 +1117,13 @@ export const array = {
     }
 
     // Update data for current array
-    if (rsUpdated?.length > 0) {
-      for (var i = 0; i < rsUpdated.length; i++) {
+    const rsUpdatedLen = rsUpdated?.length;
+    if (rsUpdatedLen > 0) {
+      let i = 0;
+      do {
         tempArray = array.update(tempArray, rsUpdated[i], field);
-      }
+        i++;
+      } while (i < rsUpdatedLen);
     }
 
     // Insert new item for current array
@@ -1106,8 +1147,8 @@ export const array = {
     let tree = [];
     let tempItem = [];
     let arrLength = arr.length;
-
-    for (let i = 0; i < arrLength; i++) {
+    let i = 0;
+    do {
       let item = arr[i];
 
       if (item[parentField] !== "") {
@@ -1124,7 +1165,9 @@ export const array = {
       } else {
         tree.push(item);
       }
-    }
+
+      i++;
+    } while (i < arrLength);
 
     tempItem.map((item) => {
       tree = crossCutting.array.update(tree, item);
@@ -1183,6 +1226,51 @@ export const array = {
       },
       [[], []]
     ),
+};
+
+export const loop = {
+  forEach: (arr, func, type = "doWhile", conditionBreak = null) => {
+    if (typeof func !== "function") return;
+
+    // const isBreak = (index) => conditionBreak && eval(conditionBreak);
+    const arrLength = arr.length;
+    let index = 0;
+
+    var loop = {
+      doWhile: () => {
+        do {
+          const item = arr[index];
+          func(item, index);
+
+          index++;
+          // if (isBreak(index)) break;
+        } while (index < arrLength);
+      },
+      while: () => {
+        while (index < arrLength) {
+          const item = arr[index];
+          func(item, index);
+
+          index++;
+          // if (isBreak(index)) break;
+        }
+      },
+      for: () => {
+        for (let i = 0; i < arrLength; i++) {
+          const item = arr[i];
+          func(item, i);
+        }
+      },
+      forEach: () => {
+        arr.forEach((item, i) => {
+          func(item, i);
+        });
+      },
+    };
+
+    // callback function with type
+    loop[type || "doWhile"]();
+  },
 };
 
 //* ==============================|| DATETIME ||============================== //
@@ -2277,14 +2365,19 @@ export const storage = {
 
       let updatedCookie =
         encodeURIComponent(name) + "=" + encodeURIComponent(value);
+      const optsLen = options.length;
+      let i = 0;
 
-      for (let optionKey in options) {
+      do {
+        const optionKey = options[i];
         updatedCookie += "; " + optionKey;
         let optionValue = options[optionKey];
         if (optionValue !== true) {
           updatedCookie += "=" + optionValue;
         }
-      }
+
+        i++;
+      } while (i < optsLen);
 
       storage.cookie.del(name);
       document.cookie = updatedCookie;
@@ -2292,10 +2385,13 @@ export const storage = {
     get: (name) => {
       // var nameEQ = name + "=";
       // var ca = document.cookie.split(";");
-      // for (var i = 0; i < ca.length; i++) {
+      // var i = 0;
+      // var caLen = ca.length;
+      // while (i < caLen) {
       //   var c = ca[i];
       //   while (c.charAt(0) == " ") c = c.substring(1, c.length);
       //   if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      //   i++;
       // }
       // return null;
       let matches = document.cookie.match(
