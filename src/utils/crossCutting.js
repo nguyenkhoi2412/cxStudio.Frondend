@@ -1245,12 +1245,12 @@ export const array = {
 
 export const loop = {
   /**
-   * < 1001 => forEach
-   * < 10000 => do...while
-   * 10000 ~ 2000000 => while
+   * <= 3000 => forEach
+   * <= 10000 => do...while
+   * 10001 ~ 2000000 => while
    * > 2000000 => for
    */
-  forEach: (arr, func, type = "auto", conditionBreak = null) => {
+  every: (arr, func, type = "auto", conditionBreak = null) => {
     if (typeof func !== "function") return;
 
     // const isBreak = (index) => conditionBreak && eval(conditionBreak);
@@ -1291,19 +1291,19 @@ export const loop = {
 
     // callback function with type
     if (type === "auto") {
-      if (arrLength < 1001) {
+      if (arrLength <= 3000) {
         loop["forEach"]();
       }
 
-      if (arrLength > 1000 && arrLength < 10001) {
+      if (arrLength > 3000 && arrLength <= 10000) {
         loop["doWhile"]();
       }
 
-      if (arrLength > 10000 && arrLength < 2000000) {
+      if (arrLength > 10000 && arrLength <= 2000000) {
         loop["while"]();
       }
 
-      if (arrLength >= 2000000) {
+      if (arrLength > 2000000) {
         loop["for"]();
       }
     } else loop[type || "doWhile"]();
@@ -1400,6 +1400,11 @@ export const datetime = {
    * fromTimestamp(1704326400); // 2024-01-04T00:00:00.000Z
    */
   fromTimestamp: (timestamp) => new Date(timestamp * 1000),
+
+  /**
+   * getTimeFromDate(new Date()); // '08:38:00'
+   */
+  getTimeFromDate: (date) => date.toTimeString().slice(0, 8),
 
   /**
    * daysAgo(20); // 2023-12-17 (if current date is 2024-01-06)

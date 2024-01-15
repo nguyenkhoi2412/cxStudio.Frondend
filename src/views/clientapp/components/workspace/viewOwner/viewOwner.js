@@ -34,7 +34,7 @@ const ViewOwner = ({ workspaceValues }) => {
       if (crossCutting.check.isNull(rs)) return;
 
       let itemsList = [];
-      loop.forEach(rs, (item, index) => {
+      loop.every(rs, (item, index) => {
         itemsList.push({
           avatar: item.logo_path,
           key: item._id,
