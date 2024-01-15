@@ -511,6 +511,36 @@ export const string = {
 
     return text;
   },
+
+  /**
+   * unescapeHTML('&lt;a href=&quot;#&quot;&gt;Me &amp; you&lt;/a&gt;'); // '<a href="#">Me & you</a>'
+   */
+  escapeHTML: (str) =>
+    str.replace(
+      /[&<>'"]/g,
+      (tag) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          "'": "&#39;",
+          '"': "&quot;",
+        }[tag] || tag)
+    ),
+
+  unescapeHTML: (str) =>
+    str.replace(
+      /&amp;|&lt;|&gt;|&#39;|&quot;/g,
+      (tag) =>
+        ({
+          "&amp;": "&",
+          "&lt;": "<",
+          "&gt;": ">",
+          "&#39;": "'",
+          "&quot;": '"',
+        }[tag] || tag)
+    ),
+
   mungeEmailAddress: (text) => {
     var i = text.indexOf("@");
     var startIndex = (i * 0.2) | 0;
@@ -592,77 +622,47 @@ export const string = {
   },
 
   /**
-   * toCamelCase('some_database_field_name'); // 'someDatabaseFieldName'
-   * toCamelCase('Some label that needs to be camelized'); // 'someLabelThatNeedsToBeCamelized'
-   * toCamelCase('some-javascript-property'); // 'someJavascriptProperty'
-   * toCamelCase('some-mixed_string with spaces_underscores-and-hyphens'); // 'someMixedStringWithSpacesUnderscoresAndHyphens'
+   * Some case: camel/pascal/kebad/snake/title/sentence
+   * convertCase('mixed_string with spaces_underscores-and-hyphens', 'camel'); // 'mixedStringWithSpacesUnderscoresAndHyphens'
+   * convertCase('mixed_string with spaces_underscores-and-hyphens', 'pascal'); // 'MixedStringWithSpacesUnderscoresAndHyphens'
+   * convertCase('mixed_string with spaces_underscores-and-hyphens', 'kebab'); // 'mixed-string-with-spaces-underscores-and-hyphens'
+   * convertCase('mixed_string with spaces_underscores-and-hyphens', 'snake'); // 'mixed_string_with_spaces_underscores_and_hyphens'
+   * convertCase('mixed_string with spaces_underscores-and-hyphens', 'title'); // 'Mixed String With Spaces Underscores And Hyphens'
+   * convertCase('mixed_string with spaces_underscores-and-hyphens', 'sentence'); // 'Mixed string with spaces underscores and hyphens'
    */
-  toCamelCase: (str) => {
-    const s =
-      str &&
-      str
-        .match(
-          /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
-        )
-        .map((x) => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
-        .join("");
-    return s.slice(0, 1).toLowerCase() + s.slice(1);
+  convertCase: (str, toCase = "camel") => {
+    if (!str) return "";
+
+    const delimiter =
+      toCase === "snake"
+        ? "_"
+        : toCase === "kebab"
+        ? "-"
+        : ["title", "sentence"].includes(toCase)
+        ? " "
+        : "";
+
+    const transform = ["camel", "pascal"].includes(toCase)
+      ? (x) => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase()
+      : ["snake", "kebab"].includes(toCase)
+      ? (x) => x.toLowerCase()
+      : toCase === "title"
+      ? (x) => x.slice(0, 1).toUpperCase() + x.slice(1)
+      : (x) => x;
+
+    const finalTransform =
+      toCase === "camel"
+        ? (x) => x.slice(0, 1).toLowerCase() + x.slice(1)
+        : toCase === "sentence"
+        ? (x) => x.slice(0, 1).toUpperCase() + x.slice(1)
+        : (x) => x;
+
+    const words = str.match(
+      /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+    );
+
+    return finalTransform(words.map(transform).join(delimiter));
   },
-
-  /**
-   * toPascalCase('some_database_field_name'); // 'SomeDatabaseFieldName'
-   * toPascalCase('Some label that needs to be pascalized');// 'SomeLabelThatNeedsToBePascalized'
-   * toPascalCase('some-javascript-property'); // 'SomeJavascriptProperty'
-   * toPascalCase('some-mixed_string with spaces_underscores-and-hyphens');// 'SomeMixedStringWithSpacesUnderscoresAndHyphens'
-   */
-  toPascalCase: (str, splitChr = "") =>
-    str
-      .match(
-        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
-      )
-      .map((x) => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
-      .join(splitChr),
-
-  /**
-   * toSentenceCase('some_database_field_name'); // 'Some database field name'
-   * toSentenceCase('Some label that needs to be title-cased'); // 'Some label that needs to be title cased'
-   * toSentenceCase('some-package-name'); // 'Some package name'
-   * toSentenceCase('some-mixed_string with spaces_underscores-and-hyphens');// 'Some mixed string with spaces underscores and hyphens'
-   */
-  toSentenceCase: (str) => {
-    const s =
-      str &&
-      str
-        .match(
-          /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
-        )
-        .join(" ");
-    return s.slice(0, 1).toUpperCase() + s.slice(1);
-  },
-
-  /**
-   * toTitleCase('some_database_field_name'); // 'Some Database Field Name'
-   * toTitleCase('Some label that needs to be pascalized');// 'Some Label That Needs To Be Pascalized'
-   * toTitleCase('some-javascript-property'); // 'Some Javascript Property'
-   * toTitleCase('some-mixed_string with spaces_underscores-and-hyphens');// 'Some Mixed String With Spaces Underscores And Hyphens'
-   */
-  toTitleCase: (str) => string.toPascalCase(str, " "),
-
-  /**
-   * toSnakeCase('camelCase'); // 'camel_case'
-   * toSnakeCase('some text'); // 'some_text'
-   * toSnakeCase('some-mixed_string With spaces_underscores-and-hyphens'); // 'some_mixed_string_with_spaces_underscores_and_hyphens'
-   * toSnakeCase('AllThe-small Things'); // 'all_the_small_things'
-   * toSnakeCase('IAmEditingSomeXMLAndHTML'); // 'i_am_editing_some_xml_and_html'
-   */
-  toSnakeCase: (str, splitChr = "_") =>
-    str &&
-    str
-      .match(
-        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
-      )
-      .map((x) => x.toLowerCase())
-      .join(splitChr),
 
   /**
    * truncateStringAtWhitespace
@@ -877,6 +877,20 @@ export const object = {
 
     return hasChange ? retObj : null;
   },
+
+  /**
+   * const obj = { a: 1, b: '2', c: 3 };
+   * pick(obj, ['a', 'c']); // { 'a': 1, 'c': 3 }
+   */
+  pick: (obj, arr) =>
+    Object.fromEntries(Object.entries(obj).filter(([k]) => arr.includes(k))),
+
+  /**
+   * const obj = { a: 1, b: '2', c: 3 };
+   * omit(obj, ['b']); // { 'a': 1, 'c': 3 }
+   */
+  omit: (obj, arr) =>
+    Object.fromEntries(Object.entries(obj).filter(([k]) => !arr.includes(k))),
 
   // Check if the input is a json object (whether startsWidth '{' and endsWidth '}') or not
   isJsonObject: (text) => {
