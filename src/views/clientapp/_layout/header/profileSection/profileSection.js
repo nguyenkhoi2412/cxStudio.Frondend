@@ -87,7 +87,7 @@ const ProfileSection = () => {
     dispatch(SIGN_OUT());
     navigate(navigateLocation.AUTH.SIGNIN);
     // refresh
-    navigate(0);
+    // navigate(0);
   };
 
   const handleClose = (event) => {
