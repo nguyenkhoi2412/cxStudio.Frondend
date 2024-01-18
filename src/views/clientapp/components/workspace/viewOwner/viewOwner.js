@@ -7,8 +7,10 @@ import { crossCutting, loop, string, object } from "@utils/crossCutting";
 //#endregion
 //#region material-ui
 import { Grid } from "@mui/material";
+import FadeAnimation from "@components/mui-ui/extended/fadeAnimation";
 //#endregion
 //#region project import
+import Spin from "@components/common/spin/spin";
 import MainCard from "@components/mui-ui/cards";
 import AlignItemsList from "@components/mui-ui/list/alignItems";
 //#endregion
@@ -23,6 +25,7 @@ const ViewOwner = ({ workspaceValues }) => {
   const { t } = useTranslation();
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [dataValue, setDataValue] = React.useState([]);
+  const [fadeIn, setFadeIn] = React.useState(true);
 
   //#region get datas
   const getWorkspaceOwner = (wp) => {
@@ -45,6 +48,7 @@ const ViewOwner = ({ workspaceValues }) => {
       });
 
       setDataValue(itemsList);
+      setFadeIn(true);
     });
   };
   //#endregion
@@ -56,24 +60,30 @@ const ViewOwner = ({ workspaceValues }) => {
   //#endregion
 
   return (
-    <MainCard
-      className="wrapper-owner"
-      //   {...other}
-      darkTitle={true}
-      title={t("workspace.workspaces_for") + " " + currentUser.email}
-      headerClass="title"
-      // secondary={
-      //   <>
-      //     <SecondaryAction link="https://next.material-ui.com/system/shadows/" />
-      //   </>
-      // }
-    >
-      <Grid container spacing={gridSpacing}>
-        <Grid item xs={12} className="align-itemlist">
-          <AlignItemsList itemlist={dataValue} />
+    <FadeAnimation isOpen={fadeIn}>
+      <MainCard
+        className="wrapper-owner"
+        //   {...other}
+        darkTitle={true}
+        title={t("workspace.workspaces_for") + " " + currentUser.email}
+        headerClass="title"
+        // secondary={
+        //   <>
+        //     <SecondaryAction link="https://next.material-ui.com/system/shadows/" />
+        //   </>
+        // }
+      >
+        <Grid container spacing={gridSpacing}>
+          <Grid item xs={12} className="align-itemlist">
+            {crossCutting.check.isNotNull(dataValue) ? (
+              <AlignItemsList itemlist={dataValue} />
+            ) : (
+              <Spin load={true} />
+            )}
+          </Grid>
         </Grid>
-      </Grid>
-    </MainCard>
+      </MainCard>
+    </FadeAnimation>
   );
 };
 

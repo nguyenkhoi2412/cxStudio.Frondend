@@ -6,6 +6,7 @@
     height: calc(100% - 70px);
 
     .MuiCardContent-root {
+      min-height: 100px;
     }
   }
 }

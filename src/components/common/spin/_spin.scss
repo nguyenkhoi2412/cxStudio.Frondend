@@ -1,0 +1,10 @@
+.spin-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%); /* Safari 3.1+, Chrome */
+  -moz-transform: translate(-50%, -50%); /* Firefox 3.5-15 */
+  -ms-transform: translate(-50%, -50%); /* IE9+ */
+  -o-transform: translate(-50%, -50%); /* Opera 10.5-12.00 */
+  transform: translate(-50%, -50%); /* Firefox 16+, Opera 12.50+ */
+}
