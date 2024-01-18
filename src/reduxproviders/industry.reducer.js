@@ -43,7 +43,8 @@ export const industry = createSlice({
           showProgressbar: false,
           ok: payload?.ok,
           message: payload?.message,
-          d: results,
+          originalData: results,
+          data: results,
         };
       });
     //#endregion

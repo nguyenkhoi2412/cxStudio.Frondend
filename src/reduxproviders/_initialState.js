@@ -3,5 +3,6 @@ export default {
   showProgressbar: false,
   ok: true,
   message: "",
-  d: null,
+  originalData: null,
+  data: null,
 };

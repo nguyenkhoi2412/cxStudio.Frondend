@@ -54,6 +54,7 @@ export const workspace = createSlice({
           showProgressbar: false,
           ok: payload?.ok,
           message: payload?.message,
+          originalData: data,
           d: data,
         };
       });
@@ -83,7 +84,8 @@ export const workspace = createSlice({
           showProgressbar: false,
           ok: payload?.ok,
           message: payload?.message,
-          d: results,
+          originalData: results,
+          data: results,
         };
       });
     //#endregion
