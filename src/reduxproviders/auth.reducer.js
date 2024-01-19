@@ -13,6 +13,13 @@ export const FIND_BY_USER = createAsyncThunk(
   }
 );
 
+export const SIGN_OUT = createAsyncThunk(
+  "auth/signout",
+  async (params, thunkAPI) => {
+    return await authServices.signOut();
+  }
+);
+
 export const VALIDATE_USER = createAsyncThunk(
   "auth/validate",
   async (params, thunkAPI) => {
@@ -99,14 +106,13 @@ export const auth = createSlice({
   name: "auth",
   initialState: initialState,
   reducers: {
-    SIGN_OUT: (state) => {
-      storage.local.del(storageHandler.AUTH.CURRENT_USER);
-      storage.cookie.del(storageHandler.AUTH.ACCESS_TOKEN);
-      storage.cookie.del(storageHandler.AUTH.REFRESH_TOKEN);
-      storage.cookie.del(storageHandler.AUTH.VERIFIED_2FA);
-
-      return { ...state, ...initialState };
-    },
+    // SIGN_OUT: (state) => {
+    //   storage.local.del(storageHandler.AUTH.CURRENT_USER);
+    //   // storage.cookie.del(storageHandler.AUTH.ACCESS_TOKEN);
+    //   // storage.cookie.del(storageHandler.AUTH.REFRESH_TOKEN);
+    //   // storage.cookie.del(storageHandler.AUTH.VERIFIED_2FA);
+    //   return { ...state, ...initialState };
+    // },
   },
   extraReducers: (builder) => {
     //#region VALIDATE_USER
@@ -148,22 +154,6 @@ export const auth = createSlice({
             storageHandler.AUTH.CURRENT_USER,
             newState.currentUser
           );
-
-          // save token to storage.cookie
-          storage.cookie.set(
-            storageHandler.AUTH.VERIFIED_2FA,
-            results.verified_token + ""
-          );
-
-          storage.cookie.set(
-            storageHandler.AUTH.ACCESS_TOKEN,
-            results.access_token
-          );
-
-          // storage.cookie.set(
-          //   storageHandler.AUTH.REFRESH_TOKEN,
-          //   results.refresh_token
-          // );
         }
 
         return newState;
@@ -240,18 +230,18 @@ export const auth = createSlice({
       .addCase(VALIDATE_SECURE_2FA.fulfilled, (state, { payload }) => {
         const results = payload?.rs;
 
-        if (payload?.ok) {
-          // save token to storage.cookie
-          storage.cookie.set(
-            storageHandler.AUTH.VERIFIED_2FA,
-            results.verified_token + ""
-          );
+        // if (payload?.ok) {
+        //   // save token to storage.cookie
+        //   storage.cookie.set(
+        //     storageHandler.AUTH.VERIFIED_2FA,
+        //     results.verified_token + ""
+        //   );
 
-          storage.cookie.set(
-            storageHandler.AUTH.ACCESS_TOKEN,
-            results.access_token
-          );
-        }
+        //   storage.cookie.set(
+        //     storageHandler.AUTH.ACCESS_TOKEN,
+        //     results.access_token
+        //   );
+        // }
 
         return {
           ...state,
@@ -320,12 +310,33 @@ export const auth = createSlice({
         return newState;
       });
     //#endregion
+    //#region SIGN_OUT
+    builder
+      .addCase(SIGN_OUT.pending, (state) => {
+        return {
+          ...state,
+          isFetching: true,
+          showProgressbar: true,
+        };
+      })
+      .addCase(SIGN_OUT.rejected, (state) => {
+        return {
+          ...state,
+          isFetching: false,
+          showProgressbar: false,
+        };
+      })
+      .addCase(SIGN_OUT.fulfilled, (state, { payload }) => {
+        storage.local.del(storageHandler.AUTH.CURRENT_USER);
+        return initialState;
+      });
+    //#endregion
   },
 });
 //#endregion
 
 // export actions to use
-export const { SIGN_OUT } = auth.actions;
+export const {} = auth.actions;
 
 //#region The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

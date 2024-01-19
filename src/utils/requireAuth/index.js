@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 import storageHandler from "@constants/storageHandler";
+import reduxStore from "@reduxproviders/_storeProvider";
 import { crossCutting, storage } from "@utils/crossCutting";
 
 export const RequireLoggedIn = ({ children, redirectTo, navigateTo }) => {
@@ -19,9 +20,15 @@ export const RequireAuth = ({
 
 export const isLoggedIn = () => {
   // return true;
+  const stores = reduxStore.getState();
+  const cookie = stores.sessionStorage?.data;
+
+  if (crossCutting.check.isNull(cookie)) return false;
+
   return (
-    storage.local.get(storageHandler.AUTH.CURRENT_USER) !== undefined &&
-    storage.cookie.get(storageHandler.AUTH.ACCESS_TOKEN) !== undefined
+    crossCutting.check.isNotNull(
+      storage.local.get(storageHandler.AUTH.CURRENT_USER)
+    ) && crossCutting.check.isNotNull(cookie[storageHandler.AUTH.ACCESS_TOKEN])
   );
 };
 
@@ -31,9 +38,12 @@ export const isAuth = () => {
 
 const _isVerified_2fa = () => {
   // return true;
-  return crossCutting.check.isNotNull(
-    storage.cookie.get(storageHandler.AUTH.VERIFIED_2FA)
-  )
-    ? storage.cookie.get(storageHandler.AUTH.VERIFIED_2FA) === "true"
+  const stores = reduxStore.getState();
+  const cookie = stores.sessionStorage?.data;
+
+  if (crossCutting.check.isNull(cookie)) return false;
+
+  return crossCutting.check.isNotNull(cookie[storageHandler.AUTH.VERIFIED_2FA])
+    ? cookie[storageHandler.AUTH.VERIFIED_2FA]
     : false;
 };

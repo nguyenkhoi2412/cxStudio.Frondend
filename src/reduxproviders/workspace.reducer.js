@@ -55,7 +55,7 @@ export const workspace = createSlice({
           ok: payload?.ok,
           message: payload?.message,
           originalData: data,
-          d: data,
+          data: data,
         };
       });
     //#endregion

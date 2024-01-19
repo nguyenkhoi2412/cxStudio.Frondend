@@ -14,6 +14,14 @@ export default {
         .catch((error) => reject(error));
     });
   },
+  signOut: () => {
+    return new Promise(async (resolve, reject) => {
+      await axios
+        .get("auth/signout")
+        .then((response) => resolve(response))
+        .catch((error) => reject(error));
+    });
+  },
   validateUser: (params) => {
     return new Promise(async (resolve, reject) => {
       params.username = encryptHelper.rsa.encrypt(params.username);
@@ -118,6 +126,14 @@ export default {
     return new Promise((resolve, reject) => {
       axios
         .post(`auth/refreshtoken/`, params)
+        .then((response) => resolve(response))
+        .catch((error) => reject(error));
+    });
+  },
+  secure: () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`auth/secure`)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });

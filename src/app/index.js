@@ -13,13 +13,15 @@ import WpBackdrop from "@components/mui-ui/backdropSpin";
 import WpProgressBar from "@components/mui-ui/progressBar";
 import WpSnackBar from "@components/mui-ui/snackBar";
 import WpDrawer from "@components/mui-ui/drawer";
-import { crossCutting, hook, array } from "@utils/crossCutting";
+import { crossCutting, hook } from "@utils/crossCutting";
 import { useDispatch, useSelector } from "react-redux";
 import {
   SHOW_SPIN,
   HIDE_SPIN,
 } from "@components/mui-ui/backdropSpin/backdropSpin.reducer";
 import { DETECT_BROWSER_NAVIGATION } from "@reduxproviders/utils/navigation.reducer";
+import { UPDATE_COOKIE } from "@reduxproviders/sessionStorage.reducer";
+import authServices from "@services/auth";
 
 //#region call api
 import { SITE_GET_BY_ID, siteState } from "@reduxproviders/site.reducer";
@@ -65,6 +67,11 @@ const App = (props) => {
     handleResize();
     // Detect page REFRESH or not
     dispatch(DETECT_BROWSER_NAVIGATION());
+
+    //*get cookie check user login?
+    authServices.secure().then((rs) => {
+      dispatch(UPDATE_COOKIE(rs));
+    });
 
     //* GET SITE INFO
     getSiteInfosById();

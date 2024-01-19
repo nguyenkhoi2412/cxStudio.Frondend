@@ -84,10 +84,11 @@ const ProfileSection = () => {
    * */
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    dispatch(SIGN_OUT());
-    navigate(navigateLocation.AUTH.SIGNIN);
-    // refresh
-    // navigate(0);
+    await dispatch(SIGN_OUT())
+      .unwrap()
+      .then(() => {
+        navigate(navigateLocation.AUTH.SIGNIN);
+      });
   };
 
   const handleClose = (event) => {
@@ -223,9 +224,9 @@ const ProfileSection = () => {
                           variant="h4"
                           sx={{ fontWeight: 400 }}
                         >
-                          {currentUser.detailInfos.firstName +
+                          {currentUser?.detailInfos?.firstName +
                             " " +
-                            currentUser.detailInfos.lastName}
+                            currentUser?.detailInfos?.lastName}
                         </Typography>
                       </Stack>
                       <Typography variant="subtitle2">

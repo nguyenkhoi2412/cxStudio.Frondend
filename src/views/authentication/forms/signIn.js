@@ -29,6 +29,7 @@ import {
 //#region redux providers
 import { useDispatch } from "react-redux";
 import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
+import { COOKIE_GET } from "@reduxproviders/sessionStorage.reducer";
 //#endregion
 import LoadingButton from "@components/mui-ui/extended/loadingButton";
 import SocialButtons from "./socialButtons";
@@ -47,6 +48,7 @@ const FormSignIn = () => {
 
   const validateUser = (values) => {
     crossCutting.simulateNetworkRequest(100).then(async () => {
+      // get cookie from HTTP API
       await dispatch(VALIDATE_USER(values))
         .unwrap()
         .then((response) => {
@@ -65,12 +67,16 @@ const FormSignIn = () => {
   const responseValidate = (response) => {
     if (response.code === HTTP_STATUS.OK) {
       if (response.ok) {
-        if (response.rs.verified_token) {
-          navigate(navigateLocation.CLIENT_APP.APP);
-        } else {
-          //* verify 2FA
-          navigate(navigateLocation.AUTH.CODE_VERIFICATION);
-        }
+        dispatch(COOKIE_GET())
+          .unwrap()
+          .then((rs) => {
+            if (rs.verified_token) {
+              navigate(navigateLocation.CLIENT_APP.APP);
+            } else {
+              //* verify 2FA
+              navigate(navigateLocation.AUTH.CODE_VERIFICATION);
+            }
+          });
       } else {
         //* show message
         setShowMessageAlert(true);

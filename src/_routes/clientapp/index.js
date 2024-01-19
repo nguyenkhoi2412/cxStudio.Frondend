@@ -11,27 +11,23 @@ import LaundryServicesRoutes from "./laundry-service";
 const ClientAppRoutes = [
   ...AuthRoutes,
   {
-    element: <CLIENT_APP.LAYOUT appName={APP.EMPTY} />,
+    element: (
+      <CLIENT_APP.LAYOUT
+        requireAuth={true}
+        redirectTo={navigateLocation.AUTH.SIGNIN}
+        appName={APP.EMPTY}
+      />
+    ),
     children: [
       {
         path: navigateLocation.CLIENT_APP.ASSET_PATH,
         title: "Create/Open a workspace",
-        element: (
-          <CLIENT_APP.HOME
-            requireAuth={true}
-            redirectTo={navigateLocation.AUTH.SIGNIN}
-          />
-        ),
+        element: <CLIENT_APP.HOME />,
       },
       {
         path: navigateLocation.CLIENT_APP.APP,
         title: "Create/Open a workspace",
-        element: (
-          <CLIENT_APP.HOME
-            requireAuth={true}
-            redirectTo={navigateLocation.AUTH.SIGNIN}
-          />
-        ),
+        element: <CLIENT_APP.HOME />,
       },
       {
         path: navigateLocation.UTILITIES.TYPOGRAPHY,
