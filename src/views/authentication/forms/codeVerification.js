@@ -9,7 +9,7 @@ import InputField from "@components/mui-ui/forms/inputField";
 import _schema from "../codeVerification/_schema";
 import { navigateLocation } from "@routes/navigateLocation";
 import { HTTP_STATUS } from "@constants/httpStatus";
-import storaged from "@constants/storageHandler";
+import storaged from "@constants/storage";
 //#region mui-ui
 import WpAlert from "@components/mui-ui/alert";
 import Box from "@mui/material/Box";

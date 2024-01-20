@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import storageHandler from "@constants/storageHandler";
+import storaged from "@constants/storage";
 import reduxStore from "@reduxproviders/_storeProvider";
 import { crossCutting, storage } from "@utils/crossCutting";
 
@@ -27,8 +27,8 @@ export const isLoggedIn = () => {
 
   return (
     crossCutting.check.isNotNull(
-      storage.local.get(storageHandler.AUTH.CURRENT_USER)
-    ) && crossCutting.check.isNotNull(cookie[storageHandler.AUTH.ACCESS_TOKEN])
+      storage.local.get(storaged.AUTH.CURRENT_USER)
+    ) && crossCutting.check.isNotNull(cookie[storaged.AUTH.ACCESS_TOKEN])
   );
 };
 
@@ -43,7 +43,7 @@ const _isVerified_2fa = () => {
 
   if (crossCutting.check.isNull(cookie)) return false;
 
-  return crossCutting.check.isNotNull(cookie[storageHandler.AUTH.VERIFIED_2FA])
-    ? cookie[storageHandler.AUTH.VERIFIED_2FA] === "true"
+  return crossCutting.check.isNotNull(cookie[storaged.AUTH.VERIFIED_2FA])
+    ? cookie[storaged.AUTH.VERIFIED_2FA] === "true"
     : false;
 };

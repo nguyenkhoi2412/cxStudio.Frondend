@@ -1,6 +1,5 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import baseServices from "@services/_base.api";
-import storageHandler from "@constants//storageHandler";
 import initialData from "./_initialState";
 
 export const ROLE_GET_ALL = createAsyncThunk(

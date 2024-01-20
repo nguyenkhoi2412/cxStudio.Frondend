@@ -2,7 +2,7 @@ import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import baseServices from "@services/_base.api";
 import authServices from "@services/auth";
 import { storage } from "@utils/crossCutting";
-import storageHandler from "@constants/storageHandler";
+import storaged from "@constants/storage";
 
 // ==============================|| ACTIONS ||============================== //
 //#region ACTIONS
@@ -78,8 +78,8 @@ export const SIGNIN_SOCIAL_GOOGLE = createAsyncThunk(
 //#endregion
 
 const currentUser = () => {
-  if (storage.local.get(storageHandler.AUTH.CURRENT_USER) !== undefined) {
-    return storage.local.get(storageHandler.AUTH.CURRENT_USER);
+  if (storage.local.get(storaged.AUTH.CURRENT_USER) !== undefined) {
+    return storage.local.get(storaged.AUTH.CURRENT_USER);
   }
 
   return {
@@ -143,7 +143,7 @@ export const auth = createSlice({
         if (payload?.ok) {
           // save localStore USER INFOS
           storage.local.set(
-            storageHandler.AUTH.CURRENT_USER,
+            storaged.AUTH.CURRENT_USER,
             newState.currentUser
           );
         }
@@ -190,7 +190,7 @@ export const auth = createSlice({
           if (response?.ok) {
             // save localStore USER INFOS
             storage.local.set(
-              storageHandler.AUTH.CURRENT_USER,
+              storaged.AUTH.CURRENT_USER,
               newState.currentUser
             );
           }
@@ -265,7 +265,7 @@ export const auth = createSlice({
         if (payload?.ok) {
           // save localStore USER INFOS
           storage.local.set(
-            storageHandler.AUTH.CURRENT_USER,
+            storaged.AUTH.CURRENT_USER,
             newState.currentUser
           );
         }
@@ -290,7 +290,7 @@ export const auth = createSlice({
         };
       })
       .addCase(SIGN_OUT.fulfilled, (state, { payload }) => {
-        storage.local.del(storageHandler.AUTH.CURRENT_USER);
+        storage.local.del(storaged.AUTH.CURRENT_USER);
         return initialState;
       });
     //#endregion

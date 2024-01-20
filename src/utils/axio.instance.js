@@ -1,5 +1,5 @@
 import axios from "axios";
-import stored from "@constants/storageHandler";
+import storaged from "@constants/storage";
 import reduxStore from "@reduxproviders/_storeProvider";
 import {
   SHOW_PROGRESSBAR,
@@ -42,13 +42,13 @@ axiosInstance.interceptors.request.use(
     // show progressbar when request
     SPIN.SHOW_PROGRESSBAR(request);
 
-    // Do something before request is sent
-    const accessToken = getLocalAccessToken();
+    // // Do something before request is sent
+    // const accessToken = getLocalAccessToken();
 
-    if (accessToken !== null && accessToken !== undefined) {
-      request.headers["Authorization"] = "Bearer " + accessToken;
-      // request.headers["X-Access-Token"] = "Bearer " + accessToken;
-    }
+    // if (accessToken !== null && accessToken !== undefined) {
+    //   request.headers["Authorization"] = "Bearer " + accessToken;
+    //   // request.headers["X-Access-Token"] = "Bearer " + accessToken;
+    // }
 
     return request;
   },
@@ -129,21 +129,21 @@ axiosInstance.interceptors.response.use(
 //#endregion
 
 //#region functions support for axios callback
-const getLocalRefreshToken = () => {
-  return storage.cookie.get(stored.AUTH.REFRESH_TOKEN);
-};
+// const getLocalRefreshToken = () => {
+//   // return storage.cookie.get(storaged.AUTH.REFRESH_TOKEN);
+// };
 
-const getLocalAccessToken = () => {
-  return storage.cookie.get(stored.AUTH.ACCESS_TOKEN);
-};
+// const getLocalAccessToken = () => {
+//   // return storage.cookie.get(storaged.AUTH.ACCESS_TOKEN);
+// };
 
-const removeLocalToken = () => {
-  // const module = CURRENT_MODULES();
-  // localStorage.removeItem(stored.AUTH.CURRENT_USER);
-  // storage.cookie.del(stored.AUTH.ACCESS_TOKEN);
-  // storage.cookie.del(stored.AUTH.REFRESH_TOKEN);
-  // window.location.href = "/" + module + "/login";
-};
+// const removeLocalToken = () => {
+//   // const module = CURRENT_MODULES();
+//   // localStorage.removeItem(storaged.AUTH.CURRENT_USER);
+//   // storage.cookie.del(storaged.AUTH.ACCESS_TOKEN);
+//   // storage.cookie.del(storaged.AUTH.REFRESH_TOKEN);
+//   // window.location.href = "/" + module + "/login";
+// };
 
 // ==============================|| SPIN ||============================== //
 let urlShowProgresBar = [];
