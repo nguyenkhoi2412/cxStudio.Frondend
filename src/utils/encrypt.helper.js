@@ -2,6 +2,12 @@ import CryptoJs from "crypto-js";
 import RSAKey from "react-native-rsa";
 
 export default {
+  //#region string Base64
+  base64: {
+    encrypt: (stringToEncode) => btoa(stringToEncode),
+    decrypt: (stringToDecode) => atob(stringToDecode),
+  },
+  //#endregion
   //#region cryptoJs-aes
   aes: {
     encrypt: (dataObj) => {

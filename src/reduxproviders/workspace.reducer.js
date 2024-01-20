@@ -13,7 +13,7 @@ export const WORKSPACE_GET_BY_USER = createAsyncThunk(
 export const INSERT_NEW = createAsyncThunk(
   "workspace/insertnew",
   async (params, thunkAPI) => {
-    return await WorkspaceService.insertnew("workspace/insertnew/", params);
+    return await WorkspaceService.insertnew("workspace/insertnew", params);
   }
 );
 
@@ -45,8 +45,8 @@ export const workspace = createSlice({
       })
       .addCase(INSERT_NEW.fulfilled, (state, { payload }) => {
         let results = payload?.rs;
-        let data = [...current(state).d];
-        data = data.push(results);
+        let data = [...current(state).data];
+        data.push(results);
 
         return {
           ...state,

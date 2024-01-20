@@ -34,6 +34,11 @@ const ClientAppRoutes = [
         title: "TYPOGRAPHY",
         element: <DASHBOARD.UTILITIES.TYPOGRAPHY />,
       },
+      {
+        path: navigateLocation.UTILITIES.GENERATE_KEY,
+        title: "GENERATEKEY",
+        element: <DASHBOARD.UTILITIES.GENERATE_KEY />,
+      },
     ],
   },
   ...CommunityRoutes,

@@ -15,13 +15,11 @@ import MainCard from "@components/mui-ui/cards";
 import AlignItemsList from "@components/mui-ui/list/alignItems";
 //#endregion
 //#region reduxprovider
-import { useDispatch, useSelector } from "react-redux";
-import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
-import { WORKSPACE_GET_BY_USER } from "@reduxproviders/workspace.reducer";
+import { useSelector } from "react-redux";
 import { WorkspaceService } from "@services/workspace";
 //#endregion
 
-const ViewOwner = ({ workspaceValues }) => {
+const ViewOwner = ({ data }) => {
   const { t } = useTranslation();
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [dataValue, setDataValue] = React.useState([]);
@@ -55,8 +53,8 @@ const ViewOwner = ({ workspaceValues }) => {
 
   //#region useHooks
   React.useEffect(() => {
-    getWorkspaceOwner(workspaceValues);
-  }, [workspaceValues]);
+    getWorkspaceOwner(data);
+  }, [data]);
   //#endregion
 
   return (

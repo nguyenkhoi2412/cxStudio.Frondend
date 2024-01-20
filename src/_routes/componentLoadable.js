@@ -7,6 +7,7 @@ export const DASHBOARD = {
   DEFAULT: Loadable(lazy(() => import("@dashboard/default"))),
   UTILITIES: {
     TYPOGRAPHY: Loadable(lazy(() => import("@views/utilities/Typography"))),
+    GENERATE_KEY: Loadable(lazy(() => import("@views/utilities/GenerateKey")))
   },
 };
 

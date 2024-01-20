@@ -34,6 +34,7 @@ const Home = () => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.currentUser);
+  const workspace = useSelector((state) => state.workspace);
   const [termsChecked, setTermsChecked] = React.useState(false);
   const [dataValue, setDataValue] = React.useState([]);
   const [owner, setOwner] = React.useState([]);
@@ -46,13 +47,7 @@ const Home = () => {
       WORKSPACE_GET_BY_USER({
         id: currentUser._id,
       })
-    )
-      .unwrap()
-      .then((data) => {
-        if (data) {
-          setDataValue(data.rs);
-        }
-      });
+    );
   };
 
   // const getWorkspaceTeams = (wp) => {
@@ -68,6 +63,10 @@ const Home = () => {
   React.useEffect(() => {
     getWorkspaceByCurrentUser();
   }, []);
+
+  React.useEffect(() => {
+    setDataValue(workspace.data);
+  }, [workspace]);
   //#endregion
 
   //#region handle events
@@ -100,7 +99,7 @@ const Home = () => {
             alignItems={"center"}
           >
             <Grid item xs={12} md={10}>
-              <ViewOwner workspaceValues={dataValue} />
+              <ViewOwner data={dataValue} />
             </Grid>
           </Grid>
         </Grid>
