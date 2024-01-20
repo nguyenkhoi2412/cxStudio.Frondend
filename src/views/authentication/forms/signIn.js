@@ -29,7 +29,7 @@ import {
 //#region redux providers
 import { useDispatch } from "react-redux";
 import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
-import { COOKIE_GET } from "@reduxproviders/sessionStorage.reducer";
+import { COOKIE_GET } from "@reduxproviders/sessionHandler.reducer";
 //#endregion
 import LoadingButton from "@components/mui-ui/extended/loadingButton";
 import SocialButtons from "./socialButtons";

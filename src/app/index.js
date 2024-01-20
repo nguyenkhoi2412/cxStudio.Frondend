@@ -20,7 +20,7 @@ import {
   HIDE_SPIN,
 } from "@components/mui-ui/backdropSpin/backdropSpin.reducer";
 import { DETECT_BROWSER_NAVIGATION } from "@reduxproviders/utils/navigation.reducer";
-import { UPDATE_COOKIE } from "@reduxproviders/sessionStorage.reducer";
+import { UPDATE_COOKIE } from "@reduxproviders/sessionHandler.reducer";
 import authServices from "@services/auth";
 
 //#region call api

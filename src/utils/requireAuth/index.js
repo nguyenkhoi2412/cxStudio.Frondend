@@ -21,7 +21,7 @@ export const RequireAuth = ({
 export const isLoggedIn = () => {
   // return true;
   const stores = reduxStore.getState();
-  const cookie = stores.sessionStorage?.data;
+  const cookie = stores.sessionHandler?.data;
 
   if (crossCutting.check.isNull(cookie)) return false;
 
@@ -39,7 +39,7 @@ export const isAuth = () => {
 const _isVerified_2fa = () => {
   // return true;
   const stores = reduxStore.getState();
-  const cookie = stores.sessionStorage?.data;
+  const cookie = stores.sessionHandler?.data;
 
   if (crossCutting.check.isNull(cookie)) return false;
 

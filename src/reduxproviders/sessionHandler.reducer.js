@@ -1,11 +1,11 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import initialData from "./_initialState";
-import { StorageService } from "@services/storage";
+import { SessionHandler } from "@services/sessionHandler";
 
 export const COOKIE_GET = createAsyncThunk(
   "cookie/getCookie",
   async (params, thunkAPI) => {
-    return await StorageService.getCookie();
+    return await SessionHandler.getCookie();
   }
 );
 
@@ -14,8 +14,8 @@ const initialState = {
   ...initialData,
 };
 
-export const sessionStorage = createSlice({
-  name: "sessionStorage",
+export const sessionHandler = createSlice({
+  name: "sessionHandler",
   initialState: initialState,
   reducers: {
     UPDATE_COOKIE: (state, { payload }) => {
@@ -63,12 +63,12 @@ export const sessionStorage = createSlice({
 });
 
 // export actions to use
-export const { UPDATE_COOKIE } = sessionStorage.actions;
+export const { UPDATE_COOKIE } = sessionHandler.actions;
 
 //#region The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const storageState = (state) => state.sessionStorage;
+export const sessionHandlerState = (state) => state.sessionHandler;
 //#endregion
 
-export default sessionStorage.reducer;
+export default sessionHandler.reducer;

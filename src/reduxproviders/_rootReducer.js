@@ -9,7 +9,7 @@ import customizationReducer from "./berry/customization.reducer";
 
 //* dashboard
 import authReducer from "./auth.reducer";
-import sessionStorageReducer from "./sessionStorage.reducer";
+import sessionHandlerReducer from "./sessionHandler.reducer";
 // import roleReducer from "./role.reducer";
 // // import secure_2faReducer from "./secure_2fa.reducer";
 import siteReducer from "./site.reducer";
@@ -26,7 +26,7 @@ const rootReducer = combineReducers({
   // file: fileReducer,
   // //   //? dashboard
   auth: authReducer,
-  sessionStorage: sessionStorageReducer,
+  sessionHandler: sessionHandlerReducer,
   // role: roleReducer,
   // //   secure_2fa: secure_2faReducer,
   site: siteReducer,
