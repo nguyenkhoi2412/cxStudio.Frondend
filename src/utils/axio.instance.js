@@ -95,7 +95,7 @@ axiosInstance.interceptors.response.use(
 
     // 405: Method Not Allowed
     if (responseError.response?.status !== 405) {
-      removeLocalToken();
+      // removeLocalToken();
 
       // Return any error which is not due to authentication back to the calling service
       if (responseError.response?.status !== 401) {

@@ -18,7 +18,7 @@ export default {
       };
     } else {
       objData = {
-        site_id: siteData.d?._id,
+        site_id: siteData.data?._id,
         name: {
           [locale.lang]: "",
         },

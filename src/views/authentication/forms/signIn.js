@@ -71,7 +71,7 @@ const FormSignIn = () => {
         dispatch(COOKIE_GET())
           .unwrap()
           .then((data) => {
-            if (data.rs[storaged.AUTH.VERIFIED_2FA] === 'true') {
+            if (data.rs[storaged.AUTH.VERIFIED_2FA] === "true") {
               navigate(navigateLocation.CLIENT_APP.APP);
             } else {
               //* verify 2FA

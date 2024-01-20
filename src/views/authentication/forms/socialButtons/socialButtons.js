@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { HTTP_STATUS } from "@constants/httpStatus";
+import storaged from "@constants/storage";
 import Google from "@assets/images/icons/social-google.svg";
 import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
@@ -15,6 +16,7 @@ import { Button } from "@mui/material";
 //#region redux providers
 import { useDispatch } from "react-redux";
 import { SIGNIN_SOCIAL_GOOGLE } from "@reduxproviders/auth.reducer";
+import { COOKIE_GET } from "@reduxproviders/sessionHandler.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
@@ -42,7 +44,7 @@ const SocialButtons = (props) => {
         .unwrap()
         .then((response) => {
           responseValidate(response);
-        })
+        });
     },
     // flow: "auth-code",
   });
@@ -50,14 +52,16 @@ const SocialButtons = (props) => {
   const responseValidate = (response) => {
     if (response.code === HTTP_STATUS.OK) {
       if (response.ok) {
-        if (response.rs.verified_token) {
-          navigate(navigateLocation.CLIENT_APP.APP);
-        } else {
-          //* verify 2FA
-          navigate(
-            navigateLocation.AUTH.CODE_VERIFICATION
-          );
-        }
+        dispatch(COOKIE_GET())
+          .unwrap()
+          .then((data) => {
+            if (data.rs[storaged.AUTH.VERIFIED_2FA] === "true") {
+              navigate(navigateLocation.CLIENT_APP.APP);
+            } else {
+              //* verify 2FA
+              navigate(navigateLocation.AUTH.CODE_VERIFICATION);
+            }
+          });
       } else {
         //* show message
         setShowMessageAlert(true);
