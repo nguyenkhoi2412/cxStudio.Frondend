@@ -48,8 +48,10 @@ const Home = () => {
       })
     )
       .unwrap()
-      .then(({ rs }) => {
-        setDataValue(rs);
+      .then((data) => {
+        if (data) {
+          setDataValue(data.rs);
+        }
       });
   };
 

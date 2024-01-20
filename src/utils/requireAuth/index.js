@@ -44,6 +44,6 @@ const _isVerified_2fa = () => {
   if (crossCutting.check.isNull(cookie)) return false;
 
   return crossCutting.check.isNotNull(cookie[storageHandler.AUTH.VERIFIED_2FA])
-    ? cookie[storageHandler.AUTH.VERIFIED_2FA]
+    ? cookie[storageHandler.AUTH.VERIFIED_2FA] === "true"
     : false;
 };

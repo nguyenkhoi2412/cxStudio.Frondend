@@ -9,6 +9,7 @@ import InputField from "@components/mui-ui/forms/inputField";
 import _schema from "../codeVerification/_schema";
 import { navigateLocation } from "@routes/navigateLocation";
 import { HTTP_STATUS } from "@constants/httpStatus";
+import storaged from "@constants/storageHandler";
 //#region mui-ui
 import WpAlert from "@components/mui-ui/alert";
 import Box from "@mui/material/Box";
@@ -24,6 +25,7 @@ import {
   VALIDATE_SECURE_2FA,
   currentUserState,
 } from "@reduxproviders/auth.reducer";
+import { COOKIE_GET } from "@reduxproviders/sessionHandler.reducer";
 
 const FormCodeVerification = () => {
   const navigate = useNavigate();
@@ -50,7 +52,13 @@ const FormCodeVerification = () => {
 
           if (result.code === HTTP_STATUS.OK) {
             if (result.ok) {
-              navigate(navigateLocation.CLIENT_APP.APP);
+              dispatch(COOKIE_GET())
+                .unwrap()
+                .then((data) => {
+                  if (data.rs[storaged.AUTH.VERIFIED_2FA] === 'true') {
+                    navigate(navigateLocation.CLIENT_APP.APP);
+                  }
+                });
             } else {
               setShowMessageAlert(true);
               setMessageContentAlert(result.message);
@@ -119,18 +127,11 @@ const FormCodeVerification = () => {
             sx={{ mt: 1 }}
           >
             {dataForm.map((item, index) => {
-              const errorText = object.getValue(
-                formik,
-                "errors." + item.field
-              );
+              const errorText = object.getValue(formik, "errors." + item.field);
               let hasError =
-                Boolean(
-                  object.getValue(formik, "touched." + item.field)
-                ) && errorText;
-              let dataValue = object.getValue(
-                formik,
-                "values." + item.field
-              );
+                Boolean(object.getValue(formik, "touched." + item.field)) &&
+                errorText;
+              let dataValue = object.getValue(formik, "values." + item.field);
               return (
                 <InputField
                   margin="normal"
