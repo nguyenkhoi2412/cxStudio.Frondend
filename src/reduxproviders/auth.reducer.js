@@ -105,15 +105,7 @@ const initialState = {
 export const auth = createSlice({
   name: "auth",
   initialState: initialState,
-  reducers: {
-    // SIGN_OUT: (state) => {
-    //   storage.local.del(storageHandler.AUTH.CURRENT_USER);
-    //   // storage.cookie.del(storageHandler.AUTH.ACCESS_TOKEN);
-    //   // storage.cookie.del(storageHandler.AUTH.REFRESH_TOKEN);
-    //   // storage.cookie.del(storageHandler.AUTH.VERIFIED_2FA);
-    //   return { ...state, ...initialState };
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     //#region VALIDATE_USER
     builder
@@ -230,19 +222,6 @@ export const auth = createSlice({
       .addCase(VALIDATE_SECURE_2FA.fulfilled, (state, { payload }) => {
         const results = payload?.rs;
 
-        // if (payload?.ok) {
-        //   // save token to storage.cookie
-        //   storage.cookie.set(
-        //     storageHandler.AUTH.VERIFIED_2FA,
-        //     results.verified_token + ""
-        //   );
-
-        //   storage.cookie.set(
-        //     storageHandler.AUTH.ACCESS_TOKEN,
-        //     results.access_token
-        //   );
-        // }
-
         return {
           ...state,
           isFetching: false,
@@ -289,22 +268,6 @@ export const auth = createSlice({
             storageHandler.AUTH.CURRENT_USER,
             newState.currentUser
           );
-
-          // save token to storage.cookie
-          storage.cookie.set(
-            storageHandler.AUTH.VERIFIED_2FA,
-            results.verified_token + ""
-          );
-
-          storage.cookie.set(
-            storageHandler.AUTH.ACCESS_TOKEN,
-            results.access_token
-          );
-
-          // storage.cookie.set(
-          //   storageHandler.AUTH.REFRESH_TOKEN,
-          //   results.refresh_token
-          // );
         }
 
         return newState;
