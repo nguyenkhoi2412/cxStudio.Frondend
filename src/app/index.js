@@ -93,11 +93,12 @@ const App = (props) => {
   }, []);
 
   //* Interval callback REFRESH TOKEN AFTER LOGIN SUCCESS
-  if (isAuth()) {
-    hook.useInterval(() => {
+
+  hook.useInterval(() => {
+    if (isAuth()) {
       dispatch(REFRESH_TOKEN());
-    }, parseInt(_globalVars.REFRESH_TOKEN) * 60 * 1000); // 50min
-  }
+    }
+  }, parseInt(_globalVars.REFRESH_TOKEN) * 60 * 1000); // 50min
 
   //#endregion
 
