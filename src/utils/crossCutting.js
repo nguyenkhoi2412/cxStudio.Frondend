@@ -1909,46 +1909,27 @@ export const hook = {
   /**
    * useInterval
    * How to use it?
-   * const { start, stop } = useInterval({
-   *  duration: 1000,
-   *  startImmediate: false,
-   *  callback: () => {
+   * hook.useInterval(() => {
    *     process func
    *   }
-   * });
+   * }, 1000);
    */
-  useInterval: ({ startImmediate, duration, callback }) => {
-    const [count, updateCount] = useState(0);
-    const [intervalState, setIntervalState] = useState(
-      startImmediate === undefined ? true : startImmediate
-    );
-    const [intervalId, setIntervalId] = useState(null);
+  useInterval: (callback, delay) => {
+    const savedCallback = React.useRef();
 
-    useEffect(() => {
-      if (intervalState) {
-        const intervalId = setInterval(() => {
-          updateCount(count + 1);
-          callback && callback();
-        }, duration);
-        setIntervalId(intervalId);
-      }
+    React.useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
 
-      return () => {
-        if (intervalId) {
-          clearInterval(intervalId);
-          setIntervalId(null);
-        }
+    React.useEffect(() => {
+      const tick = () => {
+        savedCallback.current();
       };
-    }, [intervalState, count]);
-    return {
-      intervalId,
-      start: () => {
-        setIntervalState(true);
-      },
-      stop: () => {
-        setIntervalState(false);
-      },
-    };
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
   },
 
   /*

@@ -2,6 +2,7 @@ import "./app.scss";
 import { useTranslation } from "react-i18next";
 import defaultFavicon from "@assets/favicons/default/favicon.svg";
 import _globalVars from "@constants/variables";
+import { isAuth } from "@utils/requireAuth";
 import { BuildRoutes } from "@routes";
 import { SnackbarProvider } from "notistack";
 import { ThemeProvider } from "@mui/system";
@@ -21,17 +22,17 @@ import {
 } from "@components/mui-ui/backdropSpin/backdropSpin.reducer";
 import { DETECT_BROWSER_NAVIGATION } from "@reduxproviders/utils/navigation.reducer";
 import { UPDATE_COOKIE } from "@reduxproviders/sessionHandler.reducer";
+import { REFRESH_TOKEN } from "@reduxproviders/auth.reducer";
 import authServices from "@services/auth";
 
 //#region call api
-import { SITE_GET_BY_ID, siteState } from "@reduxproviders/site.reducer";
+import { SITE_GET_BY_ID } from "@reduxproviders/site.reducer";
 //#endregion
 
 const App = (props) => {
   console.warn = () => {};
   addFavicons();
   const customization = useSelector((state) => state.customization);
-  const siteDatas = useSelector(siteState);
   const dispatch = useDispatch();
   const savedLocale = hook.useLocalStorage("locale");
 
@@ -90,6 +91,14 @@ const App = (props) => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  //* Interval callback REFRESH TOKEN AFTER LOGIN SUCCESS
+  if (isAuth()) {
+    hook.useInterval(() => {
+      dispatch(REFRESH_TOKEN());
+    }, parseInt(_globalVars.REFRESH_TOKEN) * 60 * 1000); // 50min
+  }
+
   //#endregion
 
   //#region handle events

@@ -6,12 +6,13 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { SHOW_SNACKBAR } from "@components/mui-ui/snackBar/snackBar.reducer";
-import { storage } from "./crossCutting";
+// import { REFRESH_TOKEN } from "@reduxproviders/auth.reducer";
 // You can use your own logic to set your local or production domain
 const baseDomain = process.env.API_HOSTNAME;
 const baseURL = `${baseDomain}/api`;
 // const baseAPI_URL = "http://jsonplaceholder.typicode.com/";
 const ERR_BAD_REQUEST = ["ERR_BAD_REQUEST", "ERR_BAD_RESPONSE", "ERR_NETWORK"];
+// var stopRefreshToken = false;
 
 //#region axios
 const axiosInstance = axios.create({
@@ -106,45 +107,22 @@ axiosInstance.interceptors.response.use(
        * Eject the interceptor so it doesn't loop in case
        * token refresh causes the 401 response
        */
-      axios.interceptors.response.eject(axiosInstance);
-      // const params = {
-      //   refresh_token: getLocalRefreshToken(),
-      // };
-
-      // authServices.refreshToken(params).then((rs) => {
-      //   let module = localStorage.getItem(CURRENT_MODULES());
-      //   if (module !== null) {
-      //     module = JSON.parse(module);
-      //     module = {
-      //       ...module,
-      //       accessToken: rs.data.access_token,
-      //     };
-      //   }
-
-      //  referedEvent(responseError.response);
-      // });
+      // if (!stopRefreshToken) {
+      //   axios.interceptors.response.eject(axiosInstance);
+      //   reduxStore
+      //     .dispatch(REFRESH_TOKEN())
+      //     .unwrap()
+      //     .then((rs) => {
+      //       if (rs.code === 401) stopRefreshToken = true;
+      //     })
+      //     .catch((err) => (stopRefreshToken = true));
+      // }
     }
   }
 );
 //#endregion
 
 //#region functions support for axios callback
-// const getLocalRefreshToken = () => {
-//   // return storage.cookie.get(storaged.AUTH.REFRESH_TOKEN);
-// };
-
-// const getLocalAccessToken = () => {
-//   // return storage.cookie.get(storaged.AUTH.ACCESS_TOKEN);
-// };
-
-// const removeLocalToken = () => {
-//   // const module = CURRENT_MODULES();
-//   // localStorage.removeItem(storaged.AUTH.CURRENT_USER);
-//   // storage.cookie.del(storaged.AUTH.ACCESS_TOKEN);
-//   // storage.cookie.del(storaged.AUTH.REFRESH_TOKEN);
-//   // window.location.href = "/" + module + "/login";
-// };
-
 // ==============================|| SPIN ||============================== //
 let urlShowProgresBar = [];
 const SPIN = {
@@ -190,19 +168,4 @@ const SHOW_ERROR_SNACKBAR = (content) => {
     })
   );
 };
-
-// const referedEvent = (res) => {
-//   console.log(res);
-//   const url = res.url;
-//   const data = res.data;
-
-//   switch (res.method) {
-//     case "get":
-//       axios.get(url, data);
-//       break;
-
-//     case "post":
-//       break;
-//   }
-// };
 //#endregion

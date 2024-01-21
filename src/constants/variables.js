@@ -3,6 +3,7 @@ import { storage } from "../utils/crossCutting";
 export default {
   ASSET_PATH: process.env.ASSET_PATH || "/",
   SITE_ID: process.env.SITE_ID || "",
+  REFRESH_TOKEN: process.env.REFRESH_TOKEN || 50,
   //* use for dashboard page
   stripedHtml: /(<([^>]+)>)/gi,
   specialCharacters: /[!@#$%^&*(),.?":{}|<>]/gi,

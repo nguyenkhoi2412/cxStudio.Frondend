@@ -75,6 +75,13 @@ export const SIGNIN_SOCIAL_GOOGLE = createAsyncThunk(
     return await authServices.signInGoogle(params);
   }
 );
+
+export const REFRESH_TOKEN = createAsyncThunk(
+  "auth/refreshtoken",
+  async (params, thunkAPI) => {
+    return await authServices.refreshToken();
+  }
+);
 //#endregion
 
 const currentUser = () => {
@@ -142,10 +149,7 @@ export const auth = createSlice({
 
         if (payload?.ok) {
           // save localStore USER INFOS
-          storage.local.set(
-            storaged.AUTH.CURRENT_USER,
-            newState.currentUser
-          );
+          storage.local.set(storaged.AUTH.CURRENT_USER, newState.currentUser);
         }
 
         return newState;
@@ -189,10 +193,7 @@ export const auth = createSlice({
 
           if (response?.ok) {
             // save localStore USER INFOS
-            storage.local.set(
-              storaged.AUTH.CURRENT_USER,
-              newState.currentUser
-            );
+            storage.local.set(storaged.AUTH.CURRENT_USER, newState.currentUser);
           }
           return newState;
         }
@@ -264,10 +265,7 @@ export const auth = createSlice({
 
         if (payload?.ok) {
           // save localStore USER INFOS
-          storage.local.set(
-            storaged.AUTH.CURRENT_USER,
-            newState.currentUser
-          );
+          storage.local.set(storaged.AUTH.CURRENT_USER, newState.currentUser);
         }
 
         return newState;

@@ -125,7 +125,7 @@ export default {
   refreshToken: (params) => {
     return new Promise((resolve, reject) => {
       axios
-        .post(`auth/refreshtoken/`, params)
+        .get(`auth/refreshtoken/`)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
