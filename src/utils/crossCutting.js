@@ -752,10 +752,6 @@ export const object = {
       .join("&"),
 
   createQueryString: (url, queryObject) => {
-    // url +
-    // Object.keys(params)
-    //   .map((key) => params[key])
-    //   .join("&");
     let queryString = Object.keys(queryObject)
       .filter(
         (key) =>

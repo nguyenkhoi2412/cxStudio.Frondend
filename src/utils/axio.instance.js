@@ -173,6 +173,6 @@ const getLocalAccessToken = () => {
   const cookie = stores.sessionHandler?.data;
 
   if (cookie === null || cookie === undefined) return null;
-  return cookie[storaged.AUTH.ACCESS_TOKEN];
+  return btoa(cookie[storaged.AUTH.ACCESS_TOKEN]);
 };
 //#endregion
