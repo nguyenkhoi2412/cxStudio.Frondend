@@ -93,7 +93,7 @@ const App = (props) => {
   }, []);
 
   //* Interval callback REFRESH TOKEN AFTER LOGIN SUCCESS
-  hook.useInterval(
+  const callbackRefreshToken = hook.useInterval(
     () => {
       if (isAuth()) {
         dispatch(REFRESH_TOKEN());
@@ -101,6 +101,10 @@ const App = (props) => {
     },
     isAuth() ? parseInt(_globalVars.REFRESH_TOKEN) * 60 * 1000 : null
   ); // 50min
+
+  React.useEffect(() => {
+    if (!isAuth()) callbackRefreshToken.stop();
+  }, [isAuth()]);
 
   //#endregion
 

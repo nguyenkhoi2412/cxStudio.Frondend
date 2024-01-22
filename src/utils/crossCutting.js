@@ -1915,21 +1915,43 @@ export const hook = {
    * }, 1000);
    */
   useInterval: (callback, delay) => {
-    const savedCallback = React.useRef();
+    const savedCallback = useRef(callback);
+    const intervalRef = useRef(null);
 
     React.useEffect(() => {
       savedCallback.current = callback;
     }, [callback]);
 
     React.useEffect(() => {
-      const tick = () => {
-        savedCallback.current();
-      };
       if (delay !== null) {
-        let id = setInterval(tick, delay);
+        const id = setInterval(savedCallback.current, delay);
+        intervalRef.current = id;
         return () => clearInterval(id);
       }
     }, [delay]);
+
+    React.useEffect(() => {
+      // clear interval on when component gets removed to avoid memory leaks
+      return () => clearInterval(intervalRef.current);
+    }, []);
+
+    const reset = React.useCallback(() => {
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = setInterval(savedCallback.current, delay);
+      }
+    });
+
+    const stop = React.useCallback(() => {
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current);
+      }
+    });
+
+    return {
+      reset,
+      stop,
+    };
   },
 
   /*
