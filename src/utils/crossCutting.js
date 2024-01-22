@@ -1924,9 +1924,9 @@ export const hook = {
 
     React.useEffect(() => {
       if (delay !== null) {
-        const id = setInterval(savedCallback.current, delay);
-        intervalRef.current = id;
-        return () => clearInterval(id);
+        const intervalID = setInterval(savedCallback.current, delay);
+        intervalRef.current = intervalID;
+        return () => clearInterval(intervalID);
       }
     }, [delay]);
 

@@ -43,13 +43,12 @@ axiosInstance.interceptors.request.use(
     // show progressbar when request
     SPIN.SHOW_PROGRESSBAR(request);
 
-    // // Do something before request is sent
-    // const accessToken = getLocalAccessToken();
-
-    // if (accessToken !== null && accessToken !== undefined) {
-    //   request.headers["Authorization"] = "Bearer " + accessToken;
-    //   // request.headers["X-Access-Token"] = "Bearer " + accessToken;
-    // }
+    // Do something before request is sent
+    const accessToken = getLocalAccessToken();
+    if (accessToken !== null && accessToken !== undefined) {
+      request.headers["Authorization"] = "Bearer " + accessToken;
+      // request.headers["X-Access-Token"] = "Bearer " + accessToken;
+    }
 
     return request;
   },
@@ -167,5 +166,13 @@ const SHOW_ERROR_SNACKBAR = (content) => {
       },
     })
   );
+};
+
+const getLocalAccessToken = () => {
+  const stores = reduxStore.getState();
+  const cookie = stores.sessionHandler?.data;
+
+  if (cookie === null || cookie === undefined) return null;
+  return cookie[storaged.AUTH.ACCESS_TOKEN];
 };
 //#endregion
