@@ -9,16 +9,8 @@
 //   currency: "$",
 // }
 import _globalVars from "@constants/variables";
+import moment from "moment";
 import * as React from "react";
-import {
-  useReducer,
-  useMemo,
-  useRef,
-  useState,
-  useEffect,
-  useCallback,
-  useLayoutEffect,
-} from "react";
 import {
   useParams,
   useLocation,
@@ -1675,10 +1667,10 @@ export const hook = {
    * If we setValue success, this value will process (change/call API) after 1000ms = 1s
    */
   useThrottle: (value, limit) => {
-    const [throttledValue, setThrottledValue] = useState(value);
-    const lastRan = useRef(Date.now());
+    const [throttledValue, setThrottledValue] = React.useState(value);
+    const lastRan = React.useRef(Date.now());
 
-    useEffect(() => {
+    React.useEffect(() => {
       const handler = setTimeout(function () {
         if (Date.now() - lastRan.current >= limit) {
           setThrottledValue(value);
@@ -1702,11 +1694,11 @@ export const hook = {
   useWindowSize: () => {
     // Initialize state with undefined width/height so server and client renders match
     // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-    const [windowSize, setWindowSize] = useState({
+    const [windowSize, setWindowSize] = React.useState({
       width: undefined,
       height: undefined,
     });
-    useEffect(() => {
+    React.useEffect(() => {
       // Handler to call on window resize
       const handleResize = crossCutting.debounce(() => {
         // Set window width/height to state
@@ -1781,7 +1773,7 @@ export const hook = {
    * useClickOutside(ref, () => setModalOpen(false));
    */
   useClickOutside: (ref, handler) => {
-    useEffect(
+    React.useEffect(
       () => {
         const listener = (event) => {
           // Do nothing if clicking ref's element or descendent elements
@@ -1818,9 +1810,9 @@ export const hook = {
    * console.log(isVisible);
    */
   useOnScreen: (ref, rootMargin = "0px") => {
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = React.useState(false);
 
-    useEffect(() => {
+    React.useEffect(() => {
       const observer = new IntersectionObserver(
         ([entry]) => {
           setIsVisible(entry.isIntersecting);
@@ -1851,14 +1843,14 @@ export const hook = {
    * <div ref={hoverRef} style={{backgroundColor: isHovered ? '#00e3e3' : '#ccc'}} ></div>
    */
   useHover: () => {
-    const [value, setValue] = useState(false);
+    const [value, setValue] = React.useState(false);
 
-    const ref = useRef(null);
+    const ref = React.useRef(null);
 
     const handleMouseOver = () => setValue(true);
     const handleMouseOut = () => setValue(false);
 
-    useEffect(
+    React.useEffect(
       () => {
         const node = ref.current;
         if (node) {
@@ -1892,10 +1884,10 @@ export const hook = {
    *
    */
   useMousePosition: () => {
-    const [x, setX] = useState(0);
-    const [y, setY] = useState(0);
+    const [x, setX] = React.useState(0);
+    const [y, setY] = React.useState(0);
 
-    const bind = useMemo(
+    const bind = React.useMemo(
       () => ({
         onMouseMove: (event) => {
           setX(event.nativeEvent.offsetX);
@@ -1954,7 +1946,7 @@ export const hook = {
     const history = useNavigate();
     // Return our custom router object
     // Memoize so that a new object is only returned if something changes
-    return useMemo(() => {
+    return React.useMemo(() => {
       return {
         // For convenience add push(), replace(), pathname at top level
         push: history.push,
@@ -1981,7 +1973,7 @@ export const hook = {
    * const { state, set, undo, redo, clear, canUndo, canRedo } = useNavigate({});
    */
   useNavigate: (initialPresent) => {
-    const [state, dispatch] = useReducer(reducer, {
+    const [state, dispatch] = React.useReducer(reducer, {
       ...initialState,
       present: initialPresent,
     });
@@ -1989,21 +1981,21 @@ export const hook = {
     const canRedo = state.future.length !== 0;
     // Setup our callback functions
     // We memoize with useCallback to prevent unnecessary re-renders
-    const undo = useCallback(() => {
+    const undo = React.useCallback(() => {
       if (canUndo) {
         dispatch({ type: "UNDO" });
       }
     }, [canUndo, dispatch]);
-    const redo = useCallback(() => {
+    const redo = React.useCallback(() => {
       if (canRedo) {
         dispatch({ type: "REDO" });
       }
     }, [canRedo, dispatch]);
-    const set = useCallback(
+    const set = React.useCallback(
       (newPresent) => dispatch({ type: "SET", newPresent }),
       [dispatch]
     );
-    const clear = useCallback(
+    const clear = React.useCallback(
       () => dispatch({ type: "CLEAR", initialPresent }),
       [dispatch]
     );
@@ -2014,15 +2006,15 @@ export const hook = {
   /*
    * usePrevious
    * How to use it?
-   * const [count, setCount] = useState(0);
+   * const [count, setCount] = React.useState(0);
    * const prevCount = usePrevious(count);
    */
   usePrevious: (value) => {
     // The ref object is a generic container whose current property is mutable ...
     // ... and can hold any value, similar to an instance property on a class
-    const ref = useRef();
+    const ref = React.useRef();
     // Store current value in ref
-    useEffect(() => {
+    React.useEffect(() => {
       ref.current = value;
     }, [value]); // Only re-run if value changes
     // Return previous value (happens before update in useEffect above)
@@ -2037,11 +2029,11 @@ export const hook = {
    */
   useToggle: (initialState = false) => {
     // Initialize the state
-    const [state, setState] = useState(initialState);
+    const [state, setState] = React.useState(initialState);
 
     // Define and memorize toggler function in case we pass down the component,
     // This function change the boolean value to it's opposite value
-    const toggle = useCallback(() => setState((state) => !state), []);
+    const toggle = React.useCallback(() => setState((state) => !state), []);
 
     return [state, toggle];
   },
@@ -2050,14 +2042,14 @@ export const hook = {
    * useTimeout
    * How to use it?
    * const ready = useTimeout(2000);
-   * useEffect(() => {
+   * React.useEffect(() => {
    *  process anything after ready is 2s
    * }, [ready])
    */
   useTimeout: (ms = 0) => {
-    const [ready, setReady] = useState(false);
+    const [ready, setReady] = React.useState(false);
 
-    useEffect(() => {
+    React.useEffect(() => {
       let timer = setTimeout(() => {
         setReady(true);
       }, ms);
@@ -2079,8 +2071,8 @@ export const hook = {
    * }, 1000);
    */
   useInterval: (callback, delay) => {
-    const savedCallback = useRef(callback);
-    const intervalRef = useRef(null);
+    const savedCallback = React.useRef(callback);
+    const intervalRef = React.useRef(null);
 
     React.useEffect(() => {
       savedCallback.current = callback;
@@ -2127,7 +2119,7 @@ export const hook = {
      </button>
    */
   useHistory: (initialPresent) => {
-    const [state, dispatch] = useReducer(reducer, {
+    const [state, dispatch] = React.useReducer(reducer, {
       ...initialState,
       present: initialPresent,
     });
@@ -2135,21 +2127,21 @@ export const hook = {
     const canRedo = state.future.length !== 0;
     // Setup our callback functions
     // We memoize with useCallback to prevent unnecessary re-renders
-    const undo = useCallback(() => {
+    const undo = React.useCallback(() => {
       if (canUndo) {
         dispatch({ type: "UNDO" });
       }
     }, [canUndo, dispatch]);
-    const redo = useCallback(() => {
+    const redo = React.useCallback(() => {
       if (canRedo) {
         dispatch({ type: "REDO" });
       }
     }, [canRedo, dispatch]);
-    const set = useCallback(
+    const set = React.useCallback(
       (newPresent) => dispatch({ type: "SET", newPresent }),
       [dispatch]
     );
-    const clear = useCallback(
+    const clear = React.useCallback(
       () => dispatch({ type: "CLEAR", initialPresent }),
       [dispatch]
     );
@@ -2165,7 +2157,7 @@ export const hook = {
    */
   useKeyPress: (targetKey) => {
     // State for keeping track of whether key is pressed
-    const [keyPressed, setKeyPressed] = useState < boolean > false;
+    const [keyPressed, setKeyPressed] = React.useState < boolean > false;
     // If pressed key is our target key then set to true
     function downHandler({ key }) {
       if (key === targetKey) {
@@ -2179,7 +2171,7 @@ export const hook = {
       }
     };
     // Add event listeners
-    useEffect(() => {
+    React.useEffect(() => {
       window.addEventListener("keydown", downHandler);
       window.addEventListener("keyup", upHandler);
       // Remove event listeners on cleanup
@@ -2227,7 +2219,7 @@ export const hook = {
       }
       return null;
     };
-    const [state, setState] = useState(getStorageValue);
+    const [state, setState] = React.useState(getStorageValue);
     const save = (sessionValue) => {
       if (typeof sessionValue == "object" || typeof sessionValue === "string") {
         getStorage().setItem(sessionKey, JSON.stringify(sessionValue));
@@ -2258,7 +2250,7 @@ export const hook = {
         setState(getStorageValue());
       }
     };
-    useEffect(() => {
+    React.useEffect(() => {
       window.addEventListener("storage", syncState);
       return () => {
         window.removeEventListener("storage", syncState);
@@ -2381,9 +2373,9 @@ export const hook = {
    * <div ref={ref}>html content</div>
    */
   useDimensions: () => {
-    const [height, setHeight] = useState(0);
-    const [width, setWidth] = useState(0);
-    const [dimensions, setDimensions] = useState({
+    const [height, setHeight] = React.useState(0);
+    const [width, setWidth] = React.useState(0);
+    const [dimensions, setDimensions] = React.useState({
       width: 0,
       height: 0,
       left: 0,
@@ -2393,7 +2385,7 @@ export const hook = {
     });
 
     // The following measures the size of the div and listens to changes
-    const elementRef = useRef();
+    const elementRef = React.useRef();
     const RESET_TIMEOUT = 100;
 
     const getDimensions = () => {
@@ -2418,7 +2410,7 @@ export const hook = {
       });
     };
 
-    useLayoutEffect(() => {
+    React.useLayoutEffect(() => {
       getDimensions();
     }, []);
 
@@ -2427,7 +2419,7 @@ export const hook = {
       RESET_TIMEOUT
     );
 
-    useEffect(() => {
+    React.useEffect(() => {
       window.addEventListener("resize", debouncedDimensions);
       window.addEventListener("scroll", debouncedDimensions);
       return () => {
@@ -2453,7 +2445,7 @@ export const hook = {
    * <button onClick={clear}>Clear</button>
    */
   useArray: (defaultValue) => {
-    const [array, setArray] = useState(defaultValue);
+    const [array, setArray] = React.useState(defaultValue);
 
     const push = (newElement) =>
       setArray((currentArray) => [...currentArray, newElement]);
