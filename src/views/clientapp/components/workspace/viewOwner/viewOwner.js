@@ -22,7 +22,7 @@ import { WorkspaceService } from "@services/workspace";
 const ViewOwner = ({ data }) => {
   const { t } = useTranslation();
   const currentUser = useSelector((state) => state.auth.currentUser);
-  const [dataValue, setDataValue] = React.useState([]);
+  const [dataArray, setDataArray] = React.useState([]);
   const [fadeIn, setFadeIn] = React.useState(true);
 
   //#region get datas
@@ -45,7 +45,7 @@ const ViewOwner = ({ data }) => {
         });
       });
 
-      setDataValue(itemsList);
+      setDataArray(itemsList);
       setFadeIn(true);
     });
   };
@@ -73,8 +73,8 @@ const ViewOwner = ({ data }) => {
       >
         <Grid container spacing={gridSpacing}>
           <Grid item xs={12} className="align-itemlist">
-            {crossCutting.check.isNotNull(dataValue) ? (
-              <AlignItemsList itemlist={dataValue} />
+            {crossCutting.check.isNotNull(dataArray) ? (
+              <AlignItemsList itemlist={dataArray} />
             ) : (
               <Spin load={true} />
             )}

@@ -36,7 +36,7 @@ const Home = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
   const workspace = useSelector((state) => state.workspace);
   const [termsChecked, setTermsChecked] = React.useState(false);
-  const [dataValue, setDataValue] = React.useState([]);
+  const [dataArray, setDataArray] = React.useState([]);
   const [owner, setOwner] = React.useState([]);
   const [teamMembers, setTeamMembers] = React.useState([]);
   const [disabledCbTerms, setDisabledCbTerms] = React.useState(false);
@@ -65,7 +65,7 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-    setDataValue(workspace.data);
+    setDataArray(workspace.data);
   }, [workspace]);
   //#endregion
 
@@ -99,7 +99,7 @@ const Home = () => {
             alignItems={"center"}
           >
             <Grid item xs={12} md={10}>
-              <ViewOwner data={dataValue} />
+              <ViewOwner data={dataArray} />
             </Grid>
           </Grid>
         </Grid>

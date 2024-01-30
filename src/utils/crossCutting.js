@@ -1387,97 +1387,18 @@ export const datetime = {
    * let today = new Date();
    * let currentdate = datetime.formatDate(today, "LONG");
    */
-  formatDate: (date, format) => {
+  formatDate: (
+    date = null,
+    format = _globalVars.locale.date_format || "YYYY.MM.DD",
+    uppercase = false
+  ) => {
     let currentDate = date === null ? new Date() : new Date(date);
-    if (!datetime.isDateValid(date)) return "Date is invalid";
+    if (!datetime.isDateValid(currentDate)) return "Date is invalid";
 
-    let month = ("0" + (currentDate.getMonth() + 1)).slice(-2);
-    let day = ("0" + currentDate.getDate()).slice(-2);
-    let year = "" + currentDate.getFullYear();
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    let formattedDate = "";
-    switch (format) {
-      case "DDMmmYYYY": {
-        formattedDate =
-          day + " " + months[currentDate.getMonth()].slice(0, 3) + " " + year;
-        return formattedDate;
-      }
-      case "DDMMMYYYY": {
-        formattedDate =
-          day +
-          " " +
-          months[currentDate.getMonth()].slice(0, 3).toUpperCase() +
-          " " +
-          year;
-        return formattedDate;
-      }
-      case "DDMonthYYYY": {
-        formattedDate = day + " " + months[currentDate.getMonth()] + " " + year;
-        return formattedDate;
-      }
-      case "DD-MM-YYYY": {
-        formattedDate = day + "-" + month + "-" + year;
-        return formattedDate;
-      }
-      case "DD-MM-YY": {
-        formattedDate = day + "-" + month + "-" + year.slice(-2);
-        return formattedDate;
-      }
-      case "LONGFULL": {
-        formattedDate =
-          days[currentDate.getDay()] +
-          " " +
-          months[currentDate.getMonth()] +
-          "," +
-          day +
-          " " +
-          year;
-        return formattedDate;
-      }
-      case "LONG": {
-        formattedDate =
-          days[currentDate.getDay()].slice(0, 3) +
-          " " +
-          months[currentDate.getMonth()] +
-          "," +
-          day +
-          " " +
-          year;
-        return formattedDate;
-      }
-      case "DAY": {
-        formattedDate = days[currentDate.getDay()];
-        return formattedDate;
-      }
-      case "MONTH": {
-        formattedDate = months[currentDate.getMonth()];
-        return formattedDate;
-      }
-      default: {
-        return "Invalid conversion code";
-      }
-    }
+    return {
+      date: moment(currentDate).format(format),
+      time: moment(currentDate).format(uppercase ? "LT" : "h:mm a"),
+    };
   },
 
   /**
@@ -1491,6 +1412,29 @@ export const datetime = {
    * isDateValid({}); // false
    */
   isDateValid: (...val) => !Number.isNaN(new Date(...val).valueOf()),
+
+  /**
+   * Check date with from now/any date.
+   * Params data must be less than dateWith (default is current date)
+   */
+  fromNowAgo: (date, dateWith = moment()) => {
+    if (!datetime.isDateValid(date) || !datetime.isDateValid(dateWith))
+      return "Date is invalid";
+
+    const now = dateWith;
+    const years = now.diff(date, "years");
+    const weeks = now.diff(date, "weeks");
+    const days = now.diff(date, "days");
+    const hours = now.diff(date, "hours");
+    const minutes = now.diff(date, "minutes");
+    return {
+      years: years,
+      weeks: weeks,
+      days: days,
+      hours: hours,
+      minutes: minutes,
+    };
+  },
 
   /**
    * Check days of work in week
@@ -1507,11 +1451,6 @@ export const datetime = {
    * fromTimestamp(1704326400); // 2024-01-04T00:00:00.000Z
    */
   fromTimestamp: (timestamp) => new Date(timestamp * 1000),
-
-  /**
-   * getTimeFromDate(new Date()); // '08:38:00'
-   */
-  getTimeFromDate: (date) => date.toTimeString().slice(0, 8),
 
   /**
    * daysAgo(20); // 2023-12-17 (if current date is 2024-01-06)
@@ -1534,22 +1473,28 @@ export const datetime = {
   /**
    * dayOfYear(new Date('2024-09-28')); // 272
    */
-  dayOfYear: (date) =>
-    Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86_400_000),
+  dayOfYear: (date) => {
+    let d = date === null ? new Date() : new Date(date);
+    return Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 86_400_000);
+  },
 
   /**
    * quarterOfYear(new Date('2024-09-28')); // 3
    */
   weekOfYear: (date) => {
-    const startOfYear = new Date(date.getFullYear(), 0, 1);
+    let d = date === null ? new Date() : new Date(date);
+    const startOfYear = new Date(d.getFullYear(), 0, 1);
     startOfYear.setDate(startOfYear.getDate() + (startOfYear.getDay() % 7));
-    return Math.round((date - startOfYear) / 604_800_000);
+    return Math.round((d - startOfYear) / 604_800_000);
   },
 
   /**
    * weekOfYear(new Date('2021-06-18')); // 23
    */
-  quarterOfYear: (date) => Math.ceil((date.getMonth() + 1) / 3),
+  quarterOfYear: (date) => {
+    let d = date === null ? new Date() : new Date(date);
+    return Math.ceil((d.getMonth() + 1) / 3);
+  },
 
   /**
    * daysInMonth(2020, 12)); // 31
@@ -1573,59 +1518,10 @@ export const datetime = {
   /**
    * monthOfYear(new Date('2024-09-28')); // 9
    */
-  monthOfYear: (date) => date.getMonth() + 1,
-
-  //#region add time todate
-  /**
-   * addSecondsToDate(new Date('2020-10-19 12:00:00'), 10); // 2020-10-19 12:00:10
-   */
-  addSecondsToDate: (date, n) => {
-    const d = new Date(date);
-    d.setTime(d.getTime() + n * 1000);
-    return d;
+  monthOfYear: (date) => {
+    let d = date === null ? new Date() : new Date(date);
+    return d.getMonth() + 1;
   },
-
-  /**
-   * addMinutesToDate('2020-10-19 12:00:00', 10); // 2020-10-19 12:10:00
-   */
-  addMinutesToDate: (date, n) => {
-    const d = new Date(date);
-    d.setTime(d.getTime() + n * 60_000);
-    return d;
-  },
-
-  /**
-   * addHoursToDate('2020-10-19 12:00:00', 10); // 2020-10-19 22:00:00
-   */
-  addHoursToDate: (date, n) => {
-    const d = new Date(date);
-    d.setTime(d.getTime() + n * 3_600_000);
-    return d;
-  },
-
-  /**
-   * addDaysToDate('2020-10-19 12:00:00', 10); // 2020-10-29 12:00:00
-   */
-  addDaysToDate: (date, n) => {
-    const d = new Date(date);
-    d.setDate(d.getDate() + n);
-    return d;
-  },
-
-  /**
-   * addWeekDays('2020-10-05', 5); // 2020-10-12
-   */
-  addWeekDays: (date, n) => {
-    const s = Math.sign(n);
-    const d = new Date(date);
-    return Array.from({ length: Math.abs(n) }).reduce((currentDate) => {
-      currentDate = addDaysToDate(currentDate, s);
-      while (!datetime.isWeekday(currentDate))
-        currentDate = addDaysToDate(currentDate, s);
-      return currentDate;
-    }, d);
-  },
-  //#endregion
 };
 
 //* ==============================|| HOOKS ||============================== //
