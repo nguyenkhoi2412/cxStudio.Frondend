@@ -4,6 +4,7 @@ export default {
   ASSET_PATH: process.env.ASSET_PATH || "/",
   SITE_ID: process.env.SITE_ID || "",
   REFRESH_TOKEN: process.env.REFRESH_TOKEN || 50,
+  WORKSPACE_FREE: process.env.WORKSPACE_FREE || 3,
   //* use for dashboard page
   stripedHtml: /(<([^>]+)>)/gi,
   specialCharacters: /[!@#$%^&*(),.?":{}|<>]/gi,

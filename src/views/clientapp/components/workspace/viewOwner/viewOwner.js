@@ -9,6 +9,7 @@ import { crossCutting, loop, string, object } from "@utils/crossCutting";
 import { useTheme } from "@mui/material/styles";
 import { Grid, Box, useMediaQuery } from "@mui/material";
 import FadeAnimation from "@components/mui-ui/extended/fadeAnimation";
+import { IconDotsVertical } from "@tabler/icons-react";
 //#endregion
 //#region project import
 import Spin from "@components/common/spin/spin";
@@ -18,52 +19,44 @@ import LoadingButton from "@components/mui-ui/extended/loadingButton";
 //#endregion
 //#region reduxprovider
 import { useSelector } from "react-redux";
-import { WorkspaceService } from "@services/workspace";
 //#endregion
 
 const ViewOwner = ({ data }) => {
   const { t } = useTranslation();
-  const theme = useTheme();
   const currentUser = useSelector((state) => state.auth.currentUser);
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const [dataArray, setDataArray] = React.useState([]);
+  const [dataValue, setDataValue] = React.useState([]);
   const [fadeIn, setFadeIn] = React.useState(true);
 
   //#region get datas
-  const getWorkspaceOwner = (wp) => {
-    if (crossCutting.check.isNull(wp)) return;
-    WorkspaceService.getOwner({
-      data: wp,
-      currentUser: currentUser,
-    }).then((rs) => {
-      if (crossCutting.check.isNull(rs)) return;
-
-      let itemsList = [];
-      loop.every(rs, (item, index) => {
-        itemsList.push({
-          avatar: item.logo_path,
-          key: item._id,
-          primaryText: string.render(item.name),
-          name: string.render(item.company),
-          desc: string.render(object.getValue(item, "industry_related.name")),
-          action: (
+  const buildWpOwner = (wp) => {
+    let itemsList = [];
+    loop.every(wp, (item, index) => {
+      itemsList.push({
+        avatar: item.logo_path,
+        key: item._id,
+        primaryText: string.render(item.name),
+        name: string.render(item.company),
+        desc: string.render(object.getValue(item, "industry_related.name")),
+        action: (
+          <>
+            {/* <IconDotsVertical /> */}
             <LoadingButton
               text={t("common.launch")}
               onClick={() => alert("adfsdf")}
             />
-          ),
-        });
+          </>
+        ),
       });
-
-      setDataArray(itemsList);
-      setFadeIn(true);
     });
+
+    setDataValue(itemsList);
+    setFadeIn(itemsList.length > 0);
   };
   //#endregion
 
   //#region useHooks
   React.useEffect(() => {
-    getWorkspaceOwner(data);
+    buildWpOwner(data);
   }, [data]);
   //#endregion
 
@@ -74,8 +67,6 @@ const ViewOwner = ({ data }) => {
         //   {...other}
         darkTitle={true}
         title={t("workspace.workspaces_for") + " " + currentUser.email}
-        headerClass="title"
-        contentClass="content"
         // secondary={
         //   <>
         //     <SecondaryAction link="https://next.material-ui.com/system/shadows/" />
@@ -84,8 +75,8 @@ const ViewOwner = ({ data }) => {
       >
         <Grid container spacing={gridSpacing} alignItems={"center"}>
           <Grid item xs={12} className="align-itemlist">
-            {crossCutting.check.isNotNull(dataArray) ? (
-              <AlignItemsList itemlist={dataArray} responsive={true} />
+            {crossCutting.check.isNotNull(dataValue) ? (
+              <AlignItemsList itemlist={dataValue} responsive={true} />
             ) : (
               <Spin load={true} />
             )}

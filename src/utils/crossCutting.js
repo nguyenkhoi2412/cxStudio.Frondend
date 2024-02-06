@@ -2482,6 +2482,7 @@ export const storage = {
   memoize: (fn) => {
     const cache = new Map();
     const cached = function (val) {
+      console.log(cache.has(val));
       return cache.has(val)
         ? cache.get(val)
         : cache.set(val, fn.call(this, val)) && cache.get(val);

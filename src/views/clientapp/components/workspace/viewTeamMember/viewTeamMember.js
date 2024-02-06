@@ -17,50 +17,41 @@ import LoadingButton from "@components/mui-ui/extended/loadingButton";
 //#endregion
 //#region reduxprovider
 import { useSelector } from "react-redux";
-import { WorkspaceService } from "@services/workspace";
 //#endregion
 
 const ViewTeamMember = ({ data }) => {
   const { t } = useTranslation();
   const currentUser = useSelector((state) => state.auth.currentUser);
-  const [dataArray, setDataArray] = React.useState([]);
+  const [dataValue, setDataValue] = React.useState([]);
   const [fadeIn, setFadeIn] = React.useState(true);
 
   //#region get datas
-  const getWorkspaceTeamMember = (wp) => {
-    if (crossCutting.check.isNull(wp)) return;
-    WorkspaceService.getTeamMembers({
-      data: wp,
-      currentUser: currentUser,
-    }).then((rs) => {
-      if (crossCutting.check.isNull(rs)) return;
-
-      let itemsList = [];
-      loop.every(rs, (item, index) => {
-        itemsList.push({
-          avatar: item.logo_path,
-          key: item._id,
-          primaryText: string.render(item.name),
-          name: string.render(item.company),
-          desc: string.render(object.getValue(item, "industry_related.name")),
-          action: (
-            <LoadingButton
-              text={t("common.launch")}
-              onClick={() => alert("adfsdf")}
-            />
-          ),
-        });
+  const buildWpTeamMembers = (wp) => {
+    let itemsList = [];
+    loop.every(wp, (item, index) => {
+      itemsList.push({
+        avatar: item.logo_path,
+        key: item._id,
+        primaryText: string.render(item.name),
+        name: string.render(item.company),
+        desc: string.render(object.getValue(item, "industry_related.name")),
+        action: (
+          <LoadingButton
+            text={t("common.launch")}
+            onClick={() => alert("adfsdf")}
+          />
+        ),
       });
-
-      setDataArray(itemsList);
-      setFadeIn(true);
     });
+
+    setDataValue(itemsList);
+    setFadeIn(itemsList.length > 0);
   };
   //#endregion
 
   //#region useHooks
   React.useEffect(() => {
-    getWorkspaceTeamMember(data);
+    buildWpTeamMembers(data);
   }, [data]);
   //#endregion
 
@@ -71,8 +62,6 @@ const ViewTeamMember = ({ data }) => {
         //   {...other}
         darkTitle={true}
         title={t("workspace.workspaces_for") + " " + currentUser.email}
-        headerClass="title"
-        contentClass="content"
         // secondary={
         //   <>
         //     <SecondaryAction link="https://next.material-ui.com/system/shadows/" />
@@ -81,8 +70,8 @@ const ViewTeamMember = ({ data }) => {
       >
         <Grid container spacing={gridSpacing}>
           <Grid item xs={12} className="align-itemlist">
-            {crossCutting.check.isNotNull(dataArray) ? (
-              <AlignItemsList itemlist={dataArray} responsive={true} />
+            {crossCutting.check.isNotNull(dataValue) ? (
+              <AlignItemsList itemlist={dataValue} responsive={true} />
             ) : (
               <Spin load={true} />
             )}

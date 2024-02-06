@@ -114,4 +114,9 @@ Cards.propTypes = {
   ]),
 };
 
+Cards.defaultProps = {
+  headerClass: "title",
+  contentClass: "content",
+};
+
 export default Cards;

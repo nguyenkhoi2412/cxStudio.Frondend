@@ -1,9 +1,9 @@
 import "./_viewCreateNew.scss";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
+import _globalVars from "@constants/variables";
 import { crossCutting } from "@utils/crossCutting";
 //#region mui-ui
-import { useTheme } from "@mui/material/styles";
 import {
   Grid,
   Typography,
@@ -26,16 +26,15 @@ import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
 //#endregion
 //#endregion
 
-const ViewCreateNew = ({ data }) => {
+const ViewCreateNew = ({ data, wpOwner }) => {
   const { t } = useTranslation();
-  const theme = useTheme();
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.auth.currentUser);
   const [termsChecked, setTermsChecked] = React.useState(false);
-  const [dataArray, setDataArray] = React.useState([]);
-  const [disabledCbTerms, setDisabledCbTerms] = React.useState(false);
+  const [dataValue, setDataValue] = React.useState([]);
+  const disabledCbTerms = React.useMemo(() => {
+    return wpOwner?.length >= parseInt(_globalVars.WORKSPACE_FREE);
+  }, [wpOwner]);
 
-  //#region get data content
   const disabledBtnCreate = React.useMemo(() => {
     return disabledCbTerms || !termsChecked;
   }, [termsChecked, disabledCbTerms]);
@@ -43,7 +42,7 @@ const ViewCreateNew = ({ data }) => {
 
   //#region useHooks
   React.useEffect(() => {
-    setDataArray(data);
+    setDataValue(data);
   }, [data]);
   //#endregion
 
@@ -93,7 +92,7 @@ const ViewCreateNew = ({ data }) => {
   );
 
   const renderFullView = () => {
-    if (crossCutting.check.isNull(dataArray)) return <></>;
+    if (crossCutting.check.isNull(dataValue)) return <></>;
 
     return (
       <>
@@ -200,7 +199,7 @@ const ViewCreateNew = ({ data }) => {
   };
   //#endregion
 
-  return <>{dataArray?.length > 0 ? renderSimpleView() : renderFullView()}</>;
+  return <>{dataValue?.length > 0 ? renderSimpleView() : renderFullView()}</>;
 };
 
 export default React.memo(ViewCreateNew, (props, nextProps) => {

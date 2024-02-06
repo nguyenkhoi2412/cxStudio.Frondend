@@ -24,9 +24,13 @@ const AlignItemsList = ({ itemlist, responsive }) => {
 
   const RenderListItemContainer = ({ children, ...other }) =>
     matchDownSM ? (
-      <ListItemButton component="li" {...other}>{children}</ListItemButton>
+      <ListItemButton component="li" {...other}>
+        {children}
+      </ListItemButton>
     ) : (
-      <ListItem component="li" {...other}>{children}</ListItem>
+      <ListItem component="li" {...other}>
+        {children}
+      </ListItem>
     );
 
   const renderListItem = () => {

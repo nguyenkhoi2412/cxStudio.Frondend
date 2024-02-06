@@ -178,16 +178,6 @@
     "sitelist": "Site list",
     "settings": "Site settings"
   },
-  "type": {
-    "createnewtype": "Create a new type",
-    "infos": "Product information"
-  },
-  "survey": {
-    "surveys": "Surveys",
-    "questions": "Questions",
-    "answers": "Answers",
-    "organize_courses": "Organize courses"
-  },
   "community": {
     "community": "Community",
     "app": {
@@ -210,7 +200,7 @@
     "only_take_a_few_minutes_to_setup_workspace": "It'll only take a few minutes to set up your workspace. You can always change these settings later.",
     "mode_workspace_can_expand_more": "Your mode workspace can expand more by shared or personal projects will live. Only you and invited teammates will have access.",
     "name": "Workspace name",
-    "limited_for_one_workpsace": "Limited one workspace for one account. You can register get more than one workspace.",
+    "limited_for_one_workpsace": "Limited create workspace for one account. You can register get more than one workspace.",
     "enter_workspace_name": "Enter your workspace's name",
     "w_is_your_company": "What is your company/organization?",
     "enter_your_company": "Enter your company/organization.",

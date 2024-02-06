@@ -3,6 +3,8 @@
     @include _shadow(0 0 0 0 transparent);
 
     .content {
+      padding-bottom: 0;
+
       @include respond-below(sm) {
         padding-right: 0;
       }
