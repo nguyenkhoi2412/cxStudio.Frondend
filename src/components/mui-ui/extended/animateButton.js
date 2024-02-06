@@ -76,6 +76,7 @@ const AnimateButton = forwardRef(
         }
         return (
           <motion.div
+            className="animate-button"
             ref={ref}
             whileHover={{ scale: scale?.hover }}
             whileTap={{ scale: scale?.tap }}

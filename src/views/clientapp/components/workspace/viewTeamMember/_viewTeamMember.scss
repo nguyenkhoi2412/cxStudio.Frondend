@@ -2,8 +2,26 @@
   .wrapper-team-member {
     @include _shadow(0 0 0 0 transparent);
 
+    .content {
+      @include respond-below(sm) {
+        padding-right: 0;
+      }
+    }
+
     .align-itemlist {
       padding: 0;
+    }
+
+    .align-acts {
+      @include respond-below(sm) {
+        padding-top: 0;
+      }
+
+      button {
+        @include respond-above(md) {
+          width: auto;
+        }
+      }
     }
   }
 }

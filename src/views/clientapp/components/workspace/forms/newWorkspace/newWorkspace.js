@@ -1,4 +1,4 @@
-import "./_action.scss";
+import "./_newWorkspace.scss";
 import _schema from "./_schema";
 import { useTranslation } from "react-i18next";
 import WpAlert from "@components/mui-ui/alert";
@@ -21,7 +21,7 @@ import { INSERT_NEW } from "@reduxproviders/workspace.reducer";
 import { IndustryService } from "@services/industry";
 //#endregion
 
-const FormAction = () => {
+const FormNewWorkspace = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -151,7 +151,7 @@ const FormAction = () => {
   );
 };
 
-export default React.memo(FormAction, (props, nextProps) => {
+export default React.memo(FormNewWorkspace, (props, nextProps) => {
   if (Object.is(props, nextProps)) {
     // return true if you don't need re-render
     return true;

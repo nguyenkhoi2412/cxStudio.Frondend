@@ -148,7 +148,8 @@
     "clickhere": "Click here",
     "previous": "Previous",
     "settings": "Settings",
-    "go_back_home": "Go back home"
+    "go_back_home": "Go back home",
+    "launch": "Launch"
   },
   "configsettings": {
     "live_customize": "Live customize",
@@ -203,7 +204,7 @@
     "optimizing_saving_your_time": "Optimizing your work, saving your time.",
     "speedup_management_communication_report_search": "Speed up your management, communication, report and search. To create a new workspace, click the button below.",
     "btn_create_new_workspace": "Create new workspace",
-    "new_workspace":"New workspace",
+    "new_workspace": "New workspace",
     "terms_and_conditions": "It's Okay, you’re agreeing to our Main Services Agreement, User Terms of Service, and Supplemental Terms. Additional disclosures are available in our Privacy Policy and Cookie Policy.",
     "let_get_started": "Let's get started",
     "only_take_a_few_minutes_to_setup_workspace": "It'll only take a few minutes to set up your workspace. You can always change these settings later.",

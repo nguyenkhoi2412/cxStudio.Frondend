@@ -8,7 +8,7 @@ import { useTheme } from "@mui/material/styles";
 import { Avatar, Box, ButtonBase, useMediaQuery } from "@mui/material";
 
 // project imports
-import CreateNewWorkspace from "@clientapp/components/workspace/forms/action";
+import CreateNewWorkspace from "@clientapp/components/workspace/forms/newWorkspace";
 import LoadingButton from "@components/mui-ui/extended/loadingButton";
 import LogoSection from "../logoSection";
 import SearchSection from "./searchSection";
@@ -29,7 +29,7 @@ const Header = ({ appName, handleLeftDrawerToggle }) => {
   const theme = useTheme();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const matchesMd = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesSm = useMediaQuery(theme.breakpoints.down("sm"));
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
 
   const renderToggleSidebarIconMenu = () => {
@@ -95,7 +95,7 @@ const Header = ({ appName, handleLeftDrawerToggle }) => {
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
 
-      {matchesMd ? (
+      {matchesSm ? (
         <Box
           sx={{
             ml: 2,
@@ -116,7 +116,7 @@ const Header = ({ appName, handleLeftDrawerToggle }) => {
       <ToggleThemeSection />
 
       {/* notification & profile */}
-      {/* {matchesMd ? <></> : <NotificationSection />} */}
+      {/* {matchesSm ? <></> : <NotificationSection />} */}
       <ProfileSection />
       <MoreIconOnMobile />
     </>

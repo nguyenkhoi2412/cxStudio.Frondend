@@ -13,6 +13,7 @@ import FadeAnimation from "@components/mui-ui/extended/fadeAnimation";
 import Spin from "@components/common/spin/spin";
 import MainCard from "@components/mui-ui/cards";
 import AlignItemsList from "@components/mui-ui/list/alignItems";
+import LoadingButton from "@components/mui-ui/extended/loadingButton";
 //#endregion
 //#region reduxprovider
 import { useSelector } from "react-redux";
@@ -42,6 +43,12 @@ const ViewTeamMember = ({ data }) => {
           primaryText: string.render(item.name),
           name: string.render(item.company),
           desc: string.render(object.getValue(item, "industry_related.name")),
+          action: (
+            <LoadingButton
+              text={t("common.launch")}
+              onClick={() => alert("adfsdf")}
+            />
+          ),
         });
       });
 
@@ -65,6 +72,7 @@ const ViewTeamMember = ({ data }) => {
         darkTitle={true}
         title={t("workspace.workspaces_for") + " " + currentUser.email}
         headerClass="title"
+        contentClass="content"
         // secondary={
         //   <>
         //     <SecondaryAction link="https://next.material-ui.com/system/shadows/" />
@@ -74,7 +82,7 @@ const ViewTeamMember = ({ data }) => {
         <Grid container spacing={gridSpacing}>
           <Grid item xs={12} className="align-itemlist">
             {crossCutting.check.isNotNull(dataArray) ? (
-              <AlignItemsList itemlist={dataArray} />
+              <AlignItemsList itemlist={dataArray} responsive={true} />
             ) : (
               <Spin load={true} />
             )}

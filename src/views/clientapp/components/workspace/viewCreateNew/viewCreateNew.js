@@ -15,7 +15,7 @@ import {
 //#endregion
 //#region import components
 import MainCard from "@components/mui-ui/cards";
-import FormAction from "@clientapp/components/workspace/forms/action";
+import FormAction from "@clientapp/components/workspace/forms/newWorkspace";
 import LoadingButton from "@components/mui-ui/extended/loadingButton";
 //#endregion
 import imgWP from "@assets/images/bg_workspace.svg";
@@ -36,6 +36,9 @@ const ViewCreateNew = ({ data }) => {
   const [disabledCbTerms, setDisabledCbTerms] = React.useState(false);
 
   //#region get data content
+  const disabledBtnCreate = React.useMemo(() => {
+    return disabledCbTerms || !termsChecked;
+  }, [termsChecked, disabledCbTerms]);
   //#endregion
 
   //#region useHooks
@@ -109,7 +112,7 @@ const ViewCreateNew = ({ data }) => {
             </Grid>
             <Grid item className="acts" textAlign={"center"}>
               <LoadingButton
-                disabled={disabledCbTerms || !termsChecked}
+                disabled={disabledBtnCreate}
                 text={t("workspace.btn_create_new_workspace")}
                 onClick={handleOpenDrawerRight}
               />
@@ -182,7 +185,7 @@ const ViewCreateNew = ({ data }) => {
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <LoadingButton
-                      disabled={disabledCbTerms || !termsChecked}
+                      disabled={disabledBtnCreate}
                       text={t("workspace.btn_create_new_workspace")}
                       onClick={handleOpenDrawerRight}
                     />

@@ -1,7 +1,10 @@
 import "./_alignItems.scss";
 import { crossCutting } from "@utils/crossCutting";
 
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
@@ -9,12 +12,22 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
-const AlignItemsList = ({ itemlist }) => {
+const AlignItemsList = ({ itemlist, responsive }) => {
+  const theme = useTheme();
+  const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [arrayValue, setArrayValue] = React.useState([]);
 
   React.useEffect(() => {
     setArrayValue(itemlist);
   }, [itemlist]);
+
+  const RenderListItemContainer = ({ children, ...other }) =>
+    matchDownSM ? (
+      <ListItemButton component="li" {...other}>{children}</ListItemButton>
+    ) : (
+      <ListItem component="li" {...other}>{children}</ListItem>
+    );
 
   const renderListItem = () => {
     return (
@@ -24,7 +37,7 @@ const AlignItemsList = ({ itemlist }) => {
             return (
               <React.Fragment key={item.key}>
                 {index > 0 ? <Divider variant="inset" component="li" /> : <></>}
-                <ListItem alignItems="flex-start">
+                <RenderListItemContainer alignItems="center">
                   <ListItemAvatar>
                     <Avatar alt={item.text} src={item.avatar} />
                   </ListItemAvatar>
@@ -48,7 +61,8 @@ const AlignItemsList = ({ itemlist }) => {
                       </React.Fragment>
                     }
                   />
-                </ListItem>
+                  {matchDownSM && responsive ? <></> : item.action}
+                </RenderListItemContainer>
               </React.Fragment>
             );
           })}

@@ -6,13 +6,15 @@ import { gridSpacing } from "@constants";
 import { crossCutting, loop, string, object } from "@utils/crossCutting";
 //#endregion
 //#region material-ui
-import { Grid } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { Grid, Box, useMediaQuery } from "@mui/material";
 import FadeAnimation from "@components/mui-ui/extended/fadeAnimation";
 //#endregion
 //#region project import
 import Spin from "@components/common/spin/spin";
 import MainCard from "@components/mui-ui/cards";
 import AlignItemsList from "@components/mui-ui/list/alignItems";
+import LoadingButton from "@components/mui-ui/extended/loadingButton";
 //#endregion
 //#region reduxprovider
 import { useSelector } from "react-redux";
@@ -21,7 +23,9 @@ import { WorkspaceService } from "@services/workspace";
 
 const ViewOwner = ({ data }) => {
   const { t } = useTranslation();
+  const theme = useTheme();
   const currentUser = useSelector((state) => state.auth.currentUser);
+  const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [dataArray, setDataArray] = React.useState([]);
   const [fadeIn, setFadeIn] = React.useState(true);
 
@@ -42,6 +46,12 @@ const ViewOwner = ({ data }) => {
           primaryText: string.render(item.name),
           name: string.render(item.company),
           desc: string.render(object.getValue(item, "industry_related.name")),
+          action: (
+            <LoadingButton
+              text={t("common.launch")}
+              onClick={() => alert("adfsdf")}
+            />
+          ),
         });
       });
 
@@ -65,16 +75,17 @@ const ViewOwner = ({ data }) => {
         darkTitle={true}
         title={t("workspace.workspaces_for") + " " + currentUser.email}
         headerClass="title"
+        contentClass="content"
         // secondary={
         //   <>
         //     <SecondaryAction link="https://next.material-ui.com/system/shadows/" />
         //   </>
         // }
       >
-        <Grid container spacing={gridSpacing}>
+        <Grid container spacing={gridSpacing} alignItems={"center"}>
           <Grid item xs={12} className="align-itemlist">
             {crossCutting.check.isNotNull(dataArray) ? (
-              <AlignItemsList itemlist={dataArray} />
+              <AlignItemsList itemlist={dataArray} responsive={true} />
             ) : (
               <Spin load={true} />
             )}
