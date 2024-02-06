@@ -5,6 +5,7 @@
 
   .MuiCardContent-root {
     .wsa {
+      // ==============================|| FULL CREATE ||============================== //
       &__intro {
         .container__item {
           .desc {
@@ -51,6 +52,26 @@
 
           @include respond-below(tablet) {
             max-width: 100%;
+          }
+        }
+      }
+
+      // ==============================|| SIMPLE CREATE ||============================== //
+      &__createnew {
+        .desc {
+          > img {
+            max-height: 250px;
+            height: auto;
+            max-width: 100%;
+          }
+        }
+        .acts {
+          button {
+            width: auto;
+
+            @include respond-below(tablet) {
+              width: 100%;
+            }
           }
         }
       }

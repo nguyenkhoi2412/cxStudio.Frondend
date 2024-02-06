@@ -1,0 +1,9 @@
+.workspace {
+  .wrapper-team-member {
+    @include _shadow(0 0 0 0 transparent);
+
+    .align-itemlist {
+      padding: 0;
+    }
+  }
+}

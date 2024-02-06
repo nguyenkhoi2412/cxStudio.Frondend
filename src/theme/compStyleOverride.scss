@@ -216,7 +216,7 @@
 // ==============================|| Utilities ||============================== //
 .MuiTypography {
   &-root {
-    word-break: break-all;
+    word-break: break-word;
   }
 
   &-h1 {

@@ -17,18 +17,20 @@ export class WorkspaceService extends BaseServices {
   //#endregion
   //#region PROCESS WORKSPACE
   static getOwner = async (params) => {
-    const { data, currentUser } = params;
-    let wpOwner = [];
+    return new Promise(async (resolve, reject) => {
+      const { data, currentUser } = params;
+      let wpOwner = [];
 
-    wpOwner = await data?.filter((w) => {
-      const owners = w.team_members?.filter(
-        (t) => t.user._id === currentUser._id && t.role === ROLE.OWNER
-      );
+      wpOwner = await data?.filter((w) => {
+        const owners = w.team_members?.filter(
+          (t) => t.user._id === currentUser._id && t.role === ROLE.OWNER
+        );
 
-      if (owners?.length > 0) return w;
+        if (owners?.length > 0) return w;
+      });
+
+      resolve(wpOwner);
     });
-
-    return wpOwner;
   };
   static getTeamMembers = async (params) => {
     return new Promise(async (resolve, reject) => {
