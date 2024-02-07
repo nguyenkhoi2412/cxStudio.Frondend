@@ -199,7 +199,7 @@ const ViewCreateNew = ({ data, wpOwner }) => {
   };
   //#endregion
 
-  return <>{dataValue?.length > 0 ? renderSimpleView() : renderFullView()}</>;
+  return <>{wpOwner?.length > 0 ? renderSimpleView() : renderFullView()}</>;
 };
 
 export default React.memo(ViewCreateNew, (props, nextProps) => {

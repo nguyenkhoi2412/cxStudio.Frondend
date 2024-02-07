@@ -12,7 +12,8 @@ import _globalVars from "@constants/variables";
 
 const regexEditor = _globalVars.regexEditor;
 const regexXSS = _globalVars.regexXSS;
-const InputField = (props) => {
+
+const InputField = React.forwardRef((props, ref) => {
   const [dataValue, setDataValue] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const [showClearText, setShowClearText] = React.useState(false);
@@ -120,8 +121,10 @@ const InputField = (props) => {
       {/* <InputLabel htmlFor='my-input'>Email address</InputLabel> */}
       <TextField
         margin="normal"
+        ref={ref}
         fullWidth
         disabled={props.disabled}
+        autoFocus={props.autoFocus}
         InputProps={{
           tabIndex: props.tabIndex,
           endAdornment: renderIconEndAdornment(),
@@ -141,7 +144,7 @@ const InputField = (props) => {
       {/* <FormHelperText id='my-helper-text'>We'll never share your email.</FormHelperText> */}
     </Grid>
   );
-};
+});
 
 export default React.memo(InputField, (props, nextProps) => {
   if (

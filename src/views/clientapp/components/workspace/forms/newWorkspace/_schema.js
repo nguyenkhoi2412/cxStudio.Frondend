@@ -71,7 +71,7 @@ export default {
       field: "company." + locale.lang,
       type: "text",
       label: t("workspace.w_is_your_company"),
-      autoFocus: true,
+      autoFocus: false,
       preventXSS: true,
       helperText: t("workspace.enter_your_company"),
     };
