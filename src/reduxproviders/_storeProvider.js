@@ -1,15 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./_rootReducer";
 // import { thunk } from "redux-thunk";
-// import customMiddleware from "./middleware/customMiddleware";
+import pendingRequestMiddleware from "./middleware/pendingRequestMiddleware";
 
 export default configureStore({
   reducer: rootReducer,
-  // middleware: [thunk, customMiddleware],
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat([pendingRequestMiddleware]),
   devTools: process.env.NODE_ENV !== "production",
 });
 
