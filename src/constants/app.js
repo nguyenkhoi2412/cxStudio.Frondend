@@ -1,7 +1,7 @@
 export default {
-  EMPTY: "empty",
+  EMPTY: 'empty',
   COMMUNITY: {
-    CHATBOX: "chatbox",
-    LAUNDRY_SERVICE: "laundry-service",
+    CHATBOX: 'chatbox',
   },
+  LAUNDRY: 'laundry',
 };

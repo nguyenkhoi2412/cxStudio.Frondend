@@ -5,13 +5,13 @@ import ErrorRoutes from "./_error";
 
 const LaundryServiceRoutes = [
   {
-    element: <CLIENT_APP.LAYOUT appName={APP.LAUNDRY_SERVICE} />,
+    element: <CLIENT_APP.LAYOUT appName={APP.LAUNDRY} />,
     children: [
       {
-        path: navigateLocation.CLIENT_APP.LAUNDRY_SERVICE.INDEX,
+        path: navigateLocation.CLIENT_APP.LAUNDRY.DEFAULT,
         title: "💬 Chatbox | Workspace",
         element: (
-          <CLIENT_APP.LAUNDRY_SERVICE.DEFAULT
+          <CLIENT_APP.LAUNDRY.DEFAULT
             requireAuth={true}
             redirectTo={navigateLocation.AUTH.SIGNIN}
           />

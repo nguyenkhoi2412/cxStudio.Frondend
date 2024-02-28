@@ -1,22 +1,22 @@
-import "./_laundry-service.scss";
-import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import './_laundry.scss';
+import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 //#region mui-ui
-import { Grid, Box } from "@mui/material";
+import { Grid, Box } from '@mui/material';
 //#endregion
 //#region import components
-import MainCard from "@components/mui-ui/cards";
-import SubCard from "@components/mui-ui/cards/subCard";
-import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
-import { gridSpacing } from "@constants";
+import MainCard from '@components/mui-ui/cards';
+import SubCard from '@components/mui-ui/cards/subCard';
+import SecondaryAction from '@components/mui-ui/cards/cardSecondaryAction';
+import { gridSpacing } from '@constants';
 //#endregion
 
-const LaundryServices = () => {
+const Laundry = () => {
   const navigate = useNavigate();
 
   const handleOnclick = () => {
-    navigate("/dashboard");
+    navigate('/dashboard');
   };
 
   return (
@@ -46,4 +46,4 @@ const LaundryServices = () => {
   );
 };
 
-export default LaundryServices;
+export default Laundry;

@@ -7,21 +7,18 @@ const ERROR = ASSET_PATH + 'error';
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
 const DASHBOARD_AUTH = DASHBOARD + '/auth';
 const ACCOUNT = DASHBOARD + '/account';
-const SURVEY = DASHBOARD + '/survey';
-const SITE = DASHBOARD + '/site';
 const UTILITIES = DASHBOARD + '/utilities';
 //* auth
 const AUTH = APP + 'auth';
 //* community
 const COMMUNITY = APP + MODULES.COMMUNITY;
-const COMMUNITY_AUTH = COMMUNITY + '/auth';
 const COMMUNITY_ACCOUNT = COMMUNITY + '/account';
 const COMMUNITY_CHATBOX = COMMUNITY + '/chatbox';
 //* laundry service
-const LAUNDRY_SERVICE = APP + MODULES.LAUNDRY_SERVICE;
-const LAUNDRY_SERVICE_AUTH = LAUNDRY_SERVICE + '/auth';
-const LAUNDRY_SERVICE_ACCOUNT = LAUNDRY_SERVICE + '/account';
-const LAUNDRY_SERVICE_CHATBOX = LAUNDRY_SERVICE + '/chatbox';
+const LAUNDRY = {
+  INDEX: APP + MODULES.LAUNDRY,
+  STATISTIC: APP + MODULES.LAUNDRY + '/statistic',
+};
 
 export const navigateLocation = {
   DASHBOARD: {
@@ -40,14 +37,6 @@ export const navigateLocation = {
     CHANGE_PASSOWRD: ACCOUNT + '/changepassword',
     CREATE_NEW: ACCOUNT + '/createnew',
     USER_LIST: ACCOUNT + '/userlist',
-  },
-  SURVEY: {
-    QUESTION: SURVEY + '/questions',
-    ANSWER: SURVEY + '/answers',
-    ORGANIZE_COURSE: SURVEY + '/organize_course',
-  },
-  SITE: {
-    LIST: SITE + '/list',
   },
   UTILITIES: {
     GENERATE_KEY: UTILITIES + '/generatekey',
@@ -80,15 +69,10 @@ export const navigateLocation = {
       },
     },
     //#endregion
-    //#region laundry-service
-    LAUNDRY_SERVICE: {
-      INDEX: LAUNDRY_SERVICE,
-      ACCOUNT: {
-        SETTING: LAUNDRY_SERVICE_ACCOUNT + '/setting',
-      },
-      CHATBOX: {
-        INDEX: LAUNDRY_SERVICE_CHATBOX,
-      },
+    //#region LAUNDRY
+    LAUNDRY: {
+      DEFAULT: LAUNDRY.INDEX,
+      STATISTIC: LAUNDRY.STATISTIC,
     },
     //#endregion
   },

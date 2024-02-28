@@ -32,8 +32,9 @@ export const CLIENT_APP = {
   },
   //#endregion
   //#region LAUNDRY_SERVICE
-  LAUNDRY_SERVICE: {
-    DEFAULT: Loadable(lazy(() => import('@clientapp/laundry-service'))),
+  LAUNDRY: {
+    DEFAULT: Loadable(lazy(() => import('@clientapp/laundry'))),
+    STATISTIC: Loadable(lazy(() => import('@clientapp/laundry/statistic'))),
   },
   //#endregion
 };
