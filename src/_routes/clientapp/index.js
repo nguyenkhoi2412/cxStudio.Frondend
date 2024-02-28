@@ -5,7 +5,7 @@ import APP from '@constants/app';
 import { DASHBOARD, CLIENT_APP } from '@routes/componentLoadable';
 import AuthRoutes from './_auth';
 import CommunityRoutes from './community';
-import LaundryServicesRoutes from './laundry-service';
+import LaundryServicesRoutes from './laundry';
 // ==============================|| MAIN ROUTING ||============================== //
 
 const ClientAppRoutes = [

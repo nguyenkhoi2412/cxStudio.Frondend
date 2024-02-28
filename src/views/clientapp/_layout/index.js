@@ -17,6 +17,7 @@ import Header from './header';
 import Sidebar from './sidebar';
 import Chatbar from '@chatbox/components/chatbar';
 import Customization from './customization';
+import { CUSTOMIZATION } from '@reduxproviders/berry/customization.reducer';
 //#endregion
 
 //#region STYLE
@@ -54,6 +55,10 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
+      marginLeft: 0,
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+      width: `calc(100% - ${drawerWidth}px)`,
       [theme.breakpoints.down('md')]: {
         marginLeft: '20px',
       },
@@ -90,7 +95,7 @@ const LayoutCommunity = ({ appName }) => {
       [APP.COMMUNITY.CHATBOX]: () => {
         setClassWrapper(' chatbox');
       },
-      [APP.LAUNDRY]: () => {
+      [APP.INDUSTRY.LAUNDRY]: () => {
         setClassWrapper(' laundry');
       },
       ['default']: () => {
@@ -113,7 +118,8 @@ const LayoutCommunity = ({ appName }) => {
   };
 
   const handleLeftDrawerToggle = () => {
-    dispatch(SET_MENU({ opened: !leftDrawerOpened }));
+    dispatch(CUSTOMIZATION({ type: SET_MENU, opened: !leftDrawerOpened }));
+    console.log('leftDrawerOpened', !leftDrawerOpened);
   };
   //#endregion
 
@@ -146,7 +152,7 @@ const LayoutCommunity = ({ appName }) => {
   //#endregion
 
   return (
-    <Box className={'wrapper' + classWrapper} sx={{ display: 'flex' }}>
+    <Box className={'MuiWrapper-root' + classWrapper} sx={{ display: 'flex' }}>
       {/* header */}
       <AppBar
         enableColorOnDark
@@ -172,7 +178,7 @@ const LayoutCommunity = ({ appName }) => {
       {/* drawer */}
       {renderSideBar()}
       {/* main content */}
-      <Main className="wrapper-content" theme={theme} open={leftDrawerOpened}>
+      <Main className="MuiWrapper-main" theme={theme} open={leftDrawerOpened}>
         <Container maxWidth={false} disableGutters>
           <Outlet />
         </Container>

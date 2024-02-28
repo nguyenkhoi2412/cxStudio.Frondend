@@ -39,7 +39,7 @@ const Laundry = () => {
             useHtmlEditor={quillEditor}
             changeHtmlEditor={() => setQuillEditor((a) => !a)}
           /> */}
-          assss
+          Laundry
         </Grid>
       </MainCard>
     </>

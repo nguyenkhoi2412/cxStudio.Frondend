@@ -1,14 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
-import _globalVars from "@constants/variables";
+import { createSlice } from '@reduxjs/toolkit';
+import _globalVars from '@constants/variables';
 
 // project imports
-import configSettings from "configSettings";
+import configSettings from 'configSettings';
 // action - state management
-import * as actionTypes from "./actions";
+import * as actionTypes from './actions';
 
 export const initialState = {
   isOpen: [], // for active default menu
-  defaultId: "default",
+  defaultId: 'default',
   fontFamily: configSettings.fontFamily,
   borderRadius: configSettings.borderRadius,
   opened: true,
@@ -20,12 +20,11 @@ export const initialState = {
 
 // ==============================|| CUSTOMIZATION REDUCER ||============================== //
 export const customization = createSlice({
-  name: "customization",
+  name: 'customization',
   initialState: initialState,
   reducers: {
     CUSTOMIZATION: (state, { payload }) => {
       let id;
-
       var customizeType = {
         [actionTypes.MENU_OPEN]: () => {
           id = payload.id;
@@ -41,7 +40,7 @@ export const customization = createSlice({
           };
         },
         [actionTypes.SET_MODE]: () => {
-          localStorage.setItem("themeMode", payload.mode);
+          localStorage.setItem('themeMode', payload.mode);
           return {
             ...state,
             mode: payload.mode,
@@ -64,7 +63,7 @@ export const customization = createSlice({
         },
       };
 
-      return (customizeType[payload.type] || customizeType["default"])();
+      return (customizeType[payload.type] || customizeType['default'])();
     },
   },
 });

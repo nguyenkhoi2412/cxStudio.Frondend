@@ -1,76 +1,80 @@
-.workspace {
-  @include _shadow(0 0 0 0 transparent);
-  background-color: transparent;
-  border: none;
+.MuiWrapper-root {
+  main {
+    .workspace {
+      @include _shadow(0 0 0 0 transparent);
+      background-color: transparent;
+      border: none;
 
-  .MuiCardContent-root {
-    .wsa {
-      // ==============================|| FULL CREATE ||============================== //
-      &__intro {
-        .container__item {
-          .desc {
-            > h1 {
-              word-break: break-word;
+      .MuiCardContent-root {
+        .wsa {
+          // ==============================|| FULL CREATE ||============================== //
+          &__intro {
+            .container__item {
+              .desc {
+                > h1 {
+                  word-break: break-word;
+                }
+                > p {
+                  font-size: 1.125rem;
+                  word-break: break-word;
+                }
+              }
+
+              .acts {
+                .btn {
+                  font-weight: 400;
+                  font-size: 1rem;
+                }
+              }
+
+              .terms {
+                > h6 {
+                  word-break: break-word;
+                }
+
+                &.disabled {
+                  cursor: default;
+                }
+              }
             }
-            > p {
-              font-size: 1.125rem;
-              word-break: break-word;
+          }
+
+          &__img {
+            display: flex;
+            justify-content: center;
+
+            img {
+              @include respond-above(xl) {
+                max-width: 80%;
+              }
+
+              @include respond-below(md) {
+                max-width: 65%;
+              }
+
+              @include respond-below(tablet) {
+                max-width: 100%;
+              }
             }
           }
 
-          .acts {
-            .btn {
-              font-weight: 400;
-              font-size: 1rem;
+          // ==============================|| SIMPLE CREATE ||============================== //
+          &__createnew {
+            .desc {
+              > img {
+                max-height: 250px;
+                height: auto;
+                max-width: 100%;
+              }
             }
-          }
+            .acts {
+              button {
+                width: auto;
 
-          .terms {
-            > h6 {
-              word-break: break-word;
-            }
-
-            &.disabled {
-              cursor: default;
-            }
-          }
-        }
-      }
-
-      &__img {
-        display: flex;
-        justify-content: center;
-
-        img {
-          @include respond-above(xl) {
-            max-width: 80%;
-          }
-
-          @include respond-below(md) {
-            max-width: 65%;
-          }
-
-          @include respond-below(tablet) {
-            max-width: 100%;
-          }
-        }
-      }
-
-      // ==============================|| SIMPLE CREATE ||============================== //
-      &__createnew {
-        .desc {
-          > img {
-            max-height: 250px;
-            height: auto;
-            max-width: 100%;
-          }
-        }
-        .acts {
-          button {
-            width: auto;
-
-            @include respond-below(tablet) {
-              width: 100%;
+                @include respond-below(tablet) {
+                  width: 100%;
+                }
+              }
             }
           }
         }

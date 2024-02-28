@@ -4,15 +4,13 @@ import { gridSpacing } from "@constants";
 import { crossCutting } from "@utils/crossCutting";
 //#region mui-ui
 import { useTheme } from "@mui/material/styles";
-import { Grid, CardMedia } from "@mui/material";
+import { Grid } from "@mui/material";
 //#endregion
 //#region import components
 import MainCard from "@components/mui-ui/cards";
-import ViewOwner from "@clientapp/components/workspace/viewOwner";
+import WorkspaceList from "@clientapp/components/workspace/viewWorkspaceList";
 import ViewCreateNew from "@clientapp/components/workspace/viewCreateNew";
-import ViewTeamMember from "@clientapp/components/workspace/ViewTeamMember";
 //#endregion
-import imgWP from "@assets/images/bg_workspace.svg";
 //#region reduxprovider
 import { WorkspaceService } from "@services/workspace";
 import { useDispatch, useSelector } from "react-redux";
@@ -93,7 +91,7 @@ const Home = () => {
           alignItems={"center"}
         >
           <Grid item xs={12} md={10}>
-            <ViewOwner data={wpOwner} />
+            <WorkspaceList data={wpOwner} />
           </Grid>
         </Grid>
       </Grid>
@@ -127,7 +125,7 @@ const Home = () => {
           alignItems={"center"}
         >
           <Grid item xs={12} md={10}>
-            <ViewTeamMember data={wpTeamMembers} />
+            <WorkspaceList data={wpTeamMembers} />
           </Grid>
         </Grid>
       </Grid>
