@@ -7,16 +7,7 @@ import DashboardRoutes from "./dashboard";
 import ClientAppRoutes from "./clientapp";
 // import AuthenticationRoutes from './AuthenticationRoutes';
 
-// ==============================|| ROUTING RENDER ||============================== //
-export const BuildRoutes = () => {
-  buildTitle();
-
-  return useRoutes(RouteMaps());
-};
-
-export const RouteMaps = () => {
-  return [ ...ClientAppRoutes];
-};
+const RouteMaps = [...ClientAppRoutes];
 
 const buildTitle = () => {
   const currentLocation = hook.useRouter();
@@ -25,7 +16,7 @@ const buildTitle = () => {
 
   React.useEffect(() => {
     let currentTitle = null;
-    const currentRoute = RouteMaps().find((item) => {
+    const currentRoute = RouteMaps.find((item) => {
       const { children } = item;
       if (!children) {
         return item.path === pathname;
@@ -42,4 +33,11 @@ const buildTitle = () => {
     if (currentTitle === null) currentTitle = currentRoute?.title || "";
     document.title = t(currentTitle);
   }, [currentLocation]);
+};
+
+// ==============================|| ROUTING RENDER ||============================== //
+export const BuildRoutes = () => {
+  buildTitle();
+
+  return useRoutes(RouteMaps);
 };

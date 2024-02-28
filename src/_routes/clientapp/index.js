@@ -1,11 +1,11 @@
-import { navigateLocation } from "../navigateLocation";
-import APP from "@constants/app";
+import { navigateLocation } from '../navigateLocation';
+import APP from '@constants/app';
 
 // project imports
-import { DASHBOARD, CLIENT_APP } from "@routes/componentLoadable";
-import AuthRoutes from "./_auth";
-import CommunityRoutes from "./community";
-import LaundryServicesRoutes from "./laundry-service";
+import { DASHBOARD, CLIENT_APP } from '@routes/componentLoadable';
+import AuthRoutes from './_auth';
+import CommunityRoutes from './community';
+import LaundryServicesRoutes from './laundry-service';
 // ==============================|| MAIN ROUTING ||============================== //
 
 const ClientAppRoutes = [
@@ -21,22 +21,22 @@ const ClientAppRoutes = [
     children: [
       {
         path: navigateLocation.CLIENT_APP.ASSET_PATH,
-        title: "Create/Open a workspace",
+        title: 'Create/Open a workspace',
         element: <CLIENT_APP.HOME />,
       },
       {
         path: navigateLocation.CLIENT_APP.APP,
-        title: "Create/Open a workspace",
+        title: 'Create/Open a workspace',
         element: <CLIENT_APP.HOME />,
       },
       {
         path: navigateLocation.UTILITIES.TYPOGRAPHY,
-        title: "TYPOGRAPHY",
+        title: 'TYPOGRAPHY',
         element: <DASHBOARD.UTILITIES.TYPOGRAPHY />,
       },
       {
         path: navigateLocation.UTILITIES.GENERATE_KEY,
-        title: "GENERATEKEY",
+        title: 'GENERATEKEY',
         element: <DASHBOARD.UTILITIES.GENERATE_KEY />,
       },
     ],

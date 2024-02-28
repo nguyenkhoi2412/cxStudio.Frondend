@@ -1,44 +1,44 @@
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useFormik } from "formik";
-import { crossCutting, object } from "@utils/crossCutting";
-import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
-import { useSnackbar } from "notistack";
-import { socialSignIn } from "@constants";
-import { HTTP_STATUS } from "@constants/httpStatus";
-import storaged from "@constants/storage";
-import InputField from "@components/mui-ui/forms/inputField";
-import _schema from "./../signIn/_schema";
-import { useTheme } from "@mui/material/styles";
-import { navigateLocation } from "@routes/navigateLocation";
-import WpAlert from "@components/mui-ui/alert";
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useFormik } from 'formik';
+import { crossCutting, object } from '@utils/crossCutting';
+import { getYupSchemaFromMetaData } from '@utils/yupSchemaCreator';
+import { useSnackbar } from 'notistack';
+import { socialSignIn } from '@constants';
+import { HTTP_STATUS } from '@constants/httpStatus';
+import storaged from '@constants/storage';
+import InputField from '@components/mui-ui/forms/inputField';
+import _schema from './../signIn/_schema';
+import { useTheme } from '@mui/material/styles';
+import { navigateLocation } from '@routes/navigateLocation';
+import WpAlert from '@components/mui-ui/alert';
 //#region mui-ui
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import severity from "@constants/severity";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import severity from '@constants/severity';
 import {
   Divider,
   Typography,
   Button,
   Stack,
   useMediaQuery,
-} from "@mui/material";
+} from '@mui/material';
 //#endregion
 //#region redux providers
-import { useDispatch } from "react-redux";
-import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
-import { COOKIE_GET } from "@reduxproviders/sessionHandler.reducer";
+import { useDispatch } from 'react-redux';
+import { VALIDATE_USER } from '@reduxproviders/auth.reducer';
+import { COOKIE_GET } from '@reduxproviders/sessionHandler.reducer';
 //#endregion
-import LoadingButton from "@components/mui-ui/extended/loadingButton";
-import SocialButtons from "./socialButtons";
+import LoadingButton from '@components/mui-ui/extended/loadingButton';
+import SocialButtons from './socialButtons';
 
 const FormSignIn = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
+  const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
@@ -71,7 +71,7 @@ const FormSignIn = () => {
         dispatch(COOKIE_GET())
           .unwrap()
           .then((data) => {
-            if (data.rs[storaged.AUTH.VERIFIED_2FA] === "true") {
+            if (data.rs[storaged.AUTH.VERIFIED_2FA] === 'true') {
               navigate(navigateLocation.CLIENT_APP.APP);
             } else {
               //* verify 2FA
@@ -81,7 +81,7 @@ const FormSignIn = () => {
       } else {
         //* show message
         setShowMessageAlert(true);
-        setMessageContentAlert(t("authentication.wrong_credential"));
+        setMessageContentAlert(t('authentication.wrong_credential'));
       }
     } else {
       enqueueSnackbar(response.message, {
@@ -127,8 +127,8 @@ const FormSignIn = () => {
         <Grid item xs={12}>
           <Box
             sx={{
-              alignItems: "center",
-              display: "flex",
+              alignItems: 'center',
+              display: 'flex',
             }}
           >
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -136,7 +136,7 @@ const FormSignIn = () => {
               variant="outlined"
               className="btn-or"
               sx={{
-                cursor: "unset",
+                cursor: 'unset',
                 m: 2,
                 py: 0.5,
                 px: 7,
@@ -150,9 +150,9 @@ const FormSignIn = () => {
               <Typography
                 variant="caption"
                 fontSize="14px"
-                textAlign={matchDownSM ? "center" : "inherit"}
+                textAlign={matchDownSM ? 'center' : 'inherit'}
               >
-                {t("authentication.or")}
+                {t('authentication.or')}
               </Typography>
             </Button>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -167,7 +167,7 @@ const FormSignIn = () => {
         >
           <Box sx={{ mb: 2 }}>
             <Typography variant="subtitle1">
-              {t("authentication.signinwithemailaddress")}
+              {t('authentication.signinwithemailaddress')}
             </Typography>
           </Box>
         </Grid>
@@ -187,11 +187,11 @@ const FormSignIn = () => {
             sx={{ mt: 1 }}
           >
             {dataForm.map((item, index) => {
-              const errorText = object.getValue(formik, "errors." + item.field);
+              const errorText = object.getValue(formik, 'errors.' + item.field);
               let hasError =
-                Boolean(object.getValue(formik, "touched." + item.field)) &&
+                Boolean(object.getValue(formik, 'touched.' + item.field)) &&
                 errorText;
-              let dataValue = object.getValue(formik, "values." + item.field);
+              let dataValue = object.getValue(formik, 'values.' + item.field);
               return (
                 <InputField
                   margin="normal"
@@ -207,7 +207,7 @@ const FormSignIn = () => {
                   value={dataValue}
                   onChange={formik.handleChange}
                   error={hasError}
-                  helperText={hasError ? errorText : ""}
+                  helperText={hasError ? errorText : ''}
                 />
               );
             })}
@@ -237,13 +237,13 @@ const FormSignIn = () => {
                 variant="body2"
                 underline="none"
               >
-                {t("authentication.forgotpassword")}
+                {t('authentication.forgotpassword')}
               </Link>
             </Stack>
             <LoadingButton
               disabled={submitting}
               spin={submitting}
-              text={t("authentication.signin")}
+              text={t('authentication.signin')}
               animate={false}
             />
           </Box>

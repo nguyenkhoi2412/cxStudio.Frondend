@@ -1,22 +1,22 @@
-import "../_auth.scss";
-import * as React from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import '../_auth.scss';
+import * as React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 //#region utils support
-import { hook } from "@utils/crossCutting";
-import { isAuth } from "@utils/requireAuth";
+import { hook } from '@utils/crossCutting';
+import { isAuth } from '@utils/requireAuth';
 //#endregion
 //#region mui-ui
-import { useTheme } from "@mui/material/styles";
-import Link from "@mui/material/Link";
-import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
+import Link from '@mui/material/Link';
+import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 //#endregion
 //#region components
-import AuthWrapper from "../authWrapper";
-import AuthCardWrapper from "../authCardWrapper";
-import AuthMainContainer from "../authMainContainer";
-import FormSignUp from "../forms/signUp";
-import { navigateLocation } from "@routes/navigateLocation";
+import AuthWrapper from '../authWrapper';
+import AuthCardWrapper from '../authCardWrapper';
+import AuthMainContainer from '../authMainContainer';
+import FormSignUp from '../forms/signUp';
+import { navigateLocation } from '@routes/navigateLocation';
 // import AuthFooter from "../authFooter";
 //#endregion
 //#region redux provider
@@ -25,7 +25,7 @@ import { navigateLocation } from "@routes/navigateLocation";
 const SignUp = (props) => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
+  const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const { t } = useTranslation();
 
   //#region useEffect
@@ -39,7 +39,7 @@ const SignUp = (props) => {
           <Grid item xs={12}>
             <Grid
               container
-              direction={matchDownSM ? "column-reverse" : "row"}
+              direction={matchDownSM ? 'column-reverse' : 'row'}
               alignItems="center"
               justifyContent="center"
             >
@@ -48,16 +48,16 @@ const SignUp = (props) => {
                   <Typography
                     color="primary"
                     gutterBottom
-                    variant={matchDownSM ? "h3" : "h2"}
+                    variant={matchDownSM ? 'h3' : 'h2'}
                   >
-                    {t("authentication.signup")}
+                    {t('authentication.signup')}
                   </Typography>
                   <Typography
                     variant="caption"
                     fontSize="16px"
-                    textAlign={matchDownSM ? "center" : "inherit"}
+                    textAlign={matchDownSM ? 'center' : 'inherit'}
                   >
-                    {t("authentication.enteryourcredentialstocontinue")}
+                    {t('authentication.enteryourcredentialstocontinue')}
                   </Typography>
                 </Stack>
               </Grid>
@@ -87,7 +87,7 @@ const SignUp = (props) => {
                     variant="subtitle1"
                     color={theme.palette.grey[900]}
                   >
-                    {t("authentication.alreadyhaveanaccount")}
+                    {t('authentication.alreadyhaveanaccount')}
                   </Link>
                 </Grid>
               </Grid>

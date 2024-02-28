@@ -1,23 +1,23 @@
-import * as React from "react";
-import { useTranslation } from "react-i18next";
-import _schema from "./_schema";
-import { navigateLocation } from "@routes/navigateLocation";
+import * as React from 'react';
+import { useTranslation } from 'react-i18next';
+import _schema from './_schema';
+import { navigateLocation } from '@routes/navigateLocation';
 //#region mui-ui
-import Link from "@mui/material/Link";
-import { useTheme } from "@mui/material/styles";
-import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import Link from '@mui/material/Link';
+import { useTheme } from '@mui/material/styles';
+import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 //#endregion
 //#region components
-import AuthWrapper from "../authWrapper";
-import AuthCardWrapper from "../authCardWrapper";
-import AuthMainContainer from "../authMainContainer";
-import FormSignIn from "../forms/signIn";
+import AuthWrapper from '../authWrapper';
+import AuthCardWrapper from '../authCardWrapper';
+import AuthMainContainer from '../authMainContainer';
+import FormSignIn from '../forms/signIn';
 // import AuthFooter from "../authFooter";
 //#endregion
 
 const SignIn = (props) => {
   const theme = useTheme();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
+  const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const { t } = useTranslation();
 
   return (
@@ -27,7 +27,7 @@ const SignIn = (props) => {
           <Grid item xs={12}>
             <Grid
               container
-              direction={matchDownSM ? "column-reverse" : "row"}
+              direction={matchDownSM ? 'column-reverse' : 'row'}
               alignItems="center"
               justifyContent="center"
             >
@@ -36,16 +36,16 @@ const SignIn = (props) => {
                   <Typography
                     color="primary"
                     gutterBottom
-                    variant={matchDownSM ? "h3" : "h2"}
+                    variant={matchDownSM ? 'h3' : 'h2'}
                   >
-                    {t("authentication.hiwelcomeback")}
+                    {t('authentication.hiwelcomeback')}
                   </Typography>
                   <Typography
                     variant="caption"
                     fontSize="16px"
-                    textAlign={matchDownSM ? "center" : "inherit"}
+                    textAlign={matchDownSM ? 'center' : 'inherit'}
                   >
-                    {t("authentication.enteryourcredentialstocontinue")}
+                    {t('authentication.enteryourcredentialstocontinue')}
                   </Typography>
                 </Stack>
               </Grid>

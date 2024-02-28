@@ -1,14 +1,14 @@
-import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // material-ui
-import { Grid, Link } from "@mui/material";
+import { Grid, Link } from '@mui/material';
 
 // project import
-import Logo from "@components/common/imagesvg";
-import LogoInDark from "@assets/images/logo-workspace-dark.svg";
-import LogoInLight from "@assets/images/logo-workspace-light.svg";
+import Logo from '@components/common/imagesvg';
+import LogoInDark from '@assets/images/logo-workspace-dark.svg';
+import LogoInLight from '@assets/images/logo-workspace-light.svg';
 
 // ==============================|| AUTHENTICATION CARD WRAPPER ||============================== //
 
@@ -21,7 +21,7 @@ const AuthMainContainer = ({ children, ...other }) => {
         <Grid item sx={{ mb: 3 }}>
           <Link to="#">
             <Logo
-              src={customization.mode === "dark" ? LogoInDark : LogoInLight}
+              src={customization.mode === 'dark' ? LogoInDark : LogoInLight}
             />
           </Link>
         </Grid>
