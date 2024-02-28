@@ -11,7 +11,7 @@ const AuthRoutes = [
     title: 'SignIn | Workspace',
     element: (
       <RequireAuth
-        redirectTo={navigatePath.CLIENT_APP.APP}
+        redirectTo={navigatePath.CLIENT_APP.WORKSPACE}
         isAuthentication={true}
       >
         <SignIn />
@@ -34,7 +34,7 @@ const AuthRoutes = [
     element: (
       <RequireLoggedIn
         redirectTo={navigatePath.AUTH.SIGNIN}
-        navigateTo={navigatePath.CLIENT_APP.APP}
+        navigateTo={navigatePath.CLIENT_APP.WORKSPACE}
       >
         <CodeVerification />,
       </RequireLoggedIn>

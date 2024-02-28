@@ -69,7 +69,7 @@ const ViewWorkspaceList = ({ data }) => {
   const handleNavigateToWorkspace = (wp) => {
     const navToWorkspace = {
       [APP.INDUSTRY.LAUNDRY]: navigate(
-        navigatePath.CLIENT_APP.LAUNDRY.STATISTIC,
+        navigatePath.CLIENT_APP.LAUNDRY.STATISTIC.replace(':id', wp?._id),
       ),
     };
 

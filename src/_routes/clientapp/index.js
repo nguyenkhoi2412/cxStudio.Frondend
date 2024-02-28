@@ -25,7 +25,7 @@ const ClientAppRoutes = [
         element: <CLIENT_APP.HOME />,
       },
       {
-        path: navigatePath.CLIENT_APP.APP,
+        path: navigatePath.CLIENT_APP.WORKSPACE,
         title: 'Create/Open a workspace',
         element: <CLIENT_APP.HOME />,
       },

@@ -1,4 +1,5 @@
 import './_statistic.scss';
+import { useHistory, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { gridSpacing } from '@constants';
 import { crossCutting } from '@utils/crossCutting';
@@ -18,6 +19,8 @@ import { WORKSPACE_GET_BY_USER } from '@reduxproviders/workspace.reducer';
 //#endregion
 
 const Statistic = () => {
+  const params = useParams();
+  console.log('idsfsdfsdfsdf', params);
   return (
     <MainCard
       // title="general"

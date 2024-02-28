@@ -56,7 +56,7 @@ const SocialButtons = (props) => {
           .unwrap()
           .then((data) => {
             if (data.rs[storaged.AUTH.VERIFIED_2FA] === 'true') {
-              navigate(navigatePath.CLIENT_APP.APP);
+              navigate(navigatePath.CLIENT_APP.WORKSPACE);
             } else {
               //* verify 2FA
               navigate(navigatePath.AUTH.CODE_VERIFICATION);

@@ -10,6 +10,7 @@ const LaundryServiceRoutes = [
       {
         path: navigatePath.CLIENT_APP.LAUNDRY.DEFAULT,
         title: '🧺 Laundry | Workspace',
+        exact: true,
         element: (
           <CLIENT_APP.LAUNDRY.DEFAULT
             requireAuth={true}
@@ -20,6 +21,7 @@ const LaundryServiceRoutes = [
       {
         path: navigatePath.CLIENT_APP.LAUNDRY.STATISTIC,
         title: '🧺 Statistic | Laundry | Workspace',
+        exact: true,
         element: (
           <CLIENT_APP.LAUNDRY.STATISTIC
             requireAuth={true}

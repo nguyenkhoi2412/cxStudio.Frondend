@@ -1,23 +1,24 @@
 import { MODULES } from '@routes/_modules';
 import _globalVars from '@constants/variables';
 
-const ASSET_PATH = _globalVars.ASSET_PATH;
+const ASSET_PATH = _globalVars.ASSET_PATH || '/';
 const APP = ASSET_PATH + 'app/';
+const WORKSPACE = ASSET_PATH + 'workspace';
 const ERROR = ASSET_PATH + 'error';
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
 const DASHBOARD_AUTH = DASHBOARD + '/auth';
 const ACCOUNT = DASHBOARD + '/account';
 const UTILITIES = DASHBOARD + '/utilities';
 //* auth
-const AUTH = APP + 'auth';
+const AUTH = WORKSPACE + '/auth';
 //* community
 const COMMUNITY = APP + MODULES.COMMUNITY;
 const COMMUNITY_ACCOUNT = COMMUNITY + '/account';
 const COMMUNITY_CHATBOX = COMMUNITY + '/chatbox';
 //* laundry service
 const LAUNDRY = {
-  INDEX: APP + MODULES.LAUNDRY,
-  STATISTIC: APP + MODULES.LAUNDRY + '/statistic',
+  INDEX: WORKSPACE + MODULES.LAUNDRY,
+  STATISTIC: WORKSPACE + '/:id/statistic',
 };
 
 export const navigatePath = {
@@ -57,7 +58,7 @@ export const navigatePath = {
   CLIENT_APP: {
     ASSET_PATH: ASSET_PATH,
     HOME: ASSET_PATH + 'home',
-    APP: ASSET_PATH + 'app',
+    WORKSPACE: ASSET_PATH + 'workspace',
     //#region COMMUNITY
     COMMUNITY: {
       INDEX: COMMUNITY,
