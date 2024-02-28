@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { hook } from "@utils/crossCutting";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
@@ -66,7 +66,7 @@ const ForgotPassword = (props) => {
             <Grid item container direction="column" alignItems="center" xs={12}>
               <Stack alignItems="center" justifyContent="center" spacing={1}>
                 <Link
-                  href={navigateLocation.AUTH.SIGNIN}
+                  href={navigatePath.AUTH.SIGNIN}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}
@@ -74,7 +74,7 @@ const ForgotPassword = (props) => {
                   {t("authentication.alreadyhaveanaccount")}
                 </Link>
                 <Link
-                  href={navigateLocation.AUTH.SIGNUP}
+                  href={navigatePath.AUTH.SIGNUP}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}

@@ -16,7 +16,7 @@ import AuthWrapper from '../authWrapper';
 import AuthCardWrapper from '../authCardWrapper';
 import AuthMainContainer from '../authMainContainer';
 import FormSignUp from '../forms/signUp';
-import { navigateLocation } from '@routes/navigateLocation';
+import { navigatePath } from '@routes/navigatePath';
 // import AuthFooter from "../authFooter";
 //#endregion
 //#region redux provider
@@ -82,7 +82,7 @@ const SignUp = (props) => {
                   xs={12}
                 >
                   <Link
-                    href={navigateLocation.AUTH.SIGNIN}
+                    href={navigatePath.AUTH.SIGNIN}
                     underline="none"
                     variant="subtitle1"
                     color={theme.palette.grey[900]}

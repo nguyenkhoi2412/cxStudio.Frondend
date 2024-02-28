@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -86,7 +86,7 @@ const ProfileSection = () => {
   const handleLogout = async () => {
     dispatch(SIGN_OUT());
 
-    navigate(navigateLocation.DASHBOARD.AUTH.SIGNIN);
+    navigate(navigatePath.DASHBOARD.AUTH.SIGNIN);
   };
 
   const handleClose = (event) => {
@@ -336,7 +336,7 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               0,
-                              navigateLocation.ACCOUNT.SOCIAL
+                              navigatePath.ACCOUNT.SOCIAL
                             )
                           }
                         >
@@ -378,7 +378,7 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               1,
-                              navigateLocation.ACCOUNT.PROFILE
+                              navigatePath.ACCOUNT.PROFILE
                             )
                           }
                         >
@@ -402,7 +402,7 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               2,
-                              navigateLocation.ACCOUNT.SETTING
+                              navigatePath.ACCOUNT.SETTING
                             )
                           }
                         >
@@ -426,7 +426,7 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               3,
-                              navigateLocation.ACCOUNT.CHANGE_PASSOWRD
+                              navigatePath.ACCOUNT.CHANGE_PASSOWRD
                             )
                           }
                         >

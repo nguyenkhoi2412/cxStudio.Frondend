@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 
 //#region reducer
 import { useSelector } from "react-redux";

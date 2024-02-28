@@ -1,4 +1,4 @@
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 import { CLIENT_APP } from "@routes/componentLoadable";
 import App from "@constants/app";
 
@@ -9,12 +9,12 @@ const ChatBoxCommunityRoutes = [
     ),
     children: [
       {
-        path: navigateLocation.CLIENT_APP.COMMUNITY.CHATBOX.INDEX,
+        path: navigatePath.CLIENT_APP.COMMUNITY.CHATBOX.INDEX,
         title: "💬 Chatbox | Community",
         element: (
           <CLIENT_APP.COMMUNITY.CHATBOX.DEFAULT
             requireAuth={true}
-            redirectTo={navigateLocation.AUTH.SIGNIN}
+            redirectTo={navigatePath.AUTH.SIGNIN}
           />
         ),
       },

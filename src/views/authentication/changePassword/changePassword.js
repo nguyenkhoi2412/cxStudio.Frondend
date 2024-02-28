@@ -77,7 +77,7 @@ const ChangePassword = (props) => {
               >
                 <Stack alignItems="center" justifyContent="center" spacing={1}>
                   <Link
-                    href={navigateLocation.DASHBOARD.AUTH.SIGNIN}
+                    href={navigatePath.DASHBOARD.AUTH.SIGNIN}
                     underline="none"
                     variant="subtitle1"
                     color={theme.palette.grey[900]}
@@ -85,7 +85,7 @@ const ChangePassword = (props) => {
                     {t("authentication.alreadyhaveanaccount")}
                   </Link>
                   <Link
-                    href={navigateLocation.DASHBOARD.AUTH.SIGNUP}
+                    href={navigatePath.DASHBOARD.AUTH.SIGNUP}
                     underline="none"
                     variant="subtitle1"
                     color={theme.palette.grey[900]}

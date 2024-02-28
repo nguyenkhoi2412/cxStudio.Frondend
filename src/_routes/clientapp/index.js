@@ -1,4 +1,4 @@
-import { navigateLocation } from '../navigateLocation';
+import { navigatePath } from '../navigatePath';
 import APP from '@constants/app';
 
 // project imports
@@ -14,28 +14,28 @@ const ClientAppRoutes = [
     element: (
       <CLIENT_APP.LAYOUT
         requireAuth={true}
-        redirectTo={navigateLocation.AUTH.SIGNIN}
+        redirectTo={navigatePath.AUTH.SIGNIN}
         appName={APP.EMPTY}
       />
     ),
     children: [
       {
-        path: navigateLocation.CLIENT_APP.ASSET_PATH,
+        path: navigatePath.CLIENT_APP.ASSET_PATH,
         title: 'Create/Open a workspace',
         element: <CLIENT_APP.HOME />,
       },
       {
-        path: navigateLocation.CLIENT_APP.APP,
+        path: navigatePath.CLIENT_APP.APP,
         title: 'Create/Open a workspace',
         element: <CLIENT_APP.HOME />,
       },
       {
-        path: navigateLocation.UTILITIES.TYPOGRAPHY,
+        path: navigatePath.UTILITIES.TYPOGRAPHY,
         title: 'TYPOGRAPHY',
         element: <DASHBOARD.UTILITIES.TYPOGRAPHY />,
       },
       {
-        path: navigateLocation.UTILITIES.GENERATE_KEY,
+        path: navigatePath.UTILITIES.GENERATE_KEY,
         title: 'GENERATEKEY',
         element: <DASHBOARD.UTILITIES.GENERATE_KEY />,
       },
@@ -44,17 +44,17 @@ const ClientAppRoutes = [
   ...CommunityRoutes,
   ...LaundryServicesRoutes,
 ];
-// path: navigateLocation.CLIENT_APP.ASSET_PATH,
+// path: navigatePath.CLIENT_APP.ASSET_PATH,
 // element: <CLIENT_APP.LAYOUT />,
 // children: [
 //   {
-//     path: navigateLocation.CLIENT_APP.ASSET_PATH,
+//     path: navigatePath.CLIENT_APP.ASSET_PATH,
 //     title: "Social profile",
 //     element: <SocialProfile />,
 //   },
 // ],
 // {
-//   path: navigateLocation.CLIENT_APP.ASSET_PATH,
+//   path: navigatePath.CLIENT_APP.ASSET_PATH,
 //   title: "Social profile",
 //   element: <CLIENT_APP.HOME />,
 // }{}

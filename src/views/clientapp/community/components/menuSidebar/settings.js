@@ -1,5 +1,5 @@
 import { Trans } from "react-i18next";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 import { IconHexagons } from "@tabler/icons-react";
 
 // ==============================|| MENU ITEMS ||============================== //
@@ -23,7 +23,7 @@ const menuItems = {
         //     //   id: "register",
         //     //   title: <Trans i18nKey={"user.addnew"}></Trans>,
         //     //   type: "item",
-        //     //   url: navigateLocation.ACCOUNT.CREATE_NEW,
+        //     //   url: navigatePath.ACCOUNT.CREATE_NEW,
         //     //   target: false,
         //     //   breadcrumbs: false,
         //     // },
@@ -31,7 +31,7 @@ const menuItems = {
         //       id: "userlist",
         //       title: <Trans i18nKey={"user.list"}></Trans>,
         //       type: "item",
-        //       url: navigateLocation.ACCOUNT.USER_LIST,
+        //       url: navigatePath.ACCOUNT.USER_LIST,
         //       target: false,
         //       breadcrumbs: false,
         //     },
@@ -42,7 +42,7 @@ const menuItems = {
           title: <Trans i18nKey={"user.account"} />,
           type: "item",
           icon: IconHexagons,
-          url: "navigateLocation.SITE.LIST",
+          url: "navigatePath.SITE.LIST",
           target: false,
           breadcrumbs: false,
         },

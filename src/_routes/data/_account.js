@@ -1,4 +1,4 @@
-import { navigateLocation } from "../navigateLocation";
+import { navigatePath } from "../navigatePath";
 import { RequireAuth } from "@utils/requireAuth";
 
 // account routing
@@ -11,55 +11,55 @@ import UserList from "@dashboard/account/userlist";
 
 const AccountRoutes = [
   {
-    path: navigateLocation.ACCOUNT.SOCIAL,
+    path: navigatePath.ACCOUNT.SOCIAL,
     title: "Social",
     element: (
-      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigatePath.DASHBOARD.AUTH.SIGNIN}>
         <AccountSocial />
       </RequireAuth>
     ),
   },
   {
-    path: navigateLocation.ACCOUNT.PROFILE,
+    path: navigatePath.ACCOUNT.PROFILE,
     title: "My profiles",
     element: (
-      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigatePath.DASHBOARD.AUTH.SIGNIN}>
         <AccountProfile />
       </RequireAuth>
     ),
   },
   {
-    path: navigateLocation.ACCOUNT.SETTING,
+    path: navigatePath.ACCOUNT.SETTING,
     title: "Account setting",
     element: (
-      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigatePath.DASHBOARD.AUTH.SIGNIN}>
         <AccountDetails />
       </RequireAuth>
     ),
   },
   {
-    path: navigateLocation.ACCOUNT.CHANGE_PASSOWRD,
+    path: navigatePath.ACCOUNT.CHANGE_PASSOWRD,
     title: "Change password",
     element: (
-      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigatePath.DASHBOARD.AUTH.SIGNIN}>
         <ChangePassword />
       </RequireAuth>
     ),
   },
   {
-    path: navigateLocation.ACCOUNT.CREATE_NEW,
+    path: navigatePath.ACCOUNT.CREATE_NEW,
     title: "Create new",
     element: (
-      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigatePath.DASHBOARD.AUTH.SIGNIN}>
         <CreateNew />
       </RequireAuth>
     ),
   },
   {
-    path: navigateLocation.ACCOUNT.USER_LIST,
+    path: navigatePath.ACCOUNT.USER_LIST,
     title: "Userlist",
     element: (
-      <RequireAuth redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}>
+      <RequireAuth redirectTo={navigatePath.DASHBOARD.AUTH.SIGNIN}>
         <UserList />
       </RequireAuth>
     ),

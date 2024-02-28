@@ -7,7 +7,7 @@ import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
 import _schema from "../codeVerification/_schema";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 import { HTTP_STATUS } from "@constants/httpStatus";
 import storaged from "@constants/storage";
 //#region mui-ui
@@ -56,7 +56,7 @@ const FormCodeVerification = () => {
                 .unwrap()
                 .then((data) => {
                   if (data.rs[storaged.AUTH.VERIFIED_2FA] === 'true') {
-                    navigate(navigateLocation.CLIENT_APP.APP);
+                    navigate(navigatePath.CLIENT_APP.APP);
                   }
                 });
             } else {

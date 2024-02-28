@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 
 // project imports
 import AuthenticationRoutes from "./_authentication";
@@ -35,12 +35,12 @@ const DashboardRoutes = [
     element: <DASHBOARD.LAYOUT />,
     children: [
       {
-        path: navigateLocation.DASHBOARD.DEFAULT,
+        path: navigatePath.DASHBOARD.DEFAULT,
         title: "Dashboard",
         element: (
           <DASHBOARD.DEFAULT
             requireAuth={true}
-            redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}
+            redirectTo={navigatePath.DASHBOARD.AUTH.SIGNIN}
             title="DashboardDefault"
           />
         ),

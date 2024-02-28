@@ -10,7 +10,7 @@ import storaged from '@constants/storage';
 import InputField from '@components/mui-ui/forms/inputField';
 import _schema from './../signIn/_schema';
 import { useTheme } from '@mui/material/styles';
-import { navigateLocation } from '@routes/navigateLocation';
+import { navigatePath } from '@routes/navigatePath';
 import WpAlert from '@components/mui-ui/alert';
 //#region mui-ui
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -72,10 +72,10 @@ const FormSignIn = () => {
           .unwrap()
           .then((data) => {
             if (data.rs[storaged.AUTH.VERIFIED_2FA] === 'true') {
-              navigate(navigateLocation.CLIENT_APP.APP);
+              navigate(navigatePath.CLIENT_APP.APP);
             } else {
               //* verify 2FA
-              navigate(navigateLocation.AUTH.CODE_VERIFICATION);
+              navigate(navigatePath.AUTH.CODE_VERIFICATION);
             }
           });
       } else {
@@ -233,7 +233,7 @@ const FormSignIn = () => {
                 label="Remember me"
               />
               <Link
-                href={navigateLocation.AUTH.FORGOT_PASSWORD}
+                href={navigatePath.AUTH.FORGOT_PASSWORD}
                 variant="body2"
                 underline="none"
               >

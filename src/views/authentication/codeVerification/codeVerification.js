@@ -1,6 +1,6 @@
 import "../_auth.scss";
 import * as React from "react";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
 //#region mui-ui
@@ -135,7 +135,7 @@ const CodeVerification = (props) => {
             <Grid item container direction="column" alignItems="center" xs={12}>
               <Stack alignItems="center" justifyContent="center" spacing={1}>
                 <Link
-                  href={navigateLocation.AUTH.SIGNIN}
+                  href={navigatePath.AUTH.SIGNIN}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}
@@ -143,7 +143,7 @@ const CodeVerification = (props) => {
                   {t("authentication.goback_signin")}
                 </Link>
                 <Link
-                  href={navigateLocation.AUTH.SIGNUP}
+                  href={navigatePath.AUTH.SIGNUP}
                   underline="none"
                   variant="subtitle1"
                   color={theme.palette.grey[900]}

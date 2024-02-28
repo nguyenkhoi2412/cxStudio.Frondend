@@ -3,30 +3,30 @@ import Color from "@views/utilities/color";
 import UtilsShadow from "@views/utilities/shadow";
 import UtilsTablerIcons from "@views/utilities/tablerIcons";
 import GenerateKey from "@views/utilities/generateKey";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 
 const UtilitiesRoutes = [
   {
-    path: navigateLocation.UTILITIES.GENERATE_KEY,
+    path: navigatePath.UTILITIES.GENERATE_KEY,
     title: "Generate key",
     element: <GenerateKey />,
   },
   {
-    path: navigateLocation.UTILITIES.TYPOGRAPHY,
+    path: navigatePath.UTILITIES.TYPOGRAPHY,
     title: "Typography",
     element: <UtilsTypography />,
   },
   {
-    path: navigateLocation.UTILITIES.COLOR,
+    path: navigatePath.UTILITIES.COLOR,
     title: "Color",
     element: <Color />,
   },
   {
-    path: navigateLocation.UTILITIES.SHADOW,
+    path: navigatePath.UTILITIES.SHADOW,
     element: <UtilsShadow title="Shadow" />,
   },
   {
-    path: navigateLocation.UTILITIES.TABLERICONS,
+    path: navigatePath.UTILITIES.TABLERICONS,
     title: "Tabler icons react",
     element: <UtilsTablerIcons />,
   },

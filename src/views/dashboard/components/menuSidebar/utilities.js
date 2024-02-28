@@ -6,7 +6,7 @@
 //   IconShadow,
 //   IconWindmill,
 // } from "";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 
 // constant
 // const icons = {
@@ -28,7 +28,7 @@ const utilities = {
       id: "util-generatekey",
       title: "Generate key",
       type: "item",
-      url: navigateLocation.UTILITIES.GENERATE_KEY,
+      url: navigatePath.UTILITIES.GENERATE_KEY,
       // icon: icons.IconRadioactive,
       target: false,
       breadcrumbs: false,
@@ -37,7 +37,7 @@ const utilities = {
       id: "util-typography",
       title: "Typography",
       type: "item",
-      url: navigateLocation.UTILITIES.TYPOGRAPHY,
+      url: navigatePath.UTILITIES.TYPOGRAPHY,
       // icon: icons.IconTypography,
       target: false,
       breadcrumbs: false,
@@ -46,7 +46,7 @@ const utilities = {
       id: "util-color",
       title: "Color",
       type: "item",
-      url: navigateLocation.UTILITIES.COLOR,
+      url: navigatePath.UTILITIES.COLOR,
       // icon: icons.IconPalette,
       target: false,
       breadcrumbs: false,
@@ -55,7 +55,7 @@ const utilities = {
       id: "util-shadow",
       title: "Shadow",
       type: "item",
-      url: navigateLocation.UTILITIES.SHADOW,
+      url: navigatePath.UTILITIES.SHADOW,
       // icon: icons.IconShadow,
       target: false,
       breadcrumbs: false,
@@ -70,7 +70,7 @@ const utilities = {
           id: "tabler-icons",
           title: "Tabler Icons",
           type: "item",
-          url: navigateLocation.UTILITIES.TABLERICONS,
+          url: navigatePath.UTILITIES.TABLERICONS,
           target: false,
           breadcrumbs: false,
         },

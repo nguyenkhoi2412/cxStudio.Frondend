@@ -1,16 +1,16 @@
-import { navigateLocation } from "../navigateLocation";
+import { navigatePath } from "../navigatePath";
 
 // account routing
 import { DASHBOARD } from "@routes/componentLoadable";
 
 const SiteRoutes = [
   {
-    path: navigateLocation.SITE.LIST,
+    path: navigatePath.SITE.LIST,
     title: "Site settings",
     element: (
       <DASHBOARD.DEFAULT
         requireAuth={true}
-        redirectTo={navigateLocation.DASHBOARD.AUTH.SIGNIN}
+        redirectTo={navigatePath.DASHBOARD.AUTH.SIGNIN}
         title="DashboardDefault"
       />
     ),

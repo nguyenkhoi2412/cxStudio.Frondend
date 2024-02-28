@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -23,7 +23,7 @@ const buildMenuItems = () => {
   const locationPathname = window.location.pathname;
   const menuItems = {};
 
-  menuItems[navigateLocation.CLIENT_APP.COMMUNITY.ACCOUNT.SETTING] =
+  menuItems[navigatePath.CLIENT_APP.COMMUNITY.ACCOUNT.SETTING] =
     menuSidebarSettings;
 
   return menuItems[locationPathname];

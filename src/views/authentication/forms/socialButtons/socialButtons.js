@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { HTTP_STATUS } from '@constants/httpStatus';
 import storaged from '@constants/storage';
 import Google from '@assets/images/icons/social-google.svg';
-import { navigateLocation } from '@routes/navigateLocation';
+import { navigatePath } from '@routes/navigatePath';
 //#region mui-ui
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -56,10 +56,10 @@ const SocialButtons = (props) => {
           .unwrap()
           .then((data) => {
             if (data.rs[storaged.AUTH.VERIFIED_2FA] === 'true') {
-              navigate(navigateLocation.CLIENT_APP.APP);
+              navigate(navigatePath.CLIENT_APP.APP);
             } else {
               //* verify 2FA
-              navigate(navigateLocation.AUTH.CODE_VERIFICATION);
+              navigate(navigatePath.AUTH.CODE_VERIFICATION);
             }
           });
       } else {

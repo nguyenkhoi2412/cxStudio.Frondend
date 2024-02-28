@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import _schema from './_schema';
-import { navigateLocation } from '@routes/navigateLocation';
+import { navigatePath } from '@routes/navigatePath';
 //#region mui-ui
 import Link from '@mui/material/Link';
 import { useTheme } from '@mui/material/styles';
@@ -60,7 +60,7 @@ const SignIn = (props) => {
           <Grid item xs={12}>
             <Grid item container direction="column" alignItems="center" xs={12}>
               <Link
-                href={navigateLocation.AUTH.SIGNUP}
+                href={navigatePath.AUTH.SIGNUP}
                 underline="none"
                 variant="subtitle1"
                 color={theme.palette.grey[900]}

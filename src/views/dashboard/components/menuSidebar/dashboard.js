@@ -1,4 +1,4 @@
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 // assets
 
 // constant
@@ -15,7 +15,7 @@ const dashboard = {
       id: "default",
       title: "Reports",
       type: "item",
-      url: navigateLocation.DASHBOARD.DEFAULT,
+      url: navigatePath.DASHBOARD.DEFAULT,
       // icon: AiOutlineDashboard,
       breadcrumbs: false,
     },

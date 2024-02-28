@@ -6,7 +6,7 @@ import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator";
 import { useSnackbar } from "notistack";
 import InputField from "@components/mui-ui/forms/inputField";
 import _schema from "../forgotPassword/_schema";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 import { HTTP_STATUS } from "@constants/httpStatus";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
@@ -193,7 +193,7 @@ const FormForgotPassword = () => {
                       >
                         {t("authentication.signinwithyournewpassword")}
                         <Link
-                          href={navigateLocation.AUTH.SIGNIN}
+                          href={navigatePath.AUTH.SIGNIN}
                           underline="none"
                           variant="subtitle1"
                         >

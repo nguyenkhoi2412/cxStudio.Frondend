@@ -20,7 +20,7 @@ const LAUNDRY = {
   STATISTIC: APP + MODULES.LAUNDRY + '/statistic',
 };
 
-export const navigateLocation = {
+export const navigatePath = {
   DASHBOARD: {
     DEFAULT: DASHBOARD,
     AUTH: {

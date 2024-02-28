@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -85,7 +85,7 @@ const ProfileSection = () => {
   const anchorRef = useRef(null);
   const handleLogout = async () => {
     dispatch(SIGN_OUT());
-    navigate(navigateLocation.AUTH.SIGNIN);
+    navigate(navigatePath.AUTH.SIGNIN);
     // refresh
     navigate(0);
   };
@@ -346,7 +346,7 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               0,
-                              navigateLocation.ACCOUNT.SOCIAL
+                              navigatePath.ACCOUNT.SOCIAL
                             )
                           }
                         >
@@ -388,7 +388,7 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               1,
-                              navigateLocation.ACCOUNT.PROFILE
+                              navigatePath.ACCOUNT.PROFILE
                             )
                           }
                         >
@@ -412,7 +412,7 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               2,
-                              navigateLocation.ACCOUNT.SETTING
+                              navigatePath.ACCOUNT.SETTING
                             )
                           }
                         >
@@ -437,7 +437,7 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               3,
-                              navigateLocation.CLIENT_APP.COMMUNITY.ACCOUNT
+                              navigatePath.CLIENT_APP.COMMUNITY.ACCOUNT
                                 .SETTING
                             )
                           }

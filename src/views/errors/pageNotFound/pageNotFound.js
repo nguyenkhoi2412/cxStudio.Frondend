@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { hook } from "@utils/crossCutting";
-import { navigateLocation } from "@routes/navigateLocation";
+import { navigatePath } from "@routes/navigatePath";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { useTheme } from "@mui/material/styles";
@@ -38,7 +38,7 @@ const Error404 = (props) => {
   const { t } = useTranslation();
 
   const handleBtnGoBackHome = () => {
-    navigate(navigateLocation.CLIENT_APP.APP);
+    navigate(navigatePath.CLIENT_APP.APP);
   };
 
   return (
