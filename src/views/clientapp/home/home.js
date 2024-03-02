@@ -9,7 +9,7 @@ import { Grid } from "@mui/material";
 //#region import components
 import MainCard from "@components/mui-ui/cards";
 import WorkspaceList from "@clientapp/components/workspace/viewWorkspaceList";
-import ViewCreateNew from "@clientapp/components/workspace/viewCreateNew";
+import CreateNew from "@clientapp/components/workspace/createNew";
 //#endregion
 //#region reduxprovider
 import { WorkspaceService } from "@services/workspace";
@@ -109,7 +109,7 @@ const Home = () => {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          <ViewCreateNew data={dataValue} wpOwner={wpOwner} />
+          <CreateNew data={dataValue} wpOwner={wpOwner} />
         </Grid>
       </Grid>
     );

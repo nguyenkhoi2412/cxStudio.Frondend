@@ -1,4 +1,4 @@
-import "./_viewCreateNew.scss";
+import "./_createNew.scss";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import _globalVars from "@constants/variables";
@@ -26,7 +26,7 @@ import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
 //#endregion
 //#endregion
 
-const ViewCreateNew = ({ data, wpOwner }) => {
+const CreateNew = ({ data, wpOwner }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [termsChecked, setTermsChecked] = React.useState(false);
@@ -202,7 +202,7 @@ const ViewCreateNew = ({ data, wpOwner }) => {
   return <>{wpOwner?.length > 0 ? renderSimpleView() : renderFullView()}</>;
 };
 
-export default React.memo(ViewCreateNew, (props, nextProps) => {
+export default React.memo(CreateNew, (props, nextProps) => {
   if (crossCutting.check.isEquals(props, nextProps)) {
     // return true if you don't need re-render
     return true;
