@@ -8,15 +8,11 @@
 //   time_format: "HH:mm",
 //   currency: "$",
 // }
-import _globalVars from "@constants/variables";
-import moment from "moment";
-import * as React from "react";
-import {
-  useParams,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
-import queryString from "query-string";
+import _globalVars from '@constants/variables';
+import moment from 'moment';
+import * as React from 'react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import queryString from 'query-string';
 
 //* ==============================|| CROSSCUTTING ||============================== //
 export const crossCutting = {
@@ -24,28 +20,28 @@ export const crossCutting = {
   generate: {
     uuidv4: () => {
       var dt = new Date().getTime();
-      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
         /[xy]/g,
         function (c) {
           var r = (dt + Math.random() * 16) % 16 | 0;
           dt = Math.floor(dt / 16);
-          return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
-        }
+          return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16);
+        },
       );
     },
     sessionId: Math.random().toString(36).substring(2),
     key: (pre) => {
-      return `${crossCutting.check.isNotNull(pre) ? pre + "_" : ""}${
+      return `${crossCutting.check.isNotNull(pre) ? pre + '_' : ''}${
         new Date().getTime() + crossCutting.generate.number()
       }`;
     },
     password: (length = 8) => {
-      let password = "";
+      let password = '';
       const chars = [
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-        "abcdefghijklmnopqrstuvwxyz",
-        "@$!%*?&",
-        "1234567890",
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        'abcdefghijklmnopqrstuvwxyz',
+        '@$!%*?&',
+        '1234567890',
       ];
       const charsLength = chars.length;
       let j = 0;
@@ -61,28 +57,28 @@ export const crossCutting = {
         do {
           const index = Math.floor(Math.random() * charsLength);
           password += chars[index].charAt(
-            Math.floor(Math.random() * chars[index].length)
+            Math.floor(Math.random() * chars[index].length),
           );
           i++;
         } while (i < length);
       }
       return password
-        .split("")
+        .split('')
         .sort(function () {
           return 0.5 - Math.random();
         })
-        .join("");
+        .join('');
     },
     number: (min = 1, max = 100) => {
       return min + Math.random() * (max - min);
     },
-    color: (color = "") => {
+    color: (color = '') => {
       switch (color) {
         //* Generate light color
-        case "light":
-          var letters = "BCDEF".split("");
+        case 'light':
+          var letters = 'BCDEF'.split('');
           var letterLen = letters.length;
-          var color = "#";
+          var color = '#';
           var i = 0;
           while (i < 6) {
             color += letters[Math.floor(Math.random() * letterLen)];
@@ -91,23 +87,23 @@ export const crossCutting = {
           return color;
 
         //* Generate dark color
-        case "dark":
+        case 'dark':
           var lum = -0.25;
           var hex = String(
-            "#" + Math.random().toString(16).slice(2, 8).toUpperCase()
-          ).replace(/[^0-9a-f]/gi, "");
+            '#' + Math.random().toString(16).slice(2, 8).toUpperCase(),
+          ).replace(/[^0-9a-f]/gi, '');
           if (hex.length < 6) {
             hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
           }
-          var rgb = "#",
+          var rgb = '#',
             c,
             i = 0;
           while (i < 3) {
             c = parseInt(hex.substr(i * 2, 2), 16);
             c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(
-              16
+              16,
             );
-            rgb += ("00" + c).substr(c.length);
+            rgb += ('00' + c).substr(c.length);
 
             i++;
           }
@@ -115,10 +111,10 @@ export const crossCutting = {
 
         default:
           return (
-            "#" +
+            '#' +
             Math.floor(Math.random() * 16777215)
               .toString(16)
-              .padStart(6, "0")
+              .padStart(6, '0')
           );
       }
     },
@@ -133,7 +129,7 @@ export const crossCutting = {
       return (
         value === null ||
         value === undefined ||
-        (typeof value === "string"
+        (typeof value === 'string'
           ? string.isEmptyOrWhitespace(value) // check string is EMPTY
           : Array.isArray(value)
           ? array.isEmpty(value) // check Array is EMPTY
@@ -146,12 +142,12 @@ export const crossCutting = {
 
       if (a === b) return true;
       if (JSON.stringify(a) === JSON.stringify(b)) return true;
-      if (typeof a === "function" && typeof b === "function") return true;
+      if (typeof a === 'function' && typeof b === 'function') return true;
 
       if (a instanceof Date && b instanceof Date)
         return a.getTime() === b.getTime();
 
-      if (!a || !b || (typeof a !== "object" && typeof b !== "object"))
+      if (!a || !b || (typeof a !== 'object' && typeof b !== 'object'))
         return a === b;
 
       if (a.prototype !== b.prototype) return false;
@@ -175,7 +171,7 @@ export const crossCutting = {
     acceptFileExtension: (file, filetypes = /jpeg|jpg|png/) => {
       var mimetype = filetypes.test(file.mimetype);
       var extname = filetypes.test(
-        path.extname(file.originalname).toLowerCase()
+        path.extname(file.originalname).toLowerCase(),
       );
 
       return mimetype && extname;
@@ -199,14 +195,14 @@ export const crossCutting = {
   },
   detectEnvironment: () => {
     {
-      var unknown = "-";
+      var unknown = '-';
 
       // screen
-      var screenSize = "";
+      var screenSize = '';
       if (screen.width) {
         var width = screen.width ? screen.width : 0;
         var height = screen.height ? screen.height : 0;
-        screenSize += "" + width + " x " + height;
+        screenSize += '' + width + ' x ' + height;
       }
 
       // windowsize
@@ -219,50 +215,50 @@ export const crossCutting = {
       var nVer = navigator.appVersion;
       var nAgt = navigator.userAgent;
       var browser = navigator.appName;
-      var version = "" + parseFloat(navigator.appVersion);
+      var version = '' + parseFloat(navigator.appVersion);
       var majorVersion = parseInt(navigator.appVersion, 10);
       var nameOffset, verOffset, ix;
 
       // Opera
-      if ((verOffset = nAgt.indexOf("Opera")) != -1) {
-        browser = "Opera";
+      if ((verOffset = nAgt.indexOf('Opera')) != -1) {
+        browser = 'Opera';
         version = nAgt.substring(verOffset + 6);
-        if ((verOffset = nAgt.indexOf("Version")) != -1) {
+        if ((verOffset = nAgt.indexOf('Version')) != -1) {
           version = nAgt.substring(verOffset + 8);
         }
       }
       // MSIE
-      else if ((verOffset = nAgt.indexOf("MSIE")) != -1) {
-        browser = "Microsoft Internet Explorer";
+      else if ((verOffset = nAgt.indexOf('MSIE')) != -1) {
+        browser = 'Microsoft Internet Explorer';
         version = nAgt.substring(verOffset + 5);
       }
       // Chrome
-      else if ((verOffset = nAgt.indexOf("Chrome")) != -1) {
-        browser = "Chrome";
+      else if ((verOffset = nAgt.indexOf('Chrome')) != -1) {
+        browser = 'Chrome';
         version = nAgt.substring(verOffset + 7);
       }
       // Safari
-      else if ((verOffset = nAgt.indexOf("Safari")) != -1) {
-        browser = "Safari";
+      else if ((verOffset = nAgt.indexOf('Safari')) != -1) {
+        browser = 'Safari';
         version = nAgt.substring(verOffset + 7);
-        if ((verOffset = nAgt.indexOf("Version")) != -1) {
+        if ((verOffset = nAgt.indexOf('Version')) != -1) {
           version = nAgt.substring(verOffset + 8);
         }
       }
       // Firefox
-      else if ((verOffset = nAgt.indexOf("Firefox")) != -1) {
-        browser = "Firefox";
+      else if ((verOffset = nAgt.indexOf('Firefox')) != -1) {
+        browser = 'Firefox';
         version = nAgt.substring(verOffset + 8);
       }
       // MSIE 11+
-      else if (nAgt.indexOf("Trident/") != -1) {
-        browser = "Microsoft Internet Explorer";
-        version = nAgt.substring(nAgt.indexOf("rv:") + 3);
+      else if (nAgt.indexOf('Trident/') != -1) {
+        browser = 'Microsoft Internet Explorer';
+        version = nAgt.substring(nAgt.indexOf('rv:') + 3);
       }
       // Other browsers
       else if (
-        (nameOffset = nAgt.lastIndexOf(" ") + 1) <
-        (verOffset = nAgt.lastIndexOf("/"))
+        (nameOffset = nAgt.lastIndexOf(' ') + 1) <
+        (verOffset = nAgt.lastIndexOf('/'))
       ) {
         browser = nAgt.substring(nameOffset, verOffset);
         version = nAgt.substring(verOffset + 1);
@@ -271,13 +267,13 @@ export const crossCutting = {
         }
       }
       // trim the version string
-      if ((ix = version.indexOf(";")) != -1) version = version.substring(0, ix);
-      if ((ix = version.indexOf(" ")) != -1) version = version.substring(0, ix);
-      if ((ix = version.indexOf(")")) != -1) version = version.substring(0, ix);
+      if ((ix = version.indexOf(';')) != -1) version = version.substring(0, ix);
+      if ((ix = version.indexOf(' ')) != -1) version = version.substring(0, ix);
+      if ((ix = version.indexOf(')')) != -1) version = version.substring(0, ix);
 
-      majorVersion = parseInt("" + version, 10);
+      majorVersion = parseInt('' + version, 10);
       if (isNaN(majorVersion)) {
-        version = "" + parseFloat(navigator.appVersion);
+        version = '' + parseFloat(navigator.appVersion);
         majorVersion = parseInt(navigator.appVersion, 10);
       }
 
@@ -287,45 +283,45 @@ export const crossCutting = {
       // cookie
       var cookieEnabled = navigator.cookieEnabled ? true : false;
 
-      if (typeof navigator.cookieEnabled == "undefined" && !cookieEnabled) {
-        document.cookie = "testcookie";
+      if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
+        document.cookie = 'testcookie';
         cookieEnabled =
-          document.cookie.indexOf("testcookie") != -1 ? true : false;
+          document.cookie.indexOf('testcookie') != -1 ? true : false;
       }
 
       // system
       var os = unknown;
       var clientStrings = [
-        { s: "Windows 10", r: /(Windows 10.0|Windows NT 10.0)/ },
-        { s: "Windows 8.1", r: /(Windows 8.1|Windows NT 6.3)/ },
-        { s: "Windows 8", r: /(Windows 8|Windows NT 6.2)/ },
-        { s: "Windows 7", r: /(Windows 7|Windows NT 6.1)/ },
-        { s: "Windows Vista", r: /Windows NT 6.0/ },
-        { s: "Windows Server 2003", r: /Windows NT 5.2/ },
-        { s: "Windows XP", r: /(Windows NT 5.1|Windows XP)/ },
-        { s: "Windows 2000", r: /(Windows NT 5.0|Windows 2000)/ },
-        { s: "Windows ME", r: /(Win 9x 4.90|Windows ME)/ },
-        { s: "Windows 98", r: /(Windows 98|Win98)/ },
-        { s: "Windows 95", r: /(Windows 95|Win95|Windows_95)/ },
+        { s: 'Windows 10', r: /(Windows 10.0|Windows NT 10.0)/ },
+        { s: 'Windows 8.1', r: /(Windows 8.1|Windows NT 6.3)/ },
+        { s: 'Windows 8', r: /(Windows 8|Windows NT 6.2)/ },
+        { s: 'Windows 7', r: /(Windows 7|Windows NT 6.1)/ },
+        { s: 'Windows Vista', r: /Windows NT 6.0/ },
+        { s: 'Windows Server 2003', r: /Windows NT 5.2/ },
+        { s: 'Windows XP', r: /(Windows NT 5.1|Windows XP)/ },
+        { s: 'Windows 2000', r: /(Windows NT 5.0|Windows 2000)/ },
+        { s: 'Windows ME', r: /(Win 9x 4.90|Windows ME)/ },
+        { s: 'Windows 98', r: /(Windows 98|Win98)/ },
+        { s: 'Windows 95', r: /(Windows 95|Win95|Windows_95)/ },
         {
-          s: "Windows NT 4.0",
+          s: 'Windows NT 4.0',
           r: /(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/,
         },
-        { s: "Windows CE", r: /Windows CE/ },
-        { s: "Windows 3.11", r: /Win16/ },
-        { s: "Android", r: /Android/ },
-        { s: "Open BSD", r: /OpenBSD/ },
-        { s: "Sun OS", r: /SunOS/ },
-        { s: "Linux", r: /(Linux|X11)/ },
-        { s: "iOS", r: /(iPhone|iPad|iPod)/ },
-        { s: "Mac OS X", r: /Mac OS X/ },
-        { s: "Mac OS", r: /(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/ },
-        { s: "QNX", r: /QNX/ },
-        { s: "UNIX", r: /UNIX/ },
-        { s: "BeOS", r: /BeOS/ },
-        { s: "OS/2", r: /OS\/2/ },
+        { s: 'Windows CE', r: /Windows CE/ },
+        { s: 'Windows 3.11', r: /Win16/ },
+        { s: 'Android', r: /Android/ },
+        { s: 'Open BSD', r: /OpenBSD/ },
+        { s: 'Sun OS', r: /SunOS/ },
+        { s: 'Linux', r: /(Linux|X11)/ },
+        { s: 'iOS', r: /(iPhone|iPad|iPod)/ },
+        { s: 'Mac OS X', r: /Mac OS X/ },
+        { s: 'Mac OS', r: /(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/ },
+        { s: 'QNX', r: /QNX/ },
+        { s: 'UNIX', r: /UNIX/ },
+        { s: 'BeOS', r: /BeOS/ },
+        { s: 'OS/2', r: /OS\/2/ },
         {
-          s: "Search Bot",
+          s: 'Search Bot',
           r: /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/,
         },
       ];
@@ -347,64 +343,64 @@ export const crossCutting = {
 
       if (/Windows/.test(os)) {
         osVersion = /Windows (.*)/.exec(os)[1];
-        os = "Windows";
+        os = 'Windows';
       }
 
       switch (os) {
-        case "Mac OS X":
+        case 'Mac OS X':
           osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
           break;
 
-        case "Android":
+        case 'Android':
           osVersion = /Android ([\.\_\d]+)/.exec(nAgt)[1];
           break;
 
-        case "iOS":
+        case 'iOS':
           osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
           osVersion =
-            osVersion[1] + "." + osVersion[2] + "." + (osVersion[3] | 0);
+            osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
           break;
       }
 
-      var flashVersion = "no check",
+      var flashVersion = 'no check',
         d,
         fv = [];
       if (
-        typeof navigator.plugins !== "undefined" &&
-        typeof navigator.plugins["Shockwave Flash"] === "object"
+        typeof navigator.plugins !== 'undefined' &&
+        typeof navigator.plugins['Shockwave Flash'] === 'object'
       ) {
-        d = navigator.plugins["Shockwave Flash"].description;
+        d = navigator.plugins['Shockwave Flash'].description;
         if (
           d &&
           !(
-            typeof navigator.mimeTypes !== "undefined" &&
-            navigator.mimeTypes["application/x-shockwave-flash"] &&
-            !navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin
+            typeof navigator.mimeTypes !== 'undefined' &&
+            navigator.mimeTypes['application/x-shockwave-flash'] &&
+            !navigator.mimeTypes['application/x-shockwave-flash'].enabledPlugin
           )
         ) {
           // navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin indicates whether plug-ins are enabled or disabled in Safari 3+
-          d = d.replace(/^.*\s+(\S+\s+\S+$)/, "$1");
-          fv[0] = parseInt(d.replace(/^(.*)\..*$/, "$1"), 10);
-          fv[1] = parseInt(d.replace(/^.*\.(.*)\s.*$/, "$1"), 10);
+          d = d.replace(/^.*\s+(\S+\s+\S+$)/, '$1');
+          fv[0] = parseInt(d.replace(/^(.*)\..*$/, '$1'), 10);
+          fv[1] = parseInt(d.replace(/^.*\.(.*)\s.*$/, '$1'), 10);
           fv[2] = /[a-zA-Z]/.test(d)
-            ? parseInt(d.replace(/^.*[a-zA-Z]+(.*)$/, "$1"), 10)
+            ? parseInt(d.replace(/^.*[a-zA-Z]+(.*)$/, '$1'), 10)
             : 0;
         }
-      } else if (typeof window.ActiveXObject !== "undefined") {
+      } else if (typeof window.ActiveXObject !== 'undefined') {
         try {
-          var a = new ActiveXObject("ShockwaveFlash.ShockwaveFlash");
+          var a = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
           if (a) {
             // a will return null when ActiveX is disabled
-            d = a.GetVariable("$version");
+            d = a.GetVariable('$version');
             if (d) {
-              d = d.split(" ")[1].split(",");
+              d = d.split(' ')[1].split(',');
               fv = [parseInt(d[0], 10), parseInt(d[1], 10), parseInt(d[2], 10)];
             }
           }
         } catch (e) {}
       }
       if (fv.length) {
-        flashVersion = fv[0] + "." + fv[1] + " r" + fv[2];
+        flashVersion = fv[0] + '.' + fv[1] + ' r' + fv[2];
       }
     }
 
@@ -424,10 +420,10 @@ export const crossCutting = {
     function setAttributes(el, attrs) {
       Object.keys(attrs).forEach((key) => el.setAttribute(key, attrs[key]));
     }
-    const tagHtml = document.getElementsByTagName("html")[0];
+    const tagHtml = document.getElementsByTagName('html')[0];
     setAttributes(tagHtml, {
-      browser: jscd.browser.toLowerCase() + " " + jscd.browserVersion,
-      os: jscd.os.toLowerCase() + " " + jscd.osVersion,
+      browser: jscd.browser.toLowerCase() + ' ' + jscd.browserVersion,
+      os: jscd.os.toLowerCase() + ' ' + jscd.osVersion,
       ismobile: jscd.mobile,
       responsive: jscd.responsive,
       screen: jscd.screen,
@@ -444,9 +440,9 @@ export const crossCutting = {
     return jscd;
   },
   timeTaken: (callback, message) => {
-    console.time("Time taken for " + message + ": ");
+    console.time('Time taken for ' + message + ': ');
     const r = callback();
-    console.timeEnd("Time taken for " + message + ": ");
+    console.timeEnd('Time taken for ' + message + ': ');
     return r;
   },
   //#endregion
@@ -456,11 +452,11 @@ export const crossCutting = {
 export const validate = {
   password: (value) => {
     if (value.length < 6) {
-      return "Password should be at-least 6 characters.";
+      return 'Password should be at-least 6 characters.';
     } else if (
       !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/.test(value)
     ) {
-      return "Password should contain at least one uppercase letter, lowercase letter, digit, and special symbol.";
+      return 'Password should contain at least one uppercase letter, lowercase letter, digit, and special symbol.';
     }
     return true;
   },
@@ -469,14 +465,14 @@ export const validate = {
 
 //* ==============================|| STRING ||============================== //
 export const string = {
-  render: (value, langCode = "", defaultValue = "-") => {
+  render: (value, langCode = '', defaultValue = '-') => {
     // get lang code from localStorage locale
     if (crossCutting.check.isNull(langCode)) {
       langCode = _globalVars.locale.lang;
     }
 
     return crossCutting.check.isNotNull(value)
-      ? langCode !== ""
+      ? langCode !== ''
         ? crossCutting.check.isNotNull(value[langCode])
           ? value[langCode]
           : defaultValue
@@ -488,17 +484,17 @@ export const string = {
    * isEmptyOrWhitespace('\t\n\r'); // true
    */
   isEmptyOrWhitespace: (value) =>
-    typeof value === "string" && /^\s*$/.test(value),
+    typeof value === 'string' && /^\s*$/.test(value),
 
   stripedHtml: (text) => {
-    text = text.replace(/[<|>]/gi, "");
+    text = text.replace(/[<|>]/gi, '');
 
     if (
-      text.toLowerCase().indexOf("javascript") > -1 ||
-      text.toLowerCase().indexOf("&lt;") > -1 ||
-      text.toLowerCase().indexOf("&gt;") > -1
+      text.toLowerCase().indexOf('javascript') > -1 ||
+      text.toLowerCase().indexOf('&lt;') > -1 ||
+      text.toLowerCase().indexOf('&gt;') > -1
     ) {
-      text = text.replace(/[javascript|&lt;|&gt;]/gi, "");
+      text = text.replace(/[javascript|&lt;|&gt;]/gi, '');
     }
 
     return text;
@@ -512,12 +508,12 @@ export const string = {
       /[&<>'"]/g,
       (tag) =>
         ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          "'": "&#39;",
-          '"': "&quot;",
-        }[tag] || tag)
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;',
+        }[tag] || tag),
     ),
 
   unescapeHTML: (str) =>
@@ -525,42 +521,42 @@ export const string = {
       /&amp;|&lt;|&gt;|&#39;|&quot;/g,
       (tag) =>
         ({
-          "&amp;": "&",
-          "&lt;": "<",
-          "&gt;": ">",
-          "&#39;": "'",
-          "&quot;": '"',
-        }[tag] || tag)
+          '&amp;': '&',
+          '&lt;': '<',
+          '&gt;': '>',
+          '&#39;': "'",
+          '&quot;': '"',
+        }[tag] || tag),
     ),
 
   mungeEmailAddress: (text) => {
-    var i = text.indexOf("@");
+    var i = text.indexOf('@');
     var startIndex = (i * 0.2) | 0;
     var endIndex = (i * 0.9) | 0;
     return (
       text.slice(0, startIndex) +
-      text.slice(startIndex, endIndex).replace(/./g, "*") +
+      text.slice(startIndex, endIndex).replace(/./g, '*') +
       text.slice(endIndex)
     );
   },
   parseValueToBool: (value) => {
-    return value === true || value === "true" || value === "True";
+    return value === true || value === 'true' || value === 'True';
   },
-  numberWithSympol: (value, dot = ",", decimal_point = 0) => {
+  numberWithSympol: (value, dot = ',', decimal_point = 0) => {
     let valueCheck = isNaN(value) ? 0 : parseFloat(value);
 
     return valueCheck
       .toFixed(decimal_point)
-      .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1" + dot);
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + dot);
   },
   compactNumber: (value) => {
-    const suffixes = ["", "k", "m", "b", "t"];
-    const suffixNum = Math.floor(("" + value).length / 3);
+    const suffixes = ['', 'k', 'm', 'b', 't'];
+    const suffixNum = Math.floor(('' + value).length / 3);
 
     let shortValue = parseFloat(
       (suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(
-        2
-      )
+        2,
+      ),
     );
 
     if (shortValue % 1 != 0) {
@@ -570,8 +566,8 @@ export const string = {
     return shortValue + suffixes[suffixNum];
   },
   formatBytes: (bytes) => {
-    var sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-    if (bytes == 0) return "0 Byte";
+    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes == 0) return '0 Byte';
     var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
     return Math.round(bytes / Math.pow(1024, i), 2) + sizes[i];
   },
@@ -594,18 +590,18 @@ export const string = {
     return `${number}th`;
   },
   copyToClipboard: (str) => {
-    const el = document.createElement("textarea");
+    const el = document.createElement('textarea');
     el.value = str;
-    el.setAttribute("readonly", "");
-    el.style.position = "absolute";
-    el.style.left = "-9999px";
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
     document.body.appendChild(el);
     const selected =
       document.getSelection().rangeCount > 0
         ? document.getSelection().getRangeAt(0)
         : false;
     el.select();
-    document.execCommand("copy");
+    document.execCommand('copy');
     document.body.removeChild(el);
     if (selected) {
       document.getSelection().removeAllRanges();
@@ -622,35 +618,35 @@ export const string = {
    * convertCase('mixed_string with spaces_underscores-and-hyphens', 'title'); // 'Mixed String With Spaces Underscores And Hyphens'
    * convertCase('mixed_string with spaces_underscores-and-hyphens', 'sentence'); // 'Mixed string with spaces underscores and hyphens'
    */
-  convertCase: (str, toCase = "camel") => {
-    if (!str) return "";
+  convertCase: (str, toCase = 'camel') => {
+    if (!str) return '';
 
     const delimiter =
-      toCase === "snake"
-        ? "_"
-        : toCase === "kebab"
-        ? "-"
-        : ["title", "sentence"].includes(toCase)
-        ? " "
-        : "";
+      toCase === 'snake'
+        ? '_'
+        : toCase === 'kebab'
+        ? '-'
+        : ['title', 'sentence'].includes(toCase)
+        ? ' '
+        : '';
 
-    const transform = ["camel", "pascal"].includes(toCase)
+    const transform = ['camel', 'pascal'].includes(toCase)
       ? (x) => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase()
-      : ["snake", "kebab"].includes(toCase)
+      : ['snake', 'kebab'].includes(toCase)
       ? (x) => x.toLowerCase()
-      : toCase === "title"
+      : toCase === 'title'
       ? (x) => x.slice(0, 1).toUpperCase() + x.slice(1)
       : (x) => x;
 
     const finalTransform =
-      toCase === "camel"
+      toCase === 'camel'
         ? (x) => x.slice(0, 1).toLowerCase() + x.slice(1)
-        : toCase === "sentence"
+        : toCase === 'sentence'
         ? (x) => x.slice(0, 1).toUpperCase() + x.slice(1)
         : (x) => x;
 
     const words = str.match(
-      /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+      /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g,
     );
 
     return finalTransform(words.map(transform).join(delimiter));
@@ -659,9 +655,9 @@ export const string = {
   /**
    * truncateStringAtWhitespace
    */
-  truncateStringAtWhitespace: (str, lim, ending = "...") => {
+  truncateStringAtWhitespace: (str, lim, ending = '...') => {
     if (str.length <= lim) return str;
-    const lastSpace = str.slice(0, lim - ending.length + 1).lastIndexOf(" ");
+    const lastSpace = str.slice(0, lim - ending.length + 1).lastIndexOf(' ');
     return (
       str.slice(0, lastSpace > 0 ? lastSpace : lim - ending.length) + ending
     );
@@ -670,8 +666,8 @@ export const string = {
   /**
    * truncateStringAtWord
    */
-  truncateStringAtWord: (str, lim, locale = "en-US", ending = "...") => {
-    const segmenter = new Intl.Segmenter(locale, { granularity: "word" });
+  truncateStringAtWord: (str, lim, locale = 'en-US', ending = '...') => {
+    const segmenter = new Intl.Segmenter(locale, { granularity: 'word' });
     let lastWordBreak = -1;
 
     const segStr = segmenter.segment(str);
@@ -695,7 +691,7 @@ export const number = {
    * Round decimal number
    */
   roundDecimalNumber(number, decimalIndex) {
-    if (typeof number !== "number" || typeof decimalIndex !== "number")
+    if (typeof number !== 'number' || typeof decimalIndex !== 'number')
       return false;
 
     var signature = number >= 0 ? 1 : -1;
@@ -707,11 +703,11 @@ export const number = {
   },
 
   toPercentage(number, percentage) {
-    if (number == null || number == "" || number == 0) {
+    if (number == null || number == '' || number == 0) {
       return 0;
     }
 
-    if (percentage == null || percentage == "" || percentage == 0) {
+    if (percentage == null || percentage == '' || percentage == 0) {
       return false;
     }
 
@@ -736,10 +732,10 @@ export const object = {
   getValue: (obj, ...selectors) => {
     const rs = [...selectors].map((item) =>
       item
-        .replace(/\[([^\[\]]*)\]/g, ".$1.")
-        .split(".")
-        .filter((t) => t !== "")
-        .reduce((prev, cur) => prev && prev[cur], obj)
+        .replace(/\[([^\[\]]*)\]/g, '.$1.')
+        .split('.')
+        .filter((t) => t !== '')
+        .reduce((prev, cur) => prev && prev[cur], obj),
     );
     if (rs?.length === 1) {
       return rs[0];
@@ -776,38 +772,38 @@ export const object = {
     url +
     Object.keys(params)
       .map((key) => params[key])
-      .join("&"),
+      .join('&'),
 
   createQueryString: (url, queryObject) => {
     let queryString = Object.keys(queryObject)
       .filter(
         (key) =>
           queryObject[key] &&
-          !(Array.isArray(queryObject[key]) && !queryObject[key].length)
+          !(Array.isArray(queryObject[key]) && !queryObject[key].length),
       )
       .map((key) => {
         return Array.isArray(queryObject[key])
           ? queryObject[key]
               .map(
                 (item) =>
-                  `${encodeURIComponent(key)}=${encodeURIComponent(item)}`
+                  `${encodeURIComponent(key)}=${encodeURIComponent(item)}`,
               )
-              .join("&")
+              .join('&')
           : `${encodeURIComponent(key)}=${encodeURIComponent(
-              queryObject[key]
+              queryObject[key],
             )}`;
       })
-      .join("&");
-    return url + (queryString ? `?${queryString}` : "");
+      .join('&');
+    return url + (queryString ? `?${queryString}` : '');
   },
 
-  queryStringToObject: (queryString = "", options = {}) => {
+  queryStringToObject: (queryString = '', options = {}) => {
     let queryObject = {};
     queryString &&
-      decodeURIComponent(queryString.replace("?", ""))
-        .split("&")
+      decodeURIComponent(queryString.replace('?', ''))
+        .split('&')
         .map((itemString) => {
-          let [itemKey, itemValue] = itemString.split("=");
+          let [itemKey, itemValue] = itemString.split('=');
           if (options.hasOwnProperty(itemKey)) {
             if (!queryObject[itemKey] && Array.isArray(options[itemKey])) {
               queryObject[itemKey] = [];
@@ -815,7 +811,7 @@ export const object = {
             Array.isArray(options[itemKey])
               ? queryObject[itemKey].push(itemValue)
               : (queryObject[itemKey] =
-                  typeof options[itemKey] === "number"
+                  typeof options[itemKey] === 'number'
                     ? parseInt(itemValue)
                     : itemValue);
           }
@@ -825,8 +821,8 @@ export const object = {
 
   //* GET DIFF/COMPARE
   getDiff: (baseObj, newObj) => {
-    const isNativeType1 = typeof baseObj !== "object";
-    const isNativeType2 = typeof newObj !== "object";
+    const isNativeType1 = typeof baseObj !== 'object';
+    const isNativeType2 = typeof newObj !== 'object';
     if (isNativeType1 && isNativeType2) {
       return baseObj === newObj ? null : newObj;
     }
@@ -920,7 +916,7 @@ export const object = {
   isJsonObject: (text) => {
     let str = String(text).trim();
 
-    if (!str.startsWith("{") || !str.endsWith("}")) return false;
+    if (!str.startsWith('{') || !str.endsWith('}')) return false;
 
     try {
       JSON.parse(str);
@@ -929,6 +925,27 @@ export const object = {
     }
 
     return true;
+  },
+
+  deepClone: (obj) => {
+    if (crossCutting.check.isNull(obj)) return null;
+    // let clone = Object.assign({}, obj);
+    // Object.keys(clone).forEach(
+    //   (key) =>
+    //     (clone[key] =
+    //       typeof obj[key] === 'object' ? object.deepClone(obj[key]) : obj[key]),
+    // );
+    // if (Array.isArray(obj)) {
+    //   clone.length = obj.length;
+    //   return Array.from(clone);
+    // }
+    // return clone;
+
+    if (Array.isArray(obj)) {
+      return obj.slice();
+    }
+
+    return structuredClone(obj);
   },
 };
 
@@ -947,7 +964,7 @@ export const array = {
       ...currentArray.slice(index),
     ];
   },
-  update: (arr, newItem, field = "_id") => {
+  update: (arr, newItem, field = '_id') => {
     var itemField = Array.isArray(newItem) ? newItem[0] : newItem;
 
     if (Array.isArray(arr)) {
@@ -1069,12 +1086,12 @@ export const array = {
         if (v[prop])
           acc[v[prop]] = acc[v[prop]] ? { ...acc[v[prop]], ...v } : { ...v };
         return acc;
-      }, {})
+      }, {}),
     ),
   // Check if the input is a json array (whether startsWidth '[' and endsWidth ']') or not
   isJsonArray: (text) => {
     let str = String(text).trim();
-    return str.startsWith("[") && str.endsWith("]");
+    return str.startsWith('[') && str.endsWith(']');
   },
 
   hasAny: (arr, func) =>
@@ -1083,7 +1100,7 @@ export const array = {
       : sizeOf(
           arr.filter((item, index) => {
             func(item, index);
-          })
+          }),
         ) >= 1,
 
   /**
@@ -1092,18 +1109,18 @@ export const array = {
   sizeOf: (arr) => {
     return Array.isArray(arr) ? arr.length : Object.values(arr).length;
   },
-  mergeArrayObjects: (current, newArray, field = "_id") => {
+  mergeArrayObjects: (current, newArray, field = '_id') => {
     const rsAdd = newArray.filter(
-      ({ [field]: id1 }) => !current.some(({ [field]: id2 }) => id2 === id1)
+      ({ [field]: id1 }) => !current.some(({ [field]: id2 }) => id2 === id1),
     );
     const rsRemoved = current.filter(
-      ({ [field]: id1 }) => !newArray.some(({ [field]: id2 }) => id2 === id1)
+      ({ [field]: id1 }) => !newArray.some(({ [field]: id2 }) => id2 === id1),
     );
     const rsUpdated = newArray.filter(({ [field]: id1, ...rest1 }) =>
       current.some(
         ({ [field]: id2, ...rest2 }) =>
-          id2 === id1 && JSON.stringify(rest1) !== JSON.stringify(rest2)
-      )
+          id2 === id1 && JSON.stringify(rest1) !== JSON.stringify(rest2),
+      ),
     );
 
     let tempArray = [...current];
@@ -1137,7 +1154,7 @@ export const array = {
       deleted: rsRemoved,
     };
   },
-  buildHierarchy: (array = [], idField = "_id", parentField = "parent") => {
+  buildHierarchy: (array = [], idField = '_id', parentField = 'parent') => {
     let arr = [...array];
     let arrMap = new Map(arr.map((item) => [item[idField], item]));
     let tree = [];
@@ -1147,7 +1164,7 @@ export const array = {
     do {
       let item = arr[i];
 
-      if (item[parentField] !== "") {
+      if (item[parentField] !== '') {
         let parentItem = arrMap.get(item[parentField]);
 
         if (parentItem) {
@@ -1187,6 +1204,9 @@ export const array = {
     //Otherwise, return FALSE.
     return false;
   },
+  deepClone: (array) => {
+    return object.deepClone(array);
+  },
   /**
    * array.orderBy
    * How to use it?
@@ -1200,13 +1220,13 @@ export const array = {
       props.reduce((acc, prop, i) => {
         if (acc === 0) {
           const [p1, p2] =
-            orders && orders[i] === "desc"
+            orders && orders[i] === 'desc'
               ? [b[prop], a[prop]]
               : [a[prop], b[prop]];
           acc = p1 > p2 ? 1 : p1 < p2 ? -1 : 0;
         }
         return acc;
-      }, 0)
+      }, 0),
     ),
 
   /**
@@ -1258,7 +1278,7 @@ export const array = {
         acc[fn(val, i, arr) ? 0 : 1].push(val);
         return acc;
       },
-      [[], []]
+      [[], []],
     ),
 };
 
@@ -1269,8 +1289,8 @@ export const loop = {
    * @param func callback function
    * @param type doWhile, while, for, forEach
    */
-  every: (arr, func, type = "auto", conditionBreak = null) => {
-    if (typeof func !== "function") return;
+  forEach: (arr, func, type = 'auto', conditionBreak = null) => {
+    if (typeof func !== 'function') return;
 
     // const isBreak = (index) => conditionBreak && eval(conditionBreak);
     const arrLength = arr.length;
@@ -1309,13 +1329,13 @@ export const loop = {
     };
 
     // callback function with type
-    if (type === "auto") {
+    if (type === 'auto') {
       if (arrLength <= 1000000) {
-        loop["while"]();
+        loop['while']();
       } else {
-        loop["for"]();
+        loop['for']();
       }
-    } else loop[type || "doWhile"]();
+    } else loop[type || 'doWhile']();
   },
 };
 
@@ -1337,7 +1357,7 @@ export const datetime = {
     return diffInDays;
   },
 
-  getUtcDateTime: (isoDate, locales = "en") => {
+  getUtcDateTime: (isoDate, locales = 'en') => {
     const date = new Date(isoDate);
     // let d = Date.UTC(
     //   date.getFullYear(),
@@ -1349,9 +1369,9 @@ export const datetime = {
     // );
 
     const localTime = date.toLocaleTimeString(locales, {
-      timeStyle: "short",
+      timeStyle: 'short',
     });
-    const utcTime = date.getUTCHours() + ":" + date.getUTCMinutes();
+    const utcTime = date.getUTCHours() + ':' + date.getUTCMinutes();
     const data = {
       toISOString: isoDate,
       toUTCString: new Date(date.toUTCString().slice(0, -4)).toString(), // ignore the timezone
@@ -1388,15 +1408,15 @@ export const datetime = {
    */
   formatDate: (
     date = null,
-    format = _globalVars.locale.date_format || "YYYY.MM.DD",
-    uppercase = false
+    format = _globalVars.locale.date_format || 'YYYY.MM.DD',
+    uppercase = false,
   ) => {
     let currentDate = date === null ? new Date() : new Date(date);
-    if (!datetime.isDateValid(currentDate)) return "Date is invalid";
+    if (!datetime.isDateValid(currentDate)) return 'Date is invalid';
 
     return {
       date: moment(currentDate).format(format),
-      time: moment(currentDate).format(uppercase ? "LT" : "h:mm a"),
+      time: moment(currentDate).format(uppercase ? 'LT' : 'h:mm a'),
     };
   },
 
@@ -1418,14 +1438,14 @@ export const datetime = {
    */
   fromNowAgo: (date, dateWith = moment()) => {
     if (!datetime.isDateValid(date) || !datetime.isDateValid(dateWith))
-      return "Date is invalid";
+      return 'Date is invalid';
 
     const now = dateWith;
-    const years = now.diff(date, "years");
-    const weeks = now.diff(date, "weeks");
-    const days = now.diff(date, "days");
-    const hours = now.diff(date, "hours");
-    const minutes = now.diff(date, "minutes");
+    const years = now.diff(date, 'years');
+    const weeks = now.diff(date, 'weeks');
+    const days = now.diff(date, 'days');
+    const hours = now.diff(date, 'hours');
+    const minutes = now.diff(date, 'minutes');
     return {
       years: years,
       weeks: weeks,
@@ -1536,7 +1556,7 @@ export const hook = {
    */
   useDarkMode: () => {
     const [theme, setTheme] = React.useState(localStorage.themeMode);
-    const colorTheme = theme === "dark" ? "light" : "dark";
+    const colorTheme = theme === 'dark' ? 'light' : 'dark';
 
     React.useEffect(() => {
       const root = window.document.documentElement;
@@ -1546,7 +1566,7 @@ export const hook = {
       root.classList.add(theme);
       document.body.classList.add(theme);
 
-      localStorage.setItem("themeMode", theme);
+      localStorage.setItem('themeMode', theme);
     }, [theme, colorTheme]);
 
     return [colorTheme, setTheme];
@@ -1603,12 +1623,12 @@ export const hook = {
         });
       }, 1000);
       // Add event listener
-      window.addEventListener("resize.windowResize", handleResize);
+      window.addEventListener('resize.windowResize', handleResize);
       // Call handler right away so state gets updated with initial window size
       handleResize();
       // Remove event listener on cleanup
       return () =>
-        window.removeEventListener("resize.windowResize", handleResize);
+        window.removeEventListener('resize.windowResize', handleResize);
     }, []); // Empty array ensures that effect is only run on mount
     return windowSize;
   },
@@ -1633,7 +1653,7 @@ export const hook = {
           setDragging(false);
           setClicked(false);
         }),
-      []
+      [],
     );
 
     const dragMove = (ev, cb) => {
@@ -1679,12 +1699,12 @@ export const hook = {
           handler(event);
         };
 
-        document.addEventListener("mousedown", listener);
-        document.addEventListener("touchstart", listener);
+        document.addEventListener('mousedown', listener);
+        document.addEventListener('touchstart', listener);
 
         return () => {
-          document.removeEventListener("mousedown", listener);
-          document.removeEventListener("touchstart", listener);
+          document.removeEventListener('mousedown', listener);
+          document.removeEventListener('touchstart', listener);
         };
       },
       // Add ref and handler to effect dependencies
@@ -1693,7 +1713,7 @@ export const hook = {
       // ... callback/cleanup to run every render. It's not a big deal ...
       // ... but to optimize you can wrap handler in useCallback before ...
       // ... passing it into this hook.
-      [ref, handler]
+      [ref, handler],
     );
   },
 
@@ -1704,7 +1724,7 @@ export const hook = {
    * const isVisible = useOnScreen(ref);
    * console.log(isVisible);
    */
-  useOnScreen: (ref, rootMargin = "0px") => {
+  useOnScreen: (ref, rootMargin = '0px') => {
     const [isVisible, setIsVisible] = React.useState(false);
 
     React.useEffect(() => {
@@ -1714,7 +1734,7 @@ export const hook = {
         },
         {
           rootMargin,
-        }
+        },
       );
 
       const currentElement = ref?.current;
@@ -1749,16 +1769,16 @@ export const hook = {
       () => {
         const node = ref.current;
         if (node) {
-          node.addEventListener("mouseover", handleMouseOver);
-          node.addEventListener("mouseout", handleMouseOut);
+          node.addEventListener('mouseover', handleMouseOver);
+          node.addEventListener('mouseout', handleMouseOut);
 
           return () => {
-            node.removeEventListener("mouseover", handleMouseOver);
-            node.removeEventListener("mouseout", handleMouseOut);
+            node.removeEventListener('mouseover', handleMouseOver);
+            node.removeEventListener('mouseout', handleMouseOut);
           };
         }
       },
-      [ref.current] // Recall only if ref changes
+      [ref.current], // Recall only if ref changes
     );
 
     return [ref, value];
@@ -1789,7 +1809,7 @@ export const hook = {
           setY(event.nativeEvent.offsetY);
         },
       }),
-      []
+      [],
     );
 
     return [x, y, bind];
@@ -1813,7 +1833,7 @@ export const hook = {
         window.removeEventListener(
           previousType,
           listener.current,
-          previousOptions
+          previousOptions,
         );
       }
 
@@ -1878,21 +1898,21 @@ export const hook = {
     // We memoize with useCallback to prevent unnecessary re-renders
     const undo = React.useCallback(() => {
       if (canUndo) {
-        dispatch({ type: "UNDO" });
+        dispatch({ type: 'UNDO' });
       }
     }, [canUndo, dispatch]);
     const redo = React.useCallback(() => {
       if (canRedo) {
-        dispatch({ type: "REDO" });
+        dispatch({ type: 'REDO' });
       }
     }, [canRedo, dispatch]);
     const set = React.useCallback(
-      (newPresent) => dispatch({ type: "SET", newPresent }),
-      [dispatch]
+      (newPresent) => dispatch({ type: 'SET', newPresent }),
+      [dispatch],
     );
     const clear = React.useCallback(
-      () => dispatch({ type: "CLEAR", initialPresent }),
-      [dispatch]
+      () => dispatch({ type: 'CLEAR', initialPresent }),
+      [dispatch],
     );
     // If needed we could also return past and future state
     return { state: state.present, set, undo, redo, clear, canUndo, canRedo };
@@ -2024,21 +2044,21 @@ export const hook = {
     // We memoize with useCallback to prevent unnecessary re-renders
     const undo = React.useCallback(() => {
       if (canUndo) {
-        dispatch({ type: "UNDO" });
+        dispatch({ type: 'UNDO' });
       }
     }, [canUndo, dispatch]);
     const redo = React.useCallback(() => {
       if (canRedo) {
-        dispatch({ type: "REDO" });
+        dispatch({ type: 'REDO' });
       }
     }, [canRedo, dispatch]);
     const set = React.useCallback(
-      (newPresent) => dispatch({ type: "SET", newPresent }),
-      [dispatch]
+      (newPresent) => dispatch({ type: 'SET', newPresent }),
+      [dispatch],
     );
     const clear = React.useCallback(
-      () => dispatch({ type: "CLEAR", initialPresent }),
-      [dispatch]
+      () => dispatch({ type: 'CLEAR', initialPresent }),
+      [dispatch],
     );
     // If needed we could also return past and future state
     return { state: state.present, set, undo, redo, clear, canUndo, canRedo };
@@ -2067,12 +2087,12 @@ export const hook = {
     };
     // Add event listeners
     React.useEffect(() => {
-      window.addEventListener("keydown", downHandler);
-      window.addEventListener("keyup", upHandler);
+      window.addEventListener('keydown', downHandler);
+      window.addEventListener('keyup', upHandler);
       // Remove event listeners on cleanup
       return () => {
-        window.removeEventListener("keydown", downHandler);
-        window.removeEventListener("keyup", upHandler);
+        window.removeEventListener('keydown', downHandler);
+        window.removeEventListener('keyup', upHandler);
       };
     }, []); // Empty array ensures that effect is only run on mount and unmount
     return keyPressed;
@@ -2086,7 +2106,7 @@ export const hook = {
   useSession: (sessionKey, keepOnWindowClosed = false) => {
     if (!sessionKey) {
       throw new Error(
-        "sessionKey was not provided to useSession hook. Example: useSession('facebook-session')"
+        "sessionKey was not provided to useSession hook. Example: useSession('facebook-session')",
       );
     }
 
@@ -2109,30 +2129,30 @@ export const hook = {
       } catch (_b) {
         // This catch block handles the known issues listed here: https://caniuse.com/#feat=namevalue-storage
         console.warn(
-          "useSession could not access the browser storage. Session will be lost when closing browser window"
+          'useSession could not access the browser storage. Session will be lost when closing browser window',
         );
       }
       return null;
     };
     const [state, setState] = React.useState(getStorageValue);
     const save = (sessionValue) => {
-      if (typeof sessionValue == "object" || typeof sessionValue === "string") {
+      if (typeof sessionValue == 'object' || typeof sessionValue === 'string') {
         getStorage().setItem(sessionKey, JSON.stringify(sessionValue));
         setState(sessionValue);
       } else {
         throw new Error(
-          "useSession hook only accepts objects or strings as session values"
+          'useSession hook only accepts objects or strings as session values',
         );
       }
     };
 
     const saveJWT = (jwt) => {
       try {
-        const base64Url = jwt.split(".")[1];
-        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        const base64Url = jwt.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         save(JSON.parse(window.atob(base64)));
       } catch (ex) {
-        throw new Error("Could not parse provided Json Web Token: " + ex);
+        throw new Error('Could not parse provided Json Web Token: ' + ex);
       }
     };
 
@@ -2146,9 +2166,9 @@ export const hook = {
       }
     };
     React.useEffect(() => {
-      window.addEventListener("storage", syncState);
+      window.addEventListener('storage', syncState);
       return () => {
-        window.removeEventListener("storage", syncState);
+        window.removeEventListener('storage', syncState);
       };
     }, [sessionKey]);
     return { session: state, save, saveJWT, clear };
@@ -2183,10 +2203,10 @@ export const hook = {
     }, throttleMs);
 
     React.useEffect(() => {
-      window.addEventListener("scroll", handle);
+      window.addEventListener('scroll', handle);
 
       return () => {
-        window.removeEventListener("scroll", handle);
+        window.removeEventListener('scroll', handle);
       };
     }, []);
 
@@ -2206,9 +2226,9 @@ export const hook = {
     }, []);
 
     React.useEffect(() => {
-      window.addEventListener("hashchange", hashChangeHandler);
+      window.addEventListener('hashchange', hashChangeHandler);
       return () => {
-        window.removeEventListener("hashchange", hashChangeHandler);
+        window.removeEventListener('hashchange', hashChangeHandler);
       };
     }, []);
 
@@ -2216,7 +2236,7 @@ export const hook = {
       (newHash) => {
         if (newHash !== hash) window.location.hash = newHash;
       },
-      [hash]
+      [hash],
     );
 
     return [hash, updateHash];
@@ -2231,18 +2251,18 @@ export const hook = {
    */
   useCopyToClipboard: (text) => {
     const copyToClipboard = (str) => {
-      const el = document.createElement("textarea");
+      const el = document.createElement('textarea');
       el.value = str;
-      el.setAttribute("readonly", "");
-      el.style.position = "absolute";
-      el.style.left = "-9999px";
+      el.setAttribute('readonly', '');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
       document.body.appendChild(el);
       const selected =
         document.getSelection().rangeCount > 0
           ? document.getSelection().getRangeAt(0)
           : false;
       el.select();
-      const success = document.execCommand("copy");
+      const success = document.execCommand('copy');
       document.body.removeChild(el);
       if (selected) {
         document.getSelection().removeAllRanges();
@@ -2311,19 +2331,71 @@ export const hook = {
 
     const debouncedDimensions = crossCutting.debounce(
       getDimensions,
-      RESET_TIMEOUT
+      RESET_TIMEOUT,
     );
 
     React.useEffect(() => {
-      window.addEventListener("resize", debouncedDimensions);
-      window.addEventListener("scroll", debouncedDimensions);
+      window.addEventListener('resize', debouncedDimensions);
+      window.addEventListener('scroll', debouncedDimensions);
       return () => {
-        window.removeEventListener("resize", debouncedDimensions);
-        window.removeEventListener("scroll", debouncedDimensions);
+        window.removeEventListener('resize', debouncedDimensions);
+        window.removeEventListener('scroll', debouncedDimensions);
       };
     });
 
     return [{ dimensions }, elementRef];
+  },
+
+  /**
+   * useIsActiveTab
+   * How to use it?
+   * const tabIsActive = hook.useIsActiveTab();
+   * => true/false
+   */
+  useIsActiveTab: () => {
+    const [windowIsActive, setWindowIsActive] = React.useState(true);
+
+    const handleActivity = React.useCallback(
+      crossCutting.debounce(
+        (e) => {
+          if (e?.type == 'focus.tab-activity') {
+            return setWindowIsActive(true);
+          }
+          if (e?.type == 'blur.tab-activity') {
+            return setWindowIsActive(false);
+          }
+          if (e?.type == 'visibilitychange') {
+            // Check if the page is hidden
+            if (document.hidden) {
+              return setWindowIsActive(false);
+            } else {
+              return setWindowIsActive(true);
+            }
+          }
+        },
+        100,
+        { leading: false },
+      ),
+      [],
+    );
+
+    React.useEffect(() => {
+      document.addEventListener('visibilitychange', handleActivity);
+      document.addEventListener('blur.tab-activity', handleActivity);
+      window.addEventListener('blur.tab-activity', handleActivity);
+      window.addEventListener('focus.tab-activity', handleActivity);
+      document.addEventListener('focus.tab-activity', handleActivity);
+
+      return () => {
+        window.removeEventListener('blur.tab-activity', handleActivity);
+        document.removeEventListener('blur.tab-activity', handleActivity);
+        window.removeEventListener('focus.tab-activity', handleActivity);
+        document.removeEventListener('focus.tab-activity', handleActivity);
+        document.removeEventListener('visibilitychange', handleActivity);
+      };
+    }, []);
+
+    return windowIsActive;
   },
 
   /**
@@ -2401,7 +2473,7 @@ export const storage = {
       var date = new Date();
       date.setTime(date.getTime() + hours * 60 * 60 * 1000);
       var options = {
-        path: "/",
+        path: '/',
         // add other defaults here if necessary
         expires: date,
       };
@@ -2411,16 +2483,16 @@ export const storage = {
       }
 
       let updatedCookie =
-        encodeURIComponent(name) + "=" + encodeURIComponent(value);
+        encodeURIComponent(name) + '=' + encodeURIComponent(value);
       const optsLen = options.length;
       let i = 0;
 
       do {
         const optionKey = options[i];
-        updatedCookie += "; " + optionKey;
+        updatedCookie += '; ' + optionKey;
         let optionValue = options[optionKey];
         if (optionValue !== true) {
-          updatedCookie += "=" + optionValue;
+          updatedCookie += '=' + optionValue;
         }
 
         i++;
@@ -2443,15 +2515,15 @@ export const storage = {
       // return null;
       let matches = document.cookie.match(
         new RegExp(
-          "(?:^|; )" +
-            name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-            "=([^;]*)"
-        )
+          '(?:^|; )' +
+            name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') +
+            '=([^;]*)',
+        ),
       );
       return matches ? decodeURIComponent(matches[1]) : undefined;
     },
     del: (name) => {
-      document.cookie = name + "=;Max-Age=0";
+      document.cookie = name + '=;Max-Age=0';
     },
   },
   local: {
@@ -2459,13 +2531,13 @@ export const storage = {
       localStorage.removeItem(key);
       localStorage.setItem(
         key,
-        typeof data === "string" ? data : JSON.stringify(data)
+        typeof data === 'string' ? data : JSON.stringify(data),
       );
     },
     get: (key) => {
       if (crossCutting.check.isNull(localStorage.getItem(key)))
         return undefined;
-      return typeof data === "string"
+      return typeof data === 'string'
         ? localStorage.getItem(key)
         : JSON.parse(localStorage.getItem(key));
     },
