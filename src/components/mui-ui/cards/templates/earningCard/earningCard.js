@@ -9,7 +9,7 @@ import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 // project imports
 import MainCard from '@components/mui-ui/cards';
-// import SkeletonEarningCard from '@components/mui-ui/cards/Skeleton/EarningCard';
+import EarningCardLoading from '@components/mui-ui/cards/templates/earningCardLoading';
 
 // assets
 import EarningIcon from '@assets/images/icons/earning.svg';
@@ -58,11 +58,19 @@ import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const EarningCard = ({ isLoading }) => {
+const EarningCard = ({
+  isLoading,
+  cssClass = null,
+  title = '',
+  content = '',
+  iconToolbox = null,
+  avatarComponent = null,
+}) => {
   const theme = useTheme();
-  console.log('themeeee', theme);
+
   const [anchorEl, setAnchorEl] = useState(null);
 
+  //#region handle events
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -70,16 +78,125 @@ const EarningCard = ({ isLoading }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  //#endregion
+
+  //#region render content
+  const renderTopMenuItem = () => {
+    return (
+      <>
+        <Avatar
+          variant="rounded"
+          className="menu-earning-card MuiTypography-commonAvatar MuiTypography-mediumAvatar"
+          sx={{
+            backgroundColor: theme.palette.secondary.dark,
+            color: theme.palette.secondary[200],
+            zIndex: 1,
+          }}
+          aria-controls="menu-earning-card"
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
+          <MoreHorizIcon fontSize="inherit" />
+        </Avatar>
+        <Menu
+          id="menu-earning-card"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          variant="selectedMenu"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+        >
+          <MenuItem onClick={handleClose}>
+            <GetAppTwoToneIcon sx={{ mr: 1.75 }} /> Import Card
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <FileCopyTwoToneIcon sx={{ mr: 1.75 }} /> Copy Data
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <PictureAsPdfTwoToneIcon sx={{ mr: 1.75 }} /> Export
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <ArchiveTwoToneIcon sx={{ mr: 1.75 }} /> Archive File
+          </MenuItem>
+        </Menu>
+      </>
+    );
+  };
+
+  const renderTopToolbox = () => {
+    return (
+      <>
+        <Grid item className="toolbox">
+          <Grid container justifyContent="space-between">
+            <Grid item>
+              <Avatar
+                className="icon-card MuiTypography-commonAvatar MuiTypography-largeAvatar"
+                variant="rounded"
+              >
+                {iconToolbox !== null ? (
+                  iconToolbox
+                ) : (
+                  <img src={EarningIcon} alt="Notification" />
+                )}
+              </Avatar>
+            </Grid>
+            <Grid item>{renderTopMenuItem()}</Grid>
+          </Grid>
+        </Grid>
+      </>
+    );
+  };
+
+  const renderMainContent = () => {
+    return (
+      <>
+        <Grid item className="main-content">
+          <Grid container alignItems="center">
+            <Grid item>
+              <Typography className="earning-price">
+                {content !== '' ? content : '$500.00'}
+              </Typography>
+            </Grid>
+            <Grid item>
+              {avatarComponent !== null ? (
+                avatarComponent
+              ) : (
+                <Avatar className="icon-direction MuiTypography-commonAvatar MuiTypography-smallAvatar">
+                  <ArrowUpwardIcon
+                    fontSize="inherit"
+                    sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }}
+                  />
+                </Avatar>
+              )}
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item sx={{ mb: 1.25 }} className="sub-content">
+          <Typography className="text">{title}</Typography>
+        </Grid>
+      </>
+    );
+  };
+  //#endregion
 
   return (
     <>
       {isLoading ? (
-        // <SkeletonEarningCard />
-        <>SkeletonEarningCard</>
+        <EarningCardLoading />
       ) : (
         <MainCard
           // title="general"
-          className="earning-card"
+          className={
+            'template-earning-card' + (cssClass !== null ? ' ' + cssClass : '')
+          }
           // contentClass="workspace"
           // secondary={
           //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
@@ -89,83 +206,8 @@ const EarningCard = ({ isLoading }) => {
             {/* <CardWrapper border={false} content={false}> */}
             <Box>
               <Grid container direction="column">
-                <Grid item className="toolbox">
-                  <Grid container justifyContent="space-between">
-                    <Grid item>
-                      <Avatar
-                        className="icon-card MuiTypography-commonAvatar MuiTypography-largeAvatar"
-                        variant="rounded"
-                      >
-                        <img src={EarningIcon} alt="Notification" />
-                      </Avatar>
-                    </Grid>
-                    <Grid item>
-                      <Avatar
-                        variant="rounded"
-                        className="menu-earning-card MuiTypography-commonAvatar MuiTypography-mediumAvatar"
-                        sx={{
-                          backgroundColor: theme.palette.secondary.dark,
-                          color: theme.palette.secondary[200],
-                          zIndex: 1,
-                        }}
-                        aria-controls="menu-earning-card"
-                        aria-haspopup="true"
-                        onClick={handleClick}
-                      >
-                        <MoreHorizIcon fontSize="inherit" />
-                      </Avatar>
-                      <Menu
-                        id="menu-earning-card"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                        variant="selectedMenu"
-                        anchorOrigin={{
-                          vertical: 'bottom',
-                          horizontal: 'right',
-                        }}
-                        transformOrigin={{
-                          vertical: 'top',
-                          horizontal: 'right',
-                        }}
-                      >
-                        <MenuItem onClick={handleClose}>
-                          <GetAppTwoToneIcon sx={{ mr: 1.75 }} /> Import Card
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <FileCopyTwoToneIcon sx={{ mr: 1.75 }} /> Copy Data
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <PictureAsPdfTwoToneIcon sx={{ mr: 1.75 }} /> Export
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <ArchiveTwoToneIcon sx={{ mr: 1.75 }} /> Archive File
-                        </MenuItem>
-                      </Menu>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item className="main-content">
-                  <Grid container alignItems="center">
-                    <Grid item>
-                      <Typography className="earning-price">$500.00</Typography>
-                    </Grid>
-                    <Grid item>
-                      <Avatar
-                        className="icon-direction MuiTypography-commonAvatar MuiTypography-smallAvatar"
-                      >
-                        <ArrowUpwardIcon
-                          fontSize="inherit"
-                          sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }}
-                        />
-                      </Avatar>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item sx={{ mb: 1.25 }} className="sub-content">
-                  <Typography className="text">Total Earning</Typography>
-                </Grid>
+                {renderTopToolbox()}
+                {renderMainContent()}
               </Grid>
             </Box>
             {/* </CardWrapper> */}
@@ -180,4 +222,9 @@ EarningCard.propTypes = {
   isLoading: PropTypes.bool,
 };
 
-export default EarningCard;
+export default React.memo(EarningCard, (props, nextProps) => {
+  if (JSON.stringify(props) === JSON.stringify(nextProps)) {
+    // return true if you don't need re-render
+    return true;
+  }
+});

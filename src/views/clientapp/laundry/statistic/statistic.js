@@ -35,7 +35,7 @@ const Statistic = () => {
     >
       <Grid container spacing={gridSpacing} direction={'row'}>
         <Grid item xs={3} spacing={gridSpacing}>
-          <EarningCard />
+          <EarningCard title="Total Earning" />
         </Grid>
       </Grid>
     </MainCard>
