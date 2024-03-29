@@ -1,0 +1,98 @@
+// MuiCard-root
+.MuiCard-root {
+  &.earning-card {
+    background-color: $primaryMainColor;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    // width: 350px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      background: $primaryDarkMainColor800;
+      @include _roundedCorners(50%);
+      top: -85px;
+      right: -95px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      background: $primaryDarkMainColor800;
+      @include _roundedCorners(50%);
+      top: -125px;
+      right: -15px;
+      opacity: 0.5;
+    }
+
+    .MuiCardContent {
+      &-root {
+        @include _shadow(0 0 0 0 transparent);
+        background-color: transparent;
+        border: none;
+
+        &.content {
+          > .MuiGrid-container {
+            > .MuiBox-root {
+              padding: 1.125rem 1.125rem 0;
+              width: 100%;
+
+              .MuiAvatar-root {
+                background: $primaryDarkMainColor800;
+              }
+
+              .toolbox {
+                .icon-card {
+                  background: $primaryDarkMainColor800;
+                  margin-top: 1rem;
+                }
+
+                .menu-earning-card {
+                  background-color: $primaryMainColor;
+                  color: $textDefault;
+                  position: absolute;
+                  right: 1rem;
+
+                  .MuiSvgIcon-root {
+                    color: $textDefault;
+                  }
+                }
+              }
+
+              .main-content {
+                .earning-price {
+                  margin: 14px 8px 6px 0px;
+                  font-size: 2.125rem;
+                  font-weight: 500;
+                }
+
+                .icon-direction {
+                  cursor: pointer;
+                  background: $primaryDarkMainColor200;
+                  color: $primaryDarkMainColor200;
+
+                  svg {
+                    color: $iconFontColor;
+                  }
+                }
+              }
+
+              .sub-content {
+                .text {
+                  font-size: 1rem;
+                  font-weight: 500;
+                  color: $primaryDarkMainColor200;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,13 +2,14 @@ import './_statistic.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { gridSpacing } from '@constants';
-import { crossCutting } from '@utils/crossCutting';
+import { crossCutting, hook } from '@utils/crossCutting';
 //#region mui-ui
 import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 //#endregion
 //#region import components
 import MainCard from '@components/mui-ui/cards';
+import EarningCard from '@components/mui-ui/cards/templates/earningCard';
 import WorkspaceList from '@clientapp/components/workspace/viewWorkspaceList';
 import CreateNew from '@clientapp/components/workspace/createNew';
 //#endregion
@@ -20,7 +21,9 @@ import { WORKSPACE_GET_BY_USER } from '@reduxproviders/workspace.reducer';
 
 const Statistic = () => {
   const params = useParams();
-  console.log('idsfsdfsdfsdf', params);
+  const abc = hook.useIsActiveTab();
+
+  console.log('idsfsdfsdfsdf', abc);
   return (
     <MainCard
       // title="general"
@@ -31,7 +34,9 @@ const Statistic = () => {
       // }
     >
       <Grid container spacing={gridSpacing} direction={'row'}>
-        Statistic
+        <Grid item xs={3} spacing={gridSpacing}>
+          <EarningCard />
+        </Grid>
       </Grid>
     </MainCard>
   );

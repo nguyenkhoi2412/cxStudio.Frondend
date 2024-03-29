@@ -36,6 +36,9 @@ $darkSecondary200: #b39ddb;
 $darkSecondary800: #6200ea;
 
 // ==============================|| VARIABLE MULTIPLE THEME VARIANTS ||============================== //
+$primaryMainColor: var(--primary-main-color);
+$primaryDarkMainColor800: var(--primary-main-color800);
+$primaryDarkMainColor200: var(--primary-main-color200);
 // paper & background
 $bgContainerMain: var(--bg-container-main);
 $bgContainerLight: var(--bg-container-light);

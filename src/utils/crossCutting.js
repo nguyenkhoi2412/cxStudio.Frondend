@@ -500,6 +500,13 @@ export const string = {
     return text;
   },
 
+  getTextWidth: (text, font) => {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.font = font || getComputedStyle(document.body).font;
+    return context.measureText(text).width;
+  },
+
   /**
    * unescapeHTML('&lt;a href=&quot;#&quot;&gt;Me &amp; you&lt;/a&gt;'); // '<a href="#">Me & you</a>'
    */
@@ -1066,7 +1073,7 @@ export const array = {
   findIndexOfAll: (arr, val) =>
     arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []),
   /**
-   * array.combine
+   * Combine 2 array
    * How to use it?
    * const x = [
       { id: 1, name: 'John' },
@@ -1088,6 +1095,25 @@ export const array = {
         return acc;
       }, {}),
     ),
+  /*
+   * Replace or append items
+   * How to use it?
+   * const people = [
+      { name: 'John', age: 30 },
+      { name: 'Jane', age: 28 },
+    ];
+    const jane = { name: 'Jane', age: 29 };
+    const jack = { name: 'Jack', age: 28 };
+    replaceOrAppend(people, jane, (a, b) => a.name === b.name); => Replace
+    replaceOrAppend(people, jack, (a, b) => a.name === b.name); => Append
+   */
+  replaceOrAppend: (arr, val, compFn) => {
+    const res = [...arr];
+    const i = arr.findIndex((v) => compFn(v, val));
+    if (i === -1) res.push(val);
+    else res.splice(i, 1, val);
+    return res;
+  },
   // Check if the input is a json array (whether startsWidth '[' and endsWidth ']') or not
   isJsonArray: (text) => {
     let str = String(text).trim();
@@ -1296,7 +1322,7 @@ export const loop = {
     const arrLength = arr.length;
     let index = 0;
 
-    var loop = {
+    const loop = {
       doWhile: () => {
         do {
           const item = arr[index];
@@ -2344,6 +2370,39 @@ export const hook = {
     });
 
     return [{ dimensions }, elementRef];
+  },
+
+  /**
+   * How to use it?
+   * const isOverflow = useIsOverflow(ref); => return true/false
+   * @param {*} ref
+   * @param {*} isVerticalOverflow
+   * @param {*} callback
+   * @returns
+   */
+  useIsOverflow: (ref, isVerticalOverflow, callback) => {
+    const [isOverflow, setIsOverflow] = React.useState(undefined);
+
+    React.useLayoutEffect(() => {
+      const { current } = ref;
+      const { clientWidth, scrollWidth, clientHeight, scrollHeight } = current;
+
+      const trigger = () => {
+        const hasOverflow = isVerticalOverflow
+          ? scrollHeight > clientHeight
+          : scrollWidth > clientWidth;
+
+        setIsOverflow(hasOverflow);
+
+        if (callback) callback(hasOverflow);
+      };
+
+      if (current) {
+        trigger();
+      }
+    }, [callback, ref, isVerticalOverflow]);
+
+    return isOverflow;
   },
 
   /**

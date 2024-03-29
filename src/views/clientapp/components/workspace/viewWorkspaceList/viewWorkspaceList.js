@@ -6,7 +6,7 @@ import APP from '@constants/app';
 import { navigatePath } from '@routes/navigatePath';
 
 //#region utils
-import { crossCutting, loop, string, object } from '@utils/crossCutting';
+import { crossCutting, loop, string, object, hook } from '@utils/crossCutting';
 //#endregion
 //#region material-ui
 import { useTheme } from '@mui/material/styles';
@@ -35,7 +35,7 @@ const ViewWorkspaceList = ({ data }) => {
   const buildWpList = (wp) => {
     let itemsList = [];
 
-    loop.every(wp, (item, index) => {
+    loop.forEach(wp, (item, index) => {
       itemsList.push({
         avatar: item.logo_path,
         key: item._id,
@@ -72,6 +72,8 @@ const ViewWorkspaceList = ({ data }) => {
         navigatePath.CLIENT_APP.LAUNDRY.STATISTIC.replace(':id', wp?._id),
       ),
     };
+
+
 
     navToWorkspace[wp?.industry_related?.type];
   };

@@ -117,10 +117,10 @@ const themeTypography = (theme) => {
     //   color: theme.colors?.textSecondary,
     //   textTransform: "capitalize",
     // },
-    // commonAvatar: {
-    //   cursor: "pointer",
-    //   borderRadius: "8px",
-    // },
+    commonAvatar: {
+      // cursor: "pointer",
+      // borderRadius: "8px",
+    },
     // smallAvatar: {
     //   width: "22px",
     //   height: "22px",

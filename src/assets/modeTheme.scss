@@ -1,4 +1,7 @@
 .defaultTheme {
+  --primary-main-color: #673ab7;
+  --primary-main-color800: #4527a0;
+  --primary-main-color200: #b39ddb;
   --preloader: #fff;
   --bg-container-main: #eef2f6;
   --bg-container-light: #5e35b1;
@@ -8,6 +11,7 @@
   --bg-button-uploadfile: #eef2f6;
   --bg-button-disabled: rgba(0, 0, 0, 0.12);
   --color-divider: #e3e8ef;
+  --color-dark-primary: 
 
   --text-default: #364152;
   --text-primary: #673ab7;
@@ -30,6 +34,9 @@
   --info-background-color: #e5f6fd;
 }
 .darkTheme {
+  --primary-main-color: #364152;
+  --primary-main-color800: #121926;
+  --primary-main-color200: #b39ddb;
   --preloader: #1d2226;
   --bg-container-main: #00111a;
   --bg-container-light: #082636;
