@@ -86,7 +86,57 @@
                 .text {
                   font-size: 1rem;
                   font-weight: 500;
-                  color: $primaryDarkMainColor200;
+                  color: #fff;
+                  @include _transparent();
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //* color="secondary"
+    &.secondary {
+      background-color: $secondaryMainColor;
+
+      &::after {
+        background: $secondaryDarkMainColor800;
+      }
+
+      &::before {
+        background: $secondaryDarkMainColor800;
+      }
+
+      .MuiCardContent {
+        &-root {
+          &.content {
+            > .MuiGrid-container {
+              > .MuiBox-root {
+                .MuiAvatar-root {
+                  background: $secondaryDarkMainColor800;
+                }
+
+                .toolbox {
+                  .icon-card {
+                    background: $secondaryDarkMainColor800;
+                  }
+
+                  .menu-earning-card {
+                    background-color: $secondaryMainColor;
+                  }
+                }
+
+                .main-content {
+                  .icon-direction {
+                    cursor: pointer;
+                    background: $secondaryDarkMainColor200;
+                    color: $secondaryDarkMainColor200;
+
+                    svg {
+                      color: #fff;
+                    }
+                  }
                 }
               }
             }

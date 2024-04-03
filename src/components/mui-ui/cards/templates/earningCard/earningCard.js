@@ -65,6 +65,7 @@ const EarningCard = ({
   content = '',
   iconToolbox = null,
   avatarComponent = null,
+  secondary = 'primary' //primary/secondary
 }) => {
   const theme = useTheme();
 
@@ -90,7 +91,7 @@ const EarningCard = ({
           sx={{
             backgroundColor: theme.palette.secondary.dark,
             color: theme.palette.secondary[200],
-            zIndex: 1,
+            zIndex: 1
           }}
           aria-controls="menu-earning-card"
           aria-haspopup="true"
@@ -107,11 +108,11 @@ const EarningCard = ({
           variant="selectedMenu"
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'right',
+            horizontal: 'right'
           }}
           transformOrigin={{
             vertical: 'top',
-            horizontal: 'right',
+            horizontal: 'right'
           }}
         >
           <MenuItem onClick={handleClose}>
@@ -195,7 +196,9 @@ const EarningCard = ({
         <MainCard
           // title="general"
           className={
-            'template-earning-card' + (cssClass !== null ? ' ' + cssClass : '')
+            `template-earning-card` +
+            (cssClass !== null ? ' ' + cssClass : '') +
+            (secondary !== null ? ' ' + secondary : '')
           }
           // contentClass="workspace"
           // secondary={
@@ -219,7 +222,7 @@ const EarningCard = ({
 };
 
 EarningCard.propTypes = {
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool
 };
 
 export default React.memo(EarningCard, (props, nextProps) => {

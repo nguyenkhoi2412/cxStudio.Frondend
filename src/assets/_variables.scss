@@ -15,10 +15,10 @@ $primary800: #4527a0;
 
 // secondary
 $secondaryLight: #eef2f6; //#ede7f6;
-$secondaryMain: #673ab7;
-$secondaryDark: #5e35b1;
-$secondary200: #b39ddb;
-$secondary800: #4527a0;
+$secondaryMain: #1E88E5;
+$secondaryDark: #2239ba;
+$secondary200: #2196f3;
+$secondary800: #1565C0;
 
 // ==============================|| DARK THEME VARIANTS ||============================== //
 // primary dark
@@ -39,6 +39,10 @@ $darkSecondary800: #6200ea;
 $primaryMainColor: var(--primary-main-color);
 $primaryDarkMainColor800: var(--primary-main-color800);
 $primaryDarkMainColor200: var(--primary-main-color200);
+
+$secondaryMainColor: var(--secondary-main-color);
+$secondaryDarkMainColor800: var(--secondary-main-color800);
+$secondaryDarkMainColor200: var(--secondary-main-color200);
 // paper & background
 $bgContainerMain: var(--bg-container-main);
 $bgContainerLight: var(--bg-container-light);

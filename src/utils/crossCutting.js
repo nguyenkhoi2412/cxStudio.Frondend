@@ -26,7 +26,7 @@ export const crossCutting = {
           var r = (dt + Math.random() * 16) % 16 | 0;
           dt = Math.floor(dt / 16);
           return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16);
-        },
+        }
       );
     },
     sessionId: Math.random().toString(36).substring(2),
@@ -41,7 +41,7 @@ export const crossCutting = {
         'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
         'abcdefghijklmnopqrstuvwxyz',
         '@$!%*?&',
-        '1234567890',
+        '1234567890'
       ];
       const charsLength = chars.length;
       let j = 0;
@@ -57,7 +57,7 @@ export const crossCutting = {
         do {
           const index = Math.floor(Math.random() * charsLength);
           password += chars[index].charAt(
-            Math.floor(Math.random() * chars[index].length),
+            Math.floor(Math.random() * chars[index].length)
           );
           i++;
         } while (i < length);
@@ -90,7 +90,7 @@ export const crossCutting = {
         case 'dark':
           var lum = -0.25;
           var hex = String(
-            '#' + Math.random().toString(16).slice(2, 8).toUpperCase(),
+            '#' + Math.random().toString(16).slice(2, 8).toUpperCase()
           ).replace(/[^0-9a-f]/gi, '');
           if (hex.length < 6) {
             hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
@@ -101,7 +101,7 @@ export const crossCutting = {
           while (i < 3) {
             c = parseInt(hex.substr(i * 2, 2), 16);
             c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(
-              16,
+              16
             );
             rgb += ('00' + c).substr(c.length);
 
@@ -117,7 +117,7 @@ export const crossCutting = {
               .padStart(6, '0')
           );
       }
-    },
+    }
   },
   //#endregion
   //#region check
@@ -171,11 +171,11 @@ export const crossCutting = {
     acceptFileExtension: (file, filetypes = /jpeg|jpg|png/) => {
       var mimetype = filetypes.test(file.mimetype);
       var extname = filetypes.test(
-        path.extname(file.originalname).toLowerCase(),
+        path.extname(file.originalname).toLowerCase()
       );
 
       return mimetype && extname;
-    },
+    }
   },
   //#endregion
   //#region simulate
@@ -208,7 +208,7 @@ export const crossCutting = {
       // windowsize
       var windowSize = {
         width: window.innerWidth,
-        height: window.innerHeight,
+        height: window.innerHeight
       };
 
       //browser
@@ -305,7 +305,7 @@ export const crossCutting = {
         { s: 'Windows 95', r: /(Windows 95|Win95|Windows_95)/ },
         {
           s: 'Windows NT 4.0',
-          r: /(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/,
+          r: /(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/
         },
         { s: 'Windows CE', r: /Windows CE/ },
         { s: 'Windows 3.11', r: /Win16/ },
@@ -322,8 +322,8 @@ export const crossCutting = {
         { s: 'OS/2', r: /OS\/2/ },
         {
           s: 'Search Bot',
-          r: /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/,
-        },
+          r: /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/
+        }
       ];
 
       var id = 0;
@@ -413,7 +413,7 @@ export const crossCutting = {
       os: os,
       osVersion: osVersion,
       cookies: cookieEnabled,
-      flashVersion: flashVersion,
+      flashVersion: flashVersion
     };
 
     //#region add class & isDevice for browser
@@ -426,7 +426,7 @@ export const crossCutting = {
       os: jscd.os.toLowerCase() + ' ' + jscd.osVersion,
       ismobile: jscd.mobile,
       responsive: jscd.responsive,
-      screen: jscd.screen,
+      screen: jscd.screen
     });
 
     //* listener window resize
@@ -444,7 +444,7 @@ export const crossCutting = {
     const r = callback();
     console.timeEnd('Time taken for ' + message + ': ');
     return r;
-  },
+  }
   //#endregion
 };
 
@@ -460,7 +460,7 @@ export const validate = {
     }
     return true;
   },
-  isEmailValid: (address) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address),
+  isEmailValid: (address) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address)
 };
 
 //* ==============================|| STRING ||============================== //
@@ -519,8 +519,8 @@ export const string = {
           '<': '&lt;',
           '>': '&gt;',
           "'": '&#39;',
-          '"': '&quot;',
-        }[tag] || tag),
+          '"': '&quot;'
+        }[tag] || tag)
     ),
 
   unescapeHTML: (str) =>
@@ -532,8 +532,8 @@ export const string = {
           '&lt;': '<',
           '&gt;': '>',
           '&#39;': "'",
-          '&quot;': '"',
-        }[tag] || tag),
+          '&quot;': '"'
+        }[tag] || tag)
     ),
 
   mungeEmailAddress: (text) => {
@@ -562,8 +562,8 @@ export const string = {
 
     let shortValue = parseFloat(
       (suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(
-        2,
-      ),
+        2
+      )
     );
 
     if (shortValue % 1 != 0) {
@@ -653,7 +653,7 @@ export const string = {
         : (x) => x;
 
     const words = str.match(
-      /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g,
+      /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
     );
 
     return finalTransform(words.map(transform).join(delimiter));
@@ -689,7 +689,7 @@ export const string = {
     } while (stt < strLength);
 
     return str.slice(0, lastWordBreak) + ending;
-  },
+  }
 };
 
 //* ==============================|| NUMBER ||============================== //
@@ -719,7 +719,7 @@ export const number = {
     }
 
     return parseFloat((number / 100) * percentage);
-  },
+  }
 };
 
 //* ==============================|| OBJECT ||============================== //
@@ -742,7 +742,7 @@ export const object = {
         .replace(/\[([^\[\]]*)\]/g, '.$1.')
         .split('.')
         .filter((t) => t !== '')
-        .reduce((prev, cur) => prev && prev[cur], obj),
+        .reduce((prev, cur) => prev && prev[cur], obj)
     );
     if (rs?.length === 1) {
       return rs[0];
@@ -786,18 +786,18 @@ export const object = {
       .filter(
         (key) =>
           queryObject[key] &&
-          !(Array.isArray(queryObject[key]) && !queryObject[key].length),
+          !(Array.isArray(queryObject[key]) && !queryObject[key].length)
       )
       .map((key) => {
         return Array.isArray(queryObject[key])
           ? queryObject[key]
               .map(
                 (item) =>
-                  `${encodeURIComponent(key)}=${encodeURIComponent(item)}`,
+                  `${encodeURIComponent(key)}=${encodeURIComponent(item)}`
               )
               .join('&')
           : `${encodeURIComponent(key)}=${encodeURIComponent(
-              queryObject[key],
+              queryObject[key]
             )}`;
       })
       .join('&');
@@ -953,7 +953,7 @@ export const object = {
     }
 
     return structuredClone(obj);
-  },
+  }
 };
 
 //* ==============================|| ARRAY ||============================== //
@@ -968,7 +968,7 @@ export const array = {
     return [
       ...currentArray.slice(0, index),
       ...items,
-      ...currentArray.slice(index),
+      ...currentArray.slice(index)
     ];
   },
   update: (arr, newItem, field = '_id') => {
@@ -979,7 +979,7 @@ export const array = {
         if (item[field] === itemField[field]) {
           return {
             ...item,
-            ...itemField,
+            ...itemField
           };
         }
 
@@ -1093,7 +1093,7 @@ export const array = {
         if (v[prop])
           acc[v[prop]] = acc[v[prop]] ? { ...acc[v[prop]], ...v } : { ...v };
         return acc;
-      }, {}),
+      }, {})
     ),
   /*
    * Replace or append items
@@ -1126,7 +1126,7 @@ export const array = {
       : sizeOf(
           arr.filter((item, index) => {
             func(item, index);
-          }),
+          })
         ) >= 1,
 
   /**
@@ -1137,16 +1137,16 @@ export const array = {
   },
   mergeArrayObjects: (current, newArray, field = '_id') => {
     const rsAdd = newArray.filter(
-      ({ [field]: id1 }) => !current.some(({ [field]: id2 }) => id2 === id1),
+      ({ [field]: id1 }) => !current.some(({ [field]: id2 }) => id2 === id1)
     );
     const rsRemoved = current.filter(
-      ({ [field]: id1 }) => !newArray.some(({ [field]: id2 }) => id2 === id1),
+      ({ [field]: id1 }) => !newArray.some(({ [field]: id2 }) => id2 === id1)
     );
     const rsUpdated = newArray.filter(({ [field]: id1, ...rest1 }) =>
       current.some(
         ({ [field]: id2, ...rest2 }) =>
-          id2 === id1 && JSON.stringify(rest1) !== JSON.stringify(rest2),
-      ),
+          id2 === id1 && JSON.stringify(rest1) !== JSON.stringify(rest2)
+      )
     );
 
     let tempArray = [...current];
@@ -1177,7 +1177,7 @@ export const array = {
       newList: tempArray,
       inserted: rsAdd,
       updated: rsUpdated,
-      deleted: rsRemoved,
+      deleted: rsRemoved
     };
   },
   buildHierarchy: (array = [], idField = '_id', parentField = 'parent') => {
@@ -1196,7 +1196,7 @@ export const array = {
         if (parentItem) {
           parentItem = {
             ...parentItem,
-            children: [...parentItem.children, item],
+            children: [...parentItem.children, item]
           };
 
           tempItem.push(parentItem);
@@ -1252,7 +1252,7 @@ export const array = {
           acc = p1 > p2 ? 1 : p1 < p2 ? -1 : 0;
         }
         return acc;
-      }, 0),
+      }, 0)
     ),
 
   /**
@@ -1304,8 +1304,8 @@ export const array = {
         acc[fn(val, i, arr) ? 0 : 1].push(val);
         return acc;
       },
-      [[], []],
-    ),
+      [[], []]
+    )
 };
 
 export const loop = {
@@ -1351,7 +1351,7 @@ export const loop = {
         arr.forEach((item, i) => {
           func(item, i);
         });
-      },
+      }
     };
 
     // callback function with type
@@ -1362,7 +1362,7 @@ export const loop = {
         loop['for']();
       }
     } else loop[type || 'doWhile']();
-  },
+  }
 };
 
 //* ==============================|| DATETIME ||============================== //
@@ -1395,7 +1395,7 @@ export const datetime = {
     // );
 
     const localTime = date.toLocaleTimeString(locales, {
-      timeStyle: 'short',
+      timeStyle: 'short'
     });
     const utcTime = date.getUTCHours() + ':' + date.getUTCMinutes();
     const data = {
@@ -1403,11 +1403,11 @@ export const datetime = {
       toUTCString: new Date(date.toUTCString().slice(0, -4)).toString(), // ignore the timezone
       local: {
         date: date.toLocaleDateString(locales),
-        time: localTime,
+        time: localTime
       },
       utc: {
-        time: utcTime,
-      },
+        time: utcTime
+      }
     };
 
     return data;
@@ -1435,14 +1435,14 @@ export const datetime = {
   formatDate: (
     date = null,
     format = _globalVars.locale.date_format || 'YYYY.MM.DD',
-    uppercase = false,
+    uppercase = false
   ) => {
     let currentDate = date === null ? new Date() : new Date(date);
     if (!datetime.isDateValid(currentDate)) return 'Date is invalid';
 
     return {
       date: moment(currentDate).format(format),
-      time: moment(currentDate).format(uppercase ? 'LT' : 'h:mm a'),
+      time: moment(currentDate).format(uppercase ? 'LT' : 'h:mm a')
     };
   },
 
@@ -1477,7 +1477,7 @@ export const datetime = {
       weeks: weeks,
       days: days,
       hours: hours,
-      minutes: minutes,
+      minutes: minutes
     };
   },
 
@@ -1566,7 +1566,7 @@ export const datetime = {
   monthOfYear: (date) => {
     let d = date === null ? new Date() : new Date(date);
     return d.getMonth() + 1;
-  },
+  }
 };
 
 //* ==============================|| HOOKS ||============================== //
@@ -1637,7 +1637,7 @@ export const hook = {
     // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
     const [windowSize, setWindowSize] = React.useState({
       width: undefined,
-      height: undefined,
+      height: undefined
     });
     React.useEffect(() => {
       // Handler to call on window resize
@@ -1645,7 +1645,7 @@ export const hook = {
         // Set window width/height to state
         setWindowSize({
           width: window.innerWidth,
-          height: window.innerHeight,
+          height: window.innerHeight
         });
       }, 1000);
       // Add event listener
@@ -1679,7 +1679,7 @@ export const hook = {
           setDragging(false);
           setClicked(false);
         }),
-      [],
+      []
     );
 
     const dragMove = (ev, cb) => {
@@ -1703,7 +1703,7 @@ export const hook = {
       dragMove,
       dragging,
       position,
-      setDragging,
+      setDragging
     };
   },
 
@@ -1739,7 +1739,7 @@ export const hook = {
       // ... callback/cleanup to run every render. It's not a big deal ...
       // ... but to optimize you can wrap handler in useCallback before ...
       // ... passing it into this hook.
-      [ref, handler],
+      [ref, handler]
     );
   },
 
@@ -1759,8 +1759,8 @@ export const hook = {
           setIsVisible(entry.isIntersecting);
         },
         {
-          rootMargin,
-        },
+          rootMargin
+        }
       );
 
       const currentElement = ref?.current;
@@ -1804,7 +1804,7 @@ export const hook = {
           };
         }
       },
-      [ref.current], // Recall only if ref changes
+      [ref.current] // Recall only if ref changes
     );
 
     return [ref, value];
@@ -1833,9 +1833,9 @@ export const hook = {
         onMouseMove: (event) => {
           setX(event.nativeEvent.offsetX);
           setY(event.nativeEvent.offsetY);
-        },
+        }
       }),
-      [],
+      []
     );
 
     return [x, y, bind];
@@ -1859,7 +1859,7 @@ export const hook = {
         window.removeEventListener(
           previousType,
           listener.current,
-          previousOptions,
+          previousOptions
         );
       }
 
@@ -1898,12 +1898,12 @@ export const hook = {
         // Example: /:topic?sort=popular -> { topic: "react", sort: "popular" }
         query: {
           ...queryString.parse(location.search), // Convert string to object
-          ...params,
+          ...params
         },
         // Include match, location, history objects so we have
         // access to extra React Router functionality if needed.
         location,
-        history,
+        history
       };
     }, [params, location, history]);
   },
@@ -1916,7 +1916,7 @@ export const hook = {
   useNavigate: (initialPresent) => {
     const [state, dispatch] = React.useReducer(reducer, {
       ...initialState,
-      present: initialPresent,
+      present: initialPresent
     });
     const canUndo = state.past.length !== 0;
     const canRedo = state.future.length !== 0;
@@ -1934,11 +1934,11 @@ export const hook = {
     }, [canRedo, dispatch]);
     const set = React.useCallback(
       (newPresent) => dispatch({ type: 'SET', newPresent }),
-      [dispatch],
+      [dispatch]
     );
     const clear = React.useCallback(
       () => dispatch({ type: 'CLEAR', initialPresent }),
-      [dispatch],
+      [dispatch]
     );
     // If needed we could also return past and future state
     return { state: state.present, set, undo, redo, clear, canUndo, canRedo };
@@ -2047,7 +2047,7 @@ export const hook = {
 
     return {
       reset,
-      stop,
+      stop
     };
   },
 
@@ -2062,7 +2062,7 @@ export const hook = {
   useHistory: (initialPresent) => {
     const [state, dispatch] = React.useReducer(reducer, {
       ...initialState,
-      present: initialPresent,
+      present: initialPresent
     });
     const canUndo = state.past.length !== 0;
     const canRedo = state.future.length !== 0;
@@ -2080,11 +2080,11 @@ export const hook = {
     }, [canRedo, dispatch]);
     const set = React.useCallback(
       (newPresent) => dispatch({ type: 'SET', newPresent }),
-      [dispatch],
+      [dispatch]
     );
     const clear = React.useCallback(
       () => dispatch({ type: 'CLEAR', initialPresent }),
-      [dispatch],
+      [dispatch]
     );
     // If needed we could also return past and future state
     return { state: state.present, set, undo, redo, clear, canUndo, canRedo };
@@ -2132,7 +2132,7 @@ export const hook = {
   useSession: (sessionKey, keepOnWindowClosed = false) => {
     if (!sessionKey) {
       throw new Error(
-        "sessionKey was not provided to useSession hook. Example: useSession('facebook-session')",
+        "sessionKey was not provided to useSession hook. Example: useSession('facebook-session')"
       );
     }
 
@@ -2155,7 +2155,7 @@ export const hook = {
       } catch (_b) {
         // This catch block handles the known issues listed here: https://caniuse.com/#feat=namevalue-storage
         console.warn(
-          'useSession could not access the browser storage. Session will be lost when closing browser window',
+          'useSession could not access the browser storage. Session will be lost when closing browser window'
         );
       }
       return null;
@@ -2167,7 +2167,7 @@ export const hook = {
         setState(sessionValue);
       } else {
         throw new Error(
-          'useSession hook only accepts objects or strings as session values',
+          'useSession hook only accepts objects or strings as session values'
         );
       }
     };
@@ -2218,13 +2218,13 @@ export const hook = {
     const { throttleMs = 100 } = options;
     const [scroll, setScroll] = React.useState({
       x: window.pageXOffset,
-      y: window.pageYOffset,
+      y: window.pageYOffset
     });
 
     const handle = crossCutting.debounce(() => {
       setScroll({
         x: window.pageXOffset,
-        y: window.pageYOffset,
+        y: window.pageYOffset
       });
     }, throttleMs);
 
@@ -2262,7 +2262,7 @@ export const hook = {
       (newHash) => {
         if (newHash !== hash) window.location.hash = newHash;
       },
-      [hash],
+      [hash]
     );
 
     return [hash, updateHash];
@@ -2322,7 +2322,7 @@ export const hook = {
       left: 0,
       top: 0,
       bottom: 0,
-      right: 0,
+      right: 0
     });
 
     // The following measures the size of the div and listens to changes
@@ -2347,7 +2347,7 @@ export const hook = {
         left,
         top,
         bottom,
-        right,
+        right
       });
     };
 
@@ -2357,7 +2357,7 @@ export const hook = {
 
     const debouncedDimensions = crossCutting.debounce(
       getDimensions,
-      RESET_TIMEOUT,
+      RESET_TIMEOUT
     );
 
     React.useEffect(() => {
@@ -2433,9 +2433,9 @@ export const hook = {
           }
         },
         100,
-        { leading: false },
+        { leading: false }
       ),
-      [],
+      []
     );
 
     React.useEffect(() => {
@@ -2481,7 +2481,7 @@ export const hook = {
 
     const insertAtPos = (index, newElement) => {
       setArray((currentArray) => [
-        ...currentArray.splice(index + 1, 0, ...newElement),
+        ...currentArray.splice(index + 1, 0, ...newElement)
       ]);
     };
 
@@ -2489,7 +2489,7 @@ export const hook = {
       setArray((currentArray) => [
         ...currentArray.slice(0, index),
         newElement,
-        ...currentArray.slice(index + 1, currentArray.length),
+        ...currentArray.slice(index + 1, currentArray.length)
       ]);
     };
 
@@ -2497,7 +2497,7 @@ export const hook = {
       var index = currentArray.indexOf(newElement);
       setArray((currentArray) => [
         ...currentArray.slice(0, index),
-        ...currentArray.slice(index + 1, currentArray.length),
+        ...currentArray.slice(index + 1, currentArray.length)
       ]);
     };
 
@@ -2511,9 +2511,9 @@ export const hook = {
       insertAtPos,
       update,
       removeFromPos,
-      clear,
+      clear
     };
-  },
+  }
 };
 
 //* ==============================|| SESSION ||============================== //
@@ -2534,7 +2534,7 @@ export const storage = {
       var options = {
         path: '/',
         // add other defaults here if necessary
-        expires: date,
+        expires: date
       };
 
       if (options.expires instanceof Date) {
@@ -2576,21 +2576,21 @@ export const storage = {
         new RegExp(
           '(?:^|; )' +
             name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') +
-            '=([^;]*)',
-        ),
+            '=([^;]*)'
+        )
       );
       return matches ? decodeURIComponent(matches[1]) : undefined;
     },
     del: (name) => {
       document.cookie = name + '=;Max-Age=0';
-    },
+    }
   },
   local: {
     set: (key, data) => {
       localStorage.removeItem(key);
       localStorage.setItem(
         key,
-        typeof data === 'string' ? data : JSON.stringify(data),
+        typeof data === 'string' ? data : JSON.stringify(data)
       );
     },
     get: (key) => {
@@ -2602,7 +2602,7 @@ export const storage = {
     },
     del: (key) => {
       localStorage.removeItem(key);
-    },
+    }
   },
   /**
    * Memoization increase speed process in javascript
@@ -2620,5 +2620,5 @@ export const storage = {
     };
     cached.cache = cache;
     return cached;
-  },
+  }
 };
