@@ -1,20 +1,20 @@
-import "./_home.scss";
-import { useTranslation } from "react-i18next";
-import { gridSpacing } from "@constants";
-import { crossCutting } from "@utils/crossCutting";
+import './_home.scss';
+import { useTranslation } from 'react-i18next';
+import { gridSpacing } from '@constants';
+import { crossCutting } from '@utils/crossCutting';
 //#region mui-ui
-import { useTheme } from "@mui/material/styles";
-import { Grid } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
+import { Grid } from '@mui/material';
 //#endregion
 //#region import components
-import MainCard from "@components/mui-ui/cards";
-import WorkspaceList from "@clientapp/components/workspace/viewWorkspaceList";
-import CreateNew from "@clientapp/components/workspace/createNew";
+import MainCard from '@components/mui-ui/cards';
+import WorkspaceList from '@clientapp/components/workspace/viewWorkspaceList';
+import CreateNew from '@clientapp/components/workspace/createNew';
 //#endregion
 //#region reduxprovider
-import { WorkspaceService } from "@services/workspace";
-import { useDispatch, useSelector } from "react-redux";
-import { WORKSPACE_GET_BY_USER } from "@reduxproviders/workspace.reducer";
+import { WorkspaceService } from '@services/workspace';
+import { useDispatch, useSelector } from 'react-redux';
+import { WORKSPACE_GET_BY_USER } from '@reduxproviders/workspace.reducer';
 //#endregion
 
 const Home = () => {
@@ -31,7 +31,7 @@ const Home = () => {
   const getWorkspaceByCurrentUser = async () => {
     await dispatch(
       WORKSPACE_GET_BY_USER({
-        id: currentUser._id,
+        id: currentUser._id
       })
     );
   };
@@ -42,7 +42,7 @@ const Home = () => {
 
     WorkspaceService.getOwner({
       data: wps,
-      currentUser: currentUser,
+      currentUser: currentUser
     }).then((rs) => {
       setWpOwner(rs);
     });
@@ -56,7 +56,7 @@ const Home = () => {
 
     WorkspaceService.getTeamMembers({
       data: wps,
-      currentUser: currentUser,
+      currentUser: currentUser
     }).then((rs) => {
       setWpTeamMembers(rs);
     });
@@ -83,14 +83,15 @@ const Home = () => {
   //#region render content
   const renderOwner = React.useMemo(() => {
     return wpOwner?.length > 0 ? (
-      <Grid item xs={12}>
+      <Grid item xs={12} className="wsa__list">
         <Grid
           container
           spacing={gridSpacing}
-          justifyContent={"center"}
-          alignItems={"center"}
+          justifyContent={'center'}
+          alignItems={'center'}
+          className="wsa__list__container"
         >
-          <Grid item xs={12} md={10}>
+          <Grid item xs={12} md={10} className="wsa__list__item">
             <WorkspaceList data={wpOwner} />
           </Grid>
         </Grid>
@@ -102,14 +103,17 @@ const Home = () => {
 
   const renderCreateNewWorkspace = React.useMemo(() => {
     return (
-      <Grid item xs={12}>
+      <Grid item xs={12} className="wsa__list">
         <Grid
           container
           spacing={gridSpacing}
-          justifyContent={"center"}
-          alignItems={"center"}
+          justifyContent={'center'}
+          alignItems={'center'}
+          className="wsa__list__container"
         >
-          <CreateNew data={dataValue} wpOwner={wpOwner} />
+          <Grid item xs={12} md={10} className="wsa__list__item">
+            <CreateNew data={dataValue} wpOwner={wpOwner} />
+          </Grid>
         </Grid>
       </Grid>
     );
@@ -117,14 +121,15 @@ const Home = () => {
 
   const renderTeamMembers = React.useMemo(() => {
     return wpTeamMembers?.length > 0 ? (
-      <Grid item xs={12}>
+      <Grid item xs={12} className="wsa__list">
         <Grid
           container
           spacing={gridSpacing}
-          justifyContent={"center"}
-          alignItems={"center"}
+          justifyContent={'center'}
+          alignItems={'center'}
+          className="wsa__list__container"
         >
-          <Grid item xs={12} md={10}>
+          <Grid item xs={12} md={10} className="wsa__list__item">
             <WorkspaceList data={wpTeamMembers} />
           </Grid>
         </Grid>
@@ -144,7 +149,7 @@ const Home = () => {
       //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
       // }
     >
-      <Grid container spacing={gridSpacing} direction={"row"}>
+      <Grid container spacing={gridSpacing} direction={'row'}>
         {renderOwner}
         {renderCreateNewWorkspace}
         {renderTeamMembers}

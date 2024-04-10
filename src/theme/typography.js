@@ -100,7 +100,8 @@ const themeTypography = (theme) => {
       flexGrow: 1,
       padding: "20px",
       marginTop: "88px",
-      marginRight: "20px",
+      marginLeft: 0,
+      marginRight: 0,
       borderRadius: `${theme?.customization?.borderRadius}px`,
     },
     // menuCaption: {

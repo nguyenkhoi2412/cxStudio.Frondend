@@ -23,7 +23,7 @@ import { CUSTOMIZATION } from '@reduxproviders/berry/customization.reducer';
 //#region STYLE
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
-    ...theme.typography.mainContent,
+    // ...theme.typography.mainContent,
     ...(!open && {
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,

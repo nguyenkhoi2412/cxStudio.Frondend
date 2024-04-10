@@ -1,8 +1,8 @@
-import "./_createNew.scss";
-import { useTranslation } from "react-i18next";
-import { gridSpacing } from "@constants";
-import _globalVars from "@constants/variables";
-import { crossCutting } from "@utils/crossCutting";
+import './_createNew.scss';
+import { useTranslation } from 'react-i18next';
+import { gridSpacing } from '@constants';
+import _globalVars from '@constants/variables';
+import { crossCutting } from '@utils/crossCutting';
 //#region mui-ui
 import {
   Grid,
@@ -10,19 +10,19 @@ import {
   Checkbox,
   FormControlLabel,
   Tooltip,
-  CardMedia,
-} from "@mui/material";
+  CardMedia
+} from '@mui/material';
 //#endregion
 //#region import components
-import MainCard from "@components/mui-ui/cards";
-import FormAction from "@clientapp/components/workspace/forms/newWorkspace";
-import LoadingButton from "@components/mui-ui/extended/loadingButton";
+import MainCard from '@components/mui-ui/cards';
+import FormAction from '@clientapp/components/workspace/forms/newWorkspace';
+import LoadingButton from '@components/mui-ui/extended/loadingButton';
 //#endregion
-import imgWP from "@assets/images/bg_workspace.svg";
-import imgPWR from "@assets/images/people-working-remotely_bg.svg";
+import imgWP from '@assets/images/bg_workspace.svg';
+import imgPWR from '@assets/images/people-working-remotely_bg.svg';
 //#region reduxprovider
-import { useDispatch, useSelector } from "react-redux";
-import { OPEN_DRAWER } from "@components/mui-ui/drawer/drawer.reducer";
+import { useDispatch, useSelector } from 'react-redux';
+import { OPEN_DRAWER } from '@components/mui-ui/drawer/drawer.reducer';
 //#endregion
 //#endregion
 
@@ -50,9 +50,9 @@ const CreateNew = ({ data, wpOwner }) => {
   const handleOpenDrawerRight = () => {
     dispatch(
       OPEN_DRAWER({
-        className: "workspace_created",
-        title: t("workspace.enter_workspace_name"),
-        render: <FormAction />,
+        className: 'workspace_created',
+        title: t('workspace.enter_workspace_name'),
+        render: <FormAction />
       })
     );
   };
@@ -61,19 +61,19 @@ const CreateNew = ({ data, wpOwner }) => {
   //#region render components
   const renderCheckboxTerms = (
     <FormControlLabel
-      className={"terms" + (disabledCbTerms ? " disabled" : "")}
-      sx={{ alignItems: "flex-start" }}
+      className={'terms' + (disabledCbTerms ? ' disabled' : '')}
+      sx={{ alignItems: 'flex-start' }}
       control={
         <Tooltip
           title={
-            disabledCbTerms ? t("workspace.limited_for_one_workpsace") : ""
+            disabledCbTerms ? t('workspace.limited_for_one_workpsace') : ''
           }
           placement="top"
         >
           <span>
             <Checkbox
               sx={{
-                marginTop: -1,
+                marginTop: -1
               }}
               disabled={disabledCbTerms}
               checked={termsChecked && !disabledCbTerms}
@@ -85,7 +85,7 @@ const CreateNew = ({ data, wpOwner }) => {
       }
       label={
         <Typography variant="subtitle2">
-          {t("workspace.terms_and_conditions")}
+          {t('workspace.terms_and_conditions')}
         </Typography>
       }
     />
@@ -98,21 +98,21 @@ const CreateNew = ({ data, wpOwner }) => {
       <>
         <Grid item xs={12} md={4} className="wsa__intro">
           <Grid container spacing={gridSpacing} className="container__item">
-            <Grid item className="desc" textAlign={"left"}>
+            <Grid item className="desc" textAlign={'left'}>
               <Typography variant="h1" gutterBottom>
-                {t("workspace.get_free_one_workspace")}
+                {t('workspace.get_free_one_workspace')}
               </Typography>
-              <Typography component={"p"} variant="body1" gutterBottom>
-                {t("workspace.optimizing_saving_your_time")}
+              <Typography component={'p'} variant="body1" gutterBottom>
+                {t('workspace.optimizing_saving_your_time')}
               </Typography>
-              <Typography component={"p"} variant="body1" gutterBottom>
-                {t("workspace.speedup_management_communication_report_search")}
+              <Typography component={'p'} variant="body1" gutterBottom>
+                {t('workspace.speedup_management_communication_report_search')}
               </Typography>
             </Grid>
-            <Grid item className="acts" textAlign={"center"}>
+            <Grid item className="acts" textAlign={'center'}>
               <LoadingButton
                 disabled={disabledBtnCreate}
-                text={t("workspace.btn_create_new_workspace")}
+                text={t('workspace.btn_create_new_workspace')}
                 onClick={handleOpenDrawerRight}
               />
             </Grid>
@@ -124,13 +124,13 @@ const CreateNew = ({ data, wpOwner }) => {
           xs={12}
           md={6}
           className="wsa__img"
-          justifyContent={"center"}
+          justifyContent={'center'}
         >
           <CardMedia
             className="responsive"
             component="img"
             height={550}
-            width={"auto"}
+            width={'auto'}
             image={imgWP}
             alt="Paella dish"
           />
@@ -142,58 +142,56 @@ const CreateNew = ({ data, wpOwner }) => {
   const renderSimpleView = () => {
     return (
       <>
-        <Grid item xs={12} md={10}>
-          <MainCard
-            //   {...other}
-            darkTitle={true}
-            contentClass="wsa__createnew"
+        <MainCard
+          //   {...other}
+          darkTitle={true}
+          contentClass="wsa__createnew"
+        >
+          <Grid
+            container
+            spacing={gridSpacing}
+            alignItems={'center'}
+            justifyContent={'center'}
+            direction={'row'}
           >
-            <Grid
-              container
-              spacing={gridSpacing}
-              alignItems={"center"}
-              justifyContent={"center"}
-              direction={"row"}
-            >
-              <Grid item xs={12} md={7} className="desc">
-                <CardMedia
-                  className="responsive"
-                  component="img"
-                  width={"auto"}
-                  image={imgPWR}
-                  alt="People Working Remotely"
-                />
-              </Grid>
-              <Grid item xs={12} md={5} className="acts" textAlign={"center"}>
-                <Grid container spacing={gridSpacing} direction={"column"}>
-                  <Grid item xs={12} className="desc" textAlign={"left"}>
-                    <Typography variant="h2" gutterBottom>
-                      {t("workspace.get_free_one_workspace")}
-                    </Typography>
-                    <Typography component={"p"} variant="body1" gutterBottom>
-                      {t("workspace.optimizing_saving_your_time")}
-                    </Typography>
-                    <Typography component={"p"} variant="body1" gutterBottom>
-                      {t(
-                        "workspace.speedup_management_communication_report_search"
-                      )}
-                    </Typography>
-                  </Grid>
-                  <Grid item textAlign={"left"}>
-                    {renderCheckboxTerms}
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <LoadingButton
-                      disabled={disabledBtnCreate}
-                      text={t("workspace.btn_create_new_workspace")}
-                      onClick={handleOpenDrawerRight}
-                    />
-                  </Grid>
+            <Grid item xs={12} md={7} className="desc">
+              <CardMedia
+                className="responsive"
+                component="img"
+                width={'auto'}
+                image={imgPWR}
+                alt="People Working Remotely"
+              />
+            </Grid>
+            <Grid item xs={12} md={5} className="acts" textAlign={'center'}>
+              <Grid container spacing={gridSpacing} direction={'column'}>
+                <Grid item xs={12} className="desc" textAlign={'left'}>
+                  <Typography variant="h2" gutterBottom>
+                    {t('workspace.get_free_one_workspace')}
+                  </Typography>
+                  <Typography component={'p'} variant="body1" gutterBottom>
+                    {t('workspace.optimizing_saving_your_time')}
+                  </Typography>
+                  <Typography component={'p'} variant="body1" gutterBottom>
+                    {t(
+                      'workspace.speedup_management_communication_report_search'
+                    )}
+                  </Typography>
+                </Grid>
+                <Grid item textAlign={'left'}>
+                  {renderCheckboxTerms}
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <LoadingButton
+                    disabled={disabledBtnCreate}
+                    text={t('workspace.btn_create_new_workspace')}
+                    onClick={handleOpenDrawerRight}
+                  />
                 </Grid>
               </Grid>
             </Grid>
-          </MainCard>
-        </Grid>
+          </Grid>
+        </MainCard>
       </>
     );
   };

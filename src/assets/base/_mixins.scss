@@ -194,6 +194,19 @@
   opacity: $value1;
 }
 
+@mixin _flexRow($value: 1) {
+  -webkit-box-flex: $value;
+  -webkit-flex-grow: $value;
+  -ms-flex-positive: $value;
+  flex-grow: $value;
+}
+
+@mixin _flexBasis($value: 100%) {
+  -webkit-flex-basis: $value;
+  -ms-flex-preferred-size: $value;
+  flex-basis: $value;
+}
+
 @mixin _posfixedCenter() {
   position: fixed;
   top: 50%;
@@ -404,7 +417,7 @@
   zoom: 1; // For IE 6/7 (trigger hasLayout)
   &:before,
   &:after {
-    content: "";
+    content: '';
     display: table;
   }
 
