@@ -500,6 +500,43 @@ export const string = {
     return text;
   },
 
+  /**
+   * Get routeMatcher with regex: /workspace/:id/statistic
+   * @param {*} route
+   * @returns
+   */
+  routeMatcher: (route) => {
+    if (route !== '*') {
+      var routeMatcher = new RegExp(route.replace(/:[^\s/]+/g, '([\\w-]+)'));
+      return routeMatcher;
+    }
+  },
+
+  /*
+   * Auto Link
+   * How to use it?
+   * <AutoLink text="foo bar baz http://example.org bar" />
+   */
+  autoLink: ({ text }) => {
+    const delimiter =
+      /((?:https?:\/\/)?(?:(?:[a-z0-9]?(?:[a-z0-9\-]{1,61}[a-z0-9])?\.[^\.|\s])+[a-z\.]*[a-z]+|(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})(?::\d{1,5})*[a-z0-9.,_\/~#&=;%+?\-\\(\\)]*)/gi;
+
+    return (
+      <>
+        {text.split(delimiter).map((word) => {
+          const match = word.match(delimiter);
+          if (match) {
+            const url = match[0];
+            return (
+              <a href={url.startsWith('http') ? url : `http://${url}`}>{url}</a>
+            );
+          }
+          return word;
+        })}
+      </>
+    );
+  },
+
   getTextWidth: (text, font) => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');

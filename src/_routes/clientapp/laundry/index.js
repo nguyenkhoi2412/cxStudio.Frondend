@@ -6,6 +6,7 @@ import ErrorRoutes from './_error';
 const LaundryServiceRoutes = [
   {
     element: <CLIENT_APP.LAYOUT appName={APP.EMPTY} />,
+    industry: APP.INDUSTRY.LAUNDRY,
     children: [
       {
         path: navigatePath.CLIENT_APP.LAUNDRY.DEFAULT,

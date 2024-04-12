@@ -1,10 +1,11 @@
-import { useRoutes } from "react-router-dom";
-import { hook } from "@utils/crossCutting";
-import { useTranslation } from "react-i18next";
+import { useRoutes } from 'react-router-dom';
+import { crossCutting, hook, string } from '@utils/crossCutting';
+import { useTranslation } from 'react-i18next';
 // routes
+import APP from '@constants/app';
 // import AuthenticationRoutes from "./data/authentication";
-import DashboardRoutes from "./dashboard";
-import ClientAppRoutes from "./clientapp";
+import DashboardRoutes from './dashboard';
+import ClientAppRoutes from './clientapp';
 // import AuthenticationRoutes from './AuthenticationRoutes';
 
 const RouteMaps = [...ClientAppRoutes];
@@ -17,12 +18,16 @@ const buildTitle = () => {
   React.useEffect(() => {
     let currentTitle = null;
     const currentRoute = RouteMaps.find((item) => {
-      const { children } = item;
+      const { path, industry, children } = item;
+
       if (!children) {
-        return item.path === pathname;
+        return path === pathname || getCurrentRoute(industry, item, pathname);
       } else {
         return children.find((child) => {
-          if (child.path === pathname) {
+          if (
+            child.path === pathname ||
+            getCurrentRoute(industry, child, pathname)
+          ) {
             currentTitle = child?.title;
             return child;
           }
@@ -30,9 +35,17 @@ const buildTitle = () => {
       }
     });
 
-    if (currentTitle === null) currentTitle = currentRoute?.title || "";
+    if (currentTitle === null) currentTitle = currentRoute?.title || '';
     document.title = t(currentTitle);
   }, [currentLocation]);
+};
+
+const getCurrentRoute = (type, item, urlPathname) => {
+  const industryType = {
+    [APP.INDUSTRY.LAUNDRY]: urlPathname.match(string.routeMatcher(item.path))
+  };
+
+  return crossCutting.check.isNotNull(industryType[type]);
 };
 
 // ==============================|| ROUTING RENDER ||============================== //
