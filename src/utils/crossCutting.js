@@ -1002,9 +1002,13 @@ export const array = {
    * @params items: item insert
    */
   insert: (currentArray, index, items) => {
+    if (crossCutting.check.isNull(currentArray)) {
+      return [items];
+    }
+
     return [
       ...currentArray.slice(0, index),
-      ...items,
+      items,
       ...currentArray.slice(index)
     ];
   },
@@ -1644,24 +1648,18 @@ export const hook = {
    * <p>Throttled value: {throttledValue}</p>
    * If we setValue success, this value will process (change/call API) after 1000ms = 1s
    */
-  useThrottle: (value, limit) => {
-    const [throttledValue, setThrottledValue] = React.useState(value);
-    const lastRan = React.useRef(Date.now());
-
+  useThrottle: (cb, delay) => {
+    const [debounceValue, setDebounceValue] = React.useState(cb);
     React.useEffect(() => {
-      const handler = setTimeout(function () {
-        if (Date.now() - lastRan.current >= limit) {
-          setThrottledValue(value);
-          lastRan.current = Date.now();
-        }
-      }, limit - (Date.now() - lastRan.current));
+      const handler = setTimeout(() => {
+        setDebounceValue(cb);
+      }, delay);
 
       return () => {
         clearTimeout(handler);
       };
-    }, [value, limit]);
-
-    return throttledValue;
+    }, [cb, delay]);
+    return debounceValue;
   },
 
   /*
