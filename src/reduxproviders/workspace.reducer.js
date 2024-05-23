@@ -1,29 +1,29 @@
-import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import { WorkspaceService } from "@services/workspace";
-import { array } from "@utils/crossCutting";
-import initialData from "./_initialState";
+import { createSlice, current, createAsyncThunk } from '@reduxjs/toolkit';
+import { WorkspaceService } from '@services/workspace';
+import { array } from '@utils/crossCutting';
+import initialData from './_initialState';
 
 export const WORKSPACE_GET_BY_USER = createAsyncThunk(
-  "workspace/getbyuser",
+  'workspace/getbyuser',
   async (params, thunkAPI) => {
     return await WorkspaceService.getByUser(params);
   }
 );
 
 export const INSERT_NEW = createAsyncThunk(
-  "workspace/insertnew",
+  'workspace/insertnew',
   async (params, thunkAPI) => {
-    return await WorkspaceService.insertnew("workspace/insertnew", params);
+    return await WorkspaceService.insertnew('workspace/insertnew', params);
   }
 );
 
 // init state role
 const initialState = {
-  ...initialData,
+  ...initialData
 };
 
 export const workspace = createSlice({
-  name: "workspace",
+  name: 'workspace',
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -33,14 +33,14 @@ export const workspace = createSlice({
         return {
           ...state,
           isFetching: true,
-          showProgressbar: true,
+          showProgressbar: true
         };
       })
       .addCase(INSERT_NEW.rejected, (state) => {
         return {
           ...state,
           isFetching: false,
-          showProgressbar: false,
+          showProgressbar: false
         };
       })
       .addCase(INSERT_NEW.fulfilled, (state, { payload }) => {
@@ -55,7 +55,7 @@ export const workspace = createSlice({
           ok: payload?.ok,
           message: payload?.message,
           originalData: data,
-          data: data,
+          data: data
         };
       });
     //#endregion
@@ -65,14 +65,14 @@ export const workspace = createSlice({
         return {
           ...state,
           isFetching: true,
-          showProgressbar: true,
+          showProgressbar: true
         };
       })
       .addCase(WORKSPACE_GET_BY_USER.rejected, (state) => {
         return {
           ...state,
           isFetching: false,
-          showProgressbar: false,
+          showProgressbar: false
         };
       })
       .addCase(WORKSPACE_GET_BY_USER.fulfilled, (state, { payload }) => {
@@ -86,10 +86,11 @@ export const workspace = createSlice({
           message: payload?.message,
           originalData: results,
           data: results,
+          totalCount: payload?.totalCount
         };
       });
     //#endregion
-  },
+  }
 });
 
 // export actions to use

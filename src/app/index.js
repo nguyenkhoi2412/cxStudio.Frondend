@@ -1,32 +1,32 @@
-import "./app.scss";
-import { useTranslation } from "react-i18next";
-import defaultFavicon from "@assets/favicons/default/favicon.svg";
-import _globalVars from "@constants/variables";
-import { isAuth } from "@utils/requireAuth";
-import { BuildRoutes } from "@routes";
-import { SnackbarProvider } from "notistack";
-import { ThemeProvider } from "@mui/system";
-import { CssBaseline, StyledEngineProvider } from "@mui/material";
-import { configBaseTheme } from "@theme/_base";
-import NavigationScroll from "@utils/_layout/navigationScroll";
-import { BrowserRouter } from "react-router-dom";
-import WpBackdrop from "@components/mui-ui/backdropSpin";
-import WpProgressBar from "@components/mui-ui/progressBar";
-import WpSnackBar from "@components/mui-ui/snackBar";
-import WpDrawer from "@components/mui-ui/drawer";
-import { crossCutting, hook } from "@utils/crossCutting";
-import { useDispatch, useSelector } from "react-redux";
+import './app.scss';
+import { useTranslation } from 'react-i18next';
+import defaultFavicon from '@assets/favicons/default/favicon.svg';
+import _globalVars from '@constants/variables';
+import { isAuth } from '@utils/requireAuth';
+import { BuildRoutes } from '@routes';
+import { SnackbarProvider } from 'notistack';
+import { ThemeProvider } from '@mui/system';
+import { CssBaseline, StyledEngineProvider } from '@mui/material';
+import { configBaseTheme } from '@theme/_base';
+import NavigationScroll from '@utils/_layout/navigationScroll';
+import { BrowserRouter } from 'react-router-dom';
+import WpBackdrop from '@components/mui-ui/backdropSpin';
+import WpProgressBar from '@components/mui-ui/progressBar';
+import WpSnackBar from '@components/mui-ui/snackBar';
+import WpDrawer from '@components/mui-ui/drawer';
+import { crossCutting, hook } from '@utils/crossCutting';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   SHOW_SPIN,
-  HIDE_SPIN,
-} from "@components/mui-ui/backdropSpin/backdropSpin.reducer";
-import { DETECT_BROWSER_NAVIGATION } from "@reduxproviders/utils/navigation.reducer";
-import { UPDATE_COOKIE } from "@reduxproviders/sessionHandler.reducer";
-import { REFRESH_TOKEN } from "@reduxproviders/auth.reducer";
-import authServices from "@services/auth";
+  HIDE_SPIN
+} from '@components/mui-ui/backdropSpin/backdropSpin.reducer';
+import { DETECT_BROWSER_NAVIGATION } from '@reduxproviders/utils/navigation.reducer';
+import { UPDATE_COOKIE } from '@reduxproviders/sessionHandler.reducer';
+import { REFRESH_TOKEN } from '@reduxproviders/auth.reducer';
+import authServices from '@services/auth';
 
 //#region call api
-import { SITE_GET_BY_ID } from "@reduxproviders/site.reducer";
+import { SITE_GET_BY_ID } from '@reduxproviders/site.reducer';
 //#endregion
 
 const App = (props) => {
@@ -34,37 +34,39 @@ const App = (props) => {
   addFavicons();
   const customization = useSelector((state) => state.customization);
   const dispatch = useDispatch();
-  const savedLocale = hook.useLocalStorage("locale");
+  const savedLocale = hook.useLocalStorage('locale');
 
-  document.body.classList.toggle("darkTheme", customization.mode === "dark");
+  document.body.classList.toggle('darkTheme', customization.mode === 'dark');
   document.body.classList.toggle(
-    "defaultTheme",
-    customization.mode === "light"
+    'defaultTheme',
+    customization.mode === 'light'
   );
   const { i18n } = useTranslation();
-  const [load, upadateLoad] = React.useState(true);
+  const [loading, updateLoading] = React.useState(true);
   const [deviceInfos, setDeviceInfos] = React.useState({
     mobile: false,
-    responsive: false,
+    responsive: false
   });
 
   //#region get datas
   const getSiteInfosById = () => {
+    updateLoading(true);
     dispatch(
       SITE_GET_BY_ID({
-        id: _globalVars.SITE_ID,
+        id: _globalVars.SITE_ID
       })
     )
       .unwrap()
       .then((payload) => {
         savedLocale.save(payload.rs.locale.filter((lc) => lc.is_default)[0]);
+        updateLoading(false);
       });
   };
   //#endregion
 
   //#region useEffect
   React.useEffect(() => {
-    i18n.changeLanguage("en-US");
+    i18n.changeLanguage('en-US');
     handleResize();
     // Detect page REFRESH or not
     dispatch(DETECT_BROWSER_NAVIGATION());
@@ -76,21 +78,20 @@ const App = (props) => {
 
     //* GET SITE INFO
     getSiteInfosById();
-
-    //* SHOW SPIN
-    dispatch(
-      SHOW_SPIN({
-        type: "pre",
-      })
-    );
-    // preload
-    const timer = setTimeout(() => {
-      upadateLoad(false);
-      dispatch(HIDE_SPIN());
-    }, 600);
-
-    return () => clearTimeout(timer);
   }, []);
+
+  React.useEffect(() => {
+    if (loading) {
+      //* SHOW SPIN
+      dispatch(
+        SHOW_SPIN({
+          type: 'pre'
+        })
+      );
+    } else {
+      dispatch(HIDE_SPIN());
+    }
+  }, [loading]);
 
   //* Interval callback REFRESH TOKEN AFTER LOGIN SUCCESS
   const callbackRefreshToken = hook.useInterval(
@@ -115,8 +116,8 @@ const App = (props) => {
 
   //* window resize
   $(window)
-    .off("resize.handleResize")
-    .on("resize.handleResize", function () {
+    .off('resize.handleResize')
+    .on('resize.handleResize', function () {
       handleResize();
     });
   //#endregion
@@ -134,13 +135,13 @@ const App = (props) => {
           maxSnack={3}
           autoHideDuration={3000}
           anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
+            vertical: 'bottom',
+            horizontal: 'right'
           }}
         >
           <BrowserRouter>
             <NavigationScroll>
-              {load ? <></> : <BuildRoutes />}
+              {loading ? <></> : <BuildRoutes />}
             </NavigationScroll>
           </BrowserRouter>
         </SnackbarProvider>
@@ -154,9 +155,9 @@ export default App;
 const addFavicons = () => {
   var link = document.querySelector("link[rel~='icon']");
   if (!link) {
-    link = document.createElement("link");
-    link.rel = "shortcut icon";
-    document.getElementsByTagName("head")[0].appendChild(link);
+    link = document.createElement('link');
+    link.rel = 'shortcut icon';
+    document.getElementsByTagName('head')[0].appendChild(link);
   }
   link.href = defaultFavicon;
 };

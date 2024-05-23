@@ -2,7 +2,8 @@ export default {
   isFetching: false,
   showProgressbar: false,
   ok: true,
-  message: "",
+  message: '',
   originalData: null,
   data: null,
+  totalCount: 0
 };

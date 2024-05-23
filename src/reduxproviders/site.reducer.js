@@ -1,13 +1,13 @@
-import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import SiteService from "@services/site";
-import initialData from "./_initialState";
+import { createSlice, current, createAsyncThunk } from '@reduxjs/toolkit';
+import SiteService from '@services/site';
+import initialData from './_initialState';
 
 // ==============================|| ACTIONS ||============================== //
 //#region ACTIONS
 export const SITE_GET_BY_ID = createAsyncThunk(
-  "site/getbyid",
+  'site/getbyid',
   async (params, thunkAPI) => {
-    return await SiteService.getbyid("site/getbyid/", params);
+    return await SiteService.getbyid('site/getbyid/', params);
   }
 );
 
@@ -15,11 +15,11 @@ export const SITE_GET_BY_ID = createAsyncThunk(
 //#region REDUX PROVIDER
 // init state auth
 const initialState = {
-  ...initialData,
+  ...initialData
 };
 
 export const site = createSlice({
-  name: "site",
+  name: 'site',
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -29,14 +29,14 @@ export const site = createSlice({
         return {
           ...state,
           isFetching: true,
-          showProgressbar: true,
+          showProgressbar: true
         };
       })
       .addCase(SITE_GET_BY_ID.rejected, (state) => {
         return {
           ...state,
           isFetching: false,
-          showProgressbar: false,
+          showProgressbar: false
         };
       })
       .addCase(SITE_GET_BY_ID.fulfilled, (state, { payload }) => {
@@ -50,10 +50,11 @@ export const site = createSlice({
           message: payload?.message,
           originalData: results,
           data: results,
+          totalCount: payload?.totalCount
         };
       });
     //#endregion
-  },
+  }
 });
 //#endregion
 
