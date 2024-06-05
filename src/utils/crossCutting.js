@@ -175,6 +175,10 @@ export const crossCutting = {
       );
 
       return mimetype && extname;
+    },
+    isNumber: (n) => {
+      const num = parseFloat(n);
+      return !Number.isNaN(num) && Number.isFinite(num) && Number(n) == n;
     }
   },
   //#endregion
@@ -1683,15 +1687,15 @@ export const hook = {
       }
     };
 
-    const [state, dispatch] = React.useReducer(stateReducer, initialState);
+    const [state, _dispatch] = React.useReducer(stateReducer, initialState);
 
     const run = async (args = null) => {
       try {
-        dispatch({ type: 'start' });
+        _dispatch({ type: 'start' });
         const value = await fn(args);
-        dispatch({ type: 'finish', data });
+        _dispatch({ type: 'finish', value });
       } catch (error) {
-        dispatch({ type: 'error', error });
+        _dispatch({ type: 'error', error });
       }
     };
 
