@@ -53,7 +53,7 @@ axiosInstance.interceptors.request.use(
     return request;
   },
   (requestError) => {
-    console.log("requestError", responseError);
+    console.log("requestError", requestError);
     return Promise.reject(requestError);
   }
 );
@@ -76,6 +76,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (responseError) => {
+    window.location.href = "http://localhost:2001/workspace/auth/signin"
     console.log("responseError", responseError);
     const messageError =
       responseError.response?.data !== undefined
