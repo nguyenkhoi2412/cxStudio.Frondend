@@ -78,13 +78,13 @@ export const crossCutting = {
         case 'light':
           var letters = 'BCDEF'.split('');
           var letterLen = letters.length;
-          var color = '#';
+          var col = '#';
           var i = 0;
           while (i < 6) {
-            color += letters[Math.floor(Math.random() * letterLen)];
+            col += letters[Math.floor(Math.random() * letterLen)];
             i++;
           }
-          return color;
+          return col;
 
         //* Generate dark color
         case 'dark':
@@ -720,7 +720,7 @@ export const string = {
 
     const segStr = segmenter.segment(str);
     const strLength = segStr.length;
-    const stt = 0;
+    let stt = 0;
     do {
       const word = segStr[stt];
       if (word.isWordLike) continue;
