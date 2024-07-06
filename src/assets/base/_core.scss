@@ -59,3 +59,28 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* now we can add flexbox layout with a single line of code */
+.anchor-top {
+  @include flexbox($placeItems: flex-start);
+}
+
+.anchor-bottom {
+  @include flexbox($placeItems: flex-end);
+}
+
+.anchor-center {
+  @include flexbox($placeItems: center);
+}
+
+.anchor-left {
+  @include flexbox($placeContent: flex-start);
+}
+
+.anchor-right {
+  @include flexbox($placeContent: flex-end);
+}
+
+.anchor-center-hor {
+  @include flexbox($placeContent: center);
+}
